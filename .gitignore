@@ -1,6 +1,6 @@
 DAW-Workspace.code-workspace
-PROG/Tarea01/Martinez_Rodriguez_Angel_PROG01_Tarea.*
-PROG/Tarea02/Martinez_Rodriguez_Angel_PROG02_Tarea.*
+/PROG/Tarea01/Martinez_Rodriguez_Angel_PROG01_Tarea.*
+/PROG/Tarea02/Martinez_Rodriguez_Angel_PROG02_Tarea.*
 /PROG/Tarea02/Prog02Ejer01/nbproject/private/
 /PROG/Tarea02/Prog02Ejer01/build/
 /PROG/Tarea02/Prog02Ejer01/dist/
@@ -32,3 +32,6 @@ PROG/Tarea02/Martinez_Rodriguez_Angel_PROG02_Tarea.*
 /PROG/Tarea02/test/nbproject/private/
 /PROG/Tarea02/Prog02Ejer09/build/
 /PROG/Tarea02/Prog02Ejer09/dist/
+/PROG/Tarea02/Examen test para PROG02._ Revisión del intento.pdf
+
+/ED/ED02/Martinez_Rodriguez_Angel_ED02_Tarea.*
