@@ -1,6 +1,13 @@
 DAW-Workspace.code-workspace
-/PROG/Tarea01/Martinez_Rodriguez_Angel_PROG01_Tarea.*
-/PROG/Tarea02/Martinez_Rodriguez_Angel_PROG02_Tarea.*
+/PROG/Tarea01/Documents/
+/PROG/Tarea02/Documents/
+/PROG/Tarea03/Documents/
+/PROG/Tarea04/Documents/
+/PROG/Tarea05/Documents/
+/PROG/Tarea06/Documents/
+/PROG/Tarea07/Documents/
+/PROG/Tarea08/Documents/
+
 /PROG/Tarea02/Prog02Ejer01/nbproject/private/
 /PROG/Tarea02/Prog02Ejer01/build/
 /PROG/Tarea02/Prog02Ejer01/dist/
@@ -39,7 +46,11 @@ DAW-Workspace.code-workspace
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer01/build/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer02/build/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer02/dist/
-/PROG/Tarea03/Martinez_Rodriguez_Angel_PROG03_Tarea.*
-
+/PROG/Tarea04/Supuesto04/nbproject/private/
+/PROG/Tarea04/Supuesto04/build/
+/PROG/Tarea04/Supuesto04/dist/
 
 /ED/ED02/Martinez_Rodriguez_Angel_ED02_Tarea.*
+/PROG/Tarea04/Supuesto01/nbproject/private/
+/PROG/Tarea04/Supuesto02/nbproject/private/
+/PROG/Tarea04/Supuesto03/nbproject/private/
