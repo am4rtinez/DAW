@@ -1,5 +1,7 @@
 package supuesto03;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Ángel Martínez Rodríguez
@@ -34,7 +36,47 @@ public class Supuesto03 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        int x = 0, y = 10, intento = 1, randomNum, userNum;
+        Scanner keyboard = new Scanner(System.in);
+        randomNum = initRandom(x,y);
+        //System.out.println(randomNum); //Se imprime en pantalla para realizar pruebas.
+        
+        // Búcle de 10 intentos. La única forma de "romper" el búcle es acertando o
+        // finalizando el número de intentos.
+        while (intento <= 10) {
+            System.out.println("Ángel, introduce tu intento " + intento +
+                    " para adivinar el número del intervalo [x..y].");
+            userNum = keyboard.nextInt();
+            
+            //Comprueba si el número introducido por el usuario es el mismo randomizado.
+            //Si coinciden imprime el mensaje junto al número de intentos realizados.
+            // En el caso de fallar indica una pista y suma 1 intento al contador.
+            if (userNum == randomNum) {
+                System.out.println("ENHORABUENA! Has acertado el número (" + randomNum
+                        + ") en " + intento + " intentos.");
+                break;  //Finaliza la ejecución.
+            } else {
+                System.out.println("FALLASTE! Te quedan " + (10 - intento) + " intentos.");
+                if (userNum>randomNum){
+                    //Si es mayor el número introducido por el usuario lo indica en la pista.
+                    System.out.println("PISTA: El número que introdujiste es mayor al que buscas.");
+                } else {
+                    // En este punto solo entra si el número introducido es menor e imprime la pista en pantalla.
+                    System.out.println("PISTA: El número que introdujiste es menor al que buscas.");
+                }                
+                intento++;      //Suma un intento al contador.
+            }
+        }
     }
     
+    /**
+     * Inicializa el número aleatorio en el rango [x..y]
+     * @param x
+     * @param y
+     * @return 
+     */
+    public static int initRandom (int x, int y){
+        return x + (int)(Math.random() * y);
+    }
 }
