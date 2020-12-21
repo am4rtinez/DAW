@@ -73,6 +73,10 @@ public class Supuesto03 {
                         + ") en " + intento + " intentos.");
                 break;  //Finaliza la ejecución.
             } else {
+                if (intento == 10){
+                    System.out.println("FALLASTE! Te quedan " + (10 - intento) + " intentos.");
+                    System.out.println("El número a adivinar era: " + randomNum + ".");
+                }
                 System.out.println("FALLASTE! Te quedan " + (10 - intento) + " intentos.");
                 if (userNum>randomNum){
                     //Si es mayor el número introducido por el usuario lo indica en la pista.
@@ -91,9 +95,11 @@ public class Supuesto03 {
      * @param x
      * @param y
      * @return 
+     * Math.floor(Math.random()*(y-x+1)+x);  Valor entre x e y, ambos incluidos.
+     * Wikipedia:
      */
     public static int initRandom (int x, int y){
-        return x + (int)(Math.random() * y);
+        return (int) (Math.floor(Math.random() * (y - x + 1)) + x);
     }
     
     /**
