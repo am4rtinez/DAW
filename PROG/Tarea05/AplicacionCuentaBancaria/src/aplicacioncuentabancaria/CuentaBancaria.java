@@ -119,9 +119,17 @@ public class CuentaBancaria {
         this.numcuenta = split[3];
     }
     
+    public void ingresar(double valor){
+        this.saldo = saldo + valor;
+    }
     
-    
-    
+    public void retirarEfectivo(double valor) throws Exception{
+        if (saldo<valor) {
+            throw new SaldoInsuficienteException("¡ERROR! - No dispone de saldo suficiente: " + saldo +"€ en cuenta.");
+        }else{
+            this.saldo = saldo - valor;
+        }
+    }
     
     /**
      * @return the ccc
@@ -206,13 +214,5 @@ public class CuentaBancaria {
      */
     public double getSaldo() {
         return saldo;
-    }
-
-    /**
-     * @param saldo the saldo to set
-     */
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
     }    
-    
 }

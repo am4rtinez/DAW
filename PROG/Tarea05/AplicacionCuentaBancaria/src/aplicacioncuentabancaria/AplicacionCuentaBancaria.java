@@ -45,41 +45,48 @@ public class AplicacionCuentaBancaria {
                 opcion = kb.nextInt();
                 switch (opcion) {
                     case 0:
-                        System.out.println("Seleccionada opción: " + operacion0 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion0 + " (" + opcion + ").");
                         System.out.println("Que pase un buen día.");
                         salir = true;
                         break;
                     case 1:
-                        System.out.println("Seleccionada opción: " + operacion1 + " (" + opcion +").");
-                        System.out.println(cuentaA.getCcc());
+                        System.out.println("Seleccionada opción: " + operacion1 + " (" + opcion + ").");
+                        System.out.println("CCC de la cuenta: " + cuentaA.getCcc());
                         break;
                     case 2:
-                        System.out.println("Seleccionada opción: " + operacion2 + " (" + opcion +").");
-                        System.out.println(cuentaA.getTitular());
+                        System.out.println("Seleccionada opción: " + operacion2 + " (" + opcion + ").");
+                        System.out.println("Titular de la cuenta: " + cuentaA.getTitular());
                         break;
                     case 3:
-                        System.out.println("Seleccionada opción: " + operacion3 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion3 + " (" + opcion + ").");
+                        System.out.println("Código de la Entidad: " + cuentaA.getEntidad());
                         break;
                     case 4:
-                        System.out.println("Seleccionada opción: " + operacion4 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion4 + " (" + opcion + ").");
+                        System.out.println("Código de la Oficina: " + cuentaA.getOficina());
                         break;
                     case 5:
-                        System.out.println("Seleccionada opción: " + operacion5 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion5 + " (" + opcion + ").");
+                        System.out.println("Número de la cuenta: " + cuentaA.getNumcuenta());
                         break;
                     case 6:
-                        System.out.println("Seleccionada opción: " + operacion6 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion6 + " (" + opcion + ").");
+                        System.out.println("Dígitos de control: " + cuentaA.getDc());
                         break;
                     case 7:
-                        System.out.println("Seleccionada opción: " + operacion7 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion7 + " (" + opcion + ").");
+                        realizarIngreso(cuentaA);
                         break;
                     case 8:
-                        System.out.println("Seleccionada opción: " + operacion8 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion8 + " (" + opcion + ").");
+                        mostrarSaldo(cuentaA);
+                        retiradaEfectivo(cuentaA);
                         break;
                     case 9:
-                        System.out.println("Seleccionada opción: " + operacion9 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion9 + " (" + opcion + ").");
                         break;
                     case 111:
-                        System.out.println("Seleccionada opción: " + operacion111 + " (" + opcion +").");
+                        System.out.println("Seleccionada opción: " + operacion111 + " (" + opcion + ").");
                         mostrarMenu();
                         break;
                     default:
@@ -96,11 +103,19 @@ public class AplicacionCuentaBancaria {
         
     }
     
+    /**
+     * Método para inicializar variables y mostrar mensajes en pantalla como una carga de app.
+     * Por el momento carga el logo generado y los strings de las operaciones a realizar.
+     * Estos strings son consultados después para mostrar mensajes de la operación al usuario.
+     */
     public static void inicializaApp(){
         mostrarLogo();          //Muestra el logo del Banco para hacerlo algo divertido.
         inicializaStrings();    //Inicializa los strings de operaciones para asi poder reutilizarlos.
     }
     
+    /**
+     * Método que inicializa los strings de las operaciones disponibles.
+     */
     public static void inicializaStrings(){
         operacion1 = "Ver el número de cuenta completo (CCC - Código Cuenta Cliente)";
         operacion2 = "Ver el titular de la cuenta";
@@ -115,9 +130,12 @@ public class AplicacionCuentaBancaria {
         operacion111 = "Mostrar menú";
     }
     
+    /**
+     * Método que muestra el logo DAWBANK de forma divertida.
+     */
     public static void mostrarLogo(){
         System.out.println(
-                "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€v\n"
+                "€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€\n"
                 + "€€       €€€€€€  €€€€€  €€€€  €€€€  €€      €€€€€€€  €€€€€  €€€€€€€  €€  €€€€  €€\n"
                 + "€€  €€€€  €€€€    €€€€  €€€€  €€€€  €€  €€€  €€€€€    €€€€   €€€€€€  €€  €€€  €€€\n"
                 + "€€  €€€€  €€€  €€  €€€  €€€€  €€€€  €€  €€€€  €€€  €€  €€€    €€€€€  €€  €€  €€€€\n"
@@ -131,6 +149,9 @@ public class AplicacionCuentaBancaria {
         System.out.println("");
     }
     
+    /**
+     * Método que muestra el menú de operaciones disponibles.
+     */
     public static void mostrarMenu(){
         //He añadido la opción de mostrar menu con el 111 para forzar al usuario a apretar tres veces el 1.
         System.out.println("");
@@ -196,5 +217,56 @@ public class AplicacionCuentaBancaria {
                 validCCC = false;
             }
         }while(!validCCC);
+    }
+    
+    /**
+     * Método encargado de realizar ingresos.
+     * @param cuenta 
+     */
+    public static void realizarIngreso(CuentaBancaria cuenta){
+        boolean ingresado = false;
+        do{
+            System.out.println("Introduzca la cantidad que desea ingresar:");
+            try {
+                double importe = kb.nextDouble();
+                cuenta.ingresar(importe);
+                mostrarSaldo(cuenta);
+                ingresado = true;
+            } catch (Exception e) {
+                System.out.println("¡ERROR! - Introduzca un importe válido.");
+                kb.nextDouble();
+                ingresado = false;
+            }
+        }while (!ingresado);    
+    }
+    
+    public static void retiradaEfectivo(CuentaBancaria cuenta){
+        boolean retirado = false;
+        do{
+            System.out.println("Introduzca la cantidad que desea retirar:");
+            try {
+                double importe = kb.nextDouble();
+                cuenta.retirarEfectivo(importe);
+                mostrarSaldo(cuenta);
+                retirado = true;                        //Forzamos la salida ya que se ha realizado la operación satisfactoriamente.
+            } catch (SaldoInsuficienteException s) {    //Capturamos el error de saldo insuficiente.
+                System.out.println(s.getMessage());
+                retirado = true;                        //Forzamos la salida del dowhile ya que no hay saldo suficiente.
+            } catch (Exception e) {     //Capturamos el fallo de importe no válido.
+                System.out.println("¡ERROR! - Introduzca un importe válido.");
+                kb.nextDouble();
+                retirado = false;
+            }
+        }while (!retirado); 
+    }
+    /**
+     * Método encargado de mostrar el saldo de una cuenta.
+     * Pasamos por parámetro la cuenta de la que deseamos consultar el saldo.
+     * Se realiza así para poder reutilizarlo en las operaciones de ingreso, retirada y transferencia.
+     * Ya que de esta manera si en un futuro se debe mostrar más info solo hay que modificarlo aqui.
+     * @param cuenta 
+     */
+    public static void mostrarSaldo(CuentaBancaria cuenta){
+        System.out.println("- El saldo actual de la cuenta es: " + cuenta.getSaldo() + "€.\n");
     }
 }
