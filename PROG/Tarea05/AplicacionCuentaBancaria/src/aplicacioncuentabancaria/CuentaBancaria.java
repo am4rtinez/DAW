@@ -45,7 +45,7 @@ public class CuentaBancaria {
      * @throws Exception 
      */
     public void validarCCC(String ccc) throws Exception{
-        if (!ccc.matches("(^[0-9]{4}-[0-9]{4}-[0-9]{2}-[0-9]{10}$)")){
+        if (!ccc.matches("(^[0-9]{4}[0-9]{4}[0-9]{2}[0-9]{10}$)")){
             throw new Exception("¡ERROR! - Formato no válido.\n");
         }
         
@@ -60,18 +60,15 @@ public class CuentaBancaria {
     }
     
     static boolean validarDigsControl(String ccc){
-        
-        //Dividimos el string en Entidad, Oficina, Digitos control y Numero cuenta para su tratamiento.
-        String[] split = ccc.split("-");                
-        int dc_eo;                              //Digito de control Entidad oficina.
-        int dc_nc;                              //Digito de control Número cuenta.
+        int dc_eo;             //Digito de control Entidad oficina.
+        int dc_nc;             //Digito de control Número cuenta.
         
         //Calcula el dígito de control para Entidad Oficina. Al no tener los 10 digitos se añade 00 al inicio.
-        dc_eo = calculaDigito("00" + split[0] + split[1]);
+        dc_eo = calculaDigito("00" + ccc.substring(0, 8));
         //Calcula el dígito de control para el número de cuenta.
-        dc_nc = calculaDigito(split[3]);
+        dc_nc = calculaDigito(ccc.substring(10));
         
-        String dc = split[2];
+        String dc = ccc.substring(8, 10);;
         String dc_result = String.valueOf(dc_eo) + String.valueOf(dc_nc);
         
         //Compara si los digitos de control introducidos (dc) con los calculados (dc_result).
@@ -110,24 +107,32 @@ public class CuentaBancaria {
     
     void almacenarDatos(String ccc){
         //Dividimos el string en Entidad, Oficina, Digitos control y Numero cuenta para su tratamiento.
-        String[] split = ccc.split("-");  
-        
         this.ccc = ccc;
-        this.entidad = split[0];
-        this.oficina = split[1];
-        this.dc = split[2];
-        this.numcuenta = split[3];
+        this.entidad = ccc.substring(0, 4);;
+        this.oficina = ccc.substring(4, 8);;
+        this.dc = ccc.substring(8, 10);;
+        this.numcuenta = ccc.substring(10);;
     }
     
-    public void ingresar(double valor){
-        this.saldo = saldo + valor;
+    /**
+     * Método encargado de realizar los ingresos en cuenta.
+     * @param importe 
+     */
+    public void ingresar(double importe){
+        this.saldo = saldo + importe;
     }
     
-    public void retirarEfectivo(double valor) throws Exception{
-        if (saldo<valor) {
-            throw new SaldoInsuficienteException("¡ERROR! - No dispone de saldo suficiente: " + saldo +"€ en cuenta.");
+    /**
+     * Método encargado de realizar la retirada de dinero de la cuenta.
+     * Si el saldo es insuficiente lanzamos error SaldoInsuficienteException.
+     * @param importe
+     * @throws SaldoInsuficienteException 
+     */
+    public void retirar(double importe) throws SaldoInsuficienteException{
+        if (saldo<importe) {
+            throw new SaldoInsuficienteException("¡ERROR! - No dispone de saldo suficiente: " + saldo + "€ en cuenta.");
         }else{
-            this.saldo = saldo - valor;
+            this.saldo = saldo - importe;
         }
     }
     

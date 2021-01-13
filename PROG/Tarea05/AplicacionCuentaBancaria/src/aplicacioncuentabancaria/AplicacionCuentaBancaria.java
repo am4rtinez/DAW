@@ -21,6 +21,7 @@ public class AplicacionCuentaBancaria {
     public static void main(String[] args) {
         
         int opcion;
+        String opcionkb;
         boolean salir = false;
                
         CuentaBancaria cuentaA = new CuentaBancaria();
@@ -42,7 +43,17 @@ public class AplicacionCuentaBancaria {
             // Capturamos el error de si el usuario introduce algo que no sea un número como opción.
             // Todas las operaciones se realizan sobre la cuenta A.
             try {
-                opcion = kb.nextInt();
+                
+                opcionkb = kb.next();
+                //Comprobamos si la cadena contiene enteros 
+                //(https://www.delftstack.com/es/howto/java/how-to-check-if-a-string-is-an-integer-in-java/)
+                if (opcionkb.matches("-?\\d+")){               
+                    opcion = Integer.parseInt(opcionkb);
+                }else{
+                    //Si la cadena introducida no contiene enteros lanzamos el error.
+                    throw new InvalidOptionException("¡ERROR! - Debe insertar una número.");
+                }
+                
                 switch (opcion) {
                     case 0:
                         System.out.println("Seleccionada opción: " + operacion0 + " (" + opcion + ").");
@@ -84,6 +95,7 @@ public class AplicacionCuentaBancaria {
                         break;
                     case 9:
                         System.out.println("Seleccionada opción: " + operacion9 + " (" + opcion + ").");
+                        transferencia(cuentaA, cuentaB);
                         break;
                     case 111:
                         System.out.println("Seleccionada opción: " + operacion111 + " (" + opcion + ").");
@@ -93,9 +105,9 @@ public class AplicacionCuentaBancaria {
                         //Ninguna de las opcciones introducidas es válida.
                         System.out.println("¡WARN! - La opción seleccionada (" + opcion + ") no es válida. Intentelo de nuevo.");
                 }
-            } catch (InputMismatchException ex) {
-                System.out.println("¡ERROR! - Debe insertar un número.");
-                kb.nextInt();
+            } catch (InvalidOptionException ex) {
+                //Mostramos el error de que no se ha introducido por teclado una opción numérica.
+                System.out.println(ex.getMessage());
             }                        
         }
         
@@ -203,7 +215,7 @@ public class AplicacionCuentaBancaria {
         
         //Bucle para solicitud de CCC.
         do{
-            System.out.println("# Introduzca el CCC Cuenta " + idCuenta + " (EEEE-OOOO-DD-NNNNNNNNNN):");
+            System.out.println("# Introduzca el CCC Cuenta " + idCuenta + " (EEEEOOOODDNNNNNNNNNN):");
             String ccc = kb.nextLine();
             try {
                 //Como en el caso anterior se valida el CCC introducido.
@@ -226,15 +238,15 @@ public class AplicacionCuentaBancaria {
     public static void realizarIngreso(CuentaBancaria cuenta){
         boolean ingresado = false;
         do{
+            Scanner kb = new Scanner (System.in);
             System.out.println("Introduzca la cantidad que desea ingresar:");
             try {
                 double importe = kb.nextDouble();
                 cuenta.ingresar(importe);
                 mostrarSaldo(cuenta);
                 ingresado = true;
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("¡ERROR! - Introduzca un importe válido.");
-                kb.nextDouble();
                 ingresado = false;
             }
         }while (!ingresado);    
@@ -243,22 +255,45 @@ public class AplicacionCuentaBancaria {
     public static void retiradaEfectivo(CuentaBancaria cuenta){
         boolean retirado = false;
         do{
+            Scanner kb = new Scanner (System.in);  //Forzamos la creación del objeto kb para que vuelva a leer el input de teclado.
             System.out.println("Introduzca la cantidad que desea retirar:");
             try {
                 double importe = kb.nextDouble();
-                cuenta.retirarEfectivo(importe);
+                cuenta.retirar(importe);
                 mostrarSaldo(cuenta);
                 retirado = true;                        //Forzamos la salida ya que se ha realizado la operación satisfactoriamente.
             } catch (SaldoInsuficienteException s) {    //Capturamos el error de saldo insuficiente.
                 System.out.println(s.getMessage());
-                retirado = true;                        //Forzamos la salida del dowhile ya que no hay saldo suficiente.
-            } catch (Exception e) {     //Capturamos el fallo de importe no válido.
+                retirado = true;                     //Forzamos la salida del dowhile ya que no hay saldo suficiente.
+            } catch (InputMismatchException e) {     //Capturamos el fallo de importe no válido.
                 System.out.println("¡ERROR! - Introduzca un importe válido.");
-                kb.nextDouble();
                 retirado = false;
             }
         }while (!retirado); 
     }
+    
+    public static void transferencia(CuentaBancaria c1, CuentaBancaria c2){
+        boolean transferido = false;
+        do {
+            Scanner kb = new Scanner (System.in);  //Forzamos la creación del objeto kb para que vuelva a leer el input de teclado.
+            System.out.println("Introduzca la cantidad que desea transferir:");
+            try {
+                double importe = kb.nextDouble();
+                c1.retirar(importe);
+                c2.ingresar(importe);
+                mostrarSaldo(c1,"A");
+                mostrarSaldo(c2,"B");
+                transferido = true;
+            } catch (SaldoInsuficienteException e) {    //Lanzamos error de saldo insuficiente e interrumpimos la operación.
+                System.out.println(e.getMessage());
+                transferido = true;
+            } catch (InputMismatchException e) {
+                System.out.println("¡ERROR! - Introduzca un importe válido.");
+                transferido = false;
+            } 
+        }while (!transferido);
+    }
+    
     /**
      * Método encargado de mostrar el saldo de una cuenta.
      * Pasamos por parámetro la cuenta de la que deseamos consultar el saldo.
@@ -268,5 +303,9 @@ public class AplicacionCuentaBancaria {
      */
     public static void mostrarSaldo(CuentaBancaria cuenta){
         System.out.println("- El saldo actual de la cuenta es: " + cuenta.getSaldo() + "€.\n");
+    }
+    
+    public static void mostrarSaldo(CuentaBancaria cuenta, String id){
+        System.out.println("- El saldo actual de la cuenta " + id + " es: " + cuenta.getSaldo() + "€.\n");
     }
 }
