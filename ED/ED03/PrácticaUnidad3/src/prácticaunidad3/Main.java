@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package prácticaunidad3;
 
 /**
@@ -17,26 +16,21 @@ public class Main {
     public static void main(String[] args) {
         CCuenta miCuenta;
         double saldoActual;
-        
-        miCuenta = new CCuenta("Juan López","1000-2365-85-123456789",2500,0);
-        try 
-        {
+
+        miCuenta = new CCuenta("Juan López", "1000-2365-85-123456789", 2500, 0);
+        try {
             miCuenta.retirar(2300);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.print("Fallo al retirar");
         }
-        
-        try
-        {
+
+        try {
             System.out.println("Ingreso en cuenta");
             miCuenta.ingresar(695);
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.print("Fallo al ingresar");
         }
         saldoActual = miCuenta.estado();
-        System.out.println("El saldo actual es"+ saldoActual );
+        System.out.println("El saldo actual es " + saldoActual);
     }
-
 }
