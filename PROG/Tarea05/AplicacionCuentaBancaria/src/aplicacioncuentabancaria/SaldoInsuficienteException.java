@@ -6,7 +6,7 @@
 package aplicacioncuentabancaria;
 
 /**
- *
+ * Clase que define la Excepción de tipo SaldoInsuficiente.
  * @author Ángel Martínez Rodríguez
  */
 public class SaldoInsuficienteException extends Exception {

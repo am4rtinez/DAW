@@ -14,11 +14,11 @@ package aplicacioncuentabancaria;
 
 public class CuentaBancaria {
 
-    private String ccc;
-    private String entidad;
-    private String oficina;
-    private String dc;
-    private String numcuenta;
+    private String ccc;         //Almacenamiento del CCC.
+    private String entidad;     //Almacenamiento del código de la entidad.
+    private String oficina;     //Almacenamiento del código de la oficina.
+    private String dc;          //Almacenamiento de los digitos de control.
+    private String numcuenta;   //Almacenamiento del número de cuenta.
     private String titular;     //Almacenamiento del nombre del titular.
     private double saldo;       //Almacenamiento del saldo actual de la cuenta.
     
@@ -108,10 +108,10 @@ public class CuentaBancaria {
     void almacenarDatos(String ccc){
         //Dividimos el string en Entidad, Oficina, Digitos control y Numero cuenta para su tratamiento.
         this.ccc = ccc;
-        this.entidad = ccc.substring(0, 4);;
-        this.oficina = ccc.substring(4, 8);;
-        this.dc = ccc.substring(8, 10);;
-        this.numcuenta = ccc.substring(10);;
+        this.entidad = ccc.substring(0, 4);
+        this.oficina = ccc.substring(4, 8);
+        this.dc = ccc.substring(8, 10);
+        this.numcuenta = ccc.substring(10);
     }
     
     /**
@@ -136,6 +136,7 @@ public class CuentaBancaria {
         }
     }
     
+    // Se configuran los geters para poder consultar los datos directamente.    
     /**
      * @return the ccc
      */
@@ -152,24 +153,10 @@ public class CuentaBancaria {
     }
 
     /**
-     * @param entidad the entidad to set
-     */
-    public void setEntidad(String entidad) {
-        this.entidad = entidad;
-    }
-
-    /**
      * @return the oficina
      */
     public String getOficina() {
         return oficina;
-    }
-
-    /**
-     * @param oficina the oficina to set
-     */
-    public void setOficina(String oficina) {
-        this.oficina = oficina;
     }
 
     /**
@@ -179,12 +166,6 @@ public class CuentaBancaria {
         return dc;
     }
 
-    /**
-     * @param dc the dc to set
-     */
-    public void setDc(String dc) {
-        this.dc = dc;
-    }
 
     /**
      * @return the numcuenta
@@ -194,24 +175,10 @@ public class CuentaBancaria {
     }
 
     /**
-     * @param numcuenta the numcuenta to set
-     */
-    public void setNumcuenta(String numcuenta) {
-        this.numcuenta = numcuenta;
-    }
-
-    /**
      * @return the titular
      */
     public String getTitular() {
         return titular;
-    }
-
-    /**
-     * @param titular the titular to set
-     */
-    public void setTitular(String titular) {
-        this.titular = titular;
     }
 
     /**

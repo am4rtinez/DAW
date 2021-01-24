@@ -6,7 +6,8 @@
 package aplicacioncuentabancaria;
 
 /**
- *
+ * Clase que define la Excepción de tipo InvalidOption.
+ * Se utiliza para capturar el error de opción inválida seleccionada.
  * @author Ángel Martínez Rodríguez
  */
 public class InvalidOptionException extends Exception {

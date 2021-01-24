@@ -246,6 +246,7 @@ public class AplicacionCuentaBancaria {
                 mostrarSaldo(cuenta);
                 ingresado = true;
             } catch (InputMismatchException e) {
+                //Se captura el error si el importe introducido no es el correcto.
                 System.out.println("¡ERROR! - Introduzca un importe válido.");
                 ingresado = false;
             }
