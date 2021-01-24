@@ -32,7 +32,9 @@ public class CuentaBancaria {
     public void validarTitular(String titular) throws Exception{
         if (titular.length()>100){
             throw new Exception("¡ERROR! - El titular introducido supera los 100 caracteres permitidos.\n");
-        } else {
+        }else if (titular.length()==0){
+            throw new Exception("¡ERROR! - El titular no puede estar vacio.\n");
+        }else{
             this.titular = titular;
         }
     }
@@ -59,7 +61,7 @@ public class CuentaBancaria {
         
     }
     
-    static boolean validarDigsControl(String ccc){
+    private static boolean validarDigsControl(String ccc){
         int dc_eo;             //Digito de control Entidad oficina.
         int dc_nc;             //Digito de control Número cuenta.
         
@@ -84,7 +86,7 @@ public class CuentaBancaria {
      * @param valor - Parámetro de 10 dígitos del cual se realizará el cálculo.
      * @return int - Devuelve el digito de control calculado.
      */
-    static int calculaDigito(String valor){
+    private static int calculaDigito(String valor){
         int[] factores = {1,2,4,8,5,10,9,7,3,6};    //Factores ya dados en Wikipedia.
         int chequeo = 0;                            // Variable para acumular las operaciones.
         //Se realiza el cálculo para los 10 dígitos.
@@ -105,7 +107,7 @@ public class CuentaBancaria {
         return chequeo;
     }
     
-    void almacenarDatos(String ccc){
+    private void almacenarDatos(String ccc){
         //Dividimos el string en Entidad, Oficina, Digitos control y Numero cuenta para su tratamiento.
         this.ccc = ccc;
         this.entidad = ccc.substring(0, 4);
@@ -118,8 +120,12 @@ public class CuentaBancaria {
      * Método encargado de realizar los ingresos en cuenta.
      * @param importe 
      */
-    public void ingresar(double importe){
-        this.saldo = saldo + importe;
+    public void ingresar(double importe) throws InvalidOperationException{
+        if (importe<0){
+            throw new InvalidOperationException("¡ERROR! - No se admiten cantidades negativas.");
+        }else{
+            this.saldo = saldo + importe;
+        }
     }
     
     /**

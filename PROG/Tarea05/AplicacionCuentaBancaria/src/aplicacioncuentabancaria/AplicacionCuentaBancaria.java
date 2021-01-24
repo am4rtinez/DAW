@@ -3,7 +3,6 @@ package aplicacioncuentabancaria;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 /**
  *
  * @author Ángel Martínez Rodríguez
@@ -238,13 +237,16 @@ public class AplicacionCuentaBancaria {
     public static void realizarIngreso(CuentaBancaria cuenta){
         boolean ingresado = false;
         do{
-            Scanner kb = new Scanner (System.in);
+            Scanner kbri = new Scanner (System.in);
             System.out.println("Introduzca la cantidad que desea ingresar:");
             try {
-                double importe = kb.nextDouble();
+                double importe = kbri.nextDouble();
                 cuenta.ingresar(importe);
                 mostrarSaldo(cuenta);
                 ingresado = true;
+            } catch (InvalidOperationException e){
+                System.out.println(e.getMessage());
+                ingresado = false;
             } catch (InputMismatchException e) {
                 //Se captura el error si el importe introducido no es el correcto.
                 System.out.println("¡ERROR! - Introduzca un importe válido.");
@@ -256,10 +258,10 @@ public class AplicacionCuentaBancaria {
     public static void retiradaEfectivo(CuentaBancaria cuenta){
         boolean retirado = false;
         do{
-            Scanner kb = new Scanner (System.in);  //Forzamos la creación del objeto kb para que vuelva a leer el input de teclado.
+            Scanner kbre = new Scanner (System.in);  //Forzamos la creación del objeto kb para que vuelva a leer el input de teclado.
             System.out.println("Introduzca la cantidad que desea retirar:");
             try {
-                double importe = kb.nextDouble();
+                double importe = kbre.nextDouble();
                 cuenta.retirar(importe);
                 mostrarSaldo(cuenta);
                 retirado = true;                        //Forzamos la salida ya que se ha realizado la operación satisfactoriamente.
@@ -276,10 +278,10 @@ public class AplicacionCuentaBancaria {
     public static void transferencia(CuentaBancaria c1, CuentaBancaria c2){
         boolean transferido = false;
         do {
-            Scanner kb = new Scanner (System.in);  //Forzamos la creación del objeto kb para que vuelva a leer el input de teclado.
+            Scanner kbt = new Scanner (System.in);  //Forzamos la creación del objeto kb para que vuelva a leer el input de teclado.
             System.out.println("Introduzca la cantidad que desea transferir:");
             try {
-                double importe = kb.nextDouble();
+                double importe = kbt.nextDouble();
                 c1.retirar(importe);
                 c2.ingresar(importe);
                 mostrarSaldo(c1,"A");
@@ -290,6 +292,9 @@ public class AplicacionCuentaBancaria {
                 transferido = true;
             } catch (InputMismatchException e) {
                 System.out.println("¡ERROR! - Introduzca un importe válido.");
+                transferido = false;
+            } catch (InvalidOperationException e) {
+                System.out.println(e.getMessage());
                 transferido = false;
             } 
         }while (!transferido);
@@ -306,6 +311,12 @@ public class AplicacionCuentaBancaria {
         System.out.println("- El saldo actual de la cuenta es: " + cuenta.getSaldo() + "€.\n");
     }
     
+    /**
+     * Método encargado de mostrar el saldo de una cuenta con un identificador.
+     * El identificador es para diferenciar las cuentas A, B, etc.
+     * @param cuenta
+     * @param id 
+     */
     public static void mostrarSaldo(CuentaBancaria cuenta, String id){
         System.out.println("- El saldo actual de la cuenta " + id + " es: " + cuenta.getSaldo() + "€.\n");
     }
