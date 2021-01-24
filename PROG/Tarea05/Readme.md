@@ -105,10 +105,10 @@ Se entregaran dos documentos:
 
 El proyecto esta comprendido por cuatro clases.
 
-    1. [AplicacionCuentaBancaria.java.](AplicacionCuentaBancaria/src/aplicacioncuentabancaria/AplicacionCuentaBancaria.java)
-    2. [CuentaBancaria.java.] (AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
-    3. [InvalidOptionException.java.] (AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
-    4. [SaldoInsuficienteException.java.] (AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
+    1. [AplicacionCuentaBancaria.java.](./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/AplicacionCuentaBancaria.java)
+    2. [CuentaBancaria.java.] (./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
+    3. [InvalidOptionException.java.] (./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
+    4. [SaldoInsuficienteException.java.] (./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
 
 Las clases tipo exception nacen de la necesidad de capturar tipos de error y no lanzar un Exception genérico.
 
