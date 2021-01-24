@@ -105,7 +105,7 @@ Se entregaran dos documentos:
 
 El proyecto esta comprendido por cuatro clases.
 
-    1. [AplicacionCuentaBancaria.java.](./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/AplicacionCuentaBancaria.java)
+    1. [AplicacionCuentaBancaria.java.](DAW/tree/main/PROG/Tarea05/AplicacionCuentaBancaria/src/aplicacioncuentabancaria/AplicacionCuentaBancaria.java)
     2. [CuentaBancaria.java.] (./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
     3. [InvalidOptionException.java.] (./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
     4. [SaldoInsuficienteException.java.] (./AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
