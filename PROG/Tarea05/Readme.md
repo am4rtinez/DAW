@@ -1,8 +1,8 @@
-#Tarea para PROG05
+# Tarea para PROG05
 Detalles de la tarea de esta unidad. 
 ---
 
-##Enunciado.
+## Enunciado.
 
 A lo largo de esta unidad has ido aprendiendo a crear tus propias clases así como sus distintos miembros (atributos y métodos). Has experimentando con la encapsulación y accesibilidad (modificadores de acceso a miembros), has creado miembros estáticos (de clase) y de instancia (de objeto), has escrito constructores para tus clases, has sobrecargado métodos y los has utilizado en pequeñas aplicaciones. También has tenido tu primer encuentro el concepto de herencia, que ya desarrollarás en unidades más avanzadas junto con otros conceptos avanzados de la Programación Orientada a Objetos.
 
@@ -101,6 +101,18 @@ Se entregaran dos documentos:
  - El proyecto comprimido en **formato .zip**,  y
  - El informe explicativo en **formato pdf** (apellido1_apellido2_nombre_PROG05.pdf).
 
+# Informe
+
+El proyecto esta comprendido por cuatro clases.
+
+    1. [AplicacionCuentaBancaria.java.](AplicacionCuentaBancaria/src/aplicacioncuentabancaria/AplicacionCuentaBancaria.java)
+    2. [CuentaBancaria.java.] (AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
+    3. [InvalidOptionException.java.] (AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
+    4. [SaldoInsuficienteException.java.] (AplicacionCuentaBancaria/src/aplicacioncuentabancaria/)
+
+Las clases tipo exception nacen de la necesidad de capturar tipos de error y no lanzar un Exception genérico.
+
 Recursos utilizados:
 
 http://www.luciano.es/utiles/ccc.htm
+https://www.delftstack.com/es/howto/java/how-to-check-if-a-string-is-an-integer-in-java/
