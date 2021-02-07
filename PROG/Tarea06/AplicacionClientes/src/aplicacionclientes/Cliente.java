@@ -69,7 +69,7 @@ public class Cliente implements Serializable{
     }
 
     public void validarTelefono(String telefono) throws Exception {
-        if (!telefono.matches("(^[6-9]{9}$)")){
+        if (!telefono.matches("(^[6-9]{1}[0-9]{8}$)")){
             throw new Exception("¡ERROR! - Teléfono no válido.");
         }
         this.telefono = Integer.parseInt(telefono);

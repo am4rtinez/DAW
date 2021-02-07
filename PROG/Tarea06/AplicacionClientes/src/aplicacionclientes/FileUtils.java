@@ -2,7 +2,10 @@ package aplicacionclientes;
 
 import aplicacionclientes.exceptions.DeleteFileException;
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,10 +18,9 @@ public class FileUtils {
     }
 
     /**
-     * Método que se encarga de borrar el fos con la ruta indicada en el
- parametro src.
-     *
-     * @param src String - Ruta del fos.
+     * Método que se encarga de borrar el fos con la ruta indicada en el parametro src.
+     * @param src String - Ruta del fichero.
+     * @throws DeleteFileException 
      */
     public void borrarFichero (String src) throws DeleteFileException
     {
@@ -48,9 +50,10 @@ public class FileUtils {
     }
 
     /**
-     * Función que comprueba si existe el fos.
+     * Función que comprueba si existe el fichero.
      *
      * @param src String - Parametro de entrada por el cual le pasamos la ruta del fos.
+     * @return 
      */
     public boolean comprobarFichero (String src)
     {
@@ -67,11 +70,12 @@ public class FileUtils {
         File directorio = new File(dst);
         directorio.mkdir();
     }
-
+    
     /**
-     * Método que se encarga de crear un fos en la ruta 'dst' especificada.
-     * 
-     * @param dst String - Parametro de entrada que contiene la ruta de destino de creación del fos.
+     * Método que se encarga de crear un fichero en la ruta 'dst' especificada.
+     * @param dst String - Parametro de entrada que contiene la ruta de destino de creación del fichero.
+     * @throws FileNotFoundException
+     * @throws IOException 
      */
     public void crearFichero (String dst) throws FileNotFoundException, IOException
     {
@@ -104,6 +108,25 @@ public class FileUtils {
         }
     }
     
+    public void escribirFicheroTexto (String dst, ArrayList <Cliente> clientes, DateTimeFormatter dtf){
+        try {
+            BufferedWriter bw;
+            //"ISO-8859-1"
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(dst, true), "ISO-8859-1"));
+            for (int i=0; i<clientes.size(); i++){
+                bw.write(clientes.get(i).getNombre() + " " 
+                        + clientes.get(i).getNacimiento().format(dtf) + " "
+                        + clientes.get(i).getTelefono() + " "
+                        + clientes.get(i).getEmail() + "\r\n");
+            }
+            bw.close();
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public ArrayList <Cliente> obtenerClientesFichero(String dst){
         ArrayList <Cliente> clientes = new ArrayList();
         FileInputStream fis = null;
@@ -131,4 +154,6 @@ public class FileUtils {
         }
         return clientes;
     }
+    
+    
 }
