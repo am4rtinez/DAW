@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package aplicacionclientes;
 
 import aplicacionclientes.exceptions.DeleteFileException;
 import aplicacionclientes.exceptions.InvalidOptionException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -19,13 +13,12 @@ import java.util.Scanner;
 /**
  *
  * @author amartinez
- * https://generadordni.es/#dni11
+ * https://generadordni.es/#dni utilizado para generar NIFs válidos.
  */
 public class AplicacionClientes {
 
     private static Scanner kb = new Scanner(System.in);
-    private static String operacion1, operacion2, operacion3, operacion4, 
-                operacion5, operacion0, operacion111;
+    private static String operacion1, operacion2, operacion3, operacion4, operacion5, operacion0, operacion111;
     private static FileUtils fu = new FileUtils();
     
     private static final String DIRPATH = "data";
@@ -137,10 +130,8 @@ public class AplicacionClientes {
                         //Ninguna de las opcciones introducidas es válida.
                         System.out.println("¡WARN! - La opción seleccionada (" + opcion + ") no es válida. Intentelo de nuevo.");
                 }
-            } catch (InvalidOptionException | DeleteFileException ex) {
+            } catch (InvalidOptionException | DeleteFileException | IOException ex) {
                 //Mostramos el error de que no se ha introducido por teclado una opción numérica.
-                System.out.println(ex.getMessage());
-            } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
         }
@@ -174,6 +165,11 @@ public class AplicacionClientes {
         operacion111 = "Mostrar menú";
     }
     
+    /**
+     * Método encargado de resetear los flags de lectura y la lista de clientes del fichero.
+     * Esto se hace por si se indica borrar fichero y después se crea uno nuevo.
+     * En el caso de querer leer el fichero que no existe lanzara un error.
+     */
     private static void resetLectura(){
         fileRead = false;
         clientesRead = new ArrayList();
@@ -291,12 +287,21 @@ public class AplicacionClientes {
         clientesWrite.add(cliente);
     }
     
+    /**
+     * Método encargado de obtener el listado de clientes del fichero.
+     * @param path
+     * @return 
+     */
     public static ArrayList <Cliente> obtenerClientes(String path){
         ArrayList <Cliente> clientes = fu.obtenerClientesFichero(CLIENTES_FILE_PATH);
-        fileRead = true;
+        fileRead = true; //Se pone a true la variable ya que así los demas métodos no leeran nuevamente el fichero.
         return clientes;
     }
     
+    /**
+     * Metodo encargado de listar los clientes del Array.
+     * @param clientes 
+     */
     public static void mostrarClientes(ArrayList <Cliente> clientes){
         System.out.println("Listado Clientes:");
         System.out.println("----------------------");
@@ -311,6 +316,10 @@ public class AplicacionClientes {
         }
     }
     
+    /**
+     * Método que se encarga de buscar un cliente según el nif indicado.
+     * @param clientes 
+     */
     public static void buscarCliente(ArrayList <Cliente> clientes){
         boolean encontrado = false;
         boolean validNIF = false;
@@ -320,7 +329,9 @@ public class AplicacionClientes {
             System.out.println("# Introduzca el NIF del cliente a buscar (12345678L):");
             document = kbbc.nextLine();
             try {
-                //Se valida el formato del NIF introducido (no validamos la letra.
+                //Se valida el formato del NIF introducido (no validamos la letra ya que no es necesario almacenar).
+                //No considero que sea algo primordial que en una búsqueda se deba validar la letra ya que es un dato volátil.
+                //Por lo que si el usuario se ha equivocado simplemente dirá que no existe.
                 //Si es correcto sale del bucle.
                 if (!document.matches("(^[0-9]{8}[A-Z]{1}$)")) {
                     throw new Exception("¡ERROR! - Formato no válido.");
@@ -334,6 +345,10 @@ public class AplicacionClientes {
             }
         }while(!validNIF);
         
+        //Recorre el array de clientes en busqueda del NIF. Si lo encuentra o llega al final de la lista sale del bucle.
+        //De esta manera no es necesario recorrer todo el listado a pesar de haber encontrado el cliente.
+        //Se podria dar el caso de que se introdujera dos clientes con el mismo nif. Pero eso añade una casuistica mucho más compleja,
+        //No se ha tenido en cuenta el último punto comentado.
         for (int i=0; i<clientes.size() && !encontrado; i++){
             if (clientes.get(i).getNIF().equals(document)){
                 encontrado = true;
@@ -352,30 +367,33 @@ public class AplicacionClientes {
         }
     }
     
+    /**
+     * Método que se encarga de listar los clientes a felicitar.
+     * Muestra en pantalla los clientes y los escribe en un fichero de texto.
+     * @param clientes 
+     */
     public static void felicitarClientes(ArrayList <Cliente> clientes){
-        LocalDate today = LocalDate.now();
-        LocalDate oneWeek = today.plus(1, ChronoUnit.WEEKS);
-        
-//        System.out.println(today);
-//        System.out.println(oneWeek);
+        LocalDate today = LocalDate.now(); //Obtenermos la fecha de hoy.
+        LocalDate oneWeek = today.plus(1, ChronoUnit.WEEKS); //Sumamos una semana a la fecha actual.
         
         ArrayList <Cliente> felicitaciones = new ArrayList();
-
+        //Recorremos el arrayList de clientes en busca de los cumpleaños próximos en el periodo de una semana.
         for (int i=0; i<clientes.size(); i++){
             Period p = Period.between(oneWeek.with(clientes.get(i).getNacimiento().getMonth()).withDayOfMonth(clientes.get(i).getNacimiento().getDayOfMonth()),oneWeek);
-            int days = p.getDays();
-            if (days<=7 && days >= 0){
-                felicitaciones.add(clientes.get(i));
+            int days = p.getDays(); //Obtenemos la diferencia de días entre la fecha de una semana y el cumpleaños.
+            if (days<=7 && days >= 0){ //Si la diferencia esta entre el rango [0..7] mostramos en pantalla los datos del cliente.
+                felicitaciones.add(clientes.get(i)); //Añadimos el cliente al listado de felicitaciones para escribir en el fichero.
                 System.out.println(clientes.get(i).getNombre() + " " 
                         + clientes.get(i).getNacimiento().format(DTF) + " "
                         + clientes.get(i).getTelefono() + " "
                         + clientes.get(i).getEmail());
             }
         }
-
+        //Comprobamos que la lista de clientes a felicitar no este vacia. Si no lo esta procedemos a escribirlos en el fichero.
         if (felicitaciones.size() > 0){
             try {
-                fu.crearFichero(FELICITAR_FILE_PATH);
+                fu.crearFichero(FELICITAR_FILE_PATH); //Crea el fichero felicitaciones si no existe.
+                //En este caso no importa si estaba creado o no. El método sobreescribe el fichero completamente.
                 fu.escribirFicheroTexto(FELICITAR_FILE_PATH, felicitaciones, DTF);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());

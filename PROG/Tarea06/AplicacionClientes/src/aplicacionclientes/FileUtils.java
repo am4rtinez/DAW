@@ -4,8 +4,6 @@ import aplicacionclientes.exceptions.DeleteFileException;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +16,7 @@ public class FileUtils {
     }
 
     /**
-     * Método que se encarga de borrar el fos con la ruta indicada en el parametro src.
+     * Método que se encarga de borrar el fichero con la ruta indicada en el parametro src.
      * @param src String - Ruta del fichero.
      * @throws DeleteFileException 
      */
@@ -52,7 +50,7 @@ public class FileUtils {
     /**
      * Función que comprueba si existe el fichero.
      *
-     * @param src String - Parametro de entrada por el cual le pasamos la ruta del fos.
+     * @param src String - Parametro de entrada por el cual le pasamos la ruta del fichero.
      * @return 
      */
     public boolean comprobarFichero (String src)
@@ -83,6 +81,12 @@ public class FileUtils {
         fichero.close();
     }
     
+    /**
+     * Método que escribe el fichero clientes.dat.
+     * Escribe objetos en el fichero.
+     * @param dst
+     * @param clientes 
+     */
     public void escribirFichero (String dst, ArrayList <Cliente> clientes) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
@@ -108,6 +112,13 @@ public class FileUtils {
         }
     }
     
+    /**
+     * Método que escribe el fichero de texto.
+     * Cada vez que se le invoca sobreescribe el contenido del fichero.
+     * @param dst
+     * @param clientes
+     * @param dtf 
+     */
     public void escribirFicheroTexto (String dst, ArrayList <Cliente> clientes, DateTimeFormatter dtf){
         try {
             BufferedWriter bw;
@@ -127,6 +138,12 @@ public class FileUtils {
         }
     }
     
+    /**
+     * Método que lee los objetos del fichero.
+     * Retorna un ArrayList de clientes.
+     * @param dst
+     * @return 
+     */
     public ArrayList <Cliente> obtenerClientesFichero(String dst){
         ArrayList <Cliente> clientes = new ArrayList();
         FileInputStream fis = null;
