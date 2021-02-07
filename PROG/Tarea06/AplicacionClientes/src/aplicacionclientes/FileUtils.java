@@ -1,4 +1,3 @@
-//Clase de uno de mis proyectos de mi trabajo.
 package aplicacionclientes;
 
 import aplicacionclientes.exceptions.DeleteFileException;
