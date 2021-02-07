@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aplicacionclientes;
+package aplicacionclientes.exceptions;
 
 /**
- * Clase que define la Excepción de tipo InvalidOption.
+ * Clase que define la Excepción de tipo DeleteFileException.
  * Se utiliza para capturar el error de opción inválida seleccionada.
- * @author Ángel Martínez Rodríguez
+ * @author amartinez
  */
-public class InvalidOptionException extends Exception {
-    public InvalidOptionException(String msg) {
+public class DeleteFileException extends Exception {
+    public DeleteFileException(String msg) {
         super(msg);
     }
 }
