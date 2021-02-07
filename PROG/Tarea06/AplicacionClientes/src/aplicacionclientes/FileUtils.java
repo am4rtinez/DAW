@@ -44,11 +44,7 @@ public class FileUtils {
     public boolean comprobarDirectorio (String dir)
     {
         File directorio = new File(dir);
-        if (!directorio.exists()){
-            return false;
-        }else{
-            return true;
-        }
+        return directorio.exists();
     }
 
     /**
@@ -58,12 +54,8 @@ public class FileUtils {
      */
     public boolean comprobarFichero (String src)
     {
-        File directorio = new File(src);
-        if (!directorio.exists()){
-            return false;
-        }else{
-            return true;
-        }
+        File fichero = new File(src);
+        return fichero.exists();
     }
 
     /**
