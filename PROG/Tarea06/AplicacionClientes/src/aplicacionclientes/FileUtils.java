@@ -64,7 +64,8 @@ public class FileUtils {
      *
      * @param dst String - Parametro de entrada por el cual le pasamos la ruta del directorio.
      */
-    public void crearDirectorio (String dst){
+    public void crearDirectorio (String dst)
+    {
         File directorio = new File(dst);
         directorio.mkdir();
     }
@@ -87,7 +88,8 @@ public class FileUtils {
      * @param dst
      * @param clientes 
      */
-    public void escribirFichero (String dst, ArrayList <Cliente> clientes) {
+    public void escribirFichero (String dst, ArrayList <Cliente> clientes) 
+    {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
@@ -119,7 +121,8 @@ public class FileUtils {
      * @param clientes
      * @param dtf 
      */
-    public void escribirFicheroTexto (String dst, ArrayList <Cliente> clientes, DateTimeFormatter dtf){
+    public void escribirFicheroTexto (String dst, ArrayList <Cliente> clientes, DateTimeFormatter dtf)
+    {
         try {
             BufferedWriter bw;
             //"ISO-8859-1"
@@ -144,7 +147,8 @@ public class FileUtils {
      * @param dst
      * @return 
      */
-    public ArrayList <Cliente> obtenerClientesFichero(String dst){
+    public ArrayList <Cliente> obtenerClientesFichero(String dst)
+    {
         ArrayList <Cliente> clientes = new ArrayList();
         FileInputStream fis = null;
         ObjectInputStream ois = null;

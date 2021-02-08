@@ -21,14 +21,17 @@ public class AplicacionClientes {
     private static String operacion1, operacion2, operacion3, operacion4, operacion5, operacion0, operacion111;
     private static FileUtils fu = new FileUtils();
     
+    //Variables Globales.
     private static final String DIRPATH = "data";
     private static final String CLIENTES_FILE_PATH = DIRPATH + "/clientes.dat";
     private static final String FELICITAR_FILE_PATH = DIRPATH + "/felicitaciones.txt";
-    private static final int NUM_CLIENTES = 5;
+    private static final int NUM_CLIENTES = 5;  //Variable con la que en un futuro se pueden añadir el solicitar un mayor número de clientes.
     
-    private static boolean fileRead;
+    private static boolean fileRead;    //Variable de fichero leido.
+    //Variables tipo ArrayList.,
     private static ArrayList <Cliente> clientesWrite;
     private static ArrayList <Cliente> clientesRead;
+    //Formateo de la fecha.
     private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     /**
