@@ -12,18 +12,19 @@ import java.awt.Color;
  *
  * @author amartinez
  */
-public class ColorsGameUI extends javax.swing.JFrame {
+public class ColorsGame extends javax.swing.JFrame {
 
     /**
      * Creates new form ColorsGameUI
      */
-    public ColorsGameUI() {
+    public ColorsGame() {
         initComponents();
+        //Añadimos los radio buttons al grupo para que solo aparezca uno marcado.
         colorsButtonGroup.add(redRB);
         colorsButtonGroup.add(yellowRB);
         colorsButtonGroup.add(greenRB);
         colorsButtonGroup.add(userRB);
-        this.setTitle("Colors Game");
+        this.setTitle("Colors Game");   //Pone título a la aplicación.
     }
 
     /**
@@ -179,37 +180,33 @@ public class ColorsGameUI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the Windows Classic look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ColorsGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ColorsGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ColorsGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ColorsGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows Classic".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ColorsGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ColorsGameUI().setVisible(true);
+                new ColorsGame().setVisible(true);
             }
         });
     }
-
+    
+    /**
+     * Método que se encarga de modificar los objetos.
+     * @param color 
+     */
     public void modificaObjetos(Color color){
         colorPane.setVisible(true);
         colorPane.setBackground(color);
