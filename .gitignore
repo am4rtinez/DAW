@@ -76,6 +76,10 @@ DAW-Workspace.code-workspace
 /PROG/Tarea07/CalculoNumerico/build/
 /PROG/Tarea07/CalculoNumerico/dist/
 
+/PROG/Tarea08/Prog08Notes/nbproject/private/
+/PROG/Tarea08/Prog08Notes/dist/
+/PROG/Tarea08/Prog08Notes/build/
+
 /ED/ED02/Martinez_Rodriguez_Angel_ED02_Tarea.*
 /ED/ED03/PrácticaUnidad3/nbproject/private/
 /ED/ED03/PrácticaUnidad3/build/
@@ -85,9 +89,15 @@ DAW-Workspace.code-workspace
 /ED/ED04/DAM_ED04_Actividad/build/
 /ED/ED04/DAM_ED04_Actividad/dist/
 
+/ED/ED05/Martinez_Rodriguez_Angel_ED05_Tarea/nbproject/private/
+/ED/ED05/Martinez_Rodriguez_Angel_ED05_Tarea/build/
+/ED/ED05/Martinez_Rodriguez_Angel_ED05_Tarea/dist/
+
 /ED/ED02/Docs/
 /ED/ED03/Docs/
 /ED/ED04/Docs/
-/PROG/Tarea08/Prog08Notes/nbproject/private/
-/PROG/Tarea08/Prog08Notes/dist/
-/PROG/Tarea08/Prog08Notes/build/
+/ED/ED05/Docs/
+/ED/ED06/Docs/
+
+
+
