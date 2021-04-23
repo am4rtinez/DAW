@@ -3,7 +3,7 @@ CREATE DATABASE BDAngelMartinez;
 USE BDAngelMartinez;
 CREATE TABLE alumno (
     codiAlumne VARCHAR(5) PRIMARY KEY,
-    nomTutor VARCHAR(40) NOT NULL,
+    nomAlumne VARCHAR(40) NOT NULL,
     codiTutorAlumne INT NOT NULL,
     CONSTRAINT `codiTutor`
         FOREIGN KEY (codiTutorAlumne) REFERENCES tutor (codiTutor)
@@ -11,6 +11,6 @@ CREATE TABLE alumno (
         ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
 CREATE TABLE tutor (
-    codiTutor INT PRIMARY KEY AUTO_INCREMENT,
+    codiTutor INT PRIMARY KEY,
     nomTutor VARCHAR(40) NOT NULL
 ) ENGINE=InnoDB;
