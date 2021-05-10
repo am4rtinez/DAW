@@ -95,11 +95,11 @@ public class DataBase {
     public Connection conectarBD()
     {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            return conexion = DriverManager.getConnection("jdbc:mysql://" 
+            //Class.forName("com.mysql.cj.jdbc.Driver");
+            return conexion = DriverManager.getConnection("jdbc:oracle:thin:@//" 
                     + getHost() + ":" 
                     + getPort() + "/" + getDb(), getUser(), getPass());
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }

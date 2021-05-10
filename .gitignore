@@ -7,6 +7,9 @@ DAW-Workspace.code-workspace
 /PROG/Tarea06/Docs/
 /PROG/Tarea07/Docs/
 /PROG/Tarea08/Docs/
+/PROG/Tarea09/Docs/
+/PROG/Tarea10/Docs/
+/PROG/Tarea11/Docs/
 
 /PROG/Tarea02/Prog02Ejer01/nbproject/private/
 /PROG/Tarea02/Prog02Ejer02/nbproject/private/
@@ -99,8 +102,11 @@ DAW-Workspace.code-workspace
 /ED/ED05/Docs/
 /ED/ED06/Docs/
 
-
-
-/PROG/Tarea09/martinezRodriguezProg09/nbproject/private/
+/PROG/Tarea09/
 /PROG/Tarea11/Prog08Notes/nbproject/private/
 /PROG/Tarea11/AngelMartinezProg11/nbproject/private/
+/PROG/Tarea11/AngelMartinezProg11/build/
+/PROG/Tarea11/AngelMartinezProg11/dist/
+/PROG/Tarea10/AngelMartinezProg10/nbproject/private/
+/PROG/Tarea10/AngelMartinezProg10/build/
+/PROG/Tarea10/AngelMartinezProg10/dist/
