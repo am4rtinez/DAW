@@ -14,7 +14,7 @@ CREATE OR REPLACE TYPE BODY partit AS
     ELSIF (golsVisitant > golsLocal) THEN
         return visitant;
     ELSE
-        return 'empate';
+        return 'Empate';
     END IF;
     END;
 END;
@@ -23,7 +23,6 @@ CREATE TABLE PARTITSMartinez OF partit;
 
 SELECT g.local, g.visitant, g.golslocal, g.golsVisitant, g.guanyador() FROM partitsmartinez g;
 
-INSERT INTO PARTITSMartinez VALUES ('R. Madrid','Getafe',1,0);
-INSERT INTO PARTITSMartinez VALUES ('Barcelona','Villareal',2,0);
-INSERT INTO PARTITSMartinez VALUES ('At. Madrid','Sevilla',1,1);
-INSERT INTO PARTITSMartinez VALUES ('Betis','Valladolid',1,0);
+SELECT DISTINCT * FROM partitsmartinez GROUP BY local, visitant; 
+
+SELECT local AS equipo FROM partitsmartinez UNION SELECT visitant AS equipo FROM partitsmartinez;
