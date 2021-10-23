@@ -1,4 +1,5 @@
 DAW-Workspace.code-workspace
+
 /PROG/Tarea01/Documents/
 /PROG/Tarea02/Documents/
 /PROG/Tarea03/Documents/
@@ -83,6 +84,19 @@ DAW-Workspace.code-workspace
 /PROG/Tarea08/Prog08Notes/dist/
 /PROG/Tarea08/Prog08Notes/build/
 
+/PROG/Tarea09/
+
+/PROG/Tarea10/AngelMartinezProg10/nbproject/private/
+/PROG/Tarea10/AngelMartinezProg10/build/
+/PROG/Tarea10/AngelMartinezProg10/dist/
+/PROG/Tarea10/Martinez_Rodriguez_Angel_PROG10_Tarea.rar
+
+/PROG/Tarea11/Prog08Notes/nbproject/private/
+/PROG/Tarea11/AngelMartinezProg11/nbproject/private/
+/PROG/Tarea11/AngelMartinezProg11/build/
+/PROG/Tarea11/AngelMartinezProg11/dist/
+
+
 /ED/ED02/Martinez_Rodriguez_Angel_ED02_Tarea.*
 /ED/ED03/PrácticaUnidad3/nbproject/private/
 /ED/ED03/PrácticaUnidad3/build/
@@ -102,17 +116,15 @@ DAW-Workspace.code-workspace
 /ED/ED05/Docs/
 /ED/ED06/Docs/
 
-ED/Examen para revisar ED01.02.pdf
+/ED/Examen para revisar ED01.02.pdf
 
-/PROG/Tarea09/
-/PROG/Tarea11/Prog08Notes/nbproject/private/
-/PROG/Tarea11/AngelMartinezProg11/nbproject/private/
-/PROG/Tarea11/AngelMartinezProg11/build/
-/PROG/Tarea11/AngelMartinezProg11/dist/
-/PROG/Tarea10/AngelMartinezProg10/nbproject/private/
-/PROG/Tarea10/AngelMartinezProg10/build/
-/PROG/Tarea10/AngelMartinezProg10/dist/
-
-PROG/Tarea10/Martinez_Rodriguez_Angel_PROG10_Tarea.rar
+/DAW/DAW01/Docs/*
 
 /DIW/Docu-Curso/*
+/DIW/DIW01/Docs/*
+
+/DWEC/DWEC01/Docs/*
+
+/DWES/DWES01/Docs/*
+
+Martinez_Rodriguez_Angel_ASIGXX_Tarea.dotx

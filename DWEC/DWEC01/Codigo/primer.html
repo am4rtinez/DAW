@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Possibilitats de JavaScript</title>	
+	<!-- Exercici 4 -->
+	<script type="text/javascript">
+		function modificar() {
+			 document.getElementById('titol').innerHTML = 'Hem mostrat les possibilitats de JavaScript';
+			 document.getElementById("boto").style.display = "none";
+		}
+   
+		function validarForm(e) {
+			 if (isNaN(document.getElementById("edat").value)) {
+				  alert("Edat ha de ser un valor numèric");
+				  e.preventDefault();
+			 }
+			 return true;
+		}
+   	</script>
+</head>
+<body>
+	<h1 id="titol">Possibilitats de JavaScript</h1>
+	<h2>Generar codi</h2>
+	<p>Podem utilitzar-lo per a generar codi HTML. Amb aquest sistema
+		només es pot fer mentre el document s'està dibuixant, mentre s'està
+		carregant.</p>
+	<p>Una vegada acabat de dibuixar aquestes instruccions no tendran
+		efecte.</p>
+	<p>El codi s'inclou al punt de la pàgina on es troba l'script.</p>
+
+	<!-- Exercici 2 -->
+	<script type="text/javascript">
+		document.write("<h3>Incrustat a l'HTML</h3>");
+		document.write("<p>Codi generat directament per el JavaScript!</p>");
+	</script>
+
+	<h2>Interactuar amb l'usuari</h2>
+	<p>Podem mostrar finestres d'alerta, demanar confirmació o demanar
+		dades a l'usuari. Aquestes dues darreres no s'utilitzen gaire.</p>
+    <!-- Exercici 3 -->
+	<script type="text/javascript">
+		/* var nom = prompt("Escrigui un nom:");
+		if (confirm("És " + nom + " el seu nom?")) {
+			 alert("Hola " + nom);
+		} else {
+			 alert("No ha escrit bé el seu nom");
+		} */
+   	</script>
+
+	<h2>Validar formularis</h2>
+	<p>Hi ha algunes validacions que es poden fer a un formulari al
+		client, això ens evita haver d'enviar-lo al servidor i que aquest ens
+		torni una resposta diguent que no pot processar el formulari perquè hi
+		ha errades. Per exemple que un camp que ha de ser numèric ho sigui
+		realment</p>
+		<form id="formulari" action="respostaForm.html" method="post" >
+		<label for="edat">Edat: </label><input id="edat" name="edat" type="text" ></input>
+		<input type="submit" value="Enviar"></input>
+		</form>
+
+	<h2>Interactuar amb els elements de la pàgina</h2>
+	<p>Podem modificar els elements de la pàgina, fins i tot crear-ne
+		de nous, utilitzant el model d'objectes del document, el DOM.</p>
+
+	<form>
+		<input id="boto" type="button"
+			value="Pitja'm per canviar l'inici de la pàgina"></input>
+		<p>Abans hem declarat una funció. Com heu pogut comprovar el seu
+			codi no s'ha executat perquè encara no l'hem cridada.</p>
+	</form>
+<script>
+	console.log("Hola");
+
+	// Exercici 5
+	document.getElementById("formulari").onsubmit=validarForm;
+
+	// Exercici 6
+	document.getElementById("boto").onclick=modificar; 
+
+</script>
+</body>
+</html>
