@@ -1,30 +1,15 @@
-<!--
-    Estructura semàntica del contingut d'un restaurant de cuina Mallorquina.
-    L’objectiu d’aquest activitat és crear l’estructura d’un lloc web per a un restaurant de cuina mallorquina.
-    Creeu la pàgina web d’inici per a la pizzeria anomenada index.html. Les especificacions del contingut que ha de mostrar són:
-    Done: El títol que s’ha de veure a la pestanya del navegador és: “Cuina Mallorquina”.
-    Done: El títol que ha d’aparèixer a la capçalera ha de ser: “Cuina Mallorquina”.
-    Done: A sota del títol ha d’aparèixer un subtítol: “Des de l'any 1890”.
-    Done: A l’apartat que permet navegar pel lloc web hi haurà una llista amb les següents opcions: “Inici” i “Fes una comanda”.
-    Per defecte, es veurà la pàgina d’inici amb informació de les especialitats.
-    La informació de cada especialitat serà: un títol amb el nom del plat i una descripció amb els ingredients que porta.
-    Done: Al peu de pàgina hi apareix el nom de «Cuina Mallorquina» i l’adreça.
-    Recordeu que els continguts han d’estar estructurats perquè tinguin sentit semàntic.
--->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuina Mallorquina</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <h1>Cuina Mallorquina</h1>
-        <p>Des de l'any 1890</p>
+        <h2>Des de l'any 1890</p>
     </header>
     <nav>
         <ul>
@@ -33,10 +18,64 @@
         </ul>
     </nav>
     <section>
-        <article></article>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quod, dolorum facilis nostrum veritatis eligendi non provident eveniet qui reprehenderit quas temporibus ducimus veniam earum recusandae ea libero omnis adipisci.
+        <h2>Nuestras especialidades.</h2>
+        <article>
+            <header>
+                <h3>Frito mallorquín</h3>
+            </header>
+            <section>
+                <p>Ingredientes: Carne de cerdo o de cordero, hígado, patatas, pimientos rojos, cebolletas, hinojo, guisantes, ajos, sal y aceite de oliva.</p>
+                <p>El plato por excelencia de la cocina mallorquina es el frito. Se trata de una de las recetas con más antigüedad de la isla, que data del siglo XIV y que puede elaborarse, según la estación del año, con diferentes tipos de verdura.</p>
+                <p>Aunque también puede hacerse con pescado, o sólo de verduras. El frito tradicional será con carne de cerdo o de cordero. </p>
+                <p>Como toque especial, si nos gusta el picante, podríamos agregar un pimiento picante.</p>
+                <p>Es un plato tradicionalmente empleado a modo de comidas o de cenas para diferentes celebraciones y eventos populares.</p>
+            </section>
+        </article>
+        <article>
+            <header>
+                <h3>Caracoles</h3>
+            </header>
+            <section>
+                <p>Ingredientes: Caracoles. Para elaborar el caldo se utilizará perejil, ajo, hinojo, hierbabuena y guindilla. Para elaborar las patatas se combinarán cebolla, tomate, aceite, sal y pimienta. Alioli.</p>
+                <p>No existe plato con tradición más marinera que los caracoles a la mallorquina. Este exquisito manjar está elaborado con caldo y con patatas y hará las delicias de todos aquellos a los que les gusten los caracoles pues éstos son especialmente sabrosos.</p>
+                <p>La combinación en conjunto será perfecta y además, este plato podrá acompañarse del tradicional all i oli para terminar de darle el toque.</p>
+                <p></p>
+            </section>
+        </article>
+        <article>
+            <header>
+                <h3>Arròs Brut</h3>
+            </header>
+            <section>
+                <p>Ingredientes: Arroz, agua, carne (se puede poner lo que se tenga a mano), verduras (de temporada o las que haya a mano), especias y setas.</p>
+                <p>El Arròs brut o arroz sucio, que recibe este nombre por el color que toma el caldo gracias a su especial elaboración, es también uno de los platos más utilizados en todo tipo de eventos tradicionales, sobre todo como primer plato o acompañamiento para algún tipo de carne.</p>
+                <p>Se trata de un arroz caldoso caliente que se prepara en una cazuela de barro con carne, embutidos, verduras, especias y setas. También es un plato que varía con cada temporada, sobre todo las verduras y las setas, aunque también la carne.</p>
+            </section>
+        </article>
+        <article>
+            <header>
+                <h3>Tumbet</h3>
+            </header>
+            <section>
+                <p>Ingredientes: Carne o pescado (si se desea), berenjenas, calabazín, tomates maduros, aceite, ajos y sal.</p>
+                <p>El Tumbet es también un plato que no dejará indiferente a nadie. Se trata de una receta vegetariana elaborada a partir de verduras de la zona. Se preparación se basa en freír berenjenas, patatas y colocar estos alimentos en una tradicional cazuela de barro. A las verduras se añadirá una salsa elaborada a partir de tomates maduros, aceite, ajos y sal.                </p>
+                <p>Es una receta que podrás encontrar en los menús veraniegos y que muchas veces se presenta acompañada de algunas carnes como el lomo o de cualquier tipo de pescado.</p>
+            </section>
+        </article>
+        <article>
+            <header>
+                <h3>Gatò con helado</h3>
+            </header>
+            <section>
+                <p>Ingredientes: Azúcar, almendra, huevos, piel de limón rallada, canela en polvo, helado de almendra, leche, piel de limón, canela en rama.</p>
+                <p>Las almendras mallorquinas están reconocidas con Indicación Geográfica Protegida por la Unión Europa. Estos frutos secos se comercializan crudos y tostados, con piel y sin piel, enteras y picadas… Así es como nos interesan para elaborar este pastel, picadas, pues el gató no contiene harina sino almendra molida muy fina. Esto puede ser un punto a favor para aquellas personas intolerantes al gluten.</p>
+                <p>El gató tiene una textura esponjosa y deliciosa, es perfecto para tomar de postre o a media tarde. Perfecto para acompañar el café, té o chocolate batido para los más dulzones, aunque la combinación estrella en Mallorca es gató y helado. En un mismo plato se sirve una porción de bizcocho y una generosa bola de helado, la fusión y contraste de texturas te encantará.</p>
+            </section>
+        </article>
     </section>
     <footer>
+        <hr>
+        <br>
         Cuina Mallorquina - C/ De la Glotoneria,123 - Restaurantolandia.
     </footer>
 </body>

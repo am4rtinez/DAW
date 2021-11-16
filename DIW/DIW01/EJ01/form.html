@@ -1,59 +1,78 @@
-<!--
-EXERCICI 1
-Creació d'un formulari amb HTML5
-L’objectiu d’aquesta activitat és crear un formulari en HTML.
-Utilitzeu l’editor que vulgueu per elaborar un formulari que ha de permetre la introducció de les dades d’una comanda per a una pizzeria.
-Les especificacions que el formulari ha de complir són:
-DONE Ha d’oferir l’opció autocomplementar.
-Ha de disposar d’un camp per especificar el nombre de pizzes que es vol de cada tipus. Per defecte, el valor ha de ser 0 i no pot ser més gran de 10.
-DONE Les dades obligatòries de contacte són: nom, cognoms, telèfon i correu electrònic.
-DONE Cal que l’usuari respongui si és major d’edat o no.
-DONE Ha d’aparèixer un checkbox que permeti seleccionar si l’usuari vol rebre informació per correu electrònic. Aquest ha d’estar seleccionat per defecte.
-DONE Ha d’aparèixer un checkbox que l’usuari cal que seleccioni obligatòriament per tal que accepti les condicions d’ús del servei.
-DONE Ha de tenir dos botons, un per esborrar el formulari i un altre per enviar-lo. 
--->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <h1>Comanda Pizza</h1>
     </header>
     <section>
+        <h2>Haga su comanda!</h2>
         <form id="comanda" action="mailto:example@pizzeria.com" method="post" autocomplete="on">
-            <label for="nom">Nom:</label>
-            <input type="text" name="nom" required/>
-            <br/>
-            <label for="cognoms">Cognoms:</label>
-            <input type="text" name="cognoms" required/>
-            <br/>
-            <label for="telf">Telèfon:</label>
-            <input type="tel" name="telf" required/>
-            <br/>
-            <label for="email">Correu electrònic:</label>
-            <input type="email" name="email" required/>
-            <br/>
-            <label for="adult">Major edat:</label>
-            <input type="checkbox" name="adult" id="adult-check">
-            <br>
-            <label for="suscribe">Vol rebre informació via correu electrònic?</label>
+            <p>Seleccione el número de pizzas que desee:</p>
+            <ul>
+                <li>
+                    <label for="margarita">Pizza Margarita</label>
+                    <input type="number" name="num-margarita" id="margarita" min="0" max="10" value="0">
+                </li>
+                <li>
+                    <label for="hawaiana">Pizza Hawaiana</label>
+                    <input type="number" name="num-hawaiana" id="hawaiana" min="0" max="10" value="0">
+                </li>
+                <li>
+                    <label for="calzone">Pizza Calzone</label>
+                    <input type="number" name="num-calzone" id="calzone" min="0" max="10" value="0">
+                </li>
+                <li>
+                    <label for="proscciuto">Pizza Proscciuto</label>
+                    <input type="number" name="num-proscciuto" id="proscciuto" min="0" max="10" value="0">
+                </li>
+                <li>
+                    <label for="vulcano">Pizza Cuatro Quesos</label>
+                    <input type="number" name="num-4quesos" id="4quesos" min="0" max="10" value="0">
+                </li>
+                <li>
+                    <label for="vulcano">Pizza Vulcano</label>
+                    <input type="number" name="num-vulcano" id="vulcano" min="0" max="10" value="0">
+                </li>
+            </ul>
+            <hr>
+            <h3>Datos de contacto:</h3>
+            <label for="nom">Nombre:</label>
+            <input type="text" name="nom"  id="nom" required/>
+            <br/><br>
+            <label for="cognoms">Apellidos:</label>
+            <input type="text" name="cognoms" id="cognoms" required/>
+            <br/><br>
+            <label for="telf">Teléfono:</label>
+            <input type="tel" name="telf" id="telf" required/>
+            <br/><br>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" required/>
+            <br/><br>
+            <label for="adult-check">Mayor de edad (+18)?</label>
+            <select name="adult" id="adult-check" required>
+                <option></option>
+                <option value="yes">Sí</option>
+                <option value="no">No</option>
+            </select><br><br>
+            <hr>
             <input type="checkbox" name="suscribe" id="suscribe-check" checked>
+            <label for="suscribe-check">Suscribirse a recibir ofertas a través del email.</label>
             <br>
-            <label for="servei">Accept les condicions d’ús del servei</label>
             <input type="checkbox" name="servei" id="servei-check" required>
-            <br>
-            <input type="submit" value="Processar">
+            <label for="servei-check">Acepto las condiciones del servicio</label>
+            <hr><br><br>
+            <input type="submit" value="Procesar">
             <input type="reset" value="Reset">
         </form>
     </section>
     <footer>
+        <br>
         By A.Martinez - 2021 (DIW)
     </footer>
 </body>
