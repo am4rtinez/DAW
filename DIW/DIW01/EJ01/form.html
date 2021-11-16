@@ -1,0 +1,60 @@
+<!--
+EXERCICI 1
+Creació d'un formulari amb HTML5
+L’objectiu d’aquesta activitat és crear un formulari en HTML.
+Utilitzeu l’editor que vulgueu per elaborar un formulari que ha de permetre la introducció de les dades d’una comanda per a una pizzeria.
+Les especificacions que el formulari ha de complir són:
+DONE Ha d’oferir l’opció autocomplementar.
+Ha de disposar d’un camp per especificar el nombre de pizzes que es vol de cada tipus. Per defecte, el valor ha de ser 0 i no pot ser més gran de 10.
+DONE Les dades obligatòries de contacte són: nom, cognoms, telèfon i correu electrònic.
+DONE Cal que l’usuari respongui si és major d’edat o no.
+DONE Ha d’aparèixer un checkbox que permeti seleccionar si l’usuari vol rebre informació per correu electrònic. Aquest ha d’estar seleccionat per defecte.
+DONE Ha d’aparèixer un checkbox que l’usuari cal que seleccioni obligatòriament per tal que accepti les condicions d’ús del servei.
+DONE Ha de tenir dos botons, un per esborrar el formulari i un altre per enviar-lo. 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Comanda Pizza</h1>
+    </header>
+    <section>
+        <form id="comanda" action="mailto:example@pizzeria.com" method="post" autocomplete="on">
+            <label for="nom">Nom:</label>
+            <input type="text" name="nom" required/>
+            <br/>
+            <label for="cognoms">Cognoms:</label>
+            <input type="text" name="cognoms" required/>
+            <br/>
+            <label for="telf">Telèfon:</label>
+            <input type="tel" name="telf" required/>
+            <br/>
+            <label for="email">Correu electrònic:</label>
+            <input type="email" name="email" required/>
+            <br/>
+            <label for="adult">Major edat:</label>
+            <input type="checkbox" name="adult" id="adult-check">
+            <br>
+            <label for="suscribe">Vol rebre informació via correu electrònic?</label>
+            <input type="checkbox" name="suscribe" id="suscribe-check" checked>
+            <br>
+            <label for="servei">Accept les condicions d’ús del servei</label>
+            <input type="checkbox" name="servei" id="servei-check" required>
+            <br>
+            <input type="submit" value="Processar">
+            <input type="reset" value="Reset">
+        </form>
+    </section>
+    <footer>
+        By A.Martinez - 2021 (DIW)
+    </footer>
+</body>
+</html>
