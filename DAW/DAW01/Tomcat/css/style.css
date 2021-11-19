@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+
+body{
+    background-color: lightgrey;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+}
+
+h1,h2,h3,h4,h5{
+    font-family: 'Dosis', sans-serif;
+}
+
+header{
+    background-color: #454545;
+    color: #fff;
+    height: 100px;
+}
+
+header h1{
+    padding-top: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+p{
+    margin-top: 10px;
+}
