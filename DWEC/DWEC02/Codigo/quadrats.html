@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrats</title>
+</head>
+<body>
+    <header>
+        <h1>Quadrats</h1>
+    </header>
+    <main>
+        <section>
+            <script type="text/javascript">
+                var min = parseInt(prompt("Introduzca el mínimo: "));
+                var max = parseInt(prompt("Introduzca el máximo: "));
+                if (min > max) {
+                    alert("El número mínimo es superior al máximo. Recargue la página.");
+                } else if (min < max) {
+                    //TODO: Calcular cuadrados.
+                    document.write("<p>Mínimo : " + min + "</p>");
+                    document.write("<p>Máximo : " + max + "</p>");
+                    const enteros = []
+                    for (i = min; i<=max; i++){
+                        numero = Math.sqrt(i)
+                        if (numero % 1 == 0) {
+                            enteros.push(numero)
+                        }
+                    }
+                    if(enteros.length != 0){
+                        cadena = ""
+                        for (i=0;i<enteros.length;i++){
+                            console.log(enteros[i])
+                            cadena = cadena + " " + enteros[i]
+                        }
+                        document.write("<p>Enteros = " + cadena + "</p>");
+                    } else {
+                        document.write("<p>No hay números enteros entre los números introducidos.</p>");
+                    }           
+                } else {
+                    alert("Los números introducidos son iguales");
+                }
+            </script>
+        </section>
+        <br>
+        <section>
+            <a href="index.html">Vuelta</a>
+        </section>
+    </main>
+    <footer>
+        <hr>
+        <p>Ángel Martínez Rodríguez</p>
+    </footer>
+</body>
+</html>

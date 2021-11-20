@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
     <script src="js/notes.js"></script>
@@ -13,13 +14,18 @@
     <main>
         <section>
             <script type="text/javascript">
-                nota = parseInt(prompt("Insertar un numero entero: "));
-                document.write("<p>Nota=" + obtenerCadena(nota) + "</p>");
+                nota = parseInt(prompt("Insertar nota (número entero entre 0 - 10): "));
+                document.write("<p>Nota = " + nota + " - " + obtenerCadena(nota) + "</p>");
             </script>
         </section>
-        <div id="enlace">
+        <br>
+        <section>
             <a href="index.html">Vuelta</a>
-        </div>
+        </section>
     </main>
+    <footer>
+        <hr>
+        <p>Ángel Martínez Rodríguez</p>
+    </footer>
 </body>
 </html>

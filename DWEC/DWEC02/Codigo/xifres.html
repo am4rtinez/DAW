@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xifres</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            let n = parseInt(prompt("Insertar un numero entero: "));
+            
+            xifres(n,false);
+
+            document.getElementById("invers").onclick = function () {
+                xifres(n,true);
+            };
+        }
+        function xifres(valor, invers) {
+            document.getElementById('numero').innerHTML = 'Numero = ' + valor;
+            num = valor.toString()
+            cadena = ""
+            if (!invers){
+                for (i=0; i < num.length; i++){
+                    cadena = cadena + " " + num.charAt(i);
+                }
+                document.getElementById('digits').innerHTML = 'Digitos = ' + cadena;
+            } else {
+                for (i=num.length; i >= 0; i--){
+                    cadena = cadena + " " + num.charAt(i);
+                }
+                document.getElementById('digits').innerHTML = 'Digitos = ' + cadena;
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Xifres</h1>
+    </header>
+    <main>
+        <section>
+            <p id="numero"></p>
+            <p id="digits"></p>
+        </section>
+        <section>
+            <button type="button" id="invers">invertir</button>
+        </section>
+        <br>
+        <section>
+            <a href="index.html">Vuelta</a>
+        </section>
+    </main>
+    <footer>
+        <hr>
+        <p>Ángel Martínez Rodríguez</p>
+    </footer>
+</body>
+</html>
