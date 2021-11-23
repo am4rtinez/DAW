@@ -1,7 +1,7 @@
 from flask import Flask, config, render_template, request, sessions
 
 app = Flask(__name__)
-app.config['SECRET_KEY '] = 'secret'
+#app.config['SECRET_KEY '] = 'secret'
 reservas = []
 
 reserva1 = {'nom': 'Angel', 'telefon': '611234567', 'pista': 'coberta', 'dia': 'Dilluns', 'hora': '15:00'}
@@ -9,8 +9,7 @@ reserva2 = {'nom': 'Angel', 'telefon': '611234567', 'pista': 'exterior', 'dia': 
 reserva3 = {'nom': 'Angel', 'telefon': '611234567', 'pista': 'coberta', 'dia': 'Dimarts', 'hora': '15:00'}
 reserva4 = {'nom': 'Angel', 'telefon': '611234567', 'pista': 'exterior', 'dia': 'Dimarts', 'hora': '15:00'}
 
-#horaServidor=datetime.now().strftime("%H:%M:%S")
-
+#Funcion para generar el diccionario de la reserva.
 def crearReserva(req_nom, req_telefon, req_tipopista, req_dia, req_hora):
     global reservas
     #Formato reserva {'Nom':'Nom','Telefon':'Telefon','Pista':'Tipopista','Dia':'Dia','Hora':'Hora'}
@@ -28,6 +27,7 @@ def crearReserva(req_nom, req_telefon, req_tipopista, req_dia, req_hora):
 def index():
     #Definicio de variables necesaries
     global reservas
+    #Reservas generadas para pruebas.
     reservas.append(reserva1)
     reservas.append(reserva2)
     reservas.append(reserva3)
@@ -80,5 +80,5 @@ def reserves():
         return render_template('reserves.html', data = reservas)
 
 if __name__ == '__main__':
-    app.run(host="192.168.1.8", debug=True)
+    app.run(host="0.0.0.0", debug=True) #Modificado para que el host sea visible en toda la red.
     #app.run(debug=True)

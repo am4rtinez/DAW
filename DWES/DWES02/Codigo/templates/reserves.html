@@ -1,11 +1,11 @@
 {% extends "template_base.html"%}
 {% block content %}
   <h2> Opció senzilla</h2>
-  <div class="row">
-    <div class="col-sm-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
       {% if (data is defined) and data %}
-        {% for res in data %}
-          <table class="table table-bordered table-sm">
+        {% for res in data %} <!-- Genera una tabla por cada reserva.-->
+          <table class="table table-bordered table-sm bg-light">
             <tbody>
               <tr>
                 <td>Dia</td>
