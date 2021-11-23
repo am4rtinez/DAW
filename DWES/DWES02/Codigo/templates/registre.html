@@ -1,0 +1,86 @@
+{% extends "template_base.html"%}
+{% block content %}
+{% if (reservada) %}
+<div class="alert alert-danger text-center" role="alert">
+  <p>La pista no esta disponible. Por favor realice otra reserva.</p>
+</div>
+{% endif %}
+<form name="reserva" method="POST" action="{{url_for('reserves')}}">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-8">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body">
+            <div class="row align-items-center pt-4 pb-3 text-center">
+              <h2 class="text-decoration-underline">Formulari de Reserva de Pista</h2>
+            </div>
+            <div class="row align-items-center pt-4 pb-3 text-center">
+              <h3>Dades Pista</h3>
+            </div>
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">Dia</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <select class="form-control form-control-lg form-select" id="dia" name="dia" value="Dia" required>
+                  <option value="Dilluns">Dilluns</option>
+                  <option value="Dimarts">Dimarts</option>
+                  <option value="Dimecres">Dimecres</option>
+                  <option value="Dijous">Dijous</option>
+                  <option value="Divendres">Divendres</option>
+                </select>
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">Hora</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input type="time" step="3600" class="form-control form-control-lg" min="15:00" max="20:00" name="hora" id="hora" required>
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-6 ps-5 text-center">
+                <input class="form-check-input" type="radio" name="tipopista" id="tipopista1" value="exterior" required>
+                <label class="form-check-label" for="tipopista1">Exterior</label>
+              </div>
+              <div class="col-md-6 pe-5 text-center">
+                <input class="form-check-input" type="radio" name="tipopista" id="tipopista2" value="coberta" required>
+                <label class="form-check-label" for="tipopista2">Coberta</label>
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3 text-center">
+              <h3>Datos Usuari</h3>
+            </div>
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">Nom</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" type="text" name="nom" id="nom" placeholder="Nom i Llinatges" required>
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">Telefon</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" type="tel" name="telefon" id="telefon" pattern="[6-9]{1}[0-9]{8}" placeholder="123456789" required>
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="px-5 py-4 text-center">
+              <button type="submit" value="Enviar" class="btn btn-primary btn-floating btn-lg mx-4">Enviar</button>
+              <button type="reset" value="Limpiar" class="btn btn-primary btn-floating btn-lg mx-4">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

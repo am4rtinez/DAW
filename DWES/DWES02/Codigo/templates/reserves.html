@@ -1,0 +1,82 @@
+{% extends "template_base.html"%}
+{% block content %}
+  <h2> Opció senzilla</h2>
+  <div class="row">
+    <div class="col-sm-4">
+      {% if (data is defined) and data %}
+        {% for res in data %}
+          <table class="table table-bordered table-sm">
+            <tbody>
+              <tr>
+                <td>Dia</td>
+                <th scope="row">{{res['dia']}}</th>       
+                <td>Hora</td>
+                <th scope="row">{{res['hora']}}</th>
+                <td>Tipus</td>
+                <th scope="row">{{res['pista']}}</th>
+              </tr>
+              <tr>
+                <td>Usuari</td>
+                <th scope="row" colspan="3">{{res['nom']}}</th> 
+                <td>Telefon</td>
+                <th scope="row">{{res['telefon']}}</th>       
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        {% endfor %}
+      {% else %}
+        <p>No hay reservas.</p>
+      {% endif %}
+    </div>
+  </div>
+  <h2> Opció avançada</h2>
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <table class="table text-center table-responsive-md table-bordered table-sm bg-light">
+        <caption class="text-center">Tabla reservas</caption>
+        <thead class="table-dark">
+          <th>#</th><th>Pista</th><th>Dilluns</th><th>Dimarts</th><th>Dimecres</th><th>Dijous</th><th>Divendres</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th rowspan="2" class="align-middle">15:00</th><th>Exterior</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th>Coberta</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th rowspan="2" class="align-middle">16:00</th><th>Exterior</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th>Coberta</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th rowspan="2" class="align-middle">17:00</th><th>Exterior</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th>Coberta</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th rowspan="2" class="align-middle">18:00</th><th>Exterior</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th>Coberta</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th rowspan="2" class="align-middle">19:00</th><th>Exterior</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th>Coberta</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th rowspan="2" class="align-middle">20:00</th><th>Exterior</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <th>Coberta</th><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
