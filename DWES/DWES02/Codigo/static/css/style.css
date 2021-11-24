@@ -11,7 +11,7 @@ header a:visited{
     text-decoration: none;
 }
 
-main{
-    margin-top: 10px;
-    margin-bottom: 10px;
+.bi {
+    display: inline-block;
+    vertical-align: -.125em;
 }

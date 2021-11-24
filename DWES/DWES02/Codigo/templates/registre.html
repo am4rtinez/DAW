@@ -1,38 +1,37 @@
 {% extends "template_base.html"%}
 {% block content %}
-{% if (reservada) %}
-<div class="alert alert-danger text-center" role="alert">
-  <p>La pista no esta disponible. Por favor realice otra reserva.</p>
-</div>
-{% endif %}
-<form name="reserva" method="POST" action="{{url_for('reserves')}}">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-8">
-        <div class="card" style="border-radius: 15px;">
+  {% if (reservada) %}
+  <div class="alert alert-danger text-center" role="alert">
+    <p class="my-2">La pista no esta disponible. Por favor realice otra reserva.</p>
+  </div>
+  {% endif %}
+  <section class="my-3">
+    <form name="reserva" method="POST" action="{{url_for('reserves')}}">
+      <div class="container h-90">
+        <div class="card text-center">
+          <div class="card-header bg-dark text-white">
+            <h2>Formulari de Reserva de Pista</h2>
+          </div>
+          <div class="card-header bg-secondary">
+            <h3>Dades Pista</h3>
+          </div>
           <div class="card-body">
-            <div class="row align-items-center pt-4 pb-3 text-center">
-              <h2 class="text-decoration-underline">Formulari de Reserva de Pista</h2>
-            </div>
-            <div class="row align-items-center pt-4 pb-3 text-center">
-              <h3>Dades Pista</h3>
-            </div>
-            <div class="row align-items-center pt-4 pb-3">
+            <div class="row align-items-center">
               <div class="col-md-3 ps-5">
                 <h6 class="mb-0">Dia</h6>
               </div>
               <div class="col-md-9 pe-5">
                 <select class="form-control form-control-lg form-select" id="dia" name="dia" value="Dia" required>
-                  <option value="Dilluns">Dilluns</option>
-                  <option value="Dimarts">Dimarts</option>
-                  <option value="Dimecres">Dimecres</option>
-                  <option value="Dijous">Dijous</option>
-                  <option value="Divendres">Divendres</option>
+                  <option value="dilluns">Dilluns</option>
+                  <option value="dimarts">Dimarts</option>
+                  <option value="dimecres">Dimecres</option>
+                  <option value="dijous">Dijous</option>
+                  <option value="divendres">Divendres</option>
                 </select>
               </div>
             </div>
             <hr class="mx-n3">
-            <div class="row align-items-center py-3">
+            <div class="row align-items-center">
               <div class="col-md-3 ps-5">
                 <h6 class="mb-0">Hora</h6>
               </div>
@@ -41,7 +40,7 @@
               </div>
             </div>
             <hr class="mx-n3">
-            <div class="row align-items-center py-3">
+            <div class="row align-items-center">
               <div class="col-md-6 ps-5 text-center">
                 <input class="form-check-input" type="radio" name="tipopista" id="tipopista1" value="exterior" required>
                 <label class="form-check-label" for="tipopista1">Exterior</label>
@@ -51,11 +50,12 @@
                 <label class="form-check-label" for="tipopista2">Coberta</label>
               </div>
             </div>
-            <hr class="mx-n3">
-            <div class="row align-items-center pt-4 pb-3 text-center">
-              <h3>Datos Usuari</h3>
-            </div>
-            <div class="row align-items-center py-3">
+          </div>
+          <div class="card-header bg-secondary">
+            <h3>Dades Usuari</h3>
+          </div>
+          <div class="card-body">
+            <div class="row align-items-center">
               <div class="col-md-3 ps-5">
                 <h6 class="mb-0">Nom</h6>
               </div>
@@ -64,7 +64,7 @@
               </div>
             </div>
             <hr class="mx-n3">
-            <div class="row align-items-center py-3">
+            <div class="row align-items-center">
               <div class="col-md-3 ps-5">
                 <h6 class="mb-0">Telefon</h6>
               </div>
@@ -73,14 +73,16 @@
               </div>
             </div>
             <hr class="mx-n3">
-            <div class="px-5 py-4 text-center">
-              <button type="submit" value="Enviar" class="btn btn-primary btn-floating btn-lg mx-4">Enviar</button>
-              <button type="reset" value="Limpiar" class="btn btn-primary btn-floating btn-lg mx-4">Reset</button>
-            </div>
+              <div class="px-5 text-center">
+                <button type="submit" value="Enviar" class="btn btn-success btn-floating btn-lg mx-4">Enviar</button>
+                <button type="reset" value="Limpiar" class="btn btn-danger btn-floating btn-lg mx-4">Reset</button>
+              </div>
+          </div>
+          <div class="card-footer text-muted">
+            Formulari reserva
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</form>
+    </form>
+  </section>
 {% endblock %}
