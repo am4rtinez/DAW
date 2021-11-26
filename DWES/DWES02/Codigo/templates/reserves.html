@@ -7,6 +7,7 @@
           <h2>Opció senzilla</h2>
         </div>
         <div class="card-body">
+          <!--Comprobamos si el array de reservas contiene datos y si los contiene los imprime en formato table.-->
           {% if (data is defined) and data %}
             {% for res in data %} <!-- Genera una tabla por cada reserva.-->
               <table class="table table-bordered table-sm bg-light border-dark">
@@ -29,6 +30,7 @@
               </table>
             {% endfor %}
           {% else %}
+            <!--El array data no contiene datos por lo que no hay reservas y mostramos el mensaje en formato alert.-->
             <div class="alert alert-warning text-center" role="alert">
               <p class="my-2">No hay reservas.</p>
             </div>
@@ -59,32 +61,42 @@
             </thead>
             <tbody>
               <!-- Imprime las filas de la pista exterior-->
+              <!-- Recorremos el array que contiene los diccionarios de las reservas de la pista exterior.-->
               {% for ext in tabext %}
-              <tr>
-                {% if loop.first %}
-                <th class="align-middle" rowspan="{{ loop.length }}">Exterior</th>
-                {% endif %}
-                <th>{{ ext['hora'] }}</th>
-                <td class="text-capitalize">{{ ext['l'] }}</td>
-                <td class="text-capitalize">{{ ext['m'] }}</td>
-                <td class="text-capitalize">{{ ext['x'] }}</td>
-                <td class="text-capitalize">{{ ext['j'] }}</td>
-                <td class="text-capitalize">{{ ext['v'] }}</td>
-              </tr>
+                <tr>
+                  {% if loop.first %}
+                  <th class="align-middle" rowspan="{{ loop.length }}">Exterior</th>
+                  {% endif %}
+                  <!-- Recorremos los diccionarios de las reservas de la pista exterior.-->
+                  {% for item in ext %}
+                    {% if loop.first %}
+                      <!--Imprime el valor de item. Como el primero es la hora se pone en th-->
+                      <th>{{ ext[item] }}</th>
+                    {% else %}
+                      <!--Imprime el valor de item para cada dia con el nombre de la reserva.-->
+                      <td class="text-capitalize">{{ ext[item] }}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
               {% endfor %}
               <!-- Imprime las filas de la pista cubierta-->
+              <!-- Recorremos el array que contiene los diccionarios de las reservas de la pista cubierta.-->
               {% for cob in tabcob %}
-              <tr>
-                {% if loop.first %}
-                <th class="align-middle" rowspan="{{ loop.length }}">Coberta</th>
-                {% endif %}
-                <th>{{ cob['hora'] }}</th>
-                <td>{{ cob['l'] }}</td>
-                <td>{{ cob['m'] }}</td>
-                <td>{{ cob['x'] }}</td>
-                <td>{{ cob['j'] }}</td>
-                <td>{{ cob['v'] }}</td>
-              </tr>
+                <tr>
+                  {% if loop.first %}
+                  <th class="align-middle" rowspan="{{ loop.length }}">Exterior</th>
+                  {% endif %}
+                  <!-- Recorremos los diccionarios de las reservas de la pista cubierta.-->
+                  {% for item in cob %}
+                    {% if loop.first %}
+                      <!--Imprime el valor de item. Como el primero es la hora se pone en th-->
+                      <th>{{ cob[item] }}</th>
+                    {% else %}
+                      <!--Imprime el valor de item para cada dia con el nombre de la reserva.-->
+                      <td class="text-capitalize">{{ cob[item] }}</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
               {% endfor %}
             </tbody>
           </table>
