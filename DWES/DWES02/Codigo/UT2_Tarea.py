@@ -24,6 +24,49 @@ p20cob = {'hora':'20:00','l':'', 'm':'', 'x':'', 'j':'', 'v':''}
 tablaExterior = [p15ext,p16ext,p17ext,p18ext,p19ext,p20ext]
 tablaCoberta = [p15cob,p16cob,p17cob,p18cob,p19cob,p20cob]
 
+tabla = {
+    'exterior':{
+        '15:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '16:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '17:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '18:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '19:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '20:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+    },
+    'coberta':{
+        '15:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '16:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '17:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '18:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '19:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+        '20:00':{
+            'dilluns':'', 'dimarts':'', 'dimecres':'', 'dijous':'', 'divendres':''
+        },
+    }
+}
+
 #Funcion para generar el diccionario de la reserva.
 def generarMatriz(req_nom, req_tipopista, req_dia, req_hora):
     #Definicio de variables necesaries
@@ -31,6 +74,8 @@ def generarMatriz(req_nom, req_tipopista, req_dia, req_hora):
     #global tablaCoberta
 
     #global p15ext, p16ext, p17ext, p18ext, p19ext, p20ext, p15cob, p16cob, p17cob, p18cob, p19cob, p20cob
+    tabla[req_tipopista][req_hora][req_dia] = req_nom
+    print(tabla)
 
     if req_dia == 'dilluns':
         if req_hora == '15:00':
@@ -231,6 +276,7 @@ def reserves():
     global reservas
     global tablaExterior
     global tablaCoberta
+    global tabla
 
     #Controlamos el tipo de request para que no se generen reservas vacias.
     if request.method == 'POST':
