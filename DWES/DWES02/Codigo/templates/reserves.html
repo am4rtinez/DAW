@@ -11,7 +11,7 @@
             <!--Comprobamos si el array de reservas contiene datos y si los contiene los imprime en formato table.-->
             {% if (data is defined) and data %}
               {% for res in data %} <!-- Genera una tabla por cada reserva.-->
-                <table class="table table-bordered table-sm bg-light border-dark">
+                <table class="tabla-reserva table table-bordered table-sm bg-light border-dark">
                   <tbody>
                     <tr>
                       <th>Dia</th>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="card-footer text-muted">
-          Reservas
+          Listado reservas.
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive-sm">
-            <table class="table text-center table-responsive-md table-bordered table-sm bg-light border-dark">
+            <table id="tabla-avanzada" class="table text-center table-responsive-md table-bordered table-sm bg-light border-dark">
               <thead class="table-dark">
                 <th>Pista</th>
                 <th>Hora</th>

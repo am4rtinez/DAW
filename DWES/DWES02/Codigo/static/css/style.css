@@ -23,3 +23,13 @@ header a:visited{
 .coberta{
     background-color: #F6DDCC;
 }
+
+.tabla-reserva td,
+.tabla-reserva th{
+    width: calc(100%/6);
+}
+
+#tabla-avanzada td,
+#tabla-avanzada th{
+    width: calc(100%/7);
+}
