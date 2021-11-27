@@ -14,16 +14,16 @@
     <header class="px-3 py-2 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="{{url_for('index')}}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                <a href="{{url_for('index')}}" class="d-flex align-items-center col-md-7 col-lg-auto my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                     <h1>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height=32" fill="currentColor" class="bi bi-heart-fill text-danger my-1" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-heart-fill text-danger my-1" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                         </svg>
                         Gimnàs DWES2
                     </h1>
                 </a>
-                <nav>
-                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                <nav class="col-md-5 col-lg-auto">
+                    <ul class="gap-2 d-md-flex justify-content-md-center nav col-sm-12 col-md-auto col-lg-auto my-2 justify-content-center my-md-0 text-small">
                         <li class="me-2">
                             <form name="canviPantalla" method="POST" action="{{url_for('formulari')}}">
                                 <button type="submit" class="btn btn-outline-secondary text-white">
@@ -34,7 +34,7 @@
                                 </button>
                             </form>
                         </li>
-                        <li>
+                        <li class="me-2">
                             <form name="canviPantalla" method="GET" action="{{url_for('reserves')}}">
                                 <button type="submit" class="btn btn-outline-primary text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week-fill" viewBox="0 0 16 16">
