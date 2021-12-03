@@ -65,12 +65,10 @@ header {
 }
 
 section {
-    margin: 1em 2em;
     border: 1px solid transparent;
     border-radius: 10px;
     background-color: var(--clr-neutral-100);
 }
-
 
 section h1,
 section h2 {
@@ -87,6 +85,15 @@ section > * {
 
 article > * {
     margin: 1em 1em;
+}
+
+footer {
+    background-color:  #343a40;
+    position: absolute;
+    right: 0;
+    left: 0;
+    color: var(--clr-neutral-100);
+    text-align: center;
 }
 
 /*-----------------------*/
@@ -111,6 +118,15 @@ article > * {
 /*--------------------------*/
 
 @media (min-width: 35em){
+
+    section {
+        margin: 1em 5em;
+    }
+
+    footer {
+        padding: 2rem;
+    }
+
     .primary-navigation a{
         padding-block: 1.5rem;
     }
@@ -135,6 +151,10 @@ article > * {
 
     .sticky + .content {
         padding: 7.5em 0 2em 0;
+    }
+
+    section {
+        margin: 1em 2em;
     }
 }
 
@@ -173,5 +193,13 @@ article > * {
 
     .sticky + .content {
         padding: 16em 0 2em 0;
+    }
+
+    section {
+        margin: 1em 2em;
+    }
+
+    footer {
+        padding: 1rem;
     }
 }
