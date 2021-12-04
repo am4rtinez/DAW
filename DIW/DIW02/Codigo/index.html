@@ -4,21 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>DIW02</title>
 </head>
 <body>
     <header class="primary-header sticky flex">
-        <div class="brand-logo">
-            <img src="img/logo-am4rtinez200px.png" alt="logo">
-        </div>  
-        <nav class="primary-navigation flex">
-            <a class="active" href="index.html">Inicio</a>
-            <a href="animacion.html">Animacion</a>
-            <a href="horario.html">Horario</a>
+        <div>
+            <img src="img/logo-am4rtinez200px.png" alt="logo" class="logo">
+        </div>
+
+        <button class="navbar-toggle" aria-controls="primary-navigation" aria-expanded="false">
+            <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+        
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a class="active" href="index.html" class="active">Inicio</a>
+                </li>
+                <li>
+                    <i class="fa fa-film" aria-hidden="true"></i>
+                    <a href="#">Animacion</a>
+                </li>
+                <li>
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <a href="#">Horario</a>
+                </li>
+            </ul>
         </nav>
     </header>
+    <!--
+    </header> 
     <main class="content">
         <section>
             <h1>Pautas de realización</h1>
@@ -118,6 +138,7 @@
     </main>
     <footer>
         <p>Ángel Martínez Rodríguez - 2021/22</p>
-    </footer>
+    </footer>-->
+    <script src="js/nav.js"></script>
 </body>
 </html>

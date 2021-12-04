@@ -9,8 +9,7 @@
     --clr-neutral-200: #EAEDED;
     --clr-neutral-300: #E5E8E8;
     --clr-neutral-500: #B2BABB;
-    --clr-neutral-700: #1b2631;
-    --clr-neutral-900: #222c2a;
+    --clr-neutral-900: #1C1C1C;
 
 }
 
@@ -32,20 +31,62 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--clr-neutral-500);
     margin: 0;
+    overflow: hidden;
 }
 
-/* Primary header */
 header {
-    background-color: var(--clr-neutral-700);
+    background-color: var(--clr-neutral-900);
+}
+
+
+/* Primary header */
+.logo {
+    margin: 2rem;
+    width: 40%;
+}
+
+.primary-header{
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-toggle {
+    display: none;
+}
+
+.primary-navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.primary-navigation li .fa {
+    color: #fff;
+}
+
+.primary-navigation a{
+    text-decoration: none;
+    color: #fff;
+
+}
+
+.primary-navigation a.active {
+    color: blueviolet;
+}
+
+/* Primary header
+
+header {
+    background-color: var(--clr-neutral-900);
     text-transform: uppercase;
 }
 
-.brand-logo {
+.navbar-brand-logo {
     margin: 2rem;
 }
 
-.brand-logo > img {
-    width: 80%;
+.navbar-brand-logo > img {
+    width: 50%;
 }
 
 .primary-header {
@@ -54,14 +95,22 @@ header {
     margin: 0;
 }
 
-.primary-navigation {
-    margin: 1em 2em;
-    height: 100%;
+.navbar {
+    background-color: var(--clr-neutral-900);
+    text-decoration: none;
 }
 
-.primary-navigation > a {
+.navbar-menu {
+    margin: 2em;
+}
+
+.navbar-menu > a {
     text-decoration: none;
     color: var(--clr-neutral-100);
+    background-color: red;
+    height: 100%;
+    padding: 2.65em 0;
+    border-bottom:2px solid green;
 }
 
 section {
@@ -88,13 +137,14 @@ article > * {
 }
 
 footer {
-    background-color:  #343a40;
+    background-color: var(--clr-neutral-900);
     position: absolute;
     right: 0;
     left: 0;
     color: var(--clr-neutral-100);
     text-align: center;
 }
+*/
 
 /*-----------------------*/
 /*----- Utilidades ------*/
@@ -113,10 +163,76 @@ footer {
     z-index: 1;
 }
 
+/*sr-only es una funcionalidad calco de bootstrap para ocultar información 
+destinada a lectores de pantalla*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+  }
+
 /*--------------------------*/
 /*----- Media Queries ------*/
 /*--------------------------*/
 
+@media (max-width: 35em){
+    .primary-navigation {
+        --gap: 2em;
+
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+
+        flex-direction: column;
+        padding: min(20vh, 10rem) 2em;
+        
+        transform: translateX(100%);
+        transition: transform 300ms ease-in;
+
+        background: hsl(0, 35%, 12%, 0.6);
+        backdrop-filter: blur(1rem);
+    }
+
+
+    .primary-navigation[data-visible="true"]{
+        transform: translateX(0%);
+    }
+
+    .navbar-toggle {
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        background: transparent;
+        border: transparent;
+        aspect-ratio: 1;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .navbar-toggle .fa {
+        color: #fff;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+}
+
+@media (min-width: 35em) and (max-width: 55rem) { 
+
+}
+
+@media (min-width: 35em){
+    .primary-navigation {
+        padding: 1rem;
+    }
+}
+
+/*
 @media (min-width: 35em){
 
     section {
@@ -202,4 +318,4 @@ footer {
     footer {
         padding: 1rem;
     }
-}
+} */
