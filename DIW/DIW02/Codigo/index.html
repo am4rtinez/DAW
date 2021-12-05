@@ -16,12 +16,10 @@
                 <img src="img/logo-am4rtinez200px.png" alt="logo" class="logo">
             </a>
         </div>
-
         <button class="navbar-toggle" aria-controls="primary-navigation" aria-expanded="false">
             <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
             <span class="sr-only">Menu</span>
-        </button>
-        
+        </button>       
         <nav>
             <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
                 <li>
@@ -33,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="#">
+                    <a class="navbar-link" href="animacion.html">
                         <div class="nav-link-container">
                             <i class="fa fa-film" aria-hidden="true"></i>
                             <span>Animacion</span>
@@ -41,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="navbar-link" href="#">
+                    <a class="navbar-link" href="horario.html">
                         <div class="nav-link-container">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                             <span>Horario</span>
@@ -51,20 +49,24 @@
             </ul>
         </nav>
     </header>
-    <!--
-    </header> 
-    <main class="content">
-        <section>
-            <h1>Pautas de realización</h1>
-            <article>
-                <p>Se entregaran los ejercicios en un solo archivo.rar.</p>
-                <p>La intención de estos ejercicios es que aprendais CSS desde cero, por este motivo <b>NO se puede utilizar</b> Bootstrap. El CSS ha de ser vuestro en los tres ejercicios. Solo tiene que haber CSS y HTML.</p>
-                <p>Más adelante ya utilizareis Bootstrap y/u otros frameworks.</p>
-            </article>
-            <article>
-                <h2>Ejercicio 1</h2>
+    <section class="banner-area text-center">
+        <div class="banner-area-text">
+            <h1>DIW02</h1>
+            <p>Uso de estilos (CSS).</p>
+        </div>
+    </section>
+    <section class="content-area">
+        <div class="section-header">
+            <h1 class="text-center">Pautas de realización</h1>
+            <p>Se entregaran los ejercicios en un solo archivo.rar.</p>
+            <p>La intención de estos ejercicios es que aprendais CSS desde cero, por este motivo <b>NO se puede utilizar</b> Bootstrap. El CSS ha de ser vuestro en los tres ejercicios. Solo tiene que haber CSS y HTML.</p>
+            <p>Más adelante ya utilizareis Bootstrap y/u otros frameworks.</p>
+        </div>
+        <div class="columns flex">
+            <article class="flex-item">
+                <h2 class="article-header text-center">Ejercicio 1</h2>
                 <p>Realizad una página web con las caracteristicas siguientes:</p>
-                <ul>
+                    <ul>
                     <li>Mínimo 3 páginas.</li>
                     <li>Se tiene que poner un logotipo en la cabecera.</li>
                     <li>Utilizar barra de navegación o menú desplegable</li>
@@ -78,8 +80,10 @@
                     <li>Tener en cuenta el idioma, no puede haber diferentes idiomas. Todo el site tiene que estar en el idioma que hayais elegido.</li>
                 </ul>
             </article>
-            <article>
-                <h2>Ejercicio 2</h2>
+            <article class="flex-item">
+                <div class="article-header">
+                    <h2 class="text-center">Ejercicio 2</h2>
+                </div>
                 <p>Crea una animación que te guste. La idea de este ejercicio es practicar lo que hemos visto hasta ahora y que demostreis vuestra creatividad utilizando CSS3.</p>
                 <p>Ideas:</p>
                 <ul>
@@ -88,8 +92,10 @@
                     <li>Una infografia que tenga movimiento...</li>
                 </ul>
             </article>
-            <article>
-                <h2>Ejercicio 3</h2>
+            <article class="flex-item">
+                <div class="article-header">
+                    <h2 class="text-center">Ejercicio 3</h2>
+                </div>
                 <ol>
                     <li>
                         <p>Realiza una tabla donde quede reflejado tu horario.</p>
@@ -99,57 +105,58 @@
                     <li>Realiza una tabla que tenga las filas alternando de color (tr:nth-child).</li>
                 </ol>
             </article>
-        </section>
-        <section>
-            <h1>Criterios de cualificación</h1>
-            <article>
-                <p>Los tres ejercicios tienen una puntuación sobre la complejidad.</p>
-                <p>No se puede utilizar Bootstrap (cuando sepais CSS ya lo utilizareis).</p>
-            </article>
-            <article>
-                <p><b>Ejercicio 1:</b> (6 puntos)</p>
-                <ul>
-                    <li>Realización de todo lo que se pide (3 puntos).</li>
-                    <li>Complejidad (3 puntos).
-                        <ul>
-                            <li>La complejidad se definirá y se evaluará por el diseño de las páginas.
-                                <ul>
-                                    <li>Es decir, el formato de las imagenes que pongais (claras y que pesen poco).</li>
-                                    <li>El texto y las cajas bien colocadas, los margenes o los espacios en blanco.</li>
-                                    <li>La presentación de cada una de las páginas.</li>
-                                    <li>Tiene que haber información suficiente de manera que se haga scroll en al menos una de las páginas o en algunas cajas donde haya texto.</li>
-                                </ul>
-                            </li>
-                            <li>El tema sera libre. Puede ser una web informativa, de ventas, artística....</li>
-                        </ul>
-                    </li>
-                </ul>
-            </article>
-            <article>
-                <p><b>Ejercicio 2:</b> (2 puntos)</p>
-                <ul>
-                    <li>Realización de todo lo que se pide (1 punto).</li>
-                    <li>Complejidad (1 punto).</li>
-                </ul>
-            </article>
-            <article>
-                <p><b>Ejercicio 3:</b> (2 puntos)</p>
-                <ul>
-                    <li>Realización (1 punto).</li>
-                    <li>Complejidad (1 punto).
-                        <ul>
-                            <li>Para la realización de este ejercicio, la complejidad se tendra en cuenta:
-                                <ul>
-                                    <li>A la hora de elegir colores, (en este caso los colores serviran para ayudar al lector a que no se puerda en la lectura lineal. Cosa que suele pasar cuando hay muchas linias para leer). Se tiene que pensar que puede ser que este mucho tiempo haciendo una tarea en la que tiene que mirar la tabla.</li>
-                                    <li>El contenido tiene que ser legible (no se puede quedar una palabra cortada, tamaño de fuente optima...</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </article>
-        </section>
-    </main>
+        </div>
+    </section>
+    <section class="content-area">
+        <div class="section-header">
+            <h1 class="text-center">Criterios de cualificación</h1>
+            <p>Los tres ejercicios tienen una puntuación sobre la complejidad.</p>
+            <p>No se puede utilizar Bootstrap (cuando sepais CSS ya lo utilizareis).</p>
+        </div>
+        <article class="flex-item">
+            <p><b>Ejercicio 1:</b> (6 puntos)</p>
+            <ul>
+                <li>Realización de todo lo que se pide (3 puntos).</li>
+                <li>Complejidad (3 puntos).
+                    <ul>
+                        <li>La complejidad se definirá y se evaluará por el diseño de las páginas.
+                            <ul>
+                                <li>Es decir, el formato de las imagenes que pongais (claras y que pesen poco).</li>
+                                <li>El texto y las cajas bien colocadas, los margenes o los espacios en blanco.</li>
+                                <li>La presentación de cada una de las páginas.</li>
+                                <li>Tiene que haber información suficiente de manera que se haga scroll en al menos una de las páginas o en algunas cajas donde haya texto.</li>
+                            </ul>
+                        </li>
+                        <li>El tema sera libre. Puede ser una web informativa, de ventas, artística....</li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+        <article class="flex-item">
+            <p><b>Ejercicio 2:</b> (2 puntos)</p>
+            <ul>
+                <li>Realización de todo lo que se pide (1 punto).</li>
+                <li>Complejidad (1 punto).</li>
+            </ul>
+        </article>
+        <article class="flex-item">
+            <p><b>Ejercicio 3:</b> (2 puntos)</p>
+            <ul>
+                <li>Realización (1 punto).</li>
+                <li>Complejidad (1 punto).
+                    <ul>
+                        <li>Para la realización de este ejercicio, la complejidad se tendra en cuenta:
+                            <ul>
+                                <li>A la hora de elegir colores, (en este caso los colores serviran para ayudar al lector a que no se puerda en la lectura lineal. Cosa que suele pasar cuando hay muchas linias para leer). Se tiene que pensar que puede ser que este mucho tiempo haciendo una tarea en la que tiene que mirar la tabla.</li>
+                                <li>El contenido tiene que ser legible (no se puede quedar una palabra cortada, tamaño de fuente optima...</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    </section>
+    <!--
     <footer>
         <p>Ángel Martínez Rodríguez - 2021/22</p>
     </footer>-->

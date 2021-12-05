@@ -1,27 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>DIW02 - Horario</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <title>DIW02 - Horario</title>
+    </head>
 <body>
-    <header>
-        <div class="header-top">
-            <div class="brand">
-                <a href="index.html">
-                    <img src="img/logo-am4rtinez200px.png" alt="logo">
-                    <h1>DIW02</h1>
-                </a>
-            </div>  
-            <nav>
-                <a class="active" href="index.html">Inicio</a>
-                <a href="animacion.html">Animacion</a>
-                <a href="horario.html">Horario</a>
-            </nav>
+    <header class="primary-header sticky flex">
+        <div>
+            <a href="index.html">
+                <img src="img/logo-am4rtinez200px.png" alt="logo" class="logo">
+            </a>
         </div>
+
+        <button class="navbar-toggle" aria-controls="primary-navigation" aria-expanded="false">
+            <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+        
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li>
+                    <a class="navbar-link" href="index.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="animacion.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-film" aria-hidden="true"></i>
+                            <span>Animacion</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link active" href="horario.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span>Horario</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <main>
         <section>
