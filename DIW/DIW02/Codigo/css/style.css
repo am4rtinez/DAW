@@ -45,6 +45,10 @@ header {
     background-color: var(--clr-neutral-900);
 }
 
+main {
+    position: relative;
+    top: 12vh;
+}
 /* Primary header */
 .logo {
     margin: 2rem;
@@ -81,7 +85,7 @@ header {
     top: 110px;
     background: url(../img/code.png) #1C1C1C;
     background-size: cover;
-    position: fixed;
+    /*position: absolute;*/
 }
 
 .banner-area::after{
@@ -156,13 +160,12 @@ header {
     text-align: center;
 }
 
-
 footer {
     background-color: var(--clr-neutral-900);
-    position: relative;
     right: 0;
     left: 0;
-    top: 60vh;
+    position: relative;
+    top: 12vh;
     color: var(--clr-neutral-100);
     text-align: center;
     padding: 1.5rem;
@@ -257,6 +260,105 @@ destinada a lectores de pantalla*/
     border: 0;
 }
 
+/*------ Animation -------*/
+.walker {
+    background-color: #F34A4E;
+    height: 81vh;
+
+    animation: daytime 12s linear infinite;
+}
+
+.man {
+    background: url(../img/walking.png) 0 0;
+    zoom: 65%;
+    position: relative;
+    left: 45%;
+    top: 45%;
+    width: 262px;
+    height: 470px;
+
+    animation: walking-man 1.6s steps(8) infinite;
+}
+
+
+.sun {
+  z-index: 1;
+  
+  width: 100px;
+  height: 100px;
+  
+  position: absolute;
+  overflow: hidden;
+  border-radius: 100%;
+  
+  background: #fd7e08;
+  
+  left: 50%;
+
+  animation: sun-movement 10s linear infinite;
+}
+
+.moon {
+    z-index: 1;
+    
+    width: 100px;
+    height: 100px;
+    
+    position: absolute;
+    overflow: hidden;
+    border-radius: 100%;
+    
+    background: #d3ff0f;
+    
+    left: 50%;
+  
+    animation: sun-movement 10s linear infinite;
+    animation-delay: 10s;
+  }
+
+@keyframes sun-movement {
+    0% {
+      transform: rotate(-80deg);
+      transform-origin: 20% 600%;
+    }
+    50% {
+      transform: rotate(-5deg);
+      transform-origin: 50% 600%;
+    }
+    100% {
+        transform: rotate(80deg);
+        transform-origin: 30% 600%;
+    }
+}
+
+@keyframes walking-man {
+    0% {
+        background-position: -262px;
+    }
+    100% {
+        background-position: -2358px;
+    }
+}
+
+@keyframes daytime {
+    0% {
+        background-color: #f3ed99;
+    }
+    25% {
+        background-color: #AED6F1;
+    }
+    50% {
+        background-color: #F8C471;
+    }
+    75%{
+        background-color: #154360;
+    }
+    100%{
+        background-color: #283747;
+    }
+    
+}
+
 /*--------------------------*/
 /*----- Media Queries ------*/
 /*--------------------------*/
@@ -324,9 +426,11 @@ destinada a lectores de pantalla*/
         text-align: center;
     }
 
+    /*
     .content-area {
         top: 60vh;
     }
+    */
 
     .flex-container {
         flex-direction: column;
@@ -362,11 +466,11 @@ destinada a lectores de pantalla*/
     .primary-navigation a.active:hover{
         color: var(--clr-neutral-100);
     }
-
+    /*
     .content-area{
         top: 60vh;
     }
-
+    */
     .content-area p{
         text-align: left;
     }
@@ -402,8 +506,9 @@ destinada a lectores de pantalla*/
     .primary-navigation a.active:hover{
         color: var(--clr-neutral-100);
     }
-
+    /*
     .content-area {
         top: 60vh;
     }
+    */
 }
