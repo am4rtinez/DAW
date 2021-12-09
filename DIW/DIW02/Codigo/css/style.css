@@ -2,7 +2,7 @@
 
 :root {
     --clr-primary-200: #f3ed99;
-    --clr-primary-300:	#FED0D1;
+    --clr-primary-300: #FED0D1;
     --clr-primary-700: #F34A4E;
     --clr-primary-800: #FF0040;
     --clr-primary-900: #B40431;
@@ -14,12 +14,20 @@
     --clr-neutral-800: #2E2E2E;
     --clr-neutral-900: #1C1C1C;
 
-    --dark-color-cosmos: hsl(290, 34%, 10%);
-    --dark-cosmos-color: hsl(290, 34%, 10%);
+    --t-animation-day: 40s;
+
+    --sun-center:#fac0ad;
+    --sun-shadow-02: #F28C38;
+    --sun-shadow-01: hsl(47, 100%, 88%);
+
+    --moon-color: hsl(274, 93%, 94%);
+    --moon-pattern-color: hsl(274, 58%, 89%);
+
+    --dark-night-color: hsl(290, 34%, 10%);
+
         --star-color: hsl(272, 57%, 95%);
         --t-sun-color: hsl(47, 100%, 88%);
-        --t-moon-color: hsl(274, 93%, 94%);
-        --t-moon-pattern-color: hsl(274, 58%, 89%);
+        
         --sunsys-color: hsl(41, 99%, 75%);
         --sunsys-patterns-color: hsl(33, 95%, 73%);
         --earth-water-color: hsl(202, 62%, 74%);
@@ -74,7 +82,7 @@ header {
 
 main {
     position: relative;
-    top: 11.5vh;
+    top: 11vh;
 }
 /* Primary header */
 .logo {
@@ -192,7 +200,7 @@ footer {
     right: 0;
     left: 0;
     position: relative;
-    top: 11.5vh;
+    top: 11vh;
     color: var(--clr-neutral-100);
     text-align: center;
     padding: 1.5rem;
@@ -288,20 +296,30 @@ destinada a lectores de pantalla*/
 }
 
 /*------ Animation -------*/
+.animation-wrapper {
+    overflow: hidden;
+}
 
 .walker {
-    background-color: var(--dark-color-cosmos);
     height: 85vh;
     padding: 10px;
 
+    animation: daytime var(--t-animation-day) linear infinite;
 }
-
+.sky {
+    position: absolute;
+    top: -100px;
+}
+.star {
+    fill: var(--star-color);
+    opacity: 1;
+}
 .man {
     background: url(../img/walking.png) 0 0;
-    zoom: 55%;
+    zoom: 40%;
     position: relative;
     left: 47%;
-    top: 40%;
+    top: 20%;
     width: 262px;
     height: 470px;
 
@@ -314,26 +332,13 @@ destinada a lectores de pantalla*/
     width: 100px;
     height: 100px;
     
-    position: absolute;
+    position: relative;
     overflow: hidden;
 
     left: 50%;
+    top: 10%;
   
-    animation: sun-movement 12s linear infinite;
-}
-
-.sun-center, 
-.sun-shadow-01, 
-.sun-shadow-02{
-    fill: var(--t-sun-color);
-}
-
-.sun-shadow-01 {
-    opacity: 0.2;
-}
-
-.sun-shadow-02 {
-    opacity: 0.2;
+    animation: sun-movement var(--t-animation-day) linear infinite;
 }
 
 .moon {
@@ -341,23 +346,34 @@ destinada a lectores de pantalla*/
     width: 100px;
     height: 100px;
     
-    position: absolute;
+    position: relative;
     overflow: hidden;
     
     left: 50%;
-    bottom: 2%;
+    top: 90%;
   
-    animation: moon-movement 12s linear infinite;
+    animation: moon-movement var(--t-animation-day) linear infinite;
 }
 
-.moon-shadow-01 {
-    opacity: 0.1;
+.sun-center{
+    fill: var(--sun-center);
+} 
+.sun-shadow-01{
+    fill: var(--sun-shadow-01);
+    opacity: 0.8;
+} 
+
+.sun-shadow-02 {
+    fill: var(--sun-shadow-02);
+    opacity: 0.8;
 }
 
+.moon-shadow-01,
 .moon-shadow-02 {
-    opacity: 0.1;
+    opacity: 0.2;
 }
 
+.sun-center,
 .moon-center {
     opacity: 1;
 }
@@ -365,12 +381,15 @@ destinada a lectores de pantalla*/
 .moon-shadow-01,
 .moon-shadow-02,
 .moon-center {
-    fill: var(--t-moon-color);
+    fill: var(--moon-color);
 }
 
 .moon-pattern {
-    fill: var(--t-moon-pattern-color);
+    fill: red;
+    position: absolute;
+    top: -60px;
 }
+
 
 @keyframes sun-movement {
     0% {
@@ -430,19 +449,22 @@ destinada a lectores de pantalla*/
 
 @keyframes daytime {
     0% {
-        background-color: #f3ed99;
-    }
-    25% {
         background-color: #AED6F1;
     }
-    50% {
-        background-color: #F8C471;
+    25% {
+        background-color: var(--sunsys-color);
     }
-    75%{
+    45% {
+        background-color: var(--dark-night-color);
+    }
+    60% {
+        background-color: var(--dark-night-color);
+    }
+    70% {
         background-color: #154360;
     }
     100%{
-        background-color: #283747;
+        background-color: #AED6F1;
     }
     
 }
