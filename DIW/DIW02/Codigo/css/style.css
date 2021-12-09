@@ -14,6 +14,33 @@
     --clr-neutral-800: #2E2E2E;
     --clr-neutral-900: #1C1C1C;
 
+    --dark-color-cosmos: hsl(290, 34%, 10%);
+    --dark-cosmos-color: hsl(290, 34%, 10%);
+        --star-color: hsl(272, 57%, 95%);
+        --t-sun-color: hsl(47, 100%, 88%);
+        --t-moon-color: hsl(274, 93%, 94%);
+        --t-moon-pattern-color: hsl(274, 58%, 89%);
+        --sunsys-color: hsl(41, 99%, 75%);
+        --sunsys-patterns-color: hsl(33, 95%, 73%);
+        --earth-water-color: hsl(202, 62%, 74%);
+        --earth-continent-color: hsl(192, 34%, 64%);
+        --circle-bg-color: hsl(28, 97%, 70%);
+        --cactus-body-color: hsl(337, 43%, 28%);
+        --cactus-flower-color: hsl(348, 80%, 62%);
+        --mountain-color: hsl(346, 43%, 50%);
+        --sand-01-color: hsl(339, 55%, 30%);
+        --sand-02-color: hsl(335, 62%, 37%);
+        --sand-03-color: hsl(338, 53%, 38%);
+        --sand-04-color: hsl(336, 46%, 50%);
+        --poster: hsl(25, 43%, 79%);
+        --poster-border: min(3vmax, 50px);
+        --t-slow: 2500ms;
+        --t-med: 1500ms;
+        --t-fast: 1000ms;
+        --t-delay-motionpath: 400ms;
+        --t-delay-colorfades: 200ms;
+        --a-scale-from: scale(1);
+        --a-scale-to: scale(1.05);
 }
 
 *,
@@ -47,7 +74,7 @@ header {
 
 main {
     position: relative;
-    top: 12vh;
+    top: 11.5vh;
 }
 /* Primary header */
 .logo {
@@ -165,7 +192,7 @@ footer {
     right: 0;
     left: 0;
     position: relative;
-    top: 12vh;
+    top: 11.5vh;
     color: var(--clr-neutral-100);
     text-align: center;
     padding: 1.5rem;
@@ -261,44 +288,27 @@ destinada a lectores de pantalla*/
 }
 
 /*------ Animation -------*/
-.walker {
-    background-color: #F34A4E;
-    height: 81vh;
 
-    animation: daytime 12s linear infinite;
+.walker {
+    background-color: var(--dark-color-cosmos);
+    height: 85vh;
+    padding: 10px;
+
 }
 
 .man {
     background: url(../img/walking.png) 0 0;
-    zoom: 65%;
+    zoom: 55%;
     position: relative;
-    left: 45%;
-    top: 45%;
+    left: 47%;
+    top: 40%;
     width: 262px;
     height: 470px;
 
     animation: walking-man 1.6s steps(8) infinite;
 }
 
-
 .sun {
-  z-index: 1;
-  
-  width: 100px;
-  height: 100px;
-  
-  position: absolute;
-  overflow: hidden;
-  border-radius: 100%;
-  
-  background: #fd7e08;
-  
-  left: 50%;
-
-  animation: sun-movement 10s linear infinite;
-}
-
-.moon {
     z-index: 1;
     
     width: 100px;
@@ -306,30 +316,108 @@ destinada a lectores de pantalla*/
     
     position: absolute;
     overflow: hidden;
-    border-radius: 100%;
-    
-    background: #d3ff0f;
-    
+
     left: 50%;
   
-    animation: sun-movement 10s linear infinite;
-    animation-delay: 10s;
-  }
+    animation: sun-movement 12s linear infinite;
+}
+
+.sun-center, 
+.sun-shadow-01, 
+.sun-shadow-02{
+    fill: var(--t-sun-color);
+}
+
+.sun-shadow-01 {
+    opacity: 0.2;
+}
+
+.sun-shadow-02 {
+    opacity: 0.2;
+}
+
+.moon {
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    
+    position: absolute;
+    overflow: hidden;
+    
+    left: 50%;
+    bottom: 2%;
+  
+    animation: moon-movement 12s linear infinite;
+}
+
+.moon-shadow-01 {
+    opacity: 0.1;
+}
+
+.moon-shadow-02 {
+    opacity: 0.1;
+}
+
+.moon-center {
+    opacity: 1;
+}
+
+.moon-shadow-01,
+.moon-shadow-02,
+.moon-center {
+    fill: var(--t-moon-color);
+}
+
+.moon-pattern {
+    fill: var(--t-moon-pattern-color);
+}
 
 @keyframes sun-movement {
     0% {
-      transform: rotate(-80deg);
-      transform-origin: 20% 600%;
+      transform: rotate(0deg);
+      transform-origin: 0% 400%;
+    }
+    25% {
+        transform: rotate(90deg);
+        transform-origin: 0% 400%;
     }
     50% {
-      transform: rotate(-5deg);
-      transform-origin: 50% 600%;
+        transform: rotate(180deg);
+        transform-origin: 0% 400%;
+    }
+    75% {
+        transform: rotate(270deg);
+        transform-origin: 0% 400%;
     }
     100% {
-        transform: rotate(80deg);
-        transform-origin: 30% 600%;
+        transform: rotate(360deg);
+        transform-origin: 0% 400%;
     }
 }
+
+@keyframes moon-movement {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: 0% -300%;
+    }
+    25% {
+        transform: rotate(90deg);
+        transform-origin: 0% -300%;
+    }
+    50% {
+        transform: rotate(180deg);
+        transform-origin: 0% -300%;
+    }
+    75% {
+        transform: rotate(270deg);
+        transform-origin: 0% -300%;
+    }
+    100% {
+        transform: rotate(360deg);
+        transform-origin: 0% -300%;
+    }
+}
+
 
 @keyframes walking-man {
     0% {
@@ -358,6 +446,8 @@ destinada a lectores de pantalla*/
     }
     
 }
+/*------------ End Animations --------------*/
+
 
 /*--------------------------*/
 /*----- Media Queries ------*/
