@@ -326,6 +326,19 @@ destinada a lectores de pantalla*/
     animation: stars-opacity var(--t-animation-day) linear infinite;
 }
 
+.helicopter {
+    background: url(../img/helicopter.png) no-repeat;
+    position: absolute;
+    top: 10%;
+    right: -15%;
+    height: 400px;
+    width: 800px;
+    zoom: 20%;
+    z-index: 11;
+    opacity: 1;
+    animation: heli-animation 10s linear;
+}
+
 .man {
     background: url(../img/walking.png) 0 0;
     zoom: 40%;
@@ -508,6 +521,7 @@ destinada a lectores de pantalla*/
 @keyframes stars-opacity {
     0%, 20% {
         opacity: 0;
+        transform: translateY(0);
     }
     35%,40% {
         opacity: 0.5;
@@ -521,6 +535,9 @@ destinada a lectores de pantalla*/
     80%, 100% {
         opacity: 0;
     }
+    100%{
+        transform: translateY(-100px);
+    }
 }
 
 @keyframes shadow-perspective {
@@ -532,28 +549,46 @@ destinada a lectores de pantalla*/
         opacity: 0;
     }
     26% { 
-        transform: scaleY(-1) skewX(1deg) rotateY(1deg);
         opacity: 0;
     }
     27% {
-        
-    }
-    32% { /* Salida luna.*/
-        
-    }
-    50%{
-        
-    }
-    59%{
         transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
         opacity: 0;
     }
-    60% {
+    32% { /* Salida luna.*/
+        transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
+        opacity: 0.7;
+    }
+    52%{
+        transform: scaleY(-1) skewX(1deg) rotateY(1deg);
+        opacity: 0.7;
+    }
+    71%{
+        transform: translateX(-580px) scaleY(-1) skewX(70deg) rotateY(5deg);
+        opacity: 0;
+    }
+    72% {
+        transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
+        opacity: 0;
+    }
+    73% {
+        opacity: 0;
+    }
+    74% {
         transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
         opacity: 0.8;
     }
-    100% {
+    99% {
         transform: scaleY(-1) skewX(1deg) rotateY(1deg); 
+    }
+}
+
+@keyframes heli-animation {
+    from {
+        transform: translateX(-15%);
+    }
+    to {
+        transform: translateX(-1500%);
     }
 }
 
