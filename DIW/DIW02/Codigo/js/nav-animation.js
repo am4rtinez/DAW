@@ -1,5 +1,5 @@
-const primaryNav = document.querySelector(".primary-navigation");
-const navToggle = document.querySelector(".navbar-toggle");
+const primaryNav = document.querySelector(".primary-navigation-animation");
+const navToggle = document.querySelector(".navbar-toggle-animation");
 
 navToggle.addEventListener('click', () => {
     const visibility = primaryNav.getAttribute('data-visible');

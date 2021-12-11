@@ -84,12 +84,37 @@ main.main-content{
     align-items: center;
     justify-content: space-between;
 }
-
+/*-------------- NAV & NAV ANIMATION ITEMS --------------*/
 .navbar-toggle {
     display: none;
 }
 
-.primary-navigation {
+.navbar-toggle-animation {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    z-index: 30;
+}
+
+.navbar-toggle-animation {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background: transparent;
+    border: transparent;
+    aspect-ratio: 1;
+    top: 2rem;
+    right: 2rem;
+}
+
+.navbar-toggle-animation .fa {
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.primary-navigation,
+.primary-navigation-animation {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -99,10 +124,52 @@ main.main-content{
     margin-right: .5em;
 }
 
-.primary-navigation a{
+.primary-navigation a,
+.primary-navigation-animation a{
     text-decoration: none;
     color: var(--clr-neutral-100);
 }
+
+.primary-navigation-animation {
+    --gap: 1em;
+
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+
+    flex-direction: column;
+    padding: min(20vh, 10rem) 2em;
+    
+    transform: translateX(100%);
+    transition: transform 300ms ease-in;
+
+    background: hsl(0, 0%, 11%, 0.9);
+    backdrop-filter: blur(1rem);
+}
+
+.primary-navigation-animation[data-visible="true"]{
+    transform: translateX(0%);
+}
+
+.primary-navigation-animation li {
+    font-size: 1.5em;
+}
+
+.primary-navigation-animation a .nav-link-container{
+    padding-block: 2.8rem;
+    padding-inline: 1rem;
+    margin-inline: -1.2em;
+}
+
+.primary-navigation-animation a > *:hover {
+    background-color: var(--clr-neutral-100);
+    color: var(--clr-neutral-900);
+}
+
+.primary-navigation-animation a.active > * {
+    background-color: var(--clr-primary-800);
+}
+/*------------ NAV & NAV ANIMATION ITEMS ------------*/
 
 .banner-area{
     width: 100%;
@@ -414,7 +481,6 @@ destinada a lectores de pantalla*/
 }
 /*------------ END ANIMATION ITEMS --------------*/
 
-
 /*------------ MEDIA QUERIES ------------*/
 /* Small devices (less than 575.8px) */
 @media (max-width: 575.8px){
@@ -435,7 +501,8 @@ destinada a lectores de pantalla*/
         backdrop-filter: blur(1rem);
     }
 
-    .primary-navigation[data-visible="true"]{
+    .primary-navigation[data-visible="true"],
+    .primary-navigation-animation[data-visible="true"]{
         transform: translateX(0%);
     }
 
@@ -511,8 +578,9 @@ destinada a lectores de pantalla*/
         backdrop-filter: blur(1rem);
     }
 
-    .primary-navigation[data-visible="true"]{
-        transform: translateX(0%);
+    .primary-navigation[data-visible="true"],
+    .primary-navigation-animation[data-visible="true"]{
+        transform: translateX(10%);
     }
 
     .primary-navigation{
@@ -598,6 +666,10 @@ destinada a lectores de pantalla*/
         color: var(--clr-neutral-100);
     }
 
+    .primary-navigation-animation[data-visible="true"]{
+        transform: translateX(20%);
+    }
+
     .banner-area{
         height: 500px;
     }
@@ -635,6 +707,10 @@ destinada a lectores de pantalla*/
 
     .primary-navigation a.active:hover{
         color: var(--clr-neutral-100);
+    }
+
+    .primary-navigation-animation[data-visible="true"]{
+        transform: translateX(30%);
     }
 
     .banner-area{
