@@ -16,7 +16,7 @@
 
     --t-animation-day: 40s;
     --t-animation-walk: 1.6s;
-    --t-helicopter-animation: 10s;
+    --t-helicopter-animation: 15s;
 
     --sun-center:#fac0ad;
     --sun-shadow-02: #F28C38;
@@ -28,7 +28,9 @@
 
     --sand-beach-color: hsl(37, 65%, 81%);
     --sand-evening-color: hsl(13, 42%, 77%);
-        
+
+    --translate-x-shadow: 220px;
+    --translate-x-shadow-neg: -220px;
         
     /* TODO: Eliminar variables no usadas */
         --cactus-body-color: hsl(337, 43%, 28%);
@@ -375,37 +377,36 @@ destinada a lectores de pantalla*/
 }
 
 .helicopter {
-    background: url(../img/attack-helicopter.png) no-repeat;
+    background: url(../img/attack-helicopter-50perc.png) no-repeat;
     position: absolute;
     top: 10%;
-    left: -30%;
-    width: 417px;
-    height: 150px;
-    zoom: 50%;
+    left: -50%;
+    width: 208.5px;
+    height: 75px;
+    /* zoom: 50%; */
     z-index: 11;
     opacity: 1;
     animation: heli-rotor 250ms steps(4) infinite,
-    heli-animation var(--t-helicopter-animation) linear;
+    heli-animation var(--t-helicopter-animation) linear infinite;
 }
 
 .man,
 .man-shadow {
-    background: url(../img/walking.png) 0 0;
+    background: url(../img/walking-40perc.png) 0 0;
     position: absolute;
-    left: 47%;
-    zoom: 40%;
-    width: 262px;
-    height: 470px;
+    left: calc(53% - 99.8px);
+    width: 99.8px;
+    height: 188px;
 }
 
 .man {
-    top: 48%;
+    top: 49.5%;
     z-index: 10;
     animation: walking-man var(--t-animation-walk) steps(8) infinite;
 }
 
 .man-shadow {
-    top: calc(45% + 470px);
+    top: calc(46% + 188px);
     z-index: 9;
     transform: scaleY(-1);
     filter: brightness(0);
@@ -565,7 +566,7 @@ destinada a lectores de pantalla*/
 
         position: fixed;
         z-index: 1000;
-        inset: 0;
+        inset: 0 0 0 40%;
 
         flex-direction: column;
         padding: min(20vh, 10rem) 2em;
@@ -575,16 +576,17 @@ destinada a lectores de pantalla*/
 
         background: hsl(0, 0%, 11%, 0.9);
         backdrop-filter: blur(1rem);
-    }
-
-    .primary-navigation[data-visible="true"],
-    .primary-navigation-animation[data-visible="true"]{
-        transform: translateX(10%);
-    }
-
-    .primary-navigation{
         text-align: center;
     }
+    
+    .primary-navigation-animation{
+        inset: 0 0 0 60%;
+    }
+
+    .primary-navigation[data-visible="true"]{
+        transform: translateX(0%);
+    }
+    
 
     .primary-navigation li {
         font-size: 1.5em;
@@ -774,10 +776,10 @@ destinada a lectores de pantalla*/
 
 @keyframes walking-man {
     0% {
-        background-position: -262px;
+        background-position: -99.8px;
     }
     100% {
-        background-position: -2358px;
+        background-position: -899px;
     }
 }
 
@@ -786,7 +788,7 @@ destinada a lectores de pantalla*/
         background-position: 0;
     }
     100% {
-        background-position: -1668px;
+        background-position: -834px;
     }
 }
 
@@ -839,18 +841,18 @@ destinada a lectores de pantalla*/
         transform: scaleY(-1) skewX(1deg) rotateY(1deg);
     }
     25% { /* Sol escondido.*/
-        transform: translateX(-580px) scaleY(-1) skewX(70deg) rotateY(5deg);
+        transform: translateX(var(--translate-x-shadow-neg)) scaleY(-1) skewX(70deg) rotateY(5deg);
         opacity: 0;
     }
     26% { 
         opacity: 0;
     }
     27% {
-        transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
+        transform: translateX(var(--translate-x-shadow)) scaleY(-1) skewX(-70deg) rotateY(5deg);
         opacity: 0;
     }
     32% { /* Salida luna.*/
-        transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
+        transform: translateX(var(--translate-x-shadow)) scaleY(-1) skewX(-70deg) rotateY(5deg);
         opacity: 0.7;
     }
     52%{
@@ -858,18 +860,18 @@ destinada a lectores de pantalla*/
         opacity: 0.7;
     }
     71%{
-        transform: translateX(-580px) scaleY(-1) skewX(70deg) rotateY(5deg);
+        transform: translateX(var(--translate-x-shadow-neg)) scaleY(-1) skewX(70deg) rotateY(5deg);
         opacity: 0;
     }
     72% {
-        transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
+        transform: translateX(var(--translate-x-shadow)) scaleY(-1) skewX(-70deg) rotateY(5deg);
         opacity: 0;
     }
     73% {
         opacity: 0;
     }
     74% {
-        transform: translateX(580px) scaleY(-1) skewX(-70deg) rotateY(5deg);
+        transform: translateX(var(--translate-x-shadow)) scaleY(-1) skewX(-70deg) rotateY(5deg);
         opacity: 0.8;
     }
     99% {
@@ -879,7 +881,7 @@ destinada a lectores de pantalla*/
 
 @keyframes heli-animation {
     from {
-        transform: translateX(-30%);
+        transform: translateX(-50%);
     }
     to {
         transform: translateX(1500%);

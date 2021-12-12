@@ -76,7 +76,10 @@
         </section>
     </main>
     <script src="js/nav-animation.js"></script>
-    <!-- Script que genera las estrellas aleatoreamente. -->
+    <!--
+        Script que genera las estrellas aleatoreamente. Si se hace un resize
+        de la ventana no lo tiene en cuenta.
+    -->
     <script>
         function stars() {
             let count = 500
@@ -105,7 +108,7 @@
                 i++
             }
         }
-        stars()
+        stars();
     </script>
 </body>
 </html>
