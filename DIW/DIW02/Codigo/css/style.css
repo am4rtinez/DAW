@@ -16,7 +16,7 @@
 
     --t-animation-day: 40s;
     --t-animation-walk: 1.6s;
-    --t-helicopter-animation: 8s;
+    --t-helicopter-animation: 10s;
 
     --sun-center:#fac0ad;
     --sun-shadow-02: #F28C38;
@@ -102,7 +102,6 @@ main.main-content{
     z-index: 9999;
     background: transparent;
     border: transparent;
-    aspect-ratio: 1;
     top: 2rem;
     right: 2rem;
 }
@@ -376,16 +375,17 @@ destinada a lectores de pantalla*/
 }
 
 .helicopter {
-    background: url(../img/helicopter.png) no-repeat;
+    background: url(../img/attack-helicopter.png) no-repeat;
     position: absolute;
     top: 10%;
-    right: -50%;
-    width: 800px;
-    height: 385px;
-    zoom: 20%;
+    left: -30%;
+    width: 417px;
+    height: 150px;
+    zoom: 50%;
     z-index: 11;
     opacity: 1;
-    animation: heli-animation var(--t-helicopter-animation) linear;
+    animation: heli-rotor 250ms steps(4) infinite,
+    heli-animation var(--t-helicopter-animation) linear;
 }
 
 .man,
@@ -535,7 +535,6 @@ destinada a lectores de pantalla*/
         z-index: 9999;
         background: transparent;
         border: transparent;
-        aspect-ratio: 1;
         top: 2rem;
         right: 2rem;
     }
@@ -554,9 +553,9 @@ destinada a lectores de pantalla*/
         flex-direction: column;
     }
 
-    .helicopter {
+    /* .helicopter {
         right: -60%;
-    }
+    } */
 }
 
 /* Small devices (landscape phones, less than 768px) */
@@ -612,7 +611,6 @@ destinada a lectores de pantalla*/
         z-index: 9999;
         background: transparent;
         border: transparent;
-        aspect-ratio: 1;
         top: 2rem;
         right: 2rem;
     }
@@ -631,9 +629,9 @@ destinada a lectores de pantalla*/
         flex-direction: column;
     }
 
-    .helicopter {
+    /* .helicopter {
         right: -30%;
-    }
+    } */
 }
 
 /* Medium devices (tablets, 768px and up)
@@ -643,6 +641,10 @@ destinada a lectores de pantalla*/
         padding-inline: 1rem;
     }
 
+    .primary-navigation-animation{
+        inset: 0 0 0 60%;
+    }
+
     .primary-navigation a .nav-link-container{
         padding-block: 2.8rem;
         padding-inline: 1rem;
@@ -666,17 +668,13 @@ destinada a lectores de pantalla*/
         color: var(--clr-neutral-100);
     }
 
-    .primary-navigation-animation[data-visible="true"]{
-        transform: translateX(20%);
-    }
-
     .banner-area{
         height: 500px;
     }
 
-    .helicopter {
+    /* .helicopter {
         right: -30%;
-    }
+    } */
 }
 
 /* Large devices (desktops, 992px and up)
@@ -686,6 +684,10 @@ destinada a lectores de pantalla*/
         padding-inline: 1rem;
     }
 
+    .primary-navigation-animation{
+        inset: 0 0 0 80%;
+    }
+
     .primary-navigation a .nav-link-container{
         padding-block: 2.8rem;
         padding-inline: 1rem;
@@ -709,17 +711,17 @@ destinada a lectores de pantalla*/
         color: var(--clr-neutral-100);
     }
 
-    .primary-navigation-animation[data-visible="true"]{
+    /* .primary-navigation-animation[data-visible="true"]{
         transform: translateX(30%);
-    }
+    } */
 
     .banner-area{
         height: 500px;
     }
 
-    .helicopter {
+    /* .helicopter {
         right: -30%;
-    }
+    } */
 }
 /*------------ END MEDIA QUERIES ------------*/
 
@@ -776,6 +778,15 @@ destinada a lectores de pantalla*/
     }
     100% {
         background-position: -2358px;
+    }
+}
+
+@keyframes heli-rotor {
+    0% {
+        background-position: 0;
+    }
+    100% {
+        background-position: -1668px;
     }
 }
 
@@ -868,12 +879,13 @@ destinada a lectores de pantalla*/
 
 @keyframes heli-animation {
     from {
-        transform: translateX(-60%);
+        transform: translateX(-30%);
     }
     to {
-        transform: translateX(-1500%);
+        transform: translateX(1500%);
     }
 }
+
 
 @keyframes ground-color {
     0% {
