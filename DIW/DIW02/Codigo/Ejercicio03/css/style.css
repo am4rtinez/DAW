@@ -44,9 +44,17 @@ h2 {
     font-weight: 900;
 }
 
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: var(--clr-neutral-500);
+    background-color: var(--clr-neutral-100);
     margin: 0;
 }
 
@@ -80,6 +88,7 @@ section {
 .section-content {
     background-color: var(--clr-neutral-100);
     padding: 2em;
+    overflow-x: auto;
 }
 
 .section-footer {
@@ -89,6 +98,7 @@ section {
     color: #2E2E2E;
 }
 
+/* Estilo comun para las tablas */
 table {
     margin: auto;
     width: 90%;
@@ -96,68 +106,73 @@ table {
     border-collapse: collapse;
     font-size: 1em;
     font-family: 'Quicksand', sans-serif;
-}
-
-table, th, td {
-    /* border: 1px solid var(--clr-neutral-900); */
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 th, td {
     padding: 1em;
     width: 15%;
 }
+/* Fin estilo comun */
 
-th {
+/* Estilo tabla1 */
+.scheduled-table {
+    background-color: var(--clr-neutral-200);
+}
+
+.scheduled-table thead th {
     background-color: var(--clr-table-header);
     color: var(--clr-neutral-100);
     font-weight: 700;
 }
 
-td.daw:hover,
-td.diw:hover,
-td.dwec:hover,
-td.dwes:hover,
-td.tut:hover {
+.scheduled-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--clr-table-header);
+}
+
+.scheduled-table td.daw:hover,
+.scheduled-table td.diw:hover,
+.scheduled-table td.dwec:hover,
+.scheduled-table td.dwes:hover,
+.scheduled-table td.tut:hover {
     background-color: var(--clr-primary-900);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     transform: rotate(360deg);
     transition: 1s;
 }
 
-th.hora,
-td.hora {
+.scheduled-table th.hora,
+.scheduled-table td.hora {
     width: 7%;
 }
 
-td.hora {
+.scheduled-table td.hora {
     background-color: var(--clr-hora);
 }
 
-.diw {
+.scheduled-table .diw {
     background-color: var(--clr-diw);
 }
 
-.tut {
+.scheduled-table .tut {
     background-color: var(--clr-tut);
 }
 
-.dwes {
+.scheduled-table .dwes {
     background-color: var(--clr-dwes);
 }
 
-.dwec {
+.scheduled-table .dwec {
     background-color: var(--clr-dwec);
 }
 
-.daw {
+.scheduled-table .daw {
     background-color: var(--clr-daw);
 }
 
-.childs-table {
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
+/* Estilo tabla2 */
 
 .childs-table thead th {
     background-color: var(--clr-primary-900);
@@ -175,8 +190,13 @@ td.hora {
 }
 
 .childs-table tbody tr:last-of-type {
-    border-bottom: 2px solid var(--clr-primary-800);
+    border-bottom: 2px solid var(--clr-primary-900);
 }
+
+.childs-table tbody tr:hover {
+    background-color: var(--clr-primary-700);
+}
+/* Fin estilo tabla2 */
 
 .text-center {
     text-align: center;
