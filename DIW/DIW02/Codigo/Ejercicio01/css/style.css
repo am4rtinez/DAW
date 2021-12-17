@@ -1,6 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans&family=Noto+Sans+Display&family=Noto+Sans+JP&family=Quicksand&family=Roboto&family=Ubuntu&family=Ubuntu+Mono&display=swap');
 
 :root {
+    --clr-primario: #e1dad4;
+    --clr-primario-2: #EBE8E8;
+    --clr-primario-dark: #555150;
+    --clr-logo: #8B8443;
+
+
     --clr-primary-200: #f3ed99;
     --clr-primary-300: #FED0D1;
     --clr-primary-700: #F34A4E;
@@ -36,7 +42,7 @@ body {
 }
 
 header {
-    background-color: var(--clr-neutral-900);
+    background-color: var(--clr-primario);
 }
 
 main.main-content{
@@ -79,7 +85,7 @@ main.main-content{
 .banner-area{
     width: 100%;
     top: 110px;
-    background: url(../img/code.png) #1C1C1C;
+    background-color: var(--clr-primario);
     background-size: cover;
 }
 
@@ -93,17 +99,12 @@ main.main-content{
     z-index: -1;
 }
 
-.banner-area h1,
-.banner-area p{
-    color: var(--clr-neutral-100);
-}
-
 .banner-area h1 {
-    font-size: 4em;
-}
-
-.banner-area-text {
+    color: var(--clr-neutral-100);
     padding-top: 20vh;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4em;
+    color: var(--clr-primario-dark);
 }
 
 .content-area{
@@ -160,17 +161,17 @@ main.main-content{
 }
 
 footer {
-    background-color: var(--clr-neutral-900);
+    background-color: var(--clr-primario);
     right: 0;
     left: 0;
     position: relative;
-    color: var(--clr-neutral-100);
+    color: var(--clr-primario-dark);
     text-align: center;
     padding: 1.5rem;
 }
 
 footer a{
-    color: var(--clr-neutral-100);
+    color: var(--clr-primario-dark);
     text-decoration: none;
     font-size: 25px;
 }
