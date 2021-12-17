@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans&family=Noto+Sans+Display&family=Noto+Sans+JP&family=Quicksand&family=Roboto&family=Ubuntu&family=Ubuntu+Mono&display=swap');
 
 :root {
-    --clr-primario: #e1dad4;
+    --clr-primario: #ae1a1a;
+    /* --clr-primario: #e1dad4; */
+    
     --clr-primario-2: #EBE8E8;
     --clr-primario-dark: #555150;
     --clr-logo: #8B8443;
@@ -53,7 +55,9 @@ main.main-content{
 /* Primary header */
 .logo {
     margin: 2rem;
-    width: 40%;
+    width: 20%;
+    border: 1px solid var(--clr-neutral-100);
+    border-radius: 0 0 25px 25px;
 }
 
 .primary-header{
@@ -102,16 +106,31 @@ main.main-content{
 .banner-area h1 {
     color: var(--clr-neutral-100);
     padding-top: 20vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-size: 4em;
-    color: var(--clr-primario-dark);
+    color: var(--clr-neutral-100);
 }
 
+.description,
 .content-area{
     width: 100%;
     position: relative;
     background: var(--clr-neutral-100);
     flex-wrap: wrap;
+}
+
+.description {
+    padding: 2em;
+}
+
+.description p{
+    text-align: center;
+    padding: 10px 2em;
+}
+
+.section-1 {
+    padding: 2em;
+    background-color: var(--clr-primario-2);
 }
 
 .content-area p{
@@ -132,13 +151,17 @@ main.main-content{
     color: var(--clr-primary-900);
 }
 
+.section-content table {
+    margin: auto;
+}
+
 .article-header  {
     padding: 0 15px;
     margin-bottom: 5px;
 }
 
-.section-content table {
-    margin: auto;
+.article-header i {
+    font-size: 3.5em;
 }
 
 .article-content{
@@ -165,13 +188,13 @@ footer {
     right: 0;
     left: 0;
     position: relative;
-    color: var(--clr-primario-dark);
+    color: var(--clr-neutral-100);
     text-align: center;
     padding: 1.5rem;
 }
 
 footer a{
-    color: var(--clr-primario-dark);
+    color: var(--clr-neutral-100);
     text-decoration: none;
     font-size: 25px;
 }
