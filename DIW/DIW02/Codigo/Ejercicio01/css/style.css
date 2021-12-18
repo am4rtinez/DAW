@@ -82,6 +82,11 @@ header {
     color: var(--clr-neutral-100);
 }
 
+.primary-navigation a .nav-link-container {
+    padding-block: 2.8rem;
+    padding-inline: 1rem;
+}
+
 /*------------ NAV & NAV ANIMATION ITEMS ------------*/
 
 .banner-area{
@@ -89,6 +94,7 @@ header {
     top: 110px;
     background-color: var(--clr-primario);
     background-size: cover;
+    height: 500px;
 }
 
 .banner-area::after{
@@ -124,18 +130,26 @@ header {
     padding: 10px 2em;
 }
 
-.section-1, .section-3 {
-    padding: 2em;
-    background-color: var(--clr-primario-2);
+.section-1 {
+    padding: 1em 1em 0 1em;
 }
+
 .section-2 {
     padding: 2em;
     background-color: var(--clr-neutral-100);
 }
 
+.section-3 {
+    padding: 2em;
+}
+
+.section-1,
+.section-3 {
+    background-color: var(--clr-primario-2);
+}
 .section-2 img,
 .section-3 img {
-    width: 30%;
+    width: 40%;
 }
 
 .content-area p {
@@ -163,8 +177,19 @@ header {
     border: 1px solid var(--clr-primario-dark);
     border-radius: 5px;
     margin: auto;
-    width: 80%;
+    width: 60%;
     padding: 2em;
+}
+
+form input.field{
+    border-radius: 5px;
+    border: 1px solid var(--clr-primario-dark);
+    height: 40px;
+    padding-left: 1em;
+    font-size: .8em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #1C1C1C;
 }
 
 form .row {
@@ -178,6 +203,13 @@ form .row {
 form .row textarea {
     width: 100%;
     height: 100px;
+    border-radius: 5px;
+    border: 1px solid var(--clr-primario-dark);
+    padding: 1em;
+    font-size: .8em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #1C1C1C;
 }
 
 form .col {
@@ -336,9 +368,14 @@ destinada a lectores de pantalla*/
 /*------------ MEDIA QUERIES ------------*/
 /* Small devices (less than 575.8px) */
 @media (max-width: 575.8px){
+    .logo {
+        margin: .5em;
+        width: 50%;
+    }
+
     .main-content {
         position: relative;
-        margin-top: 0;
+        margin-top: 10vh;
     }
 
     .primary-navigation {
@@ -370,19 +407,22 @@ destinada a lectores de pantalla*/
         font-size: 1.5em;
     }
     
-    .primary-navigation a .nav-link-container{
-        padding-block: 2.8rem;
-        padding-inline: 1rem;
-        margin-inline: -1.2em;
+    .primary-navigation li {
+        font-size: 1.5em;
     }
 
-    .primary-navigation a > *:hover {
+    .primary-navigation a>*:hover {
         background-color: var(--clr-neutral-100);
         color: var(--clr-neutral-900);
     }
 
-    .primary-navigation a.active > * {
-        background-color: var(--clr-primary-800);
+    .primary-navigation a .nav-link-container {
+        margin-inline: -1.2em;
+    }
+
+    .primary-navigation li.active a .nav-link-container {
+        background-color: var(--clr-neutral-100);
+        color: var(--clr-primario);
     }
 
     .navbar-toggle {
@@ -406,12 +446,27 @@ destinada a lectores de pantalla*/
     }
 
     .banner-area h1{
-        padding-top: 17vh;
+        padding-top: 12vh;
+    }
+
+    .section-body form {
+        width: 90%;
+    }
+
+    .section-2 img,
+    .section-3 img {
+        width: 100%;
     }
 
     form .row,
     .flex-container {
         flex-direction: column;
+    }
+
+    .flex-container .col {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 0;
     }
 
     form .col-20 {
@@ -427,9 +482,14 @@ destinada a lectores de pantalla*/
 
 /* Small devices (landscape phones, less than 768px) */
 @media (min-width: 576px) and (max-width: 767.98px){
+    .logo {
+        margin: .5em;
+        width: 50%;
+    }
+    
     .main-content {
         position: relative;
-        margin-top: 0;
+        margin-top: 10vh;
     }
 
     .primary-navigation {
@@ -449,33 +509,27 @@ destinada a lectores de pantalla*/
         backdrop-filter: blur(1rem);
         text-align: center;
     }
-    
-    .primary-navigation-animation{
-        inset: 0 0 0 60%;
-    }
 
     .primary-navigation[data-visible="true"]{
         transform: translateX(0%);
     }
     
-
     .primary-navigation li {
         font-size: 1.5em;
     }
     
-    .primary-navigation a .nav-link-container{
-        padding-block: 2.8rem;
-        padding-inline: 1rem;
-        margin-inline: -1.2em;
-    }
-
     .primary-navigation a > *:hover {
         background-color: var(--clr-neutral-100);
         color: var(--clr-neutral-900);
     }
+    
+    .primary-navigation a .nav-link-container{
+        margin-inline: -1.2em;
+    }
 
-    .primary-navigation a.active > * {
-        background-color: var(--clr-primary-800);
+    .primary-navigation li.active a .nav-link-container {
+        background-color: var(--clr-neutral-100);
+        color: var(--clr-primario);
     }
 
     .navbar-toggle {
@@ -499,69 +553,54 @@ destinada a lectores de pantalla*/
     }
 
     .banner-area h1 {
-        padding-top: 17vh;
+        padding-top: 14vh;
         width: 95%;
     }
 
-    form .row,
+    .section-body form {
+        width: 80%;
+    }
+
     .flex-container {
         flex-direction: column;
     }
 
-    form .col-20 {
-        width: 100%;
+    .flex-container .col {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 0;
     }
 
-    form .col-80 {
-        margin-top: 1em;
-        width: 100%;
+    .section-2 img,
+    .section-3 img {
+        width: 40%;
     }
+
 }
 
 /* Medium devices (tablets, 768px and up)
  Medium devices (tablets, less than 992px)*/
 @media (min-width: 768px) and (max-width: 992px) { 
-    .primary-navigation{
+    .primary-navigation {
         padding-inline: 1rem;
     }
 
-    .primary-navigation a .nav-link-container{
-        padding-block: 2.8rem;
-        padding-inline: 1rem;
+    .primary-navigation li.active a .nav-link-container {
+        background-color: var(--clr-neutral-100);
+        color: var(--clr-neutral-900);
     }
 
-    .primary-navigation a.active > .nav-link-container{
-        font-weight: 700;
-        border-bottom: 3px solid var(--clr-neutral-100);
+    .primary-navigation li:hover {
+        background-color: var(--clr-primario-2);
     }
 
-    .primary-navigation a.active{
-        color: var(--clr-primary-800);
+    .primary-navigation li:hover>* {
+        color: var(--clr-primario);
     }
 
-    .primary-navigation a > *:hover {
-        background-color: var(--clr-primary-800);
-        border-bottom: 3px solid var(--clr-primary-800);
-    }
-
-    .primary-navigation a.active:hover{
-        color: var(--clr-neutral-100);
-    }
-
-    .banner-area{
-        height: 500px;
-    }
-
-    form .col {
-        width: 100%;
-    }
-
-    form .col-20 {
-        width: 30%;
-    }
-
-    form .col-80 {
-        width: 70%;
+    .section-2 img,
+    .section-3 img {
+        width: 50%;
     }
 }
 
@@ -572,32 +611,42 @@ destinada a lectores de pantalla*/
         padding-inline: 1rem;
     }
 
-    .primary-navigation a .nav-link-container{
-        padding-block: 2.8rem;
-        padding-inline: 1rem;
+    .primary-navigation li.active a .nav-link-container{
+        background-color:  var(--clr-neutral-100);
+        color: var(--clr-neutral-900);
     }
 
-    .primary-navigation a.active > .nav-link-container{
+    .primary-navigation li:hover {
+        background-color: var(--clr-primario-2);
+    }
+
+    .primary-navigation li:hover > *{
+        color: var(--clr-primario);
+    }
+
+    /* .primary-navigation a.active > .nav-link-container{
         font-weight: 700;
-        border-bottom: 3px solid var(--clr-neutral-100);
     }
 
     .primary-navigation a.active{
         color: var(--clr-primary-800);
     }
 
-    .primary-navigation a > *:hover {
+    .primary-navigation a.active > .nav-link-container::after {
+        content: '';
+        display: block;
+        
+        border-bottom: 3px solid var(--clr-neutral-100);
+        border-radius: 5px;
+    } */
+
+    /* .primary-navigation li:hover {
         background-color: var(--clr-primary-800);
-        border-bottom: 3px solid var(--clr-primary-800);
     }
 
     .primary-navigation a.active:hover{
         color: var(--clr-neutral-100);
-    }
-
-    .banner-area{
-        height: 500px;
-    }
+    } */
 
 }
 /*------------ END MEDIA QUERIES ------------*/
