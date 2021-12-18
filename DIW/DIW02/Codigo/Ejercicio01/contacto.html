@@ -54,6 +54,46 @@
         <section class="banner-area text-center text-uppercase">
             <h1>Guillem de Moncada</h1>
         </section>
+        <section class="section-content">
+            <div class="section-header text-center">
+                <h2>Formulario de contacto</h2>
+            </div>
+            <div class="section-body">
+                <form action="mailto:example@mail.com" method="post">
+                    <div class="row">
+                        <label class="col-20" for="name">Nombre <span class="red">*</span></label>
+                        <input class="col-80" type="text" name="name" id="name" required>
+                    </div>
+                    <div class="row">
+                        <label class="col-20" for="lastname">Apellidos <span class="red">*</span></label>
+                        <input class="col-80" type="text" name="lastname" id="lastname" required>
+                    </div>
+                    <div class="row">
+                        <label class="col-20" for="phone">Telefono</label>
+                        <input class="col-80" type="tel" name="phone" id="phone" pattern="[7-9]{1}[0-9]{8}">
+                    </div>
+                    <div class="row">
+                        <label class="col-20" for="email">E-mail <span class="red">*</span></label>
+                        <input class="col-80" type="email" name="email" id="email" required>
+                    </div>
+                    <div class="row">
+                        <label class="col" for="texto">Obsevaciones</label>
+                    </div>
+                    <div class="row">
+                        <textarea id="texto" name="texto" rows="" cols="">
+                        </textarea>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" name="acepta" id="acepta" required>
+                        <label for="acepta">Acepto el tratamiento de datos.</label>
+                    </div>
+                    <div class="row">
+                        <input class="btn" type="submit" value="Enviar">
+                        <input class="btn" type="reset" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </section>
     </main>
     <footer>
         <p>Guillem de Moncada - 2021</p>
