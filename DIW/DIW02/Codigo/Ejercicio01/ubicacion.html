@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +39,7 @@
                         </div>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a class="navbar-link" href="ubicacion.html">
                         <div class="nav-link-container">
                             <i class="fa fa-map-location-dot" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a class="navbar-link" href="contacto.html">
                         <div class="nav-link-container">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -59,48 +59,13 @@
         </nav>
     </header>
     <main class="main-content">
-        <!-- <section class="banner-area text-center text-uppercase">
-            <h1>Guillem de Moncada</h1>
-        </section> -->
         <section class="content-section">
-            <div class="section-header text-center">
-                <h2>Formulario de contacto</h2>
+            <div class="map">
+                <iframe height="550px" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=2.4714195728302006%2C39.51067946664299%2C2.488639354705811%2C39.51826111606623&amp;layer=mapnik&amp;marker=39.51447039478371%2C2.4800294637680054"></iframe>
             </div>
-            <div class="section-body">
-                <form class="box-shadow" action="mailto:example@mail.com" method="post">
-                    <div class="row">
-                        <!-- <label class="col-20" for="name">Nombre <span class="red">*</span></label> -->
-                        <input class="col field" type="text" name="name" id="name" placeholder="Nombre" required>
-                    </div>
-                    <div class="row">
-                        <!-- <label class="col-20" for="lastname">Apellidos <span class="red">*</span></label> -->
-                        <input class="col field" type="text" name="lastname" id="lastname" placeholder="Apellidos" required>
-                    </div>
-                    <div class="row">
-                        <!-- <label class="col-20" for="phone">Telefono</label> -->
-                        <input class="col field" type="tel" name="phone" id="phone" placeholder="Teléfono" pattern="[7-9]{1}[0-9]{8}">
-                    </div>
-                    <div class="row">
-                        <!-- <label class="col-20" for="email">E-mail <span class="red">*</span></label> -->
-                        <input class="col field" type="email" name="email" id="email" placeholder="E-mail" required>
-                    </div>
-                    <!-- <div class="row">
-                        <label class="col" for="texto">Obsevaciones</label>
-                    </div> -->
-                    <div class="row">
-                        <textarea class="field" id="texto" name="texto" placeholder="Mensaje">
-                        </textarea>
-                    </div>
-                    <div class="row">
-                        <input type="checkbox" name="acepta" id="acepta" required>
-                        <label for="acepta">Acepto el tratamiento de datos.</label>
-                    </div>
-                    <div class="row">
-                        <input class="btn" type="submit" value="Enviar">
-                        <input class="btn" type="reset" value="Reset">
-                    </div>
-                </form>
-            </div>
+            <a class="text-center" href="https://www.openstreetmap.org/?mlat=39.5145&amp;mlon=2.4800#map=16/39.5145/2.4800&amp;layers=N">Ver mapa más grande</a>
+            <br>
+            <p>La ubicación de la mayoria de eventos de las fiestas se encuentra en la playa grande frente a la pinada (marcador del mapa).</p>
         </section>
     </main>
     <footer>
