@@ -154,7 +154,7 @@ header {
 .content-section p,
 .content-section a {
     padding: .5em ;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .section-header {
@@ -374,6 +374,10 @@ footer a{
 
 .text-center{
     text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
 }
 
 .text-uppercase {
