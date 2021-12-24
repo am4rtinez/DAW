@@ -1,0 +1,30 @@
+label{
+    font-weight: bold;
+    width: 10em;
+    display:inline-block;
+    vertical-align: top;
+}
+.required::after{
+    content:"*";
+    color: red;
+    font-weight: normal;
+}
+
+.nota{
+    font-size: small;
+}
+
+.panell{
+    float: left;
+    width: 50%;
+}
+
+.container{
+    width: 100%;
+    height: max-content;
+    overflow: hidden;
+}
+
+.error{
+    border-color: red;
+}
