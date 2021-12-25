@@ -22,11 +22,11 @@
 
 Al fitxer navegacio.js programa el necessari perquè els botons de la pàgina navegacio.html facin el següent:
 
-(0,5 punts) Anar a la url que hi hagi a la capsa de text del formulari, deixant la pàgina actual a l'historial.
+1. (**0,5 punts**) Anar a la url que hi hagi a la capsa de text del formulari, deixant la pàgina actual a l'historial.
 
-(0,5 punts) Anar a la pàgina anterior.
+2. (**0,5 punts**) Anar a la pàgina anterior.
 
-(0,5 punts) Recarregar la pàgina.
+3. (**0,5 punts**) Recarregar la pàgina.
 
 ## Exercici 2 (3 punts)
 
@@ -38,7 +38,8 @@ La funció getDestacades() que pots trobar a js/servidor.js torna un array amb l
 
 3. (**1 punt**) Heu de programar el necessari de manera que en pitjar el botó alternativament s'aturi el canvi d'imatges i es torni a iniciar on havia quedat.
 
-Exercici 3 (2,5 punts)
+## Exercici 3 (2,5 punts)
+
 A altres.js programa el següent:
 
 1. (**1,5 punts**) Programa una funció que inclogui dins l'element amb id arrels les arrels quadrades dels nombres sencers entre 1 i 10.
@@ -55,9 +56,13 @@ L'arxiu servidor.js té una funció anomenada getNomActors() que torna els noms 
 
 # Lliurament
 
+---
+
 Heu de crear un arxiu comprimit amb el codi complet dels dels exercicis: arxius \*.js si n’hi ha, arxius html, l’estructura de carpetes correcte, ... Una vegada descomprimit l’arxiu els exercicis han de funcionar correctament.
 
 # Avaluació
+
+---
 
 Aquesta tasca representa el 6.5% de la nota de l’apartat d’activitats de l’assignatura.
 
