@@ -1,3 +1,5 @@
+// Javascript para ocultar y mostrar la navegación para los dispositivos móviles o tablet.
+
 const primaryNav = document.querySelector(".primary-navigation");
 const navToggle = document.querySelector(".navbar-toggle");
 
