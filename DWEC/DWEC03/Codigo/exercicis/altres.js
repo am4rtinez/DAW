@@ -17,10 +17,12 @@ function arrels(n, parent) {
     }
 }
 
+/* Funcion que calcula el número máximo introducido por parametros a traves del prompt.
+Parametro parent - el elemento padre del cual dependeran los elementos p. */
 function maxim(parent) {
     let nums = prompt("Insertar numeros separados por espacio: ");
-    let sarray = nums.split(" ")
-    let maxim = Math.max(...sarray)
+    let sarray = nums.split(" ") //Divide los números introducidos a partir del espacio y los almacena en un array.
+    let maxim = Math.max(...sarray) //Obtiene el maximo.
 
     let p1 = document.createElement("p");
     let t1 = document.createTextNode("Numeros introducidos: " + sarray);

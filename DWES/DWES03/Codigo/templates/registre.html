@@ -1,0 +1,32 @@
+{% extends "template_base.html"%}
+{% block content %}
+  <div class="row">
+    <div class="col-sm-4">
+      <form name="reserva" method="POST" action="">
+        <h2> Reserva pista</h2>
+        <p>
+          <label for="dia">Dia:</label>
+          <input type="date" id="dia" name="dia" value="2031-11-22">
+          <label for="hora">Hora:</label>
+          <input type="number" step="1" max="20" min="15" name="hora" id="hora" required>
+        </p>
+        <h2> Tipus pista </h2>
+        <p>
+          <select class="form-select" id="tipopista" name="tipopista">
+            <option value="1"> Coberta - 12 €</option>
+            <option value="2"> Exterior - 8 €</option>
+          </select>
+        </p>
+        <h2> Usuari</h2>
+        <p>
+          <select class="form-select" id="usuari" name="usuari">
+          </select>
+        </p>
+        <div style="text-align: center">
+            <input type="submit" value="Enviar" name="enviar" style="margin-right: 5px; width: 60px; height:30px; font-weight: bold">
+            <input type="reset" value="Limpiar" style="width: 60px; height:30px; font-weight: bold">
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

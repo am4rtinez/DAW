@@ -1,0 +1,34 @@
+{% extends "template_base.html"%}
+{% block content %}
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="alert alert-primary" role="alert">
+      <div class="row">
+        <div class="col-sm-2">
+          <a href="#"><img src="../static/left.png"></a>
+        </div>
+        <div class="col-sm-8">
+          <h2> Reserves setmana 22/11 a 26/11</h2>
+        </div>
+        <div class="col-sm-2">
+          <a href="#"><img src="../static/right.png"></a>
+        </div>   
+      </div>       
+    </div>
+    <div class="table-responsive">
+      <table id="userList" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+          <th></th><th>Dilluns</th><th>Dimarts</th><th>Dimecres</th><th>Dijous</th><th>Divendres</th>
+        </thead>
+        <tbody>
+          <tr><th>15:00</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>16:00</th><td></td><td></td><td></td><td>Miquel Mir [Coberta]</td><td></td></tr>
+          <tr><th>17:00</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>18:00</th><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>19:00</th><td>Joana Pons [Exterior]</td><td></td><td></td><td></td><td></td></tr>
+          <tr><th>20:00</th><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
