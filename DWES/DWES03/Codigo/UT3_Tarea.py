@@ -6,65 +6,85 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Definicio de variables necesaries
+    # Obtiene el lisado de usuarios
     listUsuaris = gimnas.getUsers()
-    print(listUsuaris)
     return render_template('registre.html')
 
 
 @app.route('/formulari', methods=['GET', 'POST'])
 def formulari():
-    return render_template('registre.html')
+    # Obtiene el lisado de usuarios
+    listUsuaris = gimnas.getUsers()
+    return render_template('registre.html', usuaris=listUsuaris)
 
 
 @app.route('/reserves', methods=['GET', 'POST'])
 def reserves():
-    # Definicio de variables necesaries
-
     return render_template('reserves.html')
 
 
 @app.route('/usuaris', methods=['GET', 'POST'])
 def usuaris():
-    # Definicio de variables necesaries
+    # Obtiene el lisado de usuarios
     listUsuaris = gimnas.getUsers()
-    print(listUsuaris)
     return render_template('usuaris.html', usuaris=listUsuaris)
 
 
 @app.route('/modifica', methods=['GET', 'POST'])
 def modifica():
-    # Definicio de variables necesaries
+    # Obtiene el listado de identificador del cliente a modificar.
+    idclient = request.args.get('idclient')
+    # Obtiene el lisado de usuarios
+    listUsuaris = gimnas.getUsers()
+    return render_template('modifica.html', usuaris=listUsuaris, id=idclient)
 
-    return render_template('modifica.html')
+
+@app.route('/updateuser', methods=['GET', 'POST'])
+def updateuser():
+    # Obtiene los datos.
+    idclient = request.form.get('idclient')
+    nom = request.form.get('nom')
+    llinatges = request.form.get('llinatges')
+    telefon = request.form.get('telefon')
+    # Hace el update de los datos del usuario.
+    gimnas.updateUser(idclient, nom, llinatges, telefon)
+    # Obtiene el lisado de usuarios
+    listUsuaris = gimnas.getUsers()
+    return render_template('usuaris.html', usuaris=listUsuaris)
 
 
 @app.route('/formuser', methods=['GET', 'POST'])
 def formuser():
-    # Definicio de variables necesaries
+    # Obtiene el lisado de usuarios
     listUsuaris = gimnas.getUsers()
+    # Obtiene el que se le va a asignar al usuario.
     idclient = gimnas.getId()
     return render_template('usuaris.html', usuaris=listUsuaris, id=idclient)
 
 
 @app.route('/adduser', methods=['GET', 'POST'])
 def adduser():
-    # Definicio de variables necesaries
+    # Obtiene los datos.
     idclient = request.form.get('idclient')
     nom = request.form.get('nom')
     llinatges = request.form.get('llinatges')
     telefon = request.form.get('telefon')
+    # Anade el usuario a la tabla clientes.
     gimnas.addUser(idclient, nom, llinatges, telefon)
+    # Obtiene listado de usuarios
     listUsuaris = gimnas.getUsers()
     return render_template('usuaris.html', usuaris=listUsuaris)
 
 
 @app.route('/elimina', methods=['GET', 'POST'])
 def elimina():
-    # Definicio de variables necesaries
+    # Obtenemos el id del cliente a eliminar.
     idclient = request.args.get('idclient')
+    # Elimina las realaciones previas de la tabla reserves.
     gimnas.eliminaReservaUser(idclient)
+    # Elimina el usuario de la tabla clients
     gimnas.eliminaUser(idclient)
+    # Obtiene listado de usuarios
     listUsuaris = gimnas.getUsers()
     return render_template('usuaris.html', usuaris=listUsuaris)
 

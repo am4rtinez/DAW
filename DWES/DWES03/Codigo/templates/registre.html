@@ -2,7 +2,7 @@
 {% block content %}
   <div class="row">
     <div class="col-sm-4">
-      <form name="reserva" method="POST" action="">
+      <form name="reserva" method="POST" action="{{url_for('reserves')}}">
         <h2> Reserva pista</h2>
         <p>
           <label for="dia">Dia:</label>
@@ -20,6 +20,9 @@
         <h2> Usuari</h2>
         <p>
           <select class="form-select" id="usuari" name="usuari">
+            {% for u in usuaris %}
+              <option value="{{u['idclient']}}"> {{u['nom']}} {{u['llinatges']}}</option>
+            {% endfor %}
           </select>
         </p>
         <div style="text-align: center">

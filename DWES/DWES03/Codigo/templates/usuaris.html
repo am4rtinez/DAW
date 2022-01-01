@@ -31,7 +31,7 @@
                 <td>{{u['llinatges']}}</td>
                 <td>{{u['telefon']}}</td>
                 <td>
-                  <a href="{{url_for('modifica')}}?idclient={{u['idclient']}}&nom={{u['nom']}}&llinatges={{u['llinatges']}}&telefon={{u['telefon']}}"><img src="../static/pencil.png" width="32"></a>&nbsp
+                  <a href="{{url_for('modifica')}}?idclient={{u['idclient']}}"><img src="../static/pencil.png" width="32"></a>&nbsp
                   <a href="{{url_for('elimina')}}?idclient={{u['idclient']}}"><img src="../static/remove.png" width="32"></a>
                 </td>
               </tr>
@@ -40,9 +40,9 @@
               <tr>
                 <form action="{{url_for('adduser')}}" method="POST">
                   <td><input type="hidden" name="idclient" value="{{id}}">{{id}}</td>
-                  <td><input type="text" name="nom" id="nom"></td>
-                  <td><input type="text" name="llinatges" id="llinatges"></td>
-                  <td><input type="tel" name="telefon" id="telefon"></td>
+                  <td><input type="text" name="nom" id="nom" required></td>
+                  <td><input type="text" name="llinatges" id="llinatges" required></td>
+                  <td><input type="tel" name="telefon" id="telefon" required></td>
                   <td>
                     <button type="submit"><img src="../static/check.png" width="32"></button>
                   </td>

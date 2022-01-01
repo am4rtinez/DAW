@@ -5,10 +5,10 @@
       <div class="alert alert-primary" role="alert">
         <div class="row">
           <div class="col-sm-9">
-            <h2> Usuaris</h2>
+           <h2> Usuaris</h2>
           </div>
           <div class="col-sm-3">
-            <button type="submit" class="btn btn-primary"><img src="../static/add.png" width="32">Afegir Usuari </button>
+             <a href="{{url_for('formuser')}}" class="btn btn-primary"><img src="../static/add.png" width="32">Afegir Usuari </a>
           </div>   
         </div>       
       </div>
@@ -20,30 +20,40 @@
             <th scope="col">Nom</th>
             <th scope="col">Llinatges</th>
             <th scope="col">Telefon</th>
-            <th></th>
+            <th>Acció</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td><input type="text" placeholder="Miquel"></td>
-            <td><input type="text" placeholder="Mir"></td>
-            <td><input type="text" placeholder="632452314"></td>
-            <td>
-              <a href="#"><img src="../static/check.png" width="32"></a>
-          </tr>
-              <tr>
-            <th scope="row">2</th>
-            <td>Joana</td>
-            <td>Pons</td>
-            <td>656998877</td>
-            <td>
-              <a href="#"><img src="../static/pencil.png" width="32"></a><a href="#">&nbsp<img src="../static/remove.png" width="32"></a>
-            </td>
-          </tr>
+            {% for u in usuaris %}
+              {% if u['idclient']|string == id|string %}
+                <!-- Si es el id a editar se pone un formulario. -->
+                <tr>
+                  <form action="{{url_for('updateuser')}}" method="POST">
+                    <td><input type="hidden" name="idclient" value="{{u['idclient']}}">{{u['idclient']}}</td>
+                    <td><input type="text" name="nom" id="nom" placeholder="{{u['nom']}}" required></td>
+                    <td><input type="text" name="llinatges" id="llinatges" placeholder="{{u['llinatges']}}" required></td>
+                    <td><input type="tel" name="telefon" id="telefon" placeholder="{{u['telefon']}}" required></td>
+                    <td>
+                      <button type="submit"><img src="../static/check.png" width="32"></button>
+                    </td>
+                  </form>
+                </tr>
+              {% else %}
+                <tr>
+                  <td>{{u['idclient']}}</td>
+                  <td>{{u['nom']}}</td>
+                  <td>{{u['llinatges']}}</td>
+                  <td>{{u['telefon']}}</td>
+                  <td>
+                    <a href="{{url_for('modifica')}}?idclient={{u['idclient']}}"><img src="../static/pencil.png" width="32"></a>&nbsp
+                    <a href="{{url_for('elimina')}}?idclient={{u['idclient']}}"><img src="../static/remove.png" width="32"></a>
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
           </tbody>
         </table>
       </div>
-    </div>  
+    </div>
   </div>
 {% endblock %}

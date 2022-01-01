@@ -55,6 +55,21 @@ class gimnas(object):
         cursor.execute(sql)
         db.close()
 
+    def updateUser(idclient, nom, llinatges, telefon):
+        # Conexion a la BBDD del servidor mySQL
+        db = pymysql.connect(host='192.168.1.10',
+                             user='amartinez',
+                             password='123456',
+                             db='gimnas',
+                             charset='utf8mb4',
+                             autocommit=True,
+                             cursorclass=pymysql.cursors.DictCursor)
+        cursor = db.cursor()
+        sql = "UPDATE clients SET nom = '" + nom + "', llinatges = '" + llinatges + \
+            "', telefon = '" + telefon + "' WHERE idclient = " + str(idclient)
+        cursor.execute(sql)
+        db.close()
+
      # Define la funcion para eliminar el usuario de la BD en la tabla clientes.
     def eliminaUser(idclient):
         # Conexion a la BBDD del servidor mySQL
