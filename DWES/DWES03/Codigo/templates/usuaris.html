@@ -8,7 +8,7 @@
            <h2> Usuaris</h2>
           </div>
           <div class="col-sm-3">
-             <button type="submit" class="btn btn-primary"><img src="../static/add.png" width="32">Afegir Usuari </button>
+             <a href="{{url_for('formuser')}}" class="btn btn-primary"><img src="../static/add.png" width="32">Afegir Usuari </a>
           </div>   
         </div>       
       </div>
@@ -20,28 +20,35 @@
             <th scope="col">Nom</th>
             <th scope="col">Llinatges</th>
             <th scope="col">Telefon</th>
-            <th></th>
+            <th>Acció</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Miquel</td>
-            <td>Mir</td>
-            <td>632452314</td>
-            <td>
-              <a href="{{url_for('modifica')}}"><img src="../static/pencil.png" width="32"></a><a href="#">&nbsp<img src="../static/remove.png" width="32"></a>
-            </td>
-          </tr>
+            {% for u in usuaris %}
               <tr>
-            <th scope="row">2</th>
-            <td>Joana</td>
-            <td>Pons</td>
-            <td>656998877</td>
-            <td>
-              <a href="#"><img src="../static/pencil.png" width="32"></a><a href="#">&nbsp<img src="../static/remove.png" width="32"></a>
-            </td>
-          </tr>
+                <td>{{u['idclient']}}</td>
+                <td>{{u['nom']}}</td>
+                <td>{{u['llinatges']}}</td>
+                <td>{{u['telefon']}}</td>
+                <td>
+                  <a href="{{url_for('modifica')}}?idclient={{u['idclient']}}&nom={{u['nom']}}&llinatges={{u['llinatges']}}&telefon={{u['telefon']}}"><img src="../static/pencil.png" width="32"></a>&nbsp
+                  <a href="{{url_for('elimina')}}?idclient={{u['idclient']}}"><img src="../static/remove.png" width="32"></a>
+                </td>
+              </tr>
+            {% endfor %}
+            {% if id %}
+              <tr>
+                <form action="{{url_for('adduser')}}" method="POST">
+                  <td><input type="hidden" name="idclient" value="{{id}}">{{id}}</td>
+                  <td><input type="text" name="nom" id="nom"></td>
+                  <td><input type="text" name="llinatges" id="llinatges"></td>
+                  <td><input type="tel" name="telefon" id="telefon"></td>
+                  <td>
+                    <button type="submit"><img src="../static/check.png" width="32"></button>
+                  </td>
+                </form>
+              </tr>
+            {% endif %}
           </tbody>
         </table>
       </div>
