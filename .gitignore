@@ -133,6 +133,7 @@ DAW-Workspace.code-workspace
 /DWES/DWES02/Docs/*
 /DWES/DWES03/Docs/*
 /DWES/DWES03/Codigo/__pycache__
+/DWES/DWES03/Codigo/.env
 
 Martinez_Rodriguez_Angel_ASIGXX_Tarea.dotx
 Martinez_Rodriguez_Angel_DAWXX_Tarea.dotx

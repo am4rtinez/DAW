@@ -1,0 +1,22 @@
+body {
+    background-color: #fff;
+}
+
+header {
+    text-transform: uppercase;
+}
+
+header a:link,
+header a:visited{
+    text-decoration: none;
+}
+
+main {
+    background-color: #fff;
+    /* overflow: hidden */
+}
+
+#userList td,
+#userList th {
+    width: calc(100%/7);
+}
