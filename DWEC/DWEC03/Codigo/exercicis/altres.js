@@ -21,16 +21,36 @@ function arrels(n, parent) {
 Parametro parent - el elemento padre del cual dependeran los elementos p. */
 function maxim(parent) {
     let nums = prompt("Insertar numeros separados por espacio: ");
-    let sarray = nums.split(" ") //Divide los números introducidos a partir del espacio y los almacena en un array.
-    let maxim = Math.max(...sarray) //Obtiene el maximo.
-
-    let p1 = document.createElement("p");
-    let t1 = document.createTextNode("Numeros introducidos: " + sarray);
-    let p2 = document.createElement("p");
-    let t2 = document.createTextNode("Maxim: " + maxim);
-    
-    p1.appendChild(t1);
-    p2.appendChild(t2);
-    document.getElementById(parent).appendChild(p1);
-    document.getElementById(parent).appendChild(p2);
+    if (nums !== "") {                  //Comprueba si no se ha introducido nada.
+        let sarray = nums.split(" ")    //Divide los números introducidos a partir del espacio y los almacena en un array.
+        if (!sarray.some(isNaN)) {      // Comprueba si se han introducido elementos no numéricos en el prompt
+            let maxim = Math.max(...sarray) //Obtiene el maximo.
+            let p1 = document.createElement("p");
+            let t1 = document.createTextNode("Numeros introducidos: " + sarray);
+            let p2 = document.createElement("p");
+            let t2 = document.createTextNode("Maxim: " + maxim);
+            p1.appendChild(t1);
+            p2.appendChild(t2);
+            document.getElementById(parent).appendChild(p1);
+            document.getElementById(parent).appendChild(p2);
+        } else {
+            let msg = "Se han introducido valores no numéricos."
+            alert (msg)
+            let p1 = document.createElement("p");
+            let t1 = document.createTextNode(msg);
+            let p2 = document.createElement("p");
+            let t2 = document.createTextNode("Datos introducidos: " + sarray);
+            p1.appendChild(t1);
+            p2.appendChild(t2);
+            document.getElementById(parent).appendChild(p1);
+            document.getElementById(parent).appendChild(p2);
+        }
+    } else {
+        let msg = "No se ha introducido ningún valor."
+        alert (msg)
+        let p1 = document.createElement("p");
+        let t1 = document.createTextNode(msg);
+        p1.appendChild(t1);
+        document.getElementById(parent).appendChild(p1);
+    }
 }
