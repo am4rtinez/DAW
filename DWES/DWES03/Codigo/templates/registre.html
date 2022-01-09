@@ -1,56 +1,81 @@
 {% extends "template_base.html"%}
 {% block content %}
-  {% if error %}
+  {% if error == 1 %}
+  <div class="row">
     <div class="alert alert-danger" role="alert">
-      <p>La pista ja está ocupada</p>
+      <p class="text-center">Ha intentado hacer una reserva en fin de semana.</p>
     </div>
+  </div>
   {% endif %}
-  <section class="my-3">
-    <div class="container h-90">
-      <div class="card">
-        <div class="text-center">
-          <form name="reserva" method="POST" action="{{url_for('reserves')}}">
-            <div class="card-header bg-secondary">
-              <h2> Reserva pista</h2>
+  {% if error == 2 %}
+  <div class="row">
+    <div class="alert alert-danger" role="alert">
+      <p class="text-center">La pista ja está ocupada</p>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="alert alert-secondary" role="alert">
+      <h2 class="text-center">Formulari de reserva.</h2>
+    </div>
+  </div>
+  <section class="container h-90">
+    <div class="card">
+      <form name="reserva" method="POST" action="{{url_for('reserves')}}">
+        <div class="card-header text-center bg-secondary">
+          <h4> Reserva pista</h4>
+        </div>
+        <div class="card-body text-center">
+          <div class="row mb-3">
+            <label for="dia" class="col-3 col-form-label">Dia</label>
+            <div class="col-9">
+              <input type="date" class="form-control text-center" id="dia" name="dia" value="{{fecha}}">
             </div>
-            <div class="card-body">
-              <label for="dia">Dia:</label>
-              <input type="date" id="dia" name="dia" value="{{fecha}}">
-              <label for="hora">Hora:</label>
-              <input type="number" step="1" max="20" min="15" name="hora" id="hora" required>
+          </div>
+          <div class="row mb-3">
+            <label for="hora" class="col-3 col-form-label">Hora</label>
+            <div class="col-9">
+              <input type="number" class="form-control text-center" step="1" max="20" min="15" name="hora" id="hora" required>
             </div>
-            <div class="card-header bg-secondary">
-              <h2>Tipus pista</h2>
+          </div>
+          <div class="row mb-3">
+            <div class="container">
+              <hr>
             </div>
-            <div class="card-body">
-              <select class="form-select" id="tipopista" name="tipopista">
+          </div>
+          <div class="row mb-3">
+            <label for="tipopista" class="col-3 col-form-label">Tipus pista</label>
+            <div class="col-9">
+              <select class="form-select text-center" id="tipopista" name="tipopista">
                 {% for p in pistes %}
                   <option value="{{p['idpista']}}">{{p['tipo']}} - {{p['preu']}}€</option>
                 {% endfor %}
               </select>
             </div>
-            <div class="card-header bg-secondary">
-              <h2>Usuari</h2>
-            </div>
-            <div class="card-body">
-              <select class="form-select" id="usuari" name="usuari">
-                {% for u in usuaris %}
-                  <option value="{{u['idclient']}}"> {{u['nom']}} {{u['llinatges']}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="card-body">
-              <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button type="submit" value="Enviar" class="btn btn-success btn-floating btn-lg mx-4">Enviar</button>
-                <button type="reset" value="Limpiar" class="btn btn-danger btn-floating btn-lg mx-4">Reset</button>
-              </div>
-            </div>
-            <div class="card-footer text-muted">
-              Formulari reserva
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
+        <div class="card-header text-center bg-secondary">
+          <h4>Usuari</h4>
+        </div>
+        <div class="card-body text-center">
+          <div class="container">
+            <select class="form-select text-center" id="usuari" name="usuari">
+              {% for u in usuaris %}
+                <option value="{{u['idclient']}}"> {{u['nom']}} {{u['llinatges']}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button type="submit" value="Enviar" class="btn btn-success btn-floating btn-lg mx-4">Enviar</button>
+            <button type="reset" value="Limpiar" class="btn btn-danger btn-floating btn-lg mx-4">Reset</button>
+          </div>
+        </div>
+        <div class="card-footer text-center text-muted">
+          Formulari reserva
+        </div>
+      </form>
     </div>
   </section>
 {% endblock %}

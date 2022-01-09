@@ -1,5 +1,5 @@
 body {
-    background-color: #fff;
+    background-color: grey;
 }
 
 header {
@@ -14,6 +14,23 @@ header a:visited{
 main {
     background-color: #fff;
     /* overflow: hidden */
+}
+
+section {
+    padding-bottom: 1rem;
+}
+
+.bi {
+    display: inline-block;
+    vertical-align: -.120em;
+}
+
+.exterior {
+    background-color: #D5F5E3;
+}
+
+.coberta {
+    background-color: #F6DDCC;
 }
 
 #userList td,

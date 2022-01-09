@@ -55,47 +55,47 @@ class gimnas(object):
 
     # Función para añadir el usuario a la BD en la tabla clientes.
     def addUser(idclient, nom, llinatges, telefon):
-        sql = "INSERT INTO clients(idclient, nom, llinatges, telefon) VALUES ('" + \
-            idclient + "', '" + nom + "','" + llinatges + "','" + telefon + "');"
+        sql = "INSERT INTO clients(idclient, nom, llinatges, telefon) VALUES (%s, %s, %s, %s);"
+        val = (idclient, nom, llinatges, telefon)
         # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
-            cursor.execute(sql)
+            cursor.execute(sql, val)
         finally:
             db.close()
 
     # Función para actualizar el usuario de la BD.
     def updateUser(idclient, nom, llinatges, telefon):
-        sql = "UPDATE clients SET nom = '" + nom + "', llinatges = '" + llinatges + \
-            "', telefon = '" + telefon + "' WHERE idclient = " + str(idclient)
+        sql = "UPDATE clients SET nom = %s, llinatges = %s, telefon = %s WHERE idclient = %s"
+        val = (idclient, nom, llinatges, telefon)
         # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
-            cursor.execute(sql)
+            cursor.execute(sql, val)
         finally:
             db.close()
 
     # Define la funcion para eliminar el usuario de la BD en la tabla clientes.
     def eliminaUser(idclient):
-        sql = "DELETE from clients WHERE idclient="+str(idclient)
+        sql = "DELETE from clients WHERE idclient= %s"
         # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
-            cursor.execute(sql)
+            cursor.execute(sql, idclient)
         finally:
             db.close()
 
     # Define la funcion para eliminar las reservas pertenecientes a un usuario para asi poder eliminar el usuario definitivamente.
     def eliminaReservaUser(idclient):
-        sql = "DELETE from reserves WHERE idclient="+str(idclient)
+        sql = "DELETE from reserves WHERE idclient = %s"
         # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
-            cursor.execute(sql)
+            cursor.execute(sql, idclient)
         finally:
             db.close()
 
@@ -118,27 +118,26 @@ class gimnas(object):
             db.close()
 
     def comprobarReserva(data, pista, client):
-        sql = "SELECT * FROM reserves WHERE data = '" + str(data) + \
-            "'and idpista = '" + str(pista) + \
-            "' and idclient = '" + str(client) + "';"
+        sql = "SELECT * FROM reserves WHERE data = %s and idpista = %s and idclient = %s;"
+        val = (data, pista, client)
         # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
-            cursor.execute(sql)
+            cursor.execute(sql, val)
             ResQuery = cursor.fetchone()
             return ResQuery
         finally:
             db.close()
 
     def insertReserva(data, pista, client):
-        sql = "INSERT INTO reserves(data, idpista, idclient) VALUES ('" + \
-            str(data) + "', '" + str(pista) + "','" + str(client) + "');"
+        sql = "INSERT INTO reserves(data, idpista, idclient) VALUES (%s, %s, %s);"
+        val = (data, pista, client)
         # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
-            cursor.execute(sql)
+            cursor.execute(sql, val)
         finally:
             db.close()
 

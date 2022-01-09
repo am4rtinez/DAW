@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from database import gimnas
-from datetime import datetime, timedelta
-from datetime import date
+from datetime import datetime, timedelta, date
+
 
 app = Flask(__name__)
 
@@ -25,9 +25,8 @@ tabla = {
     }
 }
 
+
 # Funcion que resetea la matriz tabla para pintarla en el apartado de reservas.
-
-
 def resetTabla():
     global tabla
     tabla = {
@@ -76,20 +75,52 @@ def crearReserva(data, pista, usuari):
     gimnas.insertReserva(data, pista, usuari)
 
 
+# Devuelve el dia de la semana (entero) de una fecha pasada por parametro.
+# El formato de la decha es yyyy-mm-dd.
+def getWeekDay(data):
+    d = datetime.strptime(data, '%Y-%m-%d')
+    return d.weekday()
+
+
+# Para optimizar codigo el render template de registre se hace en esta funcion.
+# Error = 0 -> No hay error.
+# Error = 1 -> El error es intentar reservar en fin de semana.
+# Error = 2 -> La reserva ya existe.
+def renderRegistre(today, error):
+    # Obtiene la lista de las pistas.
+    lpistas = gimnas.getPistas()
+    lusers = gimnas.getUsers()                  # Obtiene la lista de usuarios.
+    return render_template('registre.html', fecha=today, usuaris=lusers, pistes=lpistas, error=error)
+
+
+# Para optimizar codigo el render template de reserves se hace en esta funcion.
+def renderReserves(day):
+    swd = day - timedelta(days=day.weekday())   # Dia de inicio de la semana.
+    ewd = swd + timedelta(days=6)               # Dia final de la semana.
+    # Obtiene la consulta de reservas que comprende los dias de la semana del día pasado por parámetro.
+    reserves = gimnas.getReservas(swd, ewd)
+    # Genera la tabla de la cual se impriment los datos en el render.
+    generarTabla(reserves)
+    return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla)
+
+
+# Para optimizar codigo el render template de usuaris se hace en esta funcion.
+def renderUsuaris():
+    # Obtiene el lisado de usuarios
+    listUsuaris = gimnas.getUsers()
+    return render_template('usuaris.html', usuaris=listUsuaris)
+
+
 @app.route('/')
 def index():
     today = date.today()
-    lpistas = gimnas.getPistas()
-    lusers = gimnas.getUsers()
-    return render_template('registre.html', fecha=today, usuaris=lusers, pistes=lpistas)
+    return renderRegistre(today, 0)
 
 
 @app.route('/formulari', methods=['GET', 'POST'])
 def formulari():
     today = date.today()
-    lpistas = gimnas.getPistas()
-    lusers = gimnas.getUsers()
-    return render_template('registre.html', fecha=today, usuaris=lusers, pistes=lpistas)
+    return renderRegistre(today, 0)
 
 
 @app.route('/reserves', methods=['GET', 'POST'])
@@ -98,30 +129,27 @@ def reserves():
     hora = request.form.get('hora')
     pista = request.form.get('tipopista')
     usuari = request.form.get('usuari')
-
-    today = date.today()
+    day = date.today()
 
     # Si dia es distino a None es que se ha usado el formulario de registro.
     if (dia != None):
-        data = dia + " " + hora + ":00:00"
-        existe = comprobarReserva(data, pista, usuari)
-        print(existe)
-        if (existe == None):
-            # Si la reserva no existe entonces la creamos.
-            crearReserva(data, pista, usuari)
+        # Comprobamos si el dia seleccionado para la reserva no es sabado o domingo.
+        weekday = getWeekDay(dia)
+        # Sabado es 5 y Domingo es 6.
+        if ((weekday == 5) or (weekday == 6)):
+            return renderRegistre(day, 1)
         else:
-            # Si la reserva existe entonces devuelve template registro y muestra error.
-            lpistas = gimnas.getPistas()
-            lusers = gimnas.getUsers()
-            return render_template('registre.html', fecha=today, usuaris=lusers, pistes=lpistas, error=True)
-
-    swd = today - timedelta(days=today.weekday())   # Start day of the week
-    ewd = swd + timedelta(days=6)                   # End day of the week
-
-    reserves = gimnas.getReservas(swd, ewd)
-    generarTabla(reserves)
-
-    return render_template('reserves.html', fecha=today, swd=swd, ewd=ewd, tab=tabla)
+            data = dia + " " + hora + ":00:00"
+            # Comprobamos si existe la reserva
+            existe = comprobarReserva(data, pista, usuari)
+            if (existe == None):
+                # Si la reserva no existe entonces la creamos.
+                crearReserva(data, pista, usuari)
+            else:
+                # Si la reserva existe entonces devuelve template registro y muestra error.
+                return renderRegistre(day, 2)
+    # Como se ha accedido directamente desde ver reservas se muestran las reservas de esta semana.
+    return renderReserves(day)
 
 
 @app.route('/prev_week', methods=['GET', 'POST'])
@@ -130,18 +158,7 @@ def prev_week():
     datetime_obj = datetime.strptime(fecha, '%Y-%m-%d')
     # Obtenemos el dia de la semana anterior
     day = datetime_obj.date() - timedelta(days=7)
-    swd = day - timedelta(days=day.weekday())   # Start day of the week
-    ewd = swd + timedelta(days=6)                   # End day of the week
-
-    print("Day: " + str(day))
-    print("Start: " + str(swd))
-    print("End: " + str(ewd))
-
-    reserves = gimnas.getReservas(swd, ewd)
-    generarTabla(reserves)
-    print(reserves)
-
-    return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla)
+    return renderReserves(day)
 
 
 @app.route('/next_week', methods=['GET', 'POST'])
@@ -150,18 +167,7 @@ def next_week():
     datetime_obj = datetime.strptime(fecha, '%Y-%m-%d')
     # Obtenemos el dia de la semana siguiente
     day = datetime_obj.date() + timedelta(days=7)
-    swd = day - timedelta(days=day.weekday())   # Start day of the week
-    ewd = swd + timedelta(days=6)                   # End day of the week
-
-    print("Day: " + str(day))
-    print("Start: " + str(swd))
-    print("End: " + str(ewd))
-
-    reserves = gimnas.getReservas(swd, ewd)
-    generarTabla(reserves)
-    print(reserves)
-
-    return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla)
+    return renderReserves(day)
 
 
 @app.route('/usuaris', methods=['GET', 'POST'])
@@ -189,9 +195,8 @@ def updateuser():
     telefon = request.form.get('telefon')
     # Hace el update de los datos del usuario.
     gimnas.updateUser(idclient, nom, llinatges, telefon)
-    # Obtiene el lisado de usuarios
-    listUsuaris = gimnas.getUsers()
-    return render_template('usuaris.html', usuaris=listUsuaris)
+
+    return renderUsuaris()
 
 
 @app.route('/formuser', methods=['GET', 'POST'])
@@ -212,9 +217,8 @@ def adduser():
     telefon = request.form.get('telefon')
     # Anade el usuario a la tabla clientes.
     gimnas.addUser(idclient, nom, llinatges, telefon)
-    # Obtiene listado de usuarios
-    listUsuaris = gimnas.getUsers()
-    return render_template('usuaris.html', usuaris=listUsuaris)
+
+    return renderUsuaris()
 
 
 @app.route('/elimina', methods=['GET', 'POST'])
@@ -225,9 +229,8 @@ def elimina():
     gimnas.eliminaReservaUser(idclient)
     # Elimina el usuario de la tabla clients
     gimnas.eliminaUser(idclient)
-    # Obtiene listado de usuarios
-    listUsuaris = gimnas.getUsers()
-    return render_template('usuaris.html', usuaris=listUsuaris)
+
+    return renderUsuaris()
 
 
 if __name__ == '__main__':

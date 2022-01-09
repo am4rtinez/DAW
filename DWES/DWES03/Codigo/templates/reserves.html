@@ -2,7 +2,7 @@
 {% block content %}
   <div class="row">
     <div class="col-md text-center">
-      <div class="alert alert-primary" role="alert">
+      <div class="alert alert-secondary" role="alert">
         <div class="row">
           <div class="col-sm-2">
             <a href="{{url_for('prev_week')}}?fecha={{fecha}}"><img src="../static/left.png"></a>
@@ -15,35 +15,36 @@
           </div>   
         </div>       
       </div>
-      <div class="container h-90">
-      <div class="table-responsive">
-        <table id="userList" class="table text-center table-responsive-md table-bordered table-striped table-sm bg-light border-dark">
-          <thead class="table-dark">
-            <th>Pista</th>
-            <th>Hora</th>
-            <th>Dilluns</th>
-            <th>Dimarts</th>
-            <th>Dimecres</th>
-            <th>Dijous</th>
-            <th>Divendres</th>
-          </thead>
-          <tbody>
-              {% for key, tab_item in tab.items() %}
-                {% for key2, hour_item in tab_item.items() %}
-                  <tr class="{{key}}">
-                    {% if loop.first %}
-                      <th class="align-middle text-capitalize" rowspan="{{ loop.length }}">{{key}}</th>
-                    {% endif %}
-                    <th>{{ key2 }}</th>
-                    {% for key3, day_item in hour_item.items() %}
-                      <td class="text-capitalize">{{day_item}}</td> 
-                    {% endfor %}
-                  </tr>
-                {% endfor %}
-              {% endfor %}
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
-{% endblock %}
+  <div class="container h-90">
+    <div class="table-responsive">
+      <table id="userList" class="table text-center table-responsive-md table-bordered table-striped table-sm bg-light border-dark">
+        <thead class="table-dark">
+          <th>Pista</th>
+          <th>Hora</th>
+          <th>Dilluns</th>
+          <th>Dimarts</th>
+          <th>Dimecres</th>
+          <th>Dijous</th>
+          <th>Divendres</th>
+        </thead>
+        <tbody>
+            {% for key, tab_item in tab.items() %}
+              {% for key2, hour_item in tab_item.items() %}
+                <tr class="{{key}}">
+                  {% if loop.first %}
+                    <th class="align-middle text-capitalize" rowspan="{{ loop.length }}">{{key}}</th>
+                  {% endif %}
+                  <th>{{ key2 }}</th>
+                  {% for key3, day_item in hour_item.items() %}
+                    <td class="text-capitalize">{{day_item}}</td> 
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endblock %}
