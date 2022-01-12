@@ -1,20 +1,19 @@
 {% extends "template_base.html"%}
+{% block tittle %} Tasca DWES3 - Gimnàs amb mySQL {% endblock %}
 {% block content %}
   <div class="row">
-    <div class="col-md text-center">
-      <div class="alert alert-secondary" role="alert">
-        <div class="row">
-          <div class="col-sm-2">
-            <a href="{{url_for('prev_week')}}?fecha={{fecha}}"><img src="../static/left.png"></a>
-          </div>
-          <div class="col-sm-8">
-            <h2> Reserves setmana {{swd}} a {{ewd}}</h2>
-          </div>
-          <div class="col-sm-2">
-            <a href="{{url_for('next_week')}}?fecha={{fecha}}"><img src="../static/right.png"></a>
-          </div>   
-        </div>       
-      </div>
+    <div class="alert alert-secondary text-center" role="alert">
+      <div class="row">
+        <div class="col-sm-2">
+          <a href="{{url_for('prev_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/left.png')}}"></a>
+        </div>
+        <div class="col-sm-8">
+          <h2> Reserves setmana {{swd}} a {{ewd}}</h2>
+        </div>
+        <div class="col-sm-2">
+          <a href="{{url_for('next_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/right.png')}}"></a>
+        </div>   
+      </div>       
     </div>
   </div>
   <div class="container h-90">
@@ -47,4 +46,4 @@
       </table>
     </div>
   </div>
-  {% endblock %}
+{% endblock %}

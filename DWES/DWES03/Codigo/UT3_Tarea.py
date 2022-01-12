@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from database import gimnas
 from datetime import datetime, timedelta, date
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecretkey'
 
 # Matriz de la tabla con los diccionarios por fila
 tabla = {
@@ -86,11 +87,12 @@ def getWeekDay(data):
 # Error = 0 -> No hay error.
 # Error = 1 -> El error es intentar reservar en fin de semana.
 # Error = 2 -> La reserva ya existe.
-def renderRegistre(today, error):
+def renderRegistre():
+    today = date.today()
     # Obtiene la lista de las pistas.
     lpistas = gimnas.getPistas()
     lusers = gimnas.getUsers()                  # Obtiene la lista de usuarios.
-    return render_template('registre.html', fecha=today, usuaris=lusers, pistes=lpistas, error=error)
+    return render_template('registre.html', fecha=today, usuaris=lusers, pistes=lpistas)
 
 
 # Para optimizar codigo el render template de reserves se hace en esta funcion.
@@ -113,31 +115,22 @@ def renderUsuaris():
 
 @app.route('/')
 def index():
-    today = date.today()
-    return renderRegistre(today, 0)
+    return renderRegistre()
 
 
 @app.route('/formulari', methods=['GET', 'POST'])
 def formulari():
-    today = date.today()
-    return renderRegistre(today, 0)
-
-
-@app.route('/reserves', methods=['GET', 'POST'])
-def reserves():
-    dia = request.form.get('dia')
-    hora = request.form.get('hora')
-    pista = request.form.get('tipopista')
-    usuari = request.form.get('usuari')
-    day = date.today()
-
-    # Si dia es distino a None es que se ha usado el formulario de registro.
-    if (dia != None):
+    # Si el metodo utilizado es POST es que se ha usado el formulario de registro.
+    if request.method == 'POST':
+        dia = request.form.get('dia')
+        hora = request.form.get('hora')
+        pista = request.form.get('tipopista')
+        usuari = request.form.get('usuari')
         # Comprobamos si el dia seleccionado para la reserva no es sabado o domingo.
         weekday = getWeekDay(dia)
         # Sabado es 5 y Domingo es 6.
         if ((weekday == 5) or (weekday == 6)):
-            return renderRegistre(day, 1)
+            flash('Ha seleccionado un dia de fin de semana.', category='error')
         else:
             data = dia + " " + hora + ":00:00"
             # Comprobamos si existe la reserva
@@ -145,11 +138,18 @@ def reserves():
             if (existe == None):
                 # Si la reserva no existe entonces la creamos.
                 crearReserva(data, pista, usuari)
+                flash('La reserva se ha realizado.', category='success')
             else:
                 # Si la reserva existe entonces devuelve template registro y muestra error.
-                return renderRegistre(day, 2)
+                flash('La reserva ya existe.', category='error')
+    return renderRegistre()
+
+
+@app.route('/reserves', methods=['GET', 'POST'])
+def reserves():
+    today = date.today()
     # Como se ha accedido directamente desde ver reservas se muestran las reservas de esta semana.
-    return renderReserves(day)
+    return renderReserves(today)
 
 
 @app.route('/prev_week', methods=['GET', 'POST'])
@@ -172,9 +172,7 @@ def next_week():
 
 @app.route('/usuaris', methods=['GET', 'POST'])
 def usuaris():
-    # Obtiene el lisado de usuarios
-    listUsuaris = gimnas.getUsers()
-    return render_template('usuaris.html', usuaris=listUsuaris)
+    return renderUsuaris()
 
 
 @app.route('/modifica', methods=['GET', 'POST'])
@@ -188,13 +186,14 @@ def modifica():
 
 @app.route('/updateuser', methods=['GET', 'POST'])
 def updateuser():
-    # Obtiene los datos.
-    idclient = request.form.get('idclient')
-    nom = request.form.get('nom')
-    llinatges = request.form.get('llinatges')
-    telefon = request.form.get('telefon')
-    # Hace el update de los datos del usuario.
-    gimnas.updateUser(idclient, nom, llinatges, telefon)
+    if request.method == 'POST':
+        # Obtiene los datos.
+        idclient = request.form.get('idclient')
+        nom = request.form.get('nom')
+        llinatges = request.form.get('llinatges')
+        telefon = request.form.get('telefon')
+        # Hace el update de los datos del usuario.
+        gimnas.updateUser(idclient, nom, llinatges, telefon)
 
     return renderUsuaris()
 
@@ -211,12 +210,13 @@ def formuser():
 @app.route('/adduser', methods=['GET', 'POST'])
 def adduser():
     # Obtiene los datos.
-    idclient = request.form.get('idclient')
-    nom = request.form.get('nom')
-    llinatges = request.form.get('llinatges')
-    telefon = request.form.get('telefon')
-    # Anade el usuario a la tabla clientes.
-    gimnas.addUser(idclient, nom, llinatges, telefon)
+    if request.method == 'POST':
+        idclient = request.form.get('idclient')
+        nom = request.form.get('nom')
+        llinatges = request.form.get('llinatges')
+        telefon = request.form.get('telefon')
+        # Anade el usuario a la tabla clientes.
+        gimnas.addUser(idclient, nom, llinatges, telefon)
 
     return renderUsuaris()
 

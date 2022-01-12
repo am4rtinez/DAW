@@ -1,4 +1,5 @@
 {% extends "template_base.html"%}
+{% block tittle %} Tasca DWES3 - Gimnàs amb mySQL {% endblock %}
 {% block content %}
   <div class="row">
     <div class="col-md">
@@ -8,7 +9,7 @@
            <h2> Usuaris</h2>
           </div>
           <div class="col-6 text-center">
-             <a href="{{url_for('formuser')}}" class="btn btn-primary"><img src="../static/add.png" width="32">Afegir Usuari </a>
+             <a href="{{url_for('formuser')}}" class="btn btn-primary"><img src="{{url_for('static', filename='img/add.png')}}" width="32">Afegir Usuari </a>
           </div>
         </div>
       </div>
@@ -34,8 +35,8 @@
               <td class="align-middle">{{u['llinatges']}}</td>
               <td class="align-middle">{{u['telefon']}}</td>
               <td class="align-middle text-center">
-                <a href="{{url_for('modifica')}}?idclient={{u['idclient']}}"><img src="../static/pencil.png" width="32"></a>&nbsp
-                <a href="{{url_for('elimina')}}?idclient={{u['idclient']}}"><img src="../static/remove.png" width="32"></a>
+                <a href="{{url_for('modifica')}}?idclient={{u['idclient']}}"><img src="{{url_for('static', filename='img/pencil.png')}}" width="32"></a>&nbsp
+                <a href="{{url_for('elimina')}}?idclient={{u['idclient']}}"><img src="{{url_for('static', filename='img/remove.png')}}" width="32"></a>
               </td>
             </tr>
           {% endfor %}
@@ -47,7 +48,7 @@
                 <td class="align-middle text-center"><input type="text" name="llinatges" id="llinatges" required></td>
                 <td class="align-middle text-center"><input type="tel" name="telefon" id="telefon" required></td>
                 <td class="align-middle text-center">
-                  <button type="submit"><img src="../static/check.png" width="32"></button>
+                  <button type="submit"><img src="{{url_for('static', filename='img/check.png')}}" width="32"></button>
                 </td>
               </form>
             </tr>
