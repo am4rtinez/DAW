@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pràctica UT4</title>
+    <link href="css/estils.css" rel="stylesheet">
+    <link rel="icon" href="img/logo-cifp.ico" type="image/x-icon">
+    </head>
+<body>
+    <div id="container">
+        <div class="esquerra"><img src="img/cropped-Logo_Pau.png"></div>
+        <div>
+            <h3>Desenvolupament web al costat del client</h3>
+            <h3>Pràctica de la unitat de treball 4</h3>
+        </div>
+        <h1>
+            Instruccions</h1>
+        <ul>
+            <li><p>Crea un projecte al teu IDE, si utilitza projectes, i crea els arxius que es demanin al projecte. </p>
+            </li>
+            <li><p>Si has d’incloure imatges, arxius externs de javascript, ... organitza-ho en carpetes.</p></li>
+            <li><p>L’HTML ha de deixar clar quin exercici conté i quines dades mostra.</p></li>
+            <li><p>No es corregirà cap exercici que presenti més d’una versió.</p></li>
+            <li><p>El codi comentat o que no s’utilitzi en l’execució dels exercicis no es tendrà en compte per a la
+                correcció.</p></li>
+            <li><p>Al final de l’enunciat trobareu un fitxer comprimit que conté la pàgina <i>index.html</i> amb l’enunciat
+                dels
+                exercicis. Posau un enllaç a cada enunciat que obri la pàgina de l’exercici corresponent.</p></li>
+            <li><p>Totes les pàgines dels exercicis han d’incloure un enllaç a <i>index.html</i>.</p></li>
+            <li><p>Prohibit utilitzar <i>document.write</i>.</p></li>
+            <li><p>Prohibit utilitzar Javascript incrustat: &lt;button onclick="pitja()"&gt;. </p></li>
+            <li><p>Formatau el codi.</p></li>
+        </ul>
+        <h1>Exercicis</h1>
+        <h2></a>Exercici 1 (2,5 punts)</h2>
+        <p>Crea una funció que torni un array d'objectes representant un centre cultural. Has de crear aquests objectes de
+            forma
+            literal.</p>
+        <p>Per a cada un d'aquests objectes hem de saber el nom, una breu descripció, la web, l'email, el telèfon i la
+            població.
+            Evidentment poden ser ficticis.</p>
+        <p>Crea una pàgina html que contengui un <i>div</i> amb la informació de cada un dels centres culturals que torna la
+            funció.</p>
+        <p><a href="#">Ves-hi</a></p>
+        <p><br></p>
+        <h2>Exercici 2 (2,5 punts)</h2>
+        <p>El javascript d'aquest exercici ha d'anar a un fitxer apart.</p>
+        <p>Utilitza una funció constructora per crear els objectes que guardin les dades dels artistes que gestiona una
+            aplicació web de centres d'art. De cada artista volem saber el nom, la nacionalitat i les obres que té. Per les
+            obres basta amb el títol. Evidentment les obres no es poden repetir.</p>
+        <p>Cada artista ha de tenir una funció que permeti afegir una nova obra a la llista, una altra que permeti
+            eliminar-la i
+            una que torni una cadena de text amb els títols separats per comes.</p>
+        <p>Utilitza aquesta funció per crear dos artistes amb al manco dues o tres obres cada un.</p>
+        <p>Dins una pàgina <i>html</i> mostra la informació dels artistes, incloses les seves obres.</p>
+        <p><a href="#">Ves-hi</a></p>
+        <h2>Exercici 3 (2,5 punts)</h2>
+        <p>Utilitza una classe que representi les dades d'una exposició. El que necessitam saber de l'exposició, a part del
+            títol, són les dates d'inici i fi, el centre on tendrà lloc i els artistes que hi participen.</p>
+        <p>Per els artistes podeu utilitzar la funció constructora de l'exercici anterior. Afegeix els mètodes afegir i
+            eliminar
+            artista. Afegir artista ha de controlar els duplicats.</p>
+        <p>Crea una exposició amb al manco dos artistes, comprovant que no accepta duplicats.</p>
+        <p>Mostra la seva informació a l'html.</p>
+        <p><a href="#">Ves-hi</a></p>
+        <h2>Exercici 4 (2,5 punts)</h2>
+        <p>Crea una funció que simuli un servei REST.</p>
+        <p>Aquesta funció:</p>
+        <ul>
+            <li><p>Ha de simular una consulta a una base de dades demanant els centres d'art que hi ha a una determinada
+                població.</p></li>
+            <li><p>Per a cada centre ha de tornar un objecte amb les mateixes dades que els de l'exercici 1</p></li>
+            <li><p>Tornau dos o tres centres, sempre els mateixos.</p></li>
+            <li><p>Ha de tornar el resultat en format JSON. </p></li>
+        </ul>
+        <p>Crea una pàgina html que mostri el resultat d’una crida a aquesta funció en forma de taula, amb una columna per a
+            cada dada.</p>
+        <p><a href="#">Ves-hi</a></p>
+
+        <h1>Lliurament</h1>
+        <p>Heu de crear un arxiu comprimit amb el codi complet dels dels exercicis: arxius *.js si n’hi ha, arxius html,
+            l’estructura de carpetes correcte, ... Una vegada descomprimit l’arxiu els exercicis han de funcionar
+            correctament.</p>
+        <h1>Avaluació</h1>
+        <p>Aquesta tasca representa el 6.5% de la nota de l’apartat d’activitats de l’assignatura.</p>
+        <p>A cada exercici trobareu la seva puntuació sobre 10.</p>
+        <p>El 60% de la nota de l’exercici s’obtindrà si la solució resol el cas general del problema.</p>
+        <p>El 40% restant de la nota s’obtindrà depenent de l’optimització del codi. Com més eficient sigui i més ben
+            estructurat estigui, més nota tendrà en aquest apartat.</p>
+        <p>Es penalitzarà amb un 10% de la nota de l’exercici si el codi no està indentat, si els noms de les variables,
+            funcions, ... no són descriptius o si l’HTML que s’utilitzi per fer l’exercici i mostrar els resultats no és
+            correcte.</p>
+    </div>
+</body>
+</html>

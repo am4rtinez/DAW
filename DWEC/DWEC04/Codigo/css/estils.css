@@ -1,0 +1,14 @@
+body {
+    font-family: arial, Helvetica, sans-serif;
+    font-size: large;
+    line-height: 1.5em;
+}
+#container {
+    width: 80%;
+    margin: auto;
+}
+.esquerra{
+    float:left;
+    width:auto;
+    margin-right:3em;
+}
