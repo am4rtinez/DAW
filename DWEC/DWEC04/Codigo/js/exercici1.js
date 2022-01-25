@@ -36,38 +36,3 @@ window.onload = () => {
     }
     parent.setAttribute("class", "centre")
 }
-
-// Funcion que devuelve el listado en un array de objetos de centros creados de forma literal.
-function get_list_ccultura() {
-    // Creacion literal del ccultura 1
-    let ccultura1 = {
-        nom: "Centre 1",
-        desc: "Centre Cultura 1",
-        web: "www.example1.com",
-        email: "ccultura1@example.com",
-        telefon: "971121211",
-        poblacio: "Palma"
-    }
-    
-    // Creacion literal del ccultura 2
-    let ccultura2 = {
-        nom: "Centre 2",
-        desc: "Centre Cultura 2",
-        web: "www.example2.com",
-        email: "ccultura2@example.com",
-        telefon: "971121212",
-        poblacio: "Calvia"
-    }
-    
-    // Creacion literal del ccultura 3
-    let ccultura3 = {
-        nom: "Centre 3",
-        desc: "Centre Cultura 1",
-        web: "www.example3.com",
-        email: "ccultura3@example.com",
-        telefon: "971121213",
-        poblacio: "Inca"
-    }
-    let lista = [ccultura1, ccultura2, ccultura3]
-    return lista
-}

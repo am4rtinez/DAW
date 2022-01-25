@@ -12,3 +12,18 @@ body {
     width:auto;
     margin-right:3em;
 }
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+table,
+tr,
+th,
+td{
+    border: 1px solid;
+}
+th,
+td {
+    padding: 1em;
+    width: 15%;
+}

@@ -24,7 +24,65 @@ window.onload = () => {
     } catch (exception) {
         console.log(exception.message)
     }
-    console.log(expo.artistes)
     expo.delArtista(a2)
-    console.log(expo.artistes)
+    imprimirDatos(expo)
+}
+
+/*
+    Funcion que imprime los datos de la exposicion en el html.
+    En este caso solo hay una exposicion.
+    Parametro tipo objeto Exposicion.
+*/
+function imprimirDatos(exposicion) {
+    let parent = document.getElementById('dades')
+    //--------------------------------------------
+    // Creacion de los elementos para los datos de la expo.
+    let h3 = document.createElement("h3")
+    let ul = document.createElement("ul")
+    let lidi = document.createElement("li")
+    let lifi = document.createElement("li")
+    let licentre = document.createElement("li")
+    let lart = document.createElement("li")
+    //--------------------------------------------
+    // Creacion de los nodos tipo texto con la info de la exposicion.
+    let th3 = document.createTextNode(exposicion.titol)
+    let tlidi = document.createTextNode("Data inici: " + exposicion.data_ini)
+    let tlifi = document.createTextNode("Data fi: " + exposicion.data_fi)
+    let tcentre = document.createTextNode("Centre: " + exposicion.centre)
+    let tart = document.createTextNode("Artistes: ")
+    //--------------------------------------------
+    h3.appendChild(th3)
+    lidi.appendChild(tlidi)
+    lifi.appendChild(tlifi)
+    licentre.appendChild(tcentre)
+    lart.appendChild(tart)
+    ul.appendChild(lidi)
+    ul.appendChild(lifi)
+    ul.appendChild(licentre)
+    ul.appendChild(lart)
+    //--------------------------------------------
+    // Creacion de los elementos de los artistas.
+    for (artista in exposicion.artistes) {
+        let ulart = document.createElement("ul")
+        let udata = document.createElement("ul")
+
+        let lnom = document.createElement("li")
+        let lnac = document.createElement("li")
+        let lobres = document.createElement("li")
+
+        let tlnom = document.createTextNode("Nom: " + exposicion.artistes[artista].nom)
+        let tlnac = document.createTextNode("Nacionalitat: " + exposicion.artistes[artista].nacionalitat)
+        let tobres = document.createTextNode("Obres: " + exposicion.artistes[artista].getObres())
+
+        lnom.appendChild(tlnom)
+        lnac.appendChild(tlnac)
+        lobres.appendChild(tobres)
+        udata.appendChild(lnac)
+        udata.appendChild(lobres)
+        ulart.appendChild(lnom)
+        ulart.appendChild(udata)
+        ul.appendChild(ulart)
+    }
+    parent.appendChild(h3)
+    parent.appendChild(ul)
 }
