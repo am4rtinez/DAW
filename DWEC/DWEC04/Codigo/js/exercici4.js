@@ -18,7 +18,7 @@ window.onload = () => {
     let poblacio = "Calvia"
     let str = "Llistat de Centres Culturals de " + poblacio
     setTitol("titol", "h3", str)
-    let jsonString = get_centres_poblacio(poblacio)
+    let jsonString = getCentresPoblacio(poblacio)
     let json = parseJSON(jsonString)
     imprimirTabla(json)
 }

@@ -5,7 +5,7 @@
 */
 
 window.onload = () => {
-    let centres = get_list_ccultura() //Obtiene el listado de objetos literales.
+    let centres = getListCcultura() //Obtiene el listado de objetos literales.
     let parent = document.getElementById("list") //Elemento parent donde se imprimiran los datos.
     for (centre of centres) {
         let div = document.createElement("div")

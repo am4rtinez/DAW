@@ -9,7 +9,7 @@ function ExceptionArtistes(str) {
 }
 
 // Funcion que devuelve el listado en un array de objetos de centros creados de forma literal.
-function get_list_ccultura() {
+function getListCcultura() {
     // Creacion literal del ccultura 1
     let ccultura1 = {
         nom: "Centre 1",
@@ -116,8 +116,8 @@ class Exposicio {
     }
 }
 
-function get_centres_poblacio(poblacio) {
-    let centres = get_list_ccultura()
+function getCentresPoblacio(poblacio) {
+    let centres = getListCcultura()
     let cpoblacio = []
     for (centre in centres) {
         if (centres[centre].poblacio == poblacio) {
