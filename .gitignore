@@ -1,5 +1,5 @@
 DAW-Workspace.code-workspace
-
+# =========================== PPROG =====================================
 /PROG/Tarea01/Documents/
 /PROG/Tarea02/Documents/
 /PROG/Tarea03/Documents/
@@ -11,7 +11,6 @@ DAW-Workspace.code-workspace
 /PROG/Tarea09/Docs/
 /PROG/Tarea10/Docs/
 /PROG/Tarea11/Docs/
-
 /PROG/Tarea02/Prog02Ejer01/nbproject/private/
 /PROG/Tarea02/Prog02Ejer02/nbproject/private/
 /PROG/Tarea02/Prog02Ejer03/nbproject/private/
@@ -42,14 +41,12 @@ DAW-Workspace.code-workspace
 /PROG/Tarea02/Prog02Ejer08/dist/
 /PROG/Tarea02/Prog02Ejer09/dist/
 /PROG/Tarea02/Prog02Ejer10/dist/
-
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer01/nbproject/private/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer02/nbproject/private/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer01/dist/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer01/build/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer02/build/
 /PROG/Tarea03/martinez_rodriguez_angel_PROG03_Ejer02/dist/
-
 /PROG/Tarea04/Supuesto01/nbproject/private/
 /PROG/Tarea04/Supuesto02/nbproject/private/
 /PROG/Tarea04/Supuesto03/nbproject/private/
@@ -62,76 +59,70 @@ DAW-Workspace.code-workspace
 /PROG/Tarea04/Supuesto02/dist/
 /PROG/Tarea04/Supuesto03/dist/
 /PROG/Tarea04/Supuesto04/dist/
-
 /PROG/Tarea05/AplicacionCuentaBancaria/nbproject/private/
 /PROG/Tarea05/AplicacionCuentaBancaria/build/
 /PROG/Tarea05/AplicacionCuentaBancaria/dist/
-
 /PROG/Tarea06/AplicacionClientes/nbproject/private/
 /PROG/Tarea06/AplicacionClientes/build/
 /PROG/Tarea06/AplicacionClientes/dist/
 /PROG/Tarea06/AplicacionClientes/data/
-
 /PROG/Tarea07/ColorsGame/nbproject/private/
 /PROG/Tarea07/ColorsGame/build/
 /PROG/Tarea07/ColorsGame/dist/
-
 /PROG/Tarea07/CalculoNumerico/nbproject/private/
 /PROG/Tarea07/CalculoNumerico/build/
 /PROG/Tarea07/CalculoNumerico/dist/
-
 /PROG/Tarea08/Prog08Notes/nbproject/private/
 /PROG/Tarea08/Prog08Notes/dist/
 /PROG/Tarea08/Prog08Notes/build/
-
 /PROG/Tarea09/
-
 /PROG/Tarea10/AngelMartinezProg10/nbproject/private/
 /PROG/Tarea10/AngelMartinezProg10/build/
 /PROG/Tarea10/AngelMartinezProg10/dist/
 /PROG/Tarea10/Martinez_Rodriguez_Angel_PROG10_Tarea.rar
-
 /PROG/Tarea11/Prog08Notes/nbproject/private/
 /PROG/Tarea11/AngelMartinezProg11/nbproject/private/
 /PROG/Tarea11/AngelMartinezProg11/build/
 /PROG/Tarea11/AngelMartinezProg11/dist/
 
-
+# =========================== ED =====================================
 /ED/ED02/Martinez_Rodriguez_Angel_ED02_Tarea.*
 /ED/ED03/PrácticaUnidad3/nbproject/private/
 /ED/ED03/PrácticaUnidad3/build/
 /ED/ED03/PrácticaUnidad3/dist/
-
 /ED/ED04/DAM_ED04_Actividad/nbproject/private/
 /ED/ED04/DAM_ED04_Actividad/build/
 /ED/ED04/DAM_ED04_Actividad/dist/
-
 /ED/ED05/Martinez_Rodriguez_Angel_ED05_Tarea/nbproject/private/
 /ED/ED05/Martinez_Rodriguez_Angel_ED05_Tarea/build/
 /ED/ED05/Martinez_Rodriguez_Angel_ED05_Tarea/dist/
-
 /ED/ED02/Docs/
 /ED/ED03/Docs/
 /ED/ED04/Docs/
 /ED/ED05/Docs/
 /ED/ED06/Docs/
-
 /ED/Examen para revisar ED01.02.pdf
 
+# =========================== DAW =====================================
 /DAW/DAW01/Docs/*
 
+# =========================== DIW =====================================
+/DIW/Docs/*
 /DIW/*/Docs/*
 
+# =========================== DWEC =====================================
 /DWEC/DWEC01/Docs/*
 /DWEC/DWEC02/Docs/*
 /DWEC/DWEC03/Docs/*
 /DWEC/DWEC04/Docs/*
 
+# =========================== DWES =====================================
 /DWES/DWES01/Docs/*
 /DWES/DWES02/Docs/*
 /DWES/DWES03/Docs/*
 /DWES/DWES03/Codigo/__pycache__
 /DWES/DWES03/Codigo/.env
 
+# =========================== FILES =====================================
 Martinez_Rodriguez_Angel_ASIGXX_Tarea.dotx
 Martinez_Rodriguez_Angel_DAWXX_Tarea.dotx
