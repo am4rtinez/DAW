@@ -107,13 +107,6 @@ def renderReserves(day):
     return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla)
 
 
-# Para optimizar codigo el render template de usuaris se hace en esta funcion.
-def renderUsuaris():
-    # Obtiene el lisado de usuarios
-    listUsuaris = gimnas.getUsers()
-    return render_template('usuaris.html', usuaris=listUsuaris)
-
-
 @app.route('/')
 def index():
     return render_template('login.html')
@@ -122,7 +115,11 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    if request.method == 'POST':
+        print(request.form['username'])
+        print(request.form['password'])
+
+    return render_template('login.html')
 
 
 @app.route('/formulari', methods=['GET', 'POST'])
@@ -175,69 +172,6 @@ def next_week():
     # Obtenemos el dia de la semana siguiente
     day = datetime_obj.date() + timedelta(days=7)
     return renderReserves(day)
-
-
-@app.route('/usuaris', methods=['GET', 'POST'])
-def usuaris():
-    return renderUsuaris()
-
-
-@app.route('/modifica', methods=['GET', 'POST'])
-def modifica():
-    # Obtiene el listado de identificador del cliente a modificar.
-    idclient = request.args.get('idclient')
-    # Obtiene el lisado de usuarios
-    listUsuaris = gimnas.getUsers()
-    return render_template('modifica.html', usuaris=listUsuaris, id=idclient)
-
-
-@app.route('/updateuser', methods=['GET', 'POST'])
-def updateuser():
-    if request.method == 'POST':
-        # Obtiene los datos.
-        idclient = request.form.get('idclient')
-        nom = request.form.get('nom')
-        llinatges = request.form.get('llinatges')
-        telefon = request.form.get('telefon')
-        # Hace el update de los datos del usuario.
-        gimnas.updateUser(idclient, nom, llinatges, telefon)
-
-    return renderUsuaris()
-
-
-@app.route('/formuser', methods=['GET', 'POST'])
-def formuser():
-    # Obtiene el lisado de usuarios
-    listUsuaris = gimnas.getUsers()
-    # Obtiene el que se le va a asignar al usuario.
-    idclient = gimnas.getId()
-    return render_template('usuaris.html', usuaris=listUsuaris, id=idclient)
-
-
-@app.route('/adduser', methods=['GET', 'POST'])
-def adduser():
-    # Obtiene los datos.
-    if request.method == 'POST':
-        idclient = request.form.get('idclient')
-        nom = request.form.get('nom')
-        llinatges = request.form.get('llinatges')
-        telefon = request.form.get('telefon')
-        # Anade el usuario a la tabla clientes.
-        gimnas.addUser(idclient, nom, llinatges, telefon)
-
-    return renderUsuaris()
-
-
-@app.route('/elimina', methods=['GET', 'POST'])
-def elimina():
-    # Obtenemos el id del cliente a eliminar.
-    idclient = request.args.get('idclient')
-    # Elimina las realaciones previas de la tabla reserves.
-    gimnas.eliminaReservaUser(idclient)
-    # Elimina el usuario de la tabla clients
-    gimnas.eliminaUser(idclient)
-
-    return renderUsuaris()
 
 
 if __name__ == '__main__':

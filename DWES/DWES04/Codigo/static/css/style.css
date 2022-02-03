@@ -1,3 +1,8 @@
+html,
+body {
+    height: 100%;
+}
+
 body {
     background-color: grey;
     margin: auto;
@@ -20,6 +25,14 @@ main {
 
 section {
     padding-bottom: 1rem;
+}
+
+section#login {
+    padding-top: 1rem;
+}
+
+.login {
+    width: 18rem;
 }
 
 .bi {
