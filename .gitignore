@@ -117,11 +117,9 @@ DAW-Workspace.code-workspace
 /DWEC/DWEC04/Docs/*
 
 # =========================== DWES =====================================
-/DWES/DWES01/Docs/*
-/DWES/DWES02/Docs/*
-/DWES/DWES03/Docs/*
-/DWES/DWES03/Codigo/__pycache__
-/DWES/DWES03/Codigo/.env
+/DWES/*/Docs/*
+/DWES/*/Codigo/__pycache__
+/DWES/*/Codigo/.env
 
 # =========================== FILES =====================================
 Martinez_Rodriguez_Angel_ASIGXX_Tarea.dotx

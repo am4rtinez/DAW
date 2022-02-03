@@ -1,0 +1,93 @@
+{% extends "template_base.html"%}
+{% block tittle %} Tasca DWES3 - Gimnàs amb mySQL {% endblock %}
+{% block content %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        {% if category == 'error' %}
+          <div class="row">
+            <div class="alert alert-danger alter-dismissable fade show row" role="alert">
+              <div class="col-11 text-center">{{ message }}</div>
+              <div class="col-1 text-right">
+                <button type="button" class="btn-close" data-dismiss="alert"></button>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="row">
+            <div class="alert alert-success alter-dismissable fade show row" role="alert">
+              <div class="col-11 text-center">{{ message }}</div>
+              <div class="col-1 text-right">
+                <button type="button" class="btn-close" data-dismiss="alert"></button>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  <div class="row">
+    <div class="alert alert-secondary" role="alert">
+      <h2 class="text-center">Formulari de reserva.</h2>
+    </div>
+  </div>
+  <section class="container h-90">
+    <div class="card">
+      <form name="reserva" method="POST" action="{{url_for('formulari')}}">
+        <div class="card-header text-center bg-secondary">
+          <h4> Reserva pista</h4>
+        </div>
+        <div class="card-body text-center">
+          <div class="row mb-3">
+            <label for="dia" class="col-3 col-form-label">Dia</label>
+            <div class="col-9">
+              <input type="date" class="form-control text-center" id="dia" name="dia" value="{{fecha}}">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="hora" class="col-3 col-form-label">Hora</label>
+            <div class="col-9">
+              <input type="number" class="form-control text-center" step="1" max="20" min="15" name="hora" id="hora" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="container">
+              <hr>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="tipopista" class="col-3 col-form-label">Tipus pista</label>
+            <div class="col-9">
+              <select class="form-select text-center" id="tipopista" name="tipopista">
+                {% for p in pistes %}
+                  <option value="{{p['idpista']}}">{{p['tipo']}} - {{p['preu']}}€</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="card-header text-center bg-secondary">
+          <h4>Usuari</h4>
+        </div>
+        <div class="card-body text-center">
+          <div class="container">
+            <select class="form-select text-center" id="usuari" name="usuari">
+              {% for u in usuaris %}
+                <option value="{{u['idclient']}}"> {{u['nom']}} {{u['llinatges']}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button type="submit" value="Enviar" class="btn btn-success btn-floating btn-lg mx-4">Enviar</button>
+            <button type="reset" value="Limpiar" class="btn btn-danger btn-floating btn-lg mx-4">Reset</button>
+          </div>
+        </div>
+        <div class="card-footer text-center text-muted">
+          Formulari reserva
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}

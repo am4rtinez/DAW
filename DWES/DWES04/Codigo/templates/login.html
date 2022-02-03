@@ -1,0 +1,18 @@
+{% extends "template_base.html"%} {% block tittle %} Tasca DWES4 - Gimnàs amb mySQL {% endblock %}
+{% block content %}
+<div class="col-md-3">
+    {% if loginmsg %}
+    <div class="alert alert-warning" role="alert">{{loginmsg}}</div>
+    {% endif %}
+    <form class="navbar-form navbar-right" role="form" method="post" action="{{ url_for('login')}}">
+        <div class="form-group">
+            <input type="text" placeholder="Usuari" class="form-control" id="usuari" name="usuari" size="15" />
+        </div>
+        <div class="form-group">
+            <input type="password" placeholder="Password" class="form-control" name="password" id="password"
+                size="15" />
+        </div>
+        <button type="submit" class="btn btn-success">Sign in</button>
+    </form>
+</div>
+{% endblock %}

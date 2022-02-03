@@ -1,0 +1,52 @@
+body {
+    background-color: grey;
+    margin: auto;
+}
+
+header {
+    text-transform: uppercase;
+}
+
+header a:link,
+header a:visited{
+    text-decoration: none;
+}
+
+main {
+    background-color: #fff;
+    margin: auto;
+    /* overflow: hidden */
+}
+
+section {
+    padding-bottom: 1rem;
+}
+
+.bi {
+    display: inline-block;
+    vertical-align: -.120em;
+}
+
+.exterior {
+    background-color: #D5F5E3;
+}
+
+.coberta {
+    background-color: #F6DDCC;
+}
+
+#userList td,
+#userList th {
+    width: calc(100%/7);
+}
+
+/* Solucion para el overflow del row */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.container .row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
