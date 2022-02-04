@@ -28,10 +28,16 @@
   {% endwith %}
   <div class="row">
     <div class="alert alert-secondary" role="alert">
-      <h2 class="text-center">Home</h2>
+      <h2 class="text-center">Bienvenido {{current_user.nom}}</h2>
     </div>
   </div>
   <section class="container h-90">
-    <p>Hola Mundo!</p>
+    <h3>Dades de l'usuari</h3>
+    <p>Id: {{current_user.id}}</p>
+    <p>Usuari: {{current_user.username}}</p>
+    <p>Nom: {{current_user.nom}}</p>
+    <p>Llinatges: {{current_user.llinatges}}</p>
+    <p>Email: {{current_user.email}}</p>
+    <p>Telefon: {{current_user.telefon}}</p>
   </section>
 {% endblock %}

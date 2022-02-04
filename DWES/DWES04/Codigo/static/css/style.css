@@ -23,6 +23,10 @@ main {
     /* overflow: hidden */
 }
 
+nav {
+    padding: 10px;
+}
+
 section {
     padding-bottom: 1rem;
 }

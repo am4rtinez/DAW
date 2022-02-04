@@ -17,7 +17,7 @@
 <body class="text-center bg-dark text-white">
   <main class="form-signin">
     <img class="mb-4" src="{{url_for('static', filename='img/gym.png')}}" alt="" width="90%" height="90%">
-    <h1 class="h3 mb-3 fw-normal">DAW04 - Gimnàs MySQL Fitness</h1>
+    <a href="{{url_for('login')}}" class="text-decoration-none text-white"><h1 class="h3 mb-3 fw-normal">DAW04 - Gimnàs MySQL Fitness</h1></a>
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}

@@ -66,18 +66,6 @@
             </div>
           </div>
         </div>
-        <div class="card-header text-center bg-secondary">
-          <h4>Usuari</h4>
-        </div>
-        <div class="card-body text-center">
-          <div class="container">
-            <select class="form-select text-center" id="usuari" name="usuari">
-              {% for u in usuaris %}
-                <option value="{{u['idclient']}}"> {{u['nom']}} {{u['llinatges']}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
         <div class="card-body text-center">
           <div class="d-grid gap-2 d-md-flex justify-content-md-center">
             <button type="submit" value="Enviar" class="btn btn-success btn-floating btn-lg mx-4">Enviar</button>

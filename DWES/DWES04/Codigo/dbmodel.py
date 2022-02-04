@@ -52,20 +52,6 @@ class dbo(object):
         finally:
             db.close()
 
-    def fromID(user_id):
-        # Conexion a la BBDD del servidor mySQL
-        sql = "SELECT idclient,username,nom,llinatges,email,telefon from clients WHERE idclient= %s"
-        val = (user_id)
-        try:
-            db = getConnection()
-            cursor = db.cursor()
-            cursor.execute(sql, val)
-            ResQuery = cursor.fetchone()
-            if ResQuery:
-                return ResQuery
-            return None
-        finally:
-            db.close()
     # GESTION DE RESERVAS
     # ============================
 
