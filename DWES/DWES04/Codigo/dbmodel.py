@@ -9,7 +9,6 @@ _db = config.db_name
 _charset = config.db_charset
 
 
-# Establece la conexión a la BD.
 def getConnection():
     # You can change the connection arguments.
     connection = pymysql.connect(host=_host,
@@ -23,7 +22,9 @@ def getConnection():
     return connection
 
 
-class gimnas(object):
+class dbo(object):
+
+    # Establece la conexión a la BD.
 
     # TRATAMIENTO DE USUARIOS
     # ====================================
@@ -40,7 +41,7 @@ class gimnas(object):
             db.close()
 
     # Obtiene el id del siguiente usuario que se va a añadir.
-    def getId():
+    def getNextId():
         sql = "SELECT MAX(idclient)+1 nouId from clients"
         try:
             db = getConnection()
@@ -51,50 +52,23 @@ class gimnas(object):
         finally:
             db.close()
 
-    # Función para añadir el usuario a la BD en la tabla clientes.
-    def addUser(idclient, nom, llinatges, telefon):
-        sql = "INSERT INTO clients(idclient, nom, llinatges, telefon) VALUES (%s, %s, %s, %s);"
-        val = (idclient, nom, llinatges, telefon)
+    def fromID(user_id):
+        # Conexion a la BBDD del servidor mySQL
+        sql = "SELECT idclient,username,nom,llinatges,email,telefon from clients WHERE idclient= %s"
+        val = (user_id)
         try:
             db = getConnection()
             cursor = db.cursor()
             cursor.execute(sql, val)
+            ResQuery = cursor.fetchone()
+            if ResQuery:
+                return ResQuery
+            return None
         finally:
             db.close()
-
-    # Función para actualizar el usuario de la BD.
-    def updateUser(idclient, nom, llinatges, telefon):
-        sql = "UPDATE clients SET nom = %s, llinatges = %s, telefon = %s WHERE idclient = %s"
-        val = (nom, llinatges, telefon, idclient)
-        try:
-            db = getConnection()
-            cursor = db.cursor()
-            cursor.execute(sql, val)
-        finally:
-            db.close()
-
-    # Define la funcion para eliminar el usuario de la BD en la tabla clientes.
-    def eliminaUser(idclient):
-        sql = "DELETE from clients WHERE idclient= %s"
-        try:
-            db = getConnection()
-            cursor = db.cursor()
-            cursor.execute(sql, idclient)
-        finally:
-            db.close()
-
-    # Define la funcion para eliminar las reservas pertenecientes a un usuario para asi poder eliminar el usuario definitivamente.
-    def eliminaReservaUser(idclient):
-        sql = "DELETE from reserves WHERE idclient = %s"
-        try:
-            db = getConnection()
-            cursor = db.cursor()
-            cursor.execute(sql, idclient)
-        finally:
-            db.close()
-
     # GESTION DE RESERVAS
     # ============================
+
     def getReservas(swd, ewd):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \

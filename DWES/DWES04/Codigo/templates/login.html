@@ -16,8 +16,29 @@
 </head>
 <body class="text-center bg-dark text-white">
   <main class="form-signin">
-    <img class="mb-4" src="{{url_for('static', filename='img/remove.png')}}" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <img class="mb-4" src="{{url_for('static', filename='img/gym.png')}}" alt="" width="90%" height="90%">
+    <h1 class="h3 mb-3 fw-normal">DAW04 - Gimnàs MySQL Fitness</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == 'error' %}
+          <div class="alert alert-danger alter-dismissable fade show row" role="alert">
+            <div class="col-11 text-center">{{ message }}</div>
+            <div class="col-1 text-right">
+              <button type="button" class="btn-close" data-dismiss="alert"></button>
+            </div>
+          </div>
+          {% else %}
+          <div class="alert alert-success alter-dismissable fade show row" role="alert">
+            <div class="col-11 text-center">{{ message }}</div>
+            <div class="col-1 text-right">
+              <button type="button" class="btn-close" data-dismiss="alert"></button>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     <form class="text-dark" role="form"  method="post"	action="{{ url_for('login')}}">
       <div class="form-floating">
         <input type="text" class="form-control" id="username" name="username" placeholder="usuari" size=15 required>
