@@ -67,3 +67,7 @@ section#login {
     margin-left: -15px;
     margin-right: -15px;
 }
+
+td.user_reservation {
+    background-color: chartreuse;
+}

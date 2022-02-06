@@ -25,7 +25,7 @@ VALUES
   ),
   (
     2,
-    'skanami',
+    'sikari',
     'Shinji',
     'Ikari',
     'sikari@example.com',

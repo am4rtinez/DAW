@@ -45,7 +45,11 @@
                   {% endif %}
                   <th>{{ key2 }}</th>
                   {% for key3, day_item in hour_item.items() %}
-                    <td class="text-capitalize">{{day_item}}</td> 
+                    {% if day_item == "RESERVAT" %}
+                      <td class="text-capitalize user_reservation">{{day_item}}</td> 
+                    {% else %}
+                      <td class="text-capitalize">{{day_item}}</td>
+                    {% endif %}
                   {% endfor %}
                 </tr>
               {% endfor %}

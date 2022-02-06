@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, session
+from http import cookies
+from flask import Flask, make_response, render_template, request, flash, redirect, url_for, session
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 from datetime import datetime, timedelta, date
 from models import User
@@ -84,9 +85,11 @@ def generarTabla(reservas):
         pista = r['pista'].lower()
         hora = r['hora'].lower()
         dia = r['dia'].lower()
-        nom = r['nom']
-        llinatges = r['llinatges']
-        tabla[pista][hora][dia] = nom + " " + llinatges
+        idclient = r['idclient']
+        if current_user.id == idclient:
+            tabla[pista][hora][dia] = "RESERVAT"
+        else:
+            tabla[pista][hora][dia] = "NO DISPONIBLE"
 
 
 # Comprobamos si existe la reserva. En caso de no existir devolvera None.
@@ -127,6 +130,7 @@ def renderReserves(day):
     ewd = swd + timedelta(days=6)               # Dia final de la semana.
     # Obtiene la consulta de reservas que comprende los dias de la semana del día pasado por parámetro.
     reserves = dbo.getReservas(swd, ewd)
+    # print(reserves)
     # Genera la tabla de la cual se impriment los datos en el render.
     generarTabla(reserves)
     return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla)
@@ -134,19 +138,31 @@ def renderReserves(day):
 
 @app.route('/')
 def index():
-    # Si el usuario esta autenticado lo redirigimos al home.
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
+    # Se redirige directamente al login que es donde se revisa si el usuario esta logado o ha almacenado en las cookies las credenciales.
     return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # TODO Hay que comprobar si la sesion del usuario esta activa.
+    user_cookie = request.cookies.get('username_cookie')
+    pwd_cookie = request.cookies.get('user_pwd_cookie')
+
     # Si el usuario esta autenticado lo redirigimos al home.
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    # Si se llega al login a traves del formulario es que el usuario aun no esta logado.
+        return redirect(url_for('reserves'))
+    # Como no esta autenticado se comprueba si se han guardado las credenciales en las cookies (esto quiere decir que cerraron el navegador sin deslogarse)
+    if (user_cookie != None):
+        user = User()
+        if user.from_username(user_cookie) == False:
+            flash('Usuario incorrecto.', category='error')
+        else:
+            if user.check_user(pwd_cookie):
+                user.get_user_id()
+                login_user(user)
+                return redirect(url_for('reserves'))
+            else:
+                flash('Password incorrecto.', category='error')
+    # Si se llega al login a traves del formulario es que el usuario no se llego a logar nunca.
     if request.method == 'POST':
         user = User()
         usuari = request.form['username']
@@ -158,10 +174,16 @@ def login():
             if user.check_user(pwd):
                 user.get_user_id()
                 login_user(user)
-                return redirect(url_for('home'))
+                cookie = make_response(redirect(url_for('reserves')))
+                cookie.set_cookie('username_cookie', usuari, expires=datetime.now(
+                ) + timedelta(days=30))
+                cookie.set_cookie('user_pwd_cookie', pwd, expires=datetime.now(
+                ) + timedelta(days=30))
+                return cookie
+                # return redirect(url_for('home'))
             else:
                 flash('Password incorrecto.', category='error')
-
+    # Si no es ninguno de los casos anteriores es que se va a proceder a realizar el login.
     return render_template('login.html')
 
 
@@ -172,13 +194,17 @@ def logout():
     logout_user()
     session.clear()
     flash('Se ha cerrado la sesion.', category='success')
-    return redirect(url_for('login'))
+    # Hacemos que las cookies expiren para que el usuario no pueda logarse aunque indique que cierre la sesion.
+    cookie = make_response(redirect(url_for('login')))
+    cookie.set_cookie('username_cookie', '', expires=0)
+    cookie.set_cookie('user_pwd_cookie', '', expires=0)
+    return cookie
+    # return redirect(url_for('login'))
 
 
 @app.route('/home', methods=['GET', 'POST'])
 @login_required
 def home():
-    user = User()
     return render_template('home.html')
 
 
@@ -214,8 +240,14 @@ def formulari():
 @app.route('/reserves', methods=['GET', 'POST'])
 @login_required
 def reserves():
+    # Si el usuario tiene reservas se obtiene la mas actual y se muestra esa semana.
+    if dbo.check_reservas_usuario(current_user.id):
+        fecha = dbo.get_fecha_ultima_reserva(current_user.id)
+        print(fecha)
+        datetime_obj = datetime.strptime(str(fecha), "%Y-%m-%d").date()
+        return renderReserves(datetime_obj)
+    # Si no tiene reservas se muestra la semana actual.
     today = date.today()
-    # Como se ha accedido directamente desde ver reservas se muestran las reservas de esta semana.
     return renderReserves(today)
     # return redirect('home')
 
@@ -224,7 +256,7 @@ def reserves():
 @login_required
 def prev_week():
     fecha = request.args.get('fecha')
-    datetime_obj = datetime.strptime(fecha, '%Y-%m-%d')
+    datetime_obj = datetime.strptime(fecha, "%Y-%m-%d")
     # Obtenemos el dia de la semana anterior
     day = datetime_obj.date() - timedelta(days=7)
     return renderReserves(day)

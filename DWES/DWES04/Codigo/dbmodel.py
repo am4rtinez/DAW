@@ -58,7 +58,7 @@ class dbo(object):
     def getReservas(swd, ewd):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
-            "c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
+            "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
             str(swd) + "' AND '" + str(ewd) + "';"
         try:
@@ -69,6 +69,33 @@ class dbo(object):
             return ResQuery
         finally:
             db.close()
+
+    def check_reservas_usuario(user_id):
+        sql = "SELECT count(*) from reserves WHERE idclient = %s"
+        try:
+            db = getConnection()
+            cursor = db.cursor()
+            cursor.execute(sql, user_id)
+            ResQuery = cursor.fetchone()
+            print(ResQuery)
+            if ResQuery['count(*)'] > 0:
+                return True
+            else:
+                return False
+        finally:
+            db.close
+
+    def get_fecha_ultima_reserva(user_id):
+        sql = "SELECT DATE_FORMAT(data, '%Y-%m-%d') as data from reserves WHERE idclient = " + \
+            str(user_id) + " ORDER BY data DESC LIMIT 1"
+        try:
+            db = getConnection()
+            cursor = db.cursor()
+            cursor.execute(sql)
+            result = cursor.fetchone()
+            return result['data']
+        finally:
+            db.close
 
     def comprobarReserva(data, pista, client):
         sql = "SELECT * FROM reserves WHERE data = %s and idpista = %s and idclient = %s;"
