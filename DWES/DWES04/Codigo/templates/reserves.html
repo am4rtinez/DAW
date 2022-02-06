@@ -1,14 +1,12 @@
 {% extends "template_base.html"%}
-{% block tittle %} Tasca DWES3 - Gimnàs amb mySQL {% endblock %}
+{% block tittle %} Tasca DWES4 - Gimnàs amb mySQL {% endblock %}
 {% block content %}
-{% for message in get_flashed_messages() %}
-	
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  {{ message }}
-	  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>
-
-{% endfor %}
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
   <div class="row">
     <div class="alert alert-secondary text-center" role="alert">
       <div class="row">

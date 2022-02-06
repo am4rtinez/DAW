@@ -70,6 +70,20 @@ class dbo(object):
         finally:
             db.close()
 
+    def getListaReservas(swd, ewd):
+        sql = "SELECT p.tipo as pista, r.data as data, " + \
+            "c.idclient, c.nom, c.llinatges, p.preu, p.tipo as tipo FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
+            "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
+            str(swd) + "' AND '" + str(ewd) + "';"
+        try:
+            db = getConnection()
+            cursor = db.cursor()
+            cursor.execute(sql)
+            ResQuery = cursor.fetchall()
+            return ResQuery
+        finally:
+            db.close()
+
     def check_reservas_usuario(user_id):
         sql = "SELECT count(*) from reserves WHERE idclient = %s"
         try:

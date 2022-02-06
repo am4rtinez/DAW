@@ -25,6 +25,8 @@ def load_user(user_id):
     return None
 
 
+# Establecemos la categoria del mensage de login requerido por defecto.
+# Establece tambien el redireccionamiento.
 @login_manager.unauthorized_handler
 def unauthorized():
     # do stuff
@@ -32,8 +34,11 @@ def unauthorized():
     return redirect(url_for('login'))
 
 
-# TODO: El "superdiccionari" tabla no és necesari, pots passar les reserves i que sigui el template html qui, amb 2 bucles anidats, vagi generant tots els <td> i amb un if decideixi si hi fica informació o no.
-# Matriz de la tabla con los diccionarios por fila
+# TODO:
+# El "superdiccionari" tabla no és necesari, pots passar les reserves i que sigui el template html qui, amb 2 bucles anidats,
+# vagi generant tots els <td> i amb un if decideixi si hi fica informació o no.
+
+# Superdiccionario matriz de la tabla.
 tabla = {
     'exterior': {
         '15:00': {'dilluns': '', 'dimarts': '', 'dimecres': '', 'dijous': '', 'divendres': ''},
@@ -55,7 +60,7 @@ tabla = {
 
 
 # Funcion que resetea la matriz tabla para pintarla en el apartado de reservas.
-def resetTabla():
+def reset_tabla():
     global tabla
     tabla = {
         'exterior': {
@@ -77,10 +82,10 @@ def resetTabla():
     }
 
 
-# Rellena la tabla con las reservas de la seamana obtenidas a traves de consulta a la BD.
-def generarTabla(reservas):
+# Rellena la el superdiccionario con las reservas de la semana obtenidas a traves de consulta a la BD.
+def generar_tabla(reservas):
     global tabla
-    resetTabla()
+    reset_tabla()
     for r in reservas:
         pista = r['pista'].lower()
         hora = r['hora'].lower()
@@ -92,14 +97,34 @@ def generarTabla(reservas):
             tabla[pista][hora][dia] = "NO DISPONIBLE"
 
 
+# Funcion para no hacer uso del superdiccionario.
+def genera_taula_pistes(llistaRes):
+    taula = []
+    for fila in range(0, 5):
+        filaTemp = []
+        for columna in range(0, 6):
+            tempVal = ""
+            for reserva in llistaRes:
+                if reserva['data'].weekday() == fila and reserva['data'].hour == columna+15:
+                    if reserva['idclient'] == current_user.id:
+                        tempVal = tempVal + \
+                            "RESERVAT ["+reserva['tipo']+"]"+" "
+                    else:
+                        tempVal = tempVal + \
+                            "NO DISPONIBLE ["+reserva['tipo']+"]"+" "
+            filaTemp.append(tempVal)
+        taula.append(filaTemp)
+    return taula
+
+
 # Comprobamos si existe la reserva. En caso de no existir devolvera None.
-def comprobarReserva(data, pista, usuari):
+def comprobar_reserva(data, pista, usuari):
     reserva = dbo.comprobarReserva(data, pista, usuari)
     return reserva
 
 
 # Insercion de los datos de la reserva en BD.
-def crearReserva(data, pista, usuari):
+def crear_reserva(data, pista, usuari):
     # Definicio de variables necesaries
     global tabla
     dbo.insertReserva(data, pista, usuari)
@@ -107,7 +132,7 @@ def crearReserva(data, pista, usuari):
 
 # Devuelve el dia de la semana (entero) de una fecha pasada por parametro.
 # El formato de la decha es yyyy-mm-dd.
-def getWeekDay(data):
+def get_week_day(data):
     d = datetime.strptime(data, '%Y-%m-%d')
     return d.weekday()
 
@@ -116,7 +141,7 @@ def getWeekDay(data):
 # Error = 0 -> No hay error.
 # Error = 1 -> El error es intentar reservar en fin de semana.
 # Error = 2 -> La reserva ya existe.
-def renderRegistre():
+def render_registre():
     today = date.today()
     # Obtiene la lista de las pistas.
     lpistas = dbo.getPistas()
@@ -125,14 +150,17 @@ def renderRegistre():
 
 
 # Para optimizar codigo el render template de reserves se hace en esta funcion.
-def renderReserves(day):
+def render_reserves(day):
     swd = day - timedelta(days=day.weekday())   # Dia de inicio de la semana.
     ewd = swd + timedelta(days=6)               # Dia final de la semana.
     # Obtiene la consulta de reservas que comprende los dias de la semana del día pasado por parámetro.
     reserves = dbo.getReservas(swd, ewd)
-    # print(reserves)
+    # Obtiene la consulta de reservas para no usar el superdiccionario.
+    # lres = dbo.getListaReservas(swd, ewd)
     # Genera la tabla de la cual se impriment los datos en el render.
-    generarTabla(reserves)
+    generar_tabla(reserves)
+    # taula = genera_taula_pistes(lres)
+    # return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla, taula=taula)
     return render_template('reserves.html', fecha=day, swd=swd, ewd=ewd, tab=tabla)
 
 
@@ -144,6 +172,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Requests de las cookies.
     user_cookie = request.cookies.get('username_cookie')
     pwd_cookie = request.cookies.get('user_pwd_cookie')
 
@@ -218,22 +247,22 @@ def formulari():
         pista = request.form.get('tipopista')
         usuari = current_user.id
         # Comprobamos si el dia seleccionado para la reserva no es sabado o domingo.
-        weekday = getWeekDay(dia)
+        weekday = get_week_day(dia)
         # Sabado es 5 y Domingo es 6.
         if ((weekday == 5) or (weekday == 6)):
             flash('Ha seleccionado un dia de fin de semana.', category='error')
         else:
             data = dia + " " + hora + ":00:00"
             # Comprobamos si existe la reserva
-            existe = comprobarReserva(data, pista, usuari)
+            existe = comprobar_reserva(data, pista, usuari)
             if (existe == None):
                 # Si la reserva no existe entonces la creamos.
-                crearReserva(data, pista, usuari)
+                crear_reserva(data, pista, usuari)
                 flash('La reserva se ha realizado.', category='success')
             else:
                 # Si la reserva existe entonces devuelve template registro y muestra error.
                 flash('La reserva ya existe.', category='error')
-    return renderRegistre()
+    return render_registre()
     # return redirect('home')
 
 
@@ -245,10 +274,10 @@ def reserves():
         fecha = dbo.get_fecha_ultima_reserva(current_user.id)
         print(fecha)
         datetime_obj = datetime.strptime(str(fecha), "%Y-%m-%d").date()
-        return renderReserves(datetime_obj)
+        return render_reserves(datetime_obj)
     # Si no tiene reservas se muestra la semana actual.
     today = date.today()
-    return renderReserves(today)
+    return render_reserves(today)
     # return redirect('home')
 
 
@@ -259,7 +288,7 @@ def prev_week():
     datetime_obj = datetime.strptime(fecha, "%Y-%m-%d")
     # Obtenemos el dia de la semana anterior
     day = datetime_obj.date() - timedelta(days=7)
-    return renderReserves(day)
+    return render_reserves(day)
 
 
 @app.route('/next_week', methods=['GET', 'POST'])
@@ -269,10 +298,9 @@ def next_week():
     datetime_obj = datetime.strptime(fecha, '%Y-%m-%d')
     # Obtenemos el dia de la semana siguiente
     day = datetime_obj.date() + timedelta(days=7)
-    return renderReserves(day)
+    return render_reserves(day)
 
 
 if __name__ == '__main__':
     # Modificado para que el host sea visible en toda la red.
     app.run(host="0.0.0.0", debug=True)
-    # app.run(debug=True)
