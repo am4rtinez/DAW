@@ -99,9 +99,9 @@ class dbo(object):
         finally:
             db.close
 
-    def get_fecha_ultima_reserva(user_id):
+    def get_fecha_primera_reserva(user_id):
         sql = "SELECT DATE_FORMAT(data, '%Y-%m-%d') as data from reserves WHERE idclient = " + \
-            str(user_id) + " ORDER BY data DESC LIMIT 1"
+            str(user_id) + " ORDER BY data ASC LIMIT 1"
         try:
             db = getConnection()
             cursor = db.cursor()
