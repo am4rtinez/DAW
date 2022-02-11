@@ -23,13 +23,13 @@
                     document.write("<p>Máximo : " + max + "</p>");
                     const enteros = []
                     for (i = min; i<=max; i++){
-                        numero = Math.sqrt(i)
+                        let numero = Math.sqrt(i)
                         if (numero % 1 == 0) {
                             enteros.push(numero)
                         }
                     }
                     if(enteros.length != 0){
-                        cadena = ""
+                        let cadena = ""
                         for (i=0;i<enteros.length;i++){
                             console.log(enteros[i])
                             cadena = cadena + " " + enteros[i]
