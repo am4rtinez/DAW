@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/ico" href="../imatges/logo-cifp.ico"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/borsa.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/adreces.js"></script>
+
+    <title>Borsa de treball: Oferta</title>
+    <meta charset="utf-8">
+    <link href="../js/summernote/summernote.css" rel="stylesheet">
+    <script src="../js/summernote/summernote.min.js"></script>
+
+
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <a href="#"><img src="../imatges/logo-cifp.svg" height="75" width="55" class="pull-left"></a>
+        <h2><a href="../index.html">Borsa de treball</a> <small><a href="#">CIFP Pau Casesnoves</a></small></h2>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Empresa fictícia</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Adreces</a></li>
+                <li class="disabled"><a href="#">Estudis</a></li>
+                <li class="disabled"><a href="#">Idiomes</a></li>
+                <li class="disabled"><a href="#">Jornada laboral</a></li>
+                <li class="disabled"><a href="#">Persones de contacte</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right ">
+                <li><a href="../index.html"><span class="glyphicon glyphicon-log-out"></span> Tornar a l'índex</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <form id="formAdreces">
+        <h2>Adreça contacte</h2>
+        <div class='well' id="cont5">
+            <input type="hidden" name="idEmpresa" value="8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="adreca" class='control-label'>Adreça:</label>
+                        <input type="text" class="form-control" id="adreca" name="adreca" value=""
+                               maxlength="100" placeholder="Carrer Joan Miró 22">
+                    </div>
+                </div><!--col-->
+
+            </div><!--row-->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group required">
+                        <label for="codiPostal" class="control-label">Codi Postal:</label>
+                        <input type="text" class="form-control" id="codiPostal" name="codiPostal">
+                    </div>
+                </div><!--col-->
+                <div class="col-md-6">
+                    <div class="form-group required">
+                        <label for="localitat" class='control-label'>Localitat:</label>
+                        <input type="text" class="form-control" id="localitat" name="localitat" value="">
+                    </div>
+                </div><!--col-->
+            </div><!--row-->
+
+
+        </div><!--well-->
+
+        <h2>Adreça facturació</h2>
+        <div class='well' id="cont6">
+            <input type="hidden" name="idEmpresa" value="8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group required">
+                        <label for="adrecaFac" class='control-label'>Adreça:</label>
+                        <input type="text" class="form-control" id="adrecaFac" name="adrecaFac" value=""
+                               maxlength="100" placeholder="Carrer Joan Miró 22">
+                    </div>
+                </div><!--col-->
+
+            </div><!--row-->
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group required">
+                        <label for="codiPostalFac" class="control-label">Codi Postal:</label>
+                        <input type="text" class="form-control" id="codiPostalFac" name="codiPostalFac">
+                    </div>
+                </div><!--col-->
+                <div class="col-md-6">
+                    <div class="form-group required">
+                        <label for="localitatFac" class='control-label'>Localitat:</label>
+                        <input type="text   " class="form-control" id="localitatFac" name="localitatFac" value="">
+                    </div>
+                </div><!--col-->
+            </div><!--row-->
+
+
+        </div><!--well-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <div>
+                        <button class="btn btn-success" type="submit" id="bEditar">Guardar</button>
+                        <button class="btn btn-default" type="reset" id="bSuprimir">Cancel·lar</button>
+                    </div>
+                </div>
+            </div><!--col-->
+        </div><!--row-->
+    </form>
+
+
+    <div class="well">&copy; Centre Integrat de Formació Professional Pau Casesnoves <span
+            class="pull-right">Telèfon: <a href="tel:971881710">971 881 710</a> Correu electrònic: <a
+            href="mailto:orientacio@paucasesnovescifp.cat">orientacio@paucasesnovescifp.cat</a></span></div>
+</div><!--Contenidor -->
+</body>
+</html>

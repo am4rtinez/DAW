@@ -1,0 +1,54 @@
+.pull-left{
+    margin-right: 2em;
+}
+.tab-pane{
+    margin-bottom: 2em;
+    border: #ddd solid 1px;
+    border-top: none;
+    padding:1em;
+
+}
+.jumbotron{
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+}
+.well.click:hover{
+    /* background-color: #ddd;*/
+    /*ombra*/
+    -webkit-box-shadow: 14px 10px 14px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    14px 10px 14px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         14px 10px 14px 0px rgba(50, 50, 50, 0.75);
+    cursor:pointer;
+}
+p{
+    text-align: justify;
+}
+.img-dreta{
+    margin-left:1em; 
+    margin-bottom: 1em;
+}
+.form-group.required .control-label:after { 
+    content:"  *";
+    color:red;
+}
+
+.vermell{
+    color:red;
+}
+
+.notes{
+    font-size: smaller;
+    /*margin-top: 2em;*/
+}
+
+/*
+.jumbotron a, .jumbotron  a.visited {
+    color: #175e17;
+}*/
+.noLabel{
+    font-weight: normal;
+}
+
+.margeEsquerra{
+    margin-left: 2em;
+}

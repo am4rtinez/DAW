@@ -125,7 +125,8 @@ function getCentresPoblacio(poblacio) {
         }
     }
     // console.log(cpoblacio)
-    return toJSON(cpoblacio)
+    //return toJSON(cpoblacio)
+    return JSON.stringify(cpoblacio)
 }
 
 // Funcion que simula la llamada a una api rest. Devuelve el json en formato String.
