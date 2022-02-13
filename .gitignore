@@ -118,8 +118,27 @@ DAW-Workspace.code-workspace
 
 # =========================== DWES =====================================
 /DWES/*/Docs/*
-/DWES/*/Codigo/__pycache__
 /DWES/*/Codigo/.env
+*/.flaskenv
+/DWES/*/Codigo/__pycache__
+*/__pycache__
+/DWES/*/Codigo/venv
+
+
+# =========================== PYTHON =====================================
+.coverage
+
+*.pyc
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
 
 # =========================== FILES =====================================
 Martinez_Rodriguez_Angel_ASIGXX_Tarea.dotx
