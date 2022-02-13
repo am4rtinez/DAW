@@ -17,4 +17,7 @@ def create_app():
     from .auth import auth_bp
     app.register_blueprint(auth_bp)
 
+    from .site import site_bp
+    app.register_blueprint(site_bp)
+
     return app

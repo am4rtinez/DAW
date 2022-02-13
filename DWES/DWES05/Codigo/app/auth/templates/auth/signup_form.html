@@ -1,0 +1,53 @@
+{% extends "auth_template_base.html"%}
+{% block tittle %} Gimnas DWES05 - Signup {% endblock %}
+{% block content %}
+    <div class="form-signup">
+        <div class="card">
+            <form class="text-dark" role="form"  method="post"	action="{{ url_for('auth.signup')}}">
+                {{ form.hidden_tag() }}
+                <div class="card-header">
+                    <h1 class="text-center text-uppercase">
+                        Alta d'usuari
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        {{ form.username.label(class_="col text-center") }} {{ form.username(class_="col", minlength=6, size=15, placeholder="Usuario") }}
+                        {% for error in form.username.errors %} 
+                            <div class="alert alert-danger">
+                                {{ error }} 
+                            </div>
+                        {% endfor%}
+                    </div>
+                    <div class="row">
+                        {{ form.name.label(class="col text-center") }} {{ form.name(class="col mb-3", placeholder="Nom") }}
+                    </div>
+                    <div class="row">
+                        {{ form.lastname.label(class="col text-center") }} {{ form.lastname(class="col mb-3", placeholder="Llinatges") }}
+                    </div>
+                    <div class="row">
+                        {{ form.email.label(class="col text-center") }} {{ form.email(class="col mb-3", placeholder="email@example.com") }}
+                    </div>
+                    <div class="row">
+                        {{ form.phone.label(class="col text-center") }} {{ form.phone(class="col mb-3", placeholder="+34 666666666") }}
+                        {% for error in form.phone.errors %} 
+                            <div class="alert alert-danger">
+                                {{ error }} 
+                            </div>
+                        {% endfor%}
+                    </div>
+                    <div class="row">
+                        {{ form.password.label(class="col text-center") }} {{ form.password(class="col mb-3", placeholder="Password") }}
+                    </div>
+                    <div class="row">
+                        {{ form.password_check.label(class="col text-center") }} {{ form.password_check(class="col", placeholder="Password") }}
+                    </div>
+                    <hr>
+                    {{ form.submit(class="w-100 btn btn-lg btn-success") }}
+                    <input type="reset" class="mt-3 w-100 btn btn-lg btn-danger" value="Clear">
+                </div>
+            </form>
+        </div>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; A.Martinez - 2022</p>
+    </div>
+{% endblock %}

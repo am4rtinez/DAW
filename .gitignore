@@ -119,9 +119,10 @@ DAW-Workspace.code-workspace
 # =========================== DWES =====================================
 /DWES/*/Docs/*
 /DWES/*/Codigo/.env
+
 */.flaskenv
-/DWES/*/Codigo/__pycache__
 */__pycache__
+*__pycache__
 /DWES/*/Codigo/venv
 
 
