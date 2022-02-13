@@ -1,0 +1,1 @@
+Tutorial de referencia: https://j2logo.com/tutorial-flask-leccion-6-estructura-proyecto-flask-blueprints/
