@@ -118,17 +118,16 @@ DAW-Workspace.code-workspace
 
 # =========================== DWES =====================================
 /DWES/*/Docs/*
-/DWES/*/Codigo/.env
-
-*/.flaskenv
-*/__pycache__
-*__pycache__
-/DWES/*/Codigo/venv
-
 
 # =========================== PYTHON =====================================
-.coverage
+*.flaskenv
+*/__pycache__
+*__pycache__
+*/venv
+*venv
 
+.coverage
+*.env
 *.pyc
 
 instance/
