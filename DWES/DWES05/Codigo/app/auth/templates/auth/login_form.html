@@ -1,8 +1,9 @@
-{% extends "auth_template_base.html"%}
+{% extends "auth/auth_template_base.html"%}
 {% block tittle %} Gimnas DWES05 - Login {% endblock %}
 {% block content %}
   <div class="form-signin">
-    <img class="mb-4" src="{{url_for('static', filename='img/gym.png')}}" alt="" width="90%" height="90%">
+    <h1 class="mb-3 text-center text-white text-decoration-none">DWES05 - Gimnas</h1>
+    <img class="" src="{{url_for('static', filename='img/gym.png')}}" alt="" width="100%" height="100%">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
@@ -34,8 +35,9 @@
         {{ form.password(class_="form-control", placeholder="Password") }}
         {{ form.password.label(class_="text-center") }}
       </div>
-      {{ form.submit(class="w-100 btn btn-lg btn-success") }}
-      <p class="mt-5 mb-3 text-muted">&copy; A.Martinez - 2022</p>
+      {{ form.submit(class="mb-2 w-100 btn btn-lg btn-success") }}
+      <a class="w-100 btn btn-lg btn-signup" href="{{url_for('auth.signup')}}">Signup</a>
+      <p class="mt-5 mb-3 text-center text-muted">&copy; A.Martinez - 2022</p>
     </form>
   </div>
 {% endblock %}

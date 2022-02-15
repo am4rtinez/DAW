@@ -1,53 +1,148 @@
-{% extends "auth_template_base.html"%}
+{% extends "auth/auth_template_base.html"%}
 {% block tittle %} Gimnas DWES05 - Signup {% endblock %}
 {% block content %}
     <div class="form-signup">
-        <div class="card">
-            <form class="text-dark" role="form"  method="post"	action="{{ url_for('auth.signup')}}">
-                {{ form.hidden_tag() }}
-                <div class="card-header">
-                    <h1 class="text-center text-uppercase">
-                        Alta d'usuari
-                    </h1>
-                </div>
+        <form class="text-dark" role="form"  method="post"	action="{{ url_for('auth.signup')}}">
+            {{ form.hidden_tag() }}
+            <div class="card">
+                <h1 class="card-header text-uppercase">Alta Usuari</h1>
                 <div class="card-body">
+                    <!-- Username input -->
                     <div class="row mb-3">
-                        {{ form.username.label(class_="col text-center") }} {{ form.username(class_="col", minlength=6, size=15, placeholder="Usuario") }}
+                        <div class="input-group">
+                            {{ form.username.label(class="col col-form-label text-center") }}
+                            {{ form.username(class="col form-control", minlength=6, placeholder="Usuario") }}
+                            <span class="input-group-text" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right" 
+                                title="Maximo 15 caracteres." 
+                                id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
                         {% for error in form.username.errors %} 
                             <div class="alert alert-danger">
                                 {{ error }} 
                             </div>
                         {% endfor%}
                     </div>
-                    <div class="row">
-                        {{ form.name.label(class="col text-center") }} {{ form.name(class="col mb-3", placeholder="Nom") }}
+                    <!-- Name input -->
+                    <div class="row mb-3">
+                        <div class="input-group">
+                            {{ form.name.label(class="col col-form-label text-center") }}
+                            {{ form.name(class="col form-control", placeholder="Nom") }}
+                            <span class="input-group-text" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right" 
+                                title="Maximo 50 caracteres." 
+                                id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Lastname input -->
+                    <div class="row mb-3">
+                        <div class="input-group">
+                            {{ form.lastname.label(class="col col-form-label text-center") }}
+                            {{ form.lastname(class="col form-control", placeholder="Llinatges") }}
+                            <span class="input-group-text" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right" 
+                                title="Maximo 50 caracteres." 
+                                id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Email input -->
+                    <div class="row mb-3">
+                        <div class="input-group">
+                            {{ form.email.label(class="col col-form-label text-center") }}
+                            {{ form.email(class="col form-control", placeholder="email@example.com") }}
+                            <span class="input-group-text" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right" 
+                                title="Formato: email@example.com" 
+                                id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Phone imput -->
+                    <div class="row mb-3">
+                        <div class="input-group">
+                            {{ form.phone.label(class="col col-form-label text-center") }}
+                            {{ form.phone(class="col form-control", placeholder="+34 666666666") }} 
+                            <span class="input-group-text" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right"
+                                data-html="true"
+                                title="Formatos validos: &#010; 123456789 &#010; 123 456 789 &#010; (123)123456789 &#010; (123) 123456789 &#010; (123) 123 456 789 &#010; +123 123456789 &#010; +123 123 456 789 &#010; +(123)123456789 &#010; +(123) 123456789 &#010; +(123)123 456 789 &#010; +(123) 123 456 789" 
+                                id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>                  
+                    {% for error in form.phone.errors %} 
+                        <div class="alert alert-danger">
+                            {{ error }} 
+                        </div>
+                    {% endfor%}
+                    <div class="row mb-3">
+                        <div class="input-group">
+                            {{ form.password.label(class="col text-center") }}
+                            {{ form.password(class="col form-control", placeholder="Password") }}
+                            <span class="input-group-text" data-bs-toggle="tooltip" 
+                            data-bs-placement="right"
+                            data-html="true"
+                            title="Minimo 8 caracteres. &#010; Debe contener como minimo una mayuscula, una minuscula, un numero y un caracter especial."
+                            id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                     <div class="row">
-                        {{ form.lastname.label(class="col text-center") }} {{ form.lastname(class="col mb-3", placeholder="Llinatges") }}
-                    </div>
-                    <div class="row">
-                        {{ form.email.label(class="col text-center") }} {{ form.email(class="col mb-3", placeholder="email@example.com") }}
-                    </div>
-                    <div class="row">
-                        {{ form.phone.label(class="col text-center") }} {{ form.phone(class="col mb-3", placeholder="+34 666666666") }}
-                        {% for error in form.phone.errors %} 
-                            <div class="alert alert-danger">
-                                {{ error }} 
-                            </div>
-                        {% endfor%}
-                    </div>
-                    <div class="row">
-                        {{ form.password.label(class="col text-center") }} {{ form.password(class="col mb-3", placeholder="Password") }}
-                    </div>
-                    <div class="row">
-                        {{ form.password_check.label(class="col text-center") }} {{ form.password_check(class="col", placeholder="Password") }}
+                        <div class="input-group">
+                            {{ form.password_check.label(class="col col-form-label text-center form-check-label") }}
+                            {{ form.password_check(class="col form-control", placeholder="Password") }}
+                            <span class="input-group-text" 
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="right"
+                                data-html="true"
+                                title="Debe de coincidir con el campo password."
+                                id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                     <hr>
                     {{ form.submit(class="w-100 btn btn-lg btn-success") }}
                     <input type="reset" class="mt-3 w-100 btn btn-lg btn-danger" value="Clear">
                 </div>
-            </form>
-        </div>
-        <p class="mt-5 mb-3 text-muted text-center">&copy; A.Martinez - 2022</p>
+            </div>
+            <a class="mt-3 btn btn-lg btn-signup w-100" href="{{ url_for('auth.login') }}">Login</a>
+        </form>
+        <p class="mt-3 mb-3 text-muted text-center">&copy; A.Martinez - 2022</p>
     </div>
 {% endblock %}

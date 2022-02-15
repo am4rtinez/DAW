@@ -2,7 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, EmailField
 from wtforms.validators import DataRequired, Email, Length, ValidationError, Regexp
 
-
 # Expresiones regulares por segmentos:
 # Valida numeros de tipo [123456789]: ^\d{9}$
 # Valida numeros de tipo [(123)123456789]: ^\(\d{1,3}\)\d{9}$

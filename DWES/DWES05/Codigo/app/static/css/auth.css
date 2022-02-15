@@ -50,3 +50,12 @@ main {
 .form-signup form {
   padding: 15px;
 }
+
+.btn-signup {
+  background-color: orangered;
+  color: #fff;
+}
+
+.tooltip-inner {
+  white-space: pre-wrap;
+ }
