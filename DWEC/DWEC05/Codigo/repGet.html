@@ -26,7 +26,7 @@
 
                     mostrador.innerHTML = mostrador.innerHTML
                         + '<p><span class="titol">' + parts[0] + ":</span> "
-                        + parts[1] + "</p>";
+                        + decodeURIComponent(parts[1]) + "</p>";
                 }
             }
 
