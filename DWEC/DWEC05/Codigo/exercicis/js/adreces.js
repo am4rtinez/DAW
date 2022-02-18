@@ -11,40 +11,60 @@
 
 */
 
-function adrecaEvent(e) {
-    let adrecaFac = document.getElementById('adrecaFac')
-    adrecaFac.value = document.getElementById('adreca').value
-}
-
-function cpEvent(e) {
-    let codiPostalFac = document.getElementById('codiPostalFac')
-    codiPostalFac.value = document.getElementById('codiPostal').value
-}
-
-function locEvent(e) {
-    let localitatFac = document.getElementById('localitatFac')
-    localitatFac.value = document.getElementById('localitat').value
-}
-
-function killListeners() {
-    removeEventListener("keyup", adrecaEvent)
-    removeEventListener("keyup", cpEvent)
-    removeEventListener("keyup", locEvent)
-}
-
 window.onload = () => {
+    // Boton de cancelar
+    let reset = document.getElementById('bSuprimir')
+    // Inicializa los listeners.
+    initListeners()
+    // Listener para que el usuario si cancela el formulario los Listeners vuelvan a funcionar con normalidad.
+    // No es algo que se pida en el ejercicio pero en principio sería lo más lógico.
+    reset.addEventListener("click", initListeners)
+}
+
+// Funcion encargada de inicializar los listeners.
+function initListeners(){
+    // Inicializacion de los elementos direccion.
     let adreca = document.getElementById('adreca')
     let codiPostal = document.getElementById('codiPostal')
     let localitat = document.getElementById('localitat')
+
+    // Inicializacion de los elementos de facturacion.
     let adrecaFac = document.getElementById('adrecaFac')
     let codiPostalFac = document.getElementById('codiPostalFac')
     let localitatFac = document.getElementById('localitatFac')
 
-    adreca.addEventListener("keyup", adrecaEvent)
-    codiPostal.addEventListener("keyup", cpEvent )
-    localitat.addEventListener("keyup", locEvent)
+    // Listeners para copiar los valores de los campos de direccion en facturación.
+    adreca.addEventListener("keyup", copyAdrecaValue)
+    codiPostal.addEventListener("keyup", copyCPValue )
+    localitat.addEventListener("keyup", copyLocalitatValue)
 
-    adrecaFac.addEventListener("change", killListeners)
-    codiPostalFac.addEventListener("change", killListeners )
-    localitatFac.addEventListener("change", killListeners)
+    // Se generan listeners para que si se escribe en alguno de los campos de facturación dejen de copiarse los valores de los campos de direccion.
+    adrecaFac.addEventListener("keyup", killListeners)
+    codiPostalFac.addEventListener("keyup", killListeners)
+    localitatFac.addEventListener("keyup", killListeners)
+}
+
+// Funcion que copia los datos del campo adreca en adrecaFac.
+function copyAdrecaValue(e) {
+    document.getElementById('adrecaFac').value = document.getElementById('adreca').value
+}
+
+// Funcion que copia los datos del campo codiPostal en codiPostalFac.
+function copyCPValue(e) {
+    document.getElementById('codiPostalFac').value = document.getElementById('codiPostal').value
+}
+
+// Funcion que copia los datos del campo localitat en localitatFac.
+function copyLocalitatValue(e) {
+    document.getElementById('localitatFac').value = document.getElementById('localitat').value
+}
+
+// Funcion que se encarga de eliminar todos los listeners activos.
+function killListeners(e) {
+    document.getElementById('adreca').removeEventListener("keyup", copyAdrecaValue)
+    document.getElementById('codiPostal').removeEventListener("keyup", copyCPValue)
+    document.getElementById('localitat').removeEventListener("keyup", copyLocalitatValue)
+    document.getElementById('adrecaFac').addEventListener("keyup", killListeners)
+    document.getElementById('codiPostalFac').addEventListener("keyup", killListeners)
+    document.getElementById('localitatFac').addEventListener("keyup", killListeners)
 }
