@@ -1,6 +1,6 @@
 /*
   Exercici 1 ( 1,5 punts )
-  ---------------------------
+  ==============================================================================
   La pàgina login.html conté un formulari d'entrada a l'aplicació.
   Un usuari està fart de posar cada vegada l'usuari i la contrasenya. Vol tenir una còpia de la pàgina login.html al seu escriptori de manera que en carregar la pàgina al navegador, automàticament, s'ompli el formulari amb les dades correctes i s'enviï el formulari.
   Programau tot el necessari a login.js. 

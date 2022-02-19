@@ -1,14 +1,13 @@
 /* 
- Exercici 2 (3,5 punts)
+    Exercici 2 (3,5 punts)
+    ==============================================================================
+    Programa la pàgina adreces.html amb la següent funcionalitat.
 
- Programa la pàgina adreces.html amb la següent funcionalitat.
+    1. (1,5 punts) En canviar el valor de qualsevol camp de l'adreça de contacte s'ha de modificar el camp corresponent de l'adreça de facturació amb el valor acabat de modificar.
+    Per exemple, si l'usuari modifica el codi postal de l'adreça de contacte amb el valor 07300, s'ha d'actualitzar el valor de l'adreça de facturació a 07300.
 
- 1. (1,5 punts) En canviar el valor de qualsevol camp de l'adreça de contacte s'ha de modificar el camp corresponent de l'adreça de facturació amb el valor acabat de modificar.
- Per exemple, si l'usuari modifica el codi postal de l'adreça de contacte amb el valor 07300, s'ha d'actualitzar el valor de l'adreça de facturació a 07300.
-
- 2. (2 punts) Afegeix el necessari de manera que si l'usuari pitja qualsevol tecla dins d'un dels camps de l'adreça de facturació, ja no s'actualitzin els camps de facturació en modificar els de l'adreça de contacte.
- Per evitar sobrecàrregues, en pitjar una tecla dins qualsevol camp de l'adreça de facturació s'haurien d'anular tots els listeners que intervenen a l'exercici.
-
+    2. (2 punts) Afegeix el necessari de manera que si l'usuari pitja qualsevol tecla dins d'un dels camps de l'adreça de facturació, ja no s'actualitzin els camps de facturació en modificar els de l'adreça de contacte.
+    Per evitar sobrecàrregues, en pitjar una tecla dins qualsevol camp de l'adreça de facturació s'haurien d'anular tots els listeners que intervenen a l'exercici.
 */
 
 window.onload = () => {
