@@ -8,6 +8,13 @@ load_dotenv(path.join(basedir, '.env'))
 class Config(object):
     """Base config."""
     SECRET_KEY = environ.get('SECRET_KEY')
+    DB_USERNAME = environ.get('DB_USERNAME')
+    DB_PASSWORD = environ.get('DB_PASSWORD')
+    DB_HOST = environ.get('DB_HOST')
+    DB_PORT = environ.get('DB_PORT')
+    DB_NAME = environ.get('DB_NAME')
+    DB_CHARSET = environ.get('DB_CHARSET')
+
     # SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME')
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'

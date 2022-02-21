@@ -1,5 +1,5 @@
 {% extends "template_base.html"%}
-{% block tittle %} Tasca DWES4 - Gimnàs amb mySQL {% endblock %}
+{% block tittle %} Tasca DWES05 - Gimnàs amb mySQL {% endblock %}
 {% block content %}
   {% for message in get_flashed_messages() %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -11,13 +11,13 @@
     <div class="alert alert-secondary text-center" role="alert">
       <div class="row">
         <div class="col-sm-2">
-          <a href="{{url_for('prev_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/left.png')}}"></a>
+          <a href="{{url_for('site.prev_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/left.png')}}"></a>
         </div>
         <div class="col-sm-8">
           <h2> Reserves setmana {{swd}} a {{ewd}}</h2>
         </div>
         <div class="col-sm-2">
-          <a href="{{url_for('next_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/right.png')}}"></a>
+          <a href="{{url_for('site.next_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/right.png')}}"></a>
         </div>   
       </div>       
     </div>

@@ -1,21 +1,13 @@
 import pymysql.cursors
 import config
 
-# Inicializamos las variables de la conexion desde el fichero de configuracion.
-_host = config.db_host
-_user = config.db_user
-_password = config.db_password
-_db = config.db_name
-_charset = config.db_charset
-
-
 def getConnection():
     # You can change the connection arguments.
-    connection = pymysql.connect(host=_host,
-                                 user=_user,
-                                 password=_password,
-                                 db=_db,
-                                 charset=_charset,
+    connection = pymysql.connect(host=config.Config.DB_HOST,
+                                 user=config.Config.DB_USERNAME,
+                                 password=config.Config.DB_PASSWORD,
+                                 db=config.Config.DB_NAME,
+                                 charset=config.Config.DB_CHARSET,
                                  autocommit=True,
                                  cursorclass=pymysql.cursors.DictCursor)
     # print("Conexión a la BD satisfactoria!")

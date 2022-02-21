@@ -1,5 +1,5 @@
 {% extends "template_base.html"%}
-{% block tittle %} Tasca DWES4 - Gimnàs amb mySQL  {% endblock %}
+{% block tittle %} Tasca DWES05 - Gimnàs amb mySQL  {% endblock %}
 {% block content %}
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -33,7 +33,7 @@
   </div>
   <section class="container h-90">
     <div class="card">
-      <form name="reserva" method="POST" action="{{url_for('formulari')}}">
+      <form name="reserva" method="POST" action="{{url_for('site.formulari')}}">
         <div class="card-header text-center bg-secondary">
           <h4> Reserva pista</h4>
         </div>
