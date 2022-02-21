@@ -1,7 +1,6 @@
-from flask import abort, redirect, render_template, url_for, request, flash
-from flask_login import current_user, login_user, logout_user, login_required
+from flask import redirect, render_template, url_for, request, flash
+from flask_login import current_user, login_required
 from datetime import datetime, timedelta, date
-from app.models import User
 from app.dbmodel import dbo
 from app import login_manager
 from . import site_bp

@@ -1,5 +1,4 @@
 # Tarea Flask para entregar DWES05
-----------
 
 ## Introducción
 
@@ -40,6 +39,5 @@ Has de lliurar un fitxer comprimit que contingui els documents de la tasca i una
 **PrimerLLinatge_SegonLlinatge_DWES05.zip** o .rar
 
 ## Enlaces de interes
--------
 
 * Tutorial de referencia: https://j2logo.com/tutorial-flask-leccion-6-estructura-proyecto-flask-blueprints/

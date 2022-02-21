@@ -1,20 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app.dbmodel import dbo
-import pymysql.cursors
-import config
+from app.dbmodel import getConnection
 
-def getConnection():
-    # You can change the connection arguments.
-    connection = pymysql.connect(host=config.Config.DB_HOST,
-                                 user=config.Config.DB_USERNAME,
-                                 password=config.Config.DB_PASSWORD,
-                                 db=config.Config.DB_NAME,
-                                 charset=config.Config.DB_CHARSET,
-                                 autocommit=True,
-                                 cursorclass=pymysql.cursors.DictCursor)
-    # print("Conexión a la BD satisfactoria!")
-    return connection
 
 # By inheriting the UserMixin we get access to a lot of built-in attributes
 # which we will be able to call in our views!
@@ -46,17 +33,20 @@ class User(UserMixin):
     def from_id(self, user_id):
         # Conexion a la BBDD del servidor mySQL
         sql = "SELECT idclient,username,nom,llinatges,telefon,email from clients WHERE idclient = %s"
-        db = getConnection()
-        cursor = db.cursor()
-        cursor.execute(sql, user_id)
-        result = cursor.fetchone()
-        if result:
-            self.id = result['idclient']
-            self.username = result['username']
-            self.nom = result['nom']
-            self.llinatges = result['llinatges']
-            self.telefon = result['telefon']
-            self.email = result['email']
+        try:
+            db = getConnection()
+            cursor = db.cursor()
+            cursor.execute(sql, user_id)
+            result = cursor.fetchone()
+            if result:
+                self.id = result['idclient']
+                self.username = result['username']
+                self.nom = result['nom']
+                self.llinatges = result['llinatges']
+                self.telefon = result['telefon']
+                self.email = result['email']
+        finally:
+            db.close()
 
     # Funcion encargada de comparar los hashes de los passwords.
     # No en uso.
