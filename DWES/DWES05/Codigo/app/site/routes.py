@@ -63,7 +63,7 @@ def generar_tabla(reservas):
 
 # Comprobamos si existe la reserva. En caso de no existir devolvera None.
 def comprobar_reserva(data, pista, usuari):
-    reserva = dbo.comprobarReserva(data, pista, usuari)
+    reserva = dbo.comprobar_reserva(data, pista, usuari)
     return reserva
 
 
