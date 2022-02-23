@@ -104,8 +104,8 @@ class dbo(object):
             db.close
 
     def comprobarReserva(data, pista, client):
-        sql = "SELECT * FROM reserves WHERE data = %s and idpista = %s and idclient = %s;"
-        val = (data, pista, client)
+        sql = "SELECT * FROM reserves WHERE data = %s and idpista = %s;"
+        val = (data, pista)
         try:
             db = getConnection()
             cursor = db.cursor()

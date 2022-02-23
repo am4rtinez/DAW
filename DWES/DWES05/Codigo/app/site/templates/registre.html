@@ -7,19 +7,15 @@
         {% if category == 'error' %}
           <div class="row">
             <div class="alert alert-danger alter-dismissable fade show row" role="alert">
-              <div class="col-11 text-center">{{ message }}</div>
-              <div class="col-1 text-right">
-                <button type="button" class="btn-close" data-dismiss="alert"></button>
-              </div>
+              <div class="text-center">{{ message }}</div>
+              <button type="button" class="btn-close close" data-dismiss="alert"></button>
             </div>
           </div>
         {% else %}
           <div class="row">
             <div class="alert alert-success alter-dismissable fade show row" role="alert">
-              <div class="col-11 text-center">{{ message }}</div>
-              <div class="col-1 text-right">
-                <button type="button" class="btn-close" data-dismiss="alert"></button>
-              </div>
+              <div class="text-center">{{ message }}</div>
+              <button type="button" class="btn-close close" data-dismiss="alert"></button>
             </div>
           </div>
         {% endif %}

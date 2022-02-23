@@ -71,3 +71,10 @@ section#login {
 td.user_reservation {
     background-color: chartreuse;
 }
+
+.close {
+    position:absolute;
+    top:30%;
+    right:35px;
+    line-height:0;
+}

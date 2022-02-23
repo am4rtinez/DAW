@@ -84,6 +84,13 @@ def login():
 def signup():
     form = SignupForm()
     if request.method == 'POST':
+        username = request.form['username']
+        name = request.form['name']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        phone = request.form['phone']
+        password = request.form['password']
+        password_check = request.form['password_check']
         pass
     if form.validate_on_submit():
         session['usuari'] = form.username.data

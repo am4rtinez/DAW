@@ -54,7 +54,7 @@ class SignupForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired(),check_username, Length(min=6, max=15)])
     name = StringField('Nom', validators=[DataRequired(), Length(max=50)])
     lastname = StringField('Llinatges', validators=[DataRequired(), Length(max=50)])
-    email = EmailField('Email', validators=[DataRequired(), Email()])
+    email = EmailField('Email', validators=[DataRequired(), Email(message='This field requires a valid email address')])
     phone = StringField('Telefon', validators=[DataRequired(), Regexp(phone_regex, message='El telefono no tiene el formato correcto.'), Length(max=18)])
     password = PasswordField('Password', validators=[DataRequired()])
     password_check = PasswordField('Confirma Password', validators=[DataRequired()])

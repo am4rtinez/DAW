@@ -58,4 +58,11 @@ main {
 
 .tooltip-inner {
   white-space: pre-wrap;
- }
+}
+
+.close {
+  position:absolute;
+  top:30%;
+  right:35px;
+  line-height:0;
+}

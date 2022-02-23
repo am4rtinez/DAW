@@ -24,8 +24,9 @@
                             </span>
                         </div>
                         {% for error in form.username.errors %} 
-                            <div class="alert alert-danger">
-                                {{ error }} 
+                            <div class="alert alert-danger" role="alert">
+                                <div class="text-center">{{ error }}</div>
+                                <button type="button" class="btn-close close" data-dismiss="alert"></button>
                             </div>
                         {% endfor%}
                     </div>
@@ -80,7 +81,13 @@
                             </span>
                         </div>
                     </div>
-                    <!-- Phone imput -->
+                    {% for error in form.email.errors %} 
+                        <div class="alert alert-danger" role="alert">
+                            <div class="text-center">{{ error }}</div>
+                            <button type="button" class="btn-close close" data-dismiss="alert"></button>
+                        </div>
+                    {% endfor%}
+                    <!-- Phone input -->
                     <div class="row mb-3">
                         <div class="input-group">
                             {{ form.phone.label(class="col col-form-label text-center") }}
@@ -99,10 +106,12 @@
                         </div>
                     </div>                  
                     {% for error in form.phone.errors %} 
-                        <div class="alert alert-danger">
-                            {{ error }} 
+                        <div class="alert alert-danger" role="alert">
+                            <div class="text-center">{{ error }}</div>
+                            <button type="button" class="btn-close close" data-dismiss="alert"></button>
                         </div>
                     {% endfor%}
+                    <!-- Password input -->
                     <div class="row mb-3">
                         <div class="input-group">
                             {{ form.password.label(class="col text-center") }}
@@ -119,6 +128,7 @@
                             </span>
                         </div>
                     </div>
+                    <!-- Password check input -->
                     <div class="row">
                         <div class="input-group">
                             {{ form.password_check.label(class="col col-form-label text-center form-check-label") }}

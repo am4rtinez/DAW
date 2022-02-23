@@ -173,6 +173,6 @@ def formulari():
                 flash('La reserva se ha realizado.', category='success')
             else:
                 # Si la reserva existe entonces devuelve template registro y muestra error.
-                flash('La reserva ya existe.', category='error')
+                flash('La reserva que intenta realizar no esta disponible.', category='error')
     return render_registre()
     # return redirect('home')
