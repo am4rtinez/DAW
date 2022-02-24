@@ -102,8 +102,16 @@ class dbo(object):
             return result['data']
         finally:
             db.close
+    
+    ''' Funcion encargada de comprobar la primera reserva libre.'''
+    def get_reserva_libre():
+        pass
 
-    def comprobarReserva(data, pista, client):
+    ''' 
+    Corregida la funcion de comprobacion de reservas ya que solo comprobaba si existian reservas del usuario
+    y no comprobaba si habia reservas de otros clientes para el dia y franja horaria seleccionada.
+    '''
+    def comprobar_reserva(data, pista, client):
         sql = "SELECT * FROM reserves WHERE data = %s and idpista = %s;"
         val = (data, pista)
         try:
