@@ -1,0 +1,25 @@
+Este seria el codigo que sustituye a la tabla del superdiccionario.
+<div class="table-responsive">
+    <table class="table text-center table-responsive-md table-bordered table-striped table-sm bg-light border-dark">
+    <thead class="table-dark">
+        <tr>
+        <td>Hora</td>
+        <td>Dilluns</td>
+        <td>Dimarts</td>
+        <td>Dimecres</td>
+        <td>Dijous</td>
+        <td>Divendres</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fil in range(0,6) %}
+        <tr>
+            <th>{{fil+15}}:00</th>          
+            {% for col in range(0,5) %}
+            <td>{{taula[col][fil]}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>

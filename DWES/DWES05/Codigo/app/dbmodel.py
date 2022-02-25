@@ -13,11 +13,7 @@ def getConnection():
     # print("Conexión a la BD satisfactoria!")
     return connection
 
-
 class dbo(object):
-
-    # Establece la conexión a la BD.
-
     # TRATAMIENTO DE USUARIOS
     # ====================================
     # Obtiene el listado de usuarios.
@@ -47,7 +43,7 @@ class dbo(object):
     # GESTION DE RESERVAS
     # ============================
 
-    def getReservas(swd, ewd):
+    def get_reservas(swd, ewd):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
             "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
@@ -62,7 +58,7 @@ class dbo(object):
         finally:
             db.close()
 
-    def getListaReservas(swd, ewd):
+    def get_lista_reservas(swd, ewd):
         sql = "SELECT p.tipo as pista, r.data as data, " + \
             "c.idclient, c.nom, c.llinatges, p.preu, p.tipo as tipo FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
@@ -136,7 +132,7 @@ class dbo(object):
     # TRATAMIENTO DE PISTAS
     # ====================================
     # Obtiene el listado de pistas.
-    def getPistas():
+    def get_pistas():
         sql = "SELECT * from pistes"
         # print(sql)
         try:

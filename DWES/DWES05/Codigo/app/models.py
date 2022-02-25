@@ -1,3 +1,5 @@
+from msilib.schema import Error
+from tkinter import INSERT
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app.dbmodel import getConnection
@@ -18,6 +20,7 @@ class User(UserMixin):
         self.llinatges = "null"
         self.email = "null"
         self.telefon = "null"
+        self.fecha_alta = "null"
 
     # Obtiene el id del usuario a partir del username.
     def from_username(self, username):
@@ -32,7 +35,7 @@ class User(UserMixin):
     # Obtiene los datos del usuario a partir del id.
     def from_id(self, user_id):
         # Conexion a la BBDD del servidor mySQL
-        sql = "SELECT idclient,username,nom,llinatges,telefon,email from clients WHERE idclient = %s"
+        sql = "SELECT idclient,username,nom,llinatges,telefon,email,fecha_alta from clients WHERE idclient = %s"
         try:
             db = getConnection()
             cursor = db.cursor()
@@ -45,6 +48,7 @@ class User(UserMixin):
                 self.llinatges = result['llinatges']
                 self.telefon = result['telefon']
                 self.email = result['email']
+                self.fecha_alta = result['fecha_alta']
         finally:
             db.close()
 
@@ -82,6 +86,22 @@ class User(UserMixin):
         finally:
             db.close()
 
+    # Funcion para comprobar si existe el username (esta comprobación se podria hacer en el formulario también)
+    def check_username(self, username):
+        sql = "SELECT count(*) from clients WHERE username=%s"
+        try:
+            db = getConnection()
+            cursor = db.cursor()
+            cursor.execute(sql, self.username)
+            result = cursor.fetchone()
+            if result['count(*)'] != 0:
+                resposta = True
+            else:
+                resposta = False
+            return resposta
+        finally:
+            db.close()
+
     # Retorna el identificador de la BD del usuario a partir del username si existe.
     def get_user_id(self):
         sql = "SELECT idclient from clients WHERE username=%s"
@@ -98,6 +118,27 @@ class User(UserMixin):
         finally:
             db.close()
 
+    # Funcion para insertar el usuario usando el modelo de user.
+    def insert_user(self, username, nom, llinatges, email, telefon, fecha_alta, password):
+        self.username = username
+        self.nom = nom
+        self.llinatges = llinatges
+        self.email = email
+        self.telefon = telefon
+        self.fecha_alta = fecha_alta
+
+        if self.check_username(username):
+            raise Exception 
+        else:
+            sql = "INSERT INTO clients (username, nom, llinatges, email, telefon, fecha_alta, password) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            val = (username, nom, llinatges, email, telefon, fecha_alta, password)
+            try:
+                db = getConnection()
+                cursor = db.cursor()
+                cursor.execute(sql, val)
+            finally:
+                db.close()
+
     # Declaracion de los getters para la clase user.
     def get_id(self):
         return super().get_id()
@@ -110,9 +151,15 @@ class User(UserMixin):
 
     def get_llinatges(self):
         return self.llinatges
+    
+    def get_email(self):
+        return self.email
 
     def get_telefon(self):
         return self.telefon
 
     def get_email(self):
         return self.email
+
+    def get_fecha_alta(self):
+        return self.fecha_alta

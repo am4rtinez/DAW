@@ -15,7 +15,7 @@
                             <span class="input-group-text" 
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="right" 
-                                title="Maximo 15 caracteres." 
+                                title="Mínimo 6 caracteres y máximo 15 caracteres." 
                                 id="basic-addon1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
@@ -23,13 +23,13 @@
                                 </svg>
                             </span>
                         </div>
-                        {% for error in form.username.errors %} 
-                            <div class="alert alert-danger" role="alert">
-                                <div class="text-center">{{ error }}</div>
-                                <button type="button" class="btn-close close" data-dismiss="alert"></button>
-                            </div>
-                        {% endfor%}
                     </div>
+                    {% for error in form.username.errors %} 
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <div class="text-center">{{ error }}</div>
+                            <button type="button" class="btn-close close" data-dismiss="alert"></button>
+                        </div>
+                    {% endfor%}
                     <!-- Name input -->
                     <div class="row mb-3">
                         <div class="input-group">
@@ -38,7 +38,7 @@
                             <span class="input-group-text" 
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="right" 
-                                title="Maximo 50 caracteres." 
+                                title="Máximo 50 caracteres." 
                                 id="basic-addon1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
@@ -55,7 +55,7 @@
                             <span class="input-group-text" 
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="right" 
-                                title="Maximo 50 caracteres." 
+                                title="Máximo 50 caracteres." 
                                 id="basic-addon1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     {% for error in form.email.errors %} 
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger mt-3" role="alert">
                             <div class="text-center">{{ error }}</div>
                             <button type="button" class="btn-close close" data-dismiss="alert"></button>
                         </div>
@@ -96,7 +96,7 @@
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="right"
                                 data-html="true"
-                                title="Formatos validos: &#010; 123456789 &#010; 123 456 789 &#010; (123)123456789 &#010; (123) 123456789 &#010; (123) 123 456 789 &#010; +123 123456789 &#010; +123 123 456 789 &#010; +(123)123456789 &#010; +(123) 123456789 &#010; +(123)123 456 789 &#010; +(123) 123 456 789" 
+                                title="Formatos validos: &#010; 123456789 &#010; 123 456 789 &#010;  123 123456789 &#010; 123 123 456 789 &#010; (123)123456789 &#010; (123) 123456789 &#010; (123) 123 456 789 &#010; +123 123456789 &#010; +123 123 456 789 &#010; +(123)123456789 &#010; +(123) 123456789 &#010; +(123)123 456 789 &#010; +(123) 123 456 789" 
                                 id="basic-addon1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
@@ -106,7 +106,30 @@
                         </div>
                     </div>                  
                     {% for error in form.phone.errors %} 
-                        <div class="alert alert-danger" role="alert">
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <div class="text-center">{{ error }}</div>
+                            <button type="button" class="btn-close close" data-dismiss="alert"></button>
+                        </div>
+                    {% endfor%}
+                     <!-- Fecha alta input -->
+                     <div class="row mb-3">
+                        <div class="input-group">
+                            {{ form.fecha.label(class="col text-center") }}
+                            {{ form.fecha(class="col form-control", placeholder="dd/mm/yyyy") }}
+                            <span class="input-group-text" data-bs-toggle="tooltip" 
+                            data-bs-placement="right"
+                            data-html="true"
+                            title="Minimo 8 caracteres. &#010; Debe contener como minimo una mayuscula, una minuscula, un numero y un caracter especial."
+                            id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    {% for error in form.fecha.errors %} 
+                        <div class="alert alert-danger mt-3" role="alert">
                             <div class="text-center">{{ error }}</div>
                             <button type="button" class="btn-close close" data-dismiss="alert"></button>
                         </div>
@@ -128,6 +151,12 @@
                             </span>
                         </div>
                     </div>
+                    {% for error in form.password.errors %} 
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <div class="text-center">{{ error }}</div>
+                            <button type="button" class="btn-close close" data-dismiss="alert"></button>
+                        </div>
+                    {% endfor%}
                     <!-- Password check input -->
                     <div class="row">
                         <div class="input-group">
@@ -146,6 +175,12 @@
                             </span>
                         </div>
                     </div>
+                    {% for error in form.password_check.errors %} 
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <div class="text-center">{{ error }}</div>
+                            <button type="button" class="btn-close close" data-dismiss="alert"></button>
+                        </div>
+                    {% endfor%}
                     <hr>
                     {{ form.submit(class="w-100 btn btn-lg btn-success") }}
                     <input type="reset" class="mt-3 w-100 btn btn-lg btn-danger" value="Clear">

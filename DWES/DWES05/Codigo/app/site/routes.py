@@ -88,7 +88,7 @@ def get_week_day(data):
 def render_registre():
     today = date.today()
     # Obtiene la lista de las pistas.
-    lpistas = dbo.getPistas()
+    lpistas = dbo.get_pistas()
     # lusers = dbo.getUsers()                  # Obtiene la lista de usuarios.
     return render_template('registre.html', fecha=today, pistes=lpistas)
 
@@ -98,7 +98,7 @@ def render_reserves(day):
     swd = day - timedelta(days=day.weekday())   # Dia de inicio de la semana.
     ewd = swd + timedelta(days=6)               # Dia final de la semana.
     # Obtiene la consulta de reservas que comprende los dias de la semana del día pasado por parámetro.
-    reserves = dbo.getReservas(swd, ewd)
+    reserves = dbo.get_reservas(swd, ewd)
     # Obtiene la consulta de reservas para no usar el superdiccionario.
     # lres = dbo.getListaReservas(swd, ewd)
     # Genera la tabla de la cual se impriment los datos en el render.

@@ -1,7 +1,10 @@
 from flask import render_template, redirect, url_for, request, session, flash, make_response
 from flask_login import current_user, login_user, logout_user, login_required
+from werkzeug.security import generate_password_hash
 from werkzeug.urls import url_parse
 from datetime import datetime, timedelta, date
+from msilib.schema import Error
+import re
 from app.models import User
 from app import login_manager
 from . import auth_bp
@@ -25,14 +28,6 @@ def unauthorized():
     # do stuff
     flash(login_manager.login_message, category='error')
     return redirect(url_for('auth.login'))
-
-# @auth_bp.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-#     if request.method == 'POST':
-#         pass
-    
-#     return render_template('auth/login_form.html', form=form)
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -80,21 +75,29 @@ def login():
     # Si no es ninguno de los casos anteriores es que se va a proceder a realizar el login.
     return render_template('auth/login_form.html', form=form)
 
+
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
-    if request.method == 'POST':
-        username = request.form['username']
-        name = request.form['name']
-        lastname = request.form['lastname']
-        email = request.form['email']
-        phone = request.form['phone']
-        password = request.form['password']
-        password_check = request.form['password_check']
-        pass
+    # Si se hace el submit entramos en el if de lo contrario se carga el formulario
     if form.validate_on_submit():
-        session['usuari'] = form.username.data
-        return redirect(url_for("auth.login"))
+        username = form.username.data
+        name = form.name.data
+        lastname = form.lastname.data
+        email = form.email.data
+        phone = re.sub(r"\s+", "", form.phone.data)
+        fecha = form.fecha.data
+        password = form.password.data
+        password_hash = generate_password_hash(password)
+        user = User()     # Creamos un objeto usuario con el que luego realizar el insert.
+        try:
+            user.insert_user(username, name, lastname, email, phone, fecha, password_hash)  # Si el usuario existe lanza una excepcion.
+            flash('Usuario creado satisfactoriamente.', category='success')
+            return redirect(url_for("auth.login"))
+        except Exception:
+            flash(f"Usuario {username} ya existe en el sistema.", category='error')
+            return redirect(url_for("auth.login"))
+    # Carga el formulario ya que no ha hecho ninguna comprobación.
     return render_template('auth/signup_form.html', form=form)
 
 

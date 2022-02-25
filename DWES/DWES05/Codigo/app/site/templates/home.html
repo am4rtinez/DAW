@@ -32,12 +32,19 @@
     </div>
   </div>
   <section class="container h-90">
-    <h3>Dades de l'usuari</h3>
-    <p>Id: {{current_user.id}}</p>
-    <p>Usuari: {{current_user.username}}</p>
-    <p>Nom: {{current_user.nom}}</p>
-    <p>Llinatges: {{current_user.llinatges}}</p>
-    <p>Email: {{current_user.email}}</p>
-    <p>Telefon: {{current_user.telefon}}</p>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Dades de l'usuari</h3>
+      </div>
+      <div class="card-body">
+        <p>Id: {{current_user.id}}</p>
+        <p>Usuari: {{current_user.username}}</p>
+        <p>Nom: {{current_user.nom}}</p>
+        <p>Llinatges: {{current_user.llinatges}}</p>
+        <p>Email: {{current_user.email}}</p>
+        <p>Telefon: {{current_user.telefon}}</p>
+        <p>Fecha Alta: {{current_user.fecha_alta}}</p>
+      </div>
+    </div>
   </section>
 {% endblock %}
