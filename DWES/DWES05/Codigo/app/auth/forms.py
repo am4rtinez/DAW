@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, EmailField, DateField
 from wtforms.validators import DataRequired, Email, Length, ValidationError, Regexp, EqualTo
-from datetime import datetime, timedelta, date
+from datetime import date
 
 # Expresiones regulares por segmentos:
 # Valida numeros de tipo [123456789]: ^\d{9}$
@@ -19,17 +19,7 @@ from datetime import datetime, timedelta, date
 # Valida numeros de tipo [+(123) 123 456 789]: ^\+\(\d{1,3}\)([-\.\s]\d{3}){3}$
 PHONE_REGEX = '^\d{9}$|^\(\d{1,3}\)\d{9}$|^(\d{1,3})??([-\.\s]\d{3}){3}$|^(\d{1,3})??[-\.\s]\d{9}$|^\+\(\d{1,3}\)\d{9}$|^\+\d{1,3}[-\.\s]\d{9}$|^\(\d{1,3}\)[-\.\s]\d{9}$|^\+\(\d{1,3}\)[-\.\s]\d{9}$|^\d{3}([-\.\s]\d{3}){2}|^\+\d{1,3}([-\.\s]\d{3}){3}$|^\+\(\d{1,3}\)\d{3}([-\.\s]\d{3}){2}$|^\(\d{1,3}\)([-\.\s]\d{3}){3}$|^\+\(\d{1,3}\)([-\.\s]\d{3}){3}$'
 PASSWORD_REGEX = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
-# Valida numeros de tipo [(123)123456789]: ^(\()(\d{1,3})(\))(\d{9})$
-# Valida numeros de tipo [+(123)123456789]: ^(\+)(\()(\d{1,3})(\))(\d{9})$
-# Valida numeros de tipo [+123 123456789]: ^(\+)(\d{1,3})??[-\.\s]\d{9}$
-# Valida numeros de tipo [(123) 123456789]: ^(\()(\d{1,3})(\))([-\.\s])(\d{9})$
-# Valida numeros de tipo [+(123) 123456789]: ^(\+)(\()(\d{1,3})(\))([-\.\s])(\d{9})$
-# Valida numeros de tipo [123 456 789]: ^([-\.\s]\d{3}){3}$
-# Valida numeros de tipo [+123 123 456 789]: ^(\+)(\d{1,3})??([-\.\s]\d{3}){3}$
-# Valida numeros de tipo [+(123)123 456 789]: ^(\+)(\()(\d{1,3})(\))(\d{3})??([-\.\s]\d{3}){2}$
-# Valida numeros de tipo [(123) 123 456 789]: ^(\()(\d{1,3})(\))??([-\.\s]\d{3}){3}$
-# Valida numeros de tipo [+(123) 123 456 789]: ^(\+)(\()(\d{1,3})(\))??([-\.\s]\d{3}){3}$
-# phone_regex = '^(\d{9})$|^(\()(\d{1,3})(\))(\d{9})$|^(\+)(\()(\d{1,3})(\))(\d{9})$|^(\+)(\d{1,3})??[-\.\s]\d{9}$|^(\()(\d{1,3})(\))([-\.\s])(\d{9})$|^(\+)(\()(\d{1,3})(\))([-\.\s])(\d{9})$|^([-\.\s]\d{3}){3}$|^(\+)(\d{1,3})??([-\.\s]\d{3}){3}$|^(\+)(\()(\d{1,3})(\))(\d{3})??([-\.\s]\d{3}){2}$|^(\()(\d{1,3})(\))??([-\.\s]\d{3}){3}$|^(\+)(\()(\d{1,3})(\))??([-\.\s]\d{3}){3}$'
+
 
 class LoginForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired(), Length(max=15)])
@@ -48,12 +38,6 @@ Fecha Alta: Un camp date, inferior o igual al dia actual i amb format dia/mes/an
 Email: Ha de ser un camp correcte de correu electrònic.
 Telèfon: Pot ser en format "nacional" o "internacional", per tant ha de permetre números i els caràcters "( )+". També els espais, que eliminarà quan emmagatzemi el número a la base de dades.
 '''
-# def validate_date(form, fecha):
-#     today = date.today()
-#     print(today)
-#     print(form.fecha.data)
-#     if form.fecha.data > today:
-#         raise ValidationError(f'La fecha no puede ser superior a la de hoy {today}')
 
 class SignupForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired(), Length(min=6, max=15)])
@@ -74,7 +58,5 @@ class SignupForm(FlaskForm):
     
     def validate_fecha(self, fecha):
         today = date.today()
-        print(today)
-        print(self.fecha.data)
         if self.fecha.data > today:
             raise ValidationError(f'La fecha no puede ser superior a la de hoy {today.strftime("%d/%m/%Y")}')

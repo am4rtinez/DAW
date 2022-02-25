@@ -122,7 +122,6 @@ def reserves():
     # Si el usuario tiene reservas se obtiene la mas actual y se muestra esa semana.
     if dbo.check_reservas_usuario(current_user.id):
         fecha = dbo.get_fecha_ultima_reserva(current_user.id)
-        print(fecha)
         datetime_obj = datetime.strptime(str(fecha), "%Y-%m-%d").date()
         return render_reserves(datetime_obj)
     # Si no tiene reservas se muestra la semana actual.

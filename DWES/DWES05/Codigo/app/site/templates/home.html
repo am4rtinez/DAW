@@ -43,7 +43,7 @@
         <p>Llinatges: {{current_user.llinatges}}</p>
         <p>Email: {{current_user.email}}</p>
         <p>Telefon: {{current_user.telefon}}</p>
-        <p>Fecha Alta: {{current_user.fecha_alta}}</p>
+        <p>Fecha Alta: {{current_user.fecha_alta.strftime('%d/%m/%Y')}}</p>
       </div>
     </div>
   </section>

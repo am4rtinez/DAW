@@ -1,9 +1,7 @@
 from flask import render_template, redirect, url_for, request, session, flash, make_response
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash
-from werkzeug.urls import url_parse
 from datetime import datetime, timedelta, date
-from msilib.schema import Error
 import re
 from app.models import User
 from app import login_manager
@@ -87,8 +85,7 @@ def signup():
         email = form.email.data
         phone = re.sub(r"\s+", "", form.phone.data)
         fecha = form.fecha.data
-        password = form.password.data
-        password_hash = generate_password_hash(password)
+        password_hash = generate_password_hash(form.password.data) 
         user = User()     # Creamos un objeto usuario con el que luego realizar el insert.
         try:
             user.insert_user(username, name, lastname, email, phone, fecha, password_hash)  # Si el usuario existe lanza una excepcion.

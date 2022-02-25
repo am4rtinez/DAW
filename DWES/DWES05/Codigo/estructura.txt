@@ -3,6 +3,9 @@ Division funcional
 
 + DWES05
     |_ Codigo
+        |_ misc
+        |_ sql
+            |_ gimnas.sql
         |_ app
             |_ __init__.py
             |_ models.py

@@ -14,7 +14,7 @@
           <a href="{{url_for('site.prev_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/left.png')}}"></a>
         </div>
         <div class="col-sm-8">
-          <h2> Reserves setmana {{swd}} a {{ewd}}</h2>
+          <h2> Reserves setmana <span class="blue">{{swd.strftime('%d/%m/%Y')}}</span> a <span class="blue">{{ewd.strftime('%d/%m/%Y')}}</span></h2>
         </div>
         <div class="col-sm-2">
           <a href="{{url_for('site.next_week')}}?fecha={{fecha}}"><img src="{{url_for('static', filename='img/right.png')}}"></a>

@@ -15,7 +15,6 @@ class Config(object):
     DB_NAME = environ.get('DB_NAME')
     DB_CHARSET = environ.get('DB_CHARSET')
 
-    # SESSION_COOKIE_NAME = environ.get('SESSION_COOKIE_NAME')
     STATIC_FOLDER = 'static'
     TEMPLATES_FOLDER = 'templates'
     SESSION_COOKIE_SECURE =  True
@@ -23,10 +22,11 @@ class Config(object):
 
 class ProdConfig(Config):
     FLASK_ENV = 'production'
-    pass
+    DEBUG = False
+    TESTING = False
 
 
-class DevelopmentConfig(Config):
+class DevConfig(Config):
+    FLASK_ENV = 'development'
     DEBUG = True
     TESTING = True
-    SESSION_COOKIE_SECURE =  False

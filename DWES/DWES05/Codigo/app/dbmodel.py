@@ -10,7 +10,6 @@ def getConnection():
                                  charset=config.Config.DB_CHARSET,
                                  autocommit=True,
                                  cursorclass=pymysql.cursors.DictCursor)
-    # print("Conexión a la BD satisfactoria!")
     return connection
 
 class dbo(object):
@@ -79,7 +78,6 @@ class dbo(object):
             cursor = db.cursor()
             cursor.execute(sql, user_id)
             ResQuery = cursor.fetchone()
-            print(ResQuery)
             if ResQuery['count(*)'] > 0:
                 return True
             else:
@@ -134,7 +132,6 @@ class dbo(object):
     # Obtiene el listado de pistas.
     def get_pistas():
         sql = "SELECT * from pistes"
-        # print(sql)
         try:
             db = getConnection()
             cursor = db.cursor()
