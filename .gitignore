@@ -109,6 +109,8 @@ DAW-Workspace.code-workspace
 # =========================== DIW =====================================
 /DIW/Docs/*
 /DIW/*/Docs/*
+/DIW/*/audios/*
+/DIW/*/pymusicplayer_sample.py
 
 # =========================== DWEC =====================================
 /DWEC/DWEC01/Docs/*
