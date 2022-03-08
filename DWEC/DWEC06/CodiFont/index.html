@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pràctica formularis, esdeveniments i DOM</title>
+    <link href="css/practica.css" rel="stylesheet">
+    <link href="imatges/logo-cifp.ico" rel="icon" type="image/x-icon">
+</head>
+<body>
+<div id="container" class="containerPrincipal">
+    <div>
+        <div class="esquerra"><img src="imatges/cropped-Logo_Pau.png"></div>
+        <div>
+            <h3>Desenvolupament web al costat del client</h3>
+            <h2>Pràctica formularis, esdeveniments i DOM</h2>
+        </div>
+    </div>
+    <div>
+        <h1>
+            Instruccions</h1>
+        <ul>
+            <li>
+                <p>Crea
+                    un projecte al teu IDE, si utilitza projectes.</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>Al final de l’enunciat trobareu un fitxer comprimit amb els fitxers del projecte. Conté els
+                    <i>html</i> i els <i>js</i> necessaris per resoldre els exercicis.</p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p><b>Modifica només els arxius de la carpeta <i>exercicis</i>. Qualsevol altra fitxer no
+                    s’avaluarà.</b></p>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <p>Si un exercici no funciona perquè necessita codi que teniu a fitxers fora de la carpeta
+                    <i>exercicis,</i><b> la nota de l'exercici serà zero.</b></p>
+            </li>
+            <li><p>Els exercicis han de resoldre el cas general.</p></li>
+            <li><p>No es corregirà cap exercici que presenti més d’una versió.</p></li>
+            <li><p>El codi comentat o que no s’utilitzi en l’execució dels exercicis no es tendrà en compte per a la
+                correcció.</p></li>
+            <li><p>No es pot utilitzar codi javascript dins dels elements html.</p></li>
+            <li><p>No es pot utilitzar <i>innerText</i> ni <i> innerHTML</i>.</p></li>
+        </ul>
+        <h1>Exercicis</h1>
+        <h2><a id="exercici1"></a>Exercici 1 (5 punts)</h2>
+        <p>Programau el necessari a <i>espais.js</i> de manera que <i>espais.html</i> tengui la següent funcionalitat
+        </p>
+        <h3>Exercici 1.1 (1 punt)</h3>
+        <p>En carregar-se la pàgina s'ha de crear una estructura com la següent</p>
+        <p>&lt;div class="itemTipus"&gt;Centre Cultural&lt;/div&gt;</p>
+        <p>per a cada un dels valor que torna la funció <i>getTipus()</i> de <i>servidor.js</i>. </p>
+        <p><a href="espais.html">Ves-hi</a></p>
+        <h3>Exercici 1.2 (1,5 punts)</h3>
+        <p>Afegeix el codi necessari de manera que quan es pitgi el ratolí a sobre d'un dels elements creats a
+            l'exercici anterior ha de fer el següent:</p>
+        <ul>
+            <li><p>Ha d'assignar al div la classe <i>itemTipusSeleccionat</i>, de manera que sigui l'únic element que la
+                tengui. Els altres han de tenir la classe <i>itemTipus</i>. </p></li>
+            <li><p>Ha de cridar la funció del servidor <i>getEspaisTipus()</i> i per a cada un dels valors que torna
+                aquesta funció crear el codi següent dins l'element amb id <i>mostrador</i>: </p></li>
+        </ul>
+        <p>&lt;div class="espaiDiv"&gt;</p>
+        <p> &lt;p class="espaiNom"&gt;Es
+            Baluart&lt;button&gt;Més&lt;/button&gt;&lt;/p&gt;</p>
+        <p>&lt;/div&gt;</p>
+        <p><a href="espais.html">Ves-hi</a></p>
+        <h3>Exercici 1.3 (2,5 punts)</h3>
+        <p>Ara toca programar el comportament del botó. En pitjar-lo haurà d'incloure al <i>div</i> de l'espai un
+            paràgraf per a cada una d'aquestes dades: la descripció, la web, el mail i el telèfon.</p>
+        <p>A més haurà d'eliminar el botó, de manera que no es pugui a tornar a pitjar.</p>
+        <p>El div de l'espai hauria de quedar com aquest:</p>
+        <p>&lt;div class="espaiDiv"&gt;</p>
+        <p> &lt;p class="espaiNom"&gt;ArtArtà&lt;/p&gt;</p>
+        <p> &lt;p&gt;Aquest espai ...&lt;/p&gt;</p>
+        <p> &lt;p&gt;&lt;a href="https:/www.artarta.es"&gt;<a href="http://www.artarta.es/">www.artarta.es</a>&lt;/a&gt;&lt;/p&gt;
+        </p>
+        <p> &lt;p&gt;&lt;a href="email:<a href="mailto:info@artarta.es">info@artarta.es</a>"&gt;info@artarta.es&lt;/a&gt;&lt;/p&gt;
+        </p>
+        <p> &lt;p&gt;&lt;a href="tel:971835939"&gt;971835939&lt;/a&gt;&lt;/p&gt;</p>
+        <p>&lt;/div&gt;</p>
+        <p><a href="espais.html">Ves-hi</a></p>
+        <h2><a id="exercici2"></a>Exercici 2 (5 punts)<br></h2>
+        <p>A la pàgina <i>altaEspai.html</i> teniu un formulari per donar d'alta un nou espai al sistema. Heu de
+            programar el següent:</p>
+        <h3>Exercici 2.1 (2 punts)</h3>
+        <p>Recuperau les dades que torna la funció del servidor <i>getServeis()</i>. Per a cada una d'elles heu de
+            generar un <i>checkbox</i> amb el corresponent <i>label</i> dins el <i>div</i> anomenat <i>serveis</i>. </p>
+        <p>L'estructura que heu de generar és la següent:</p>
+        <p>&lt;label for="s1"&gt;Adaptat discapacitats&lt;/label&gt;</p>
+        <p>&lt;input type="checkbox" id="s1" name="servei" value="1"&gt;</p>
+        <p>Fixau-vos que:</p>
+        <ul>
+            <li>
+                <p>El contingut del <i>label</i> és una de les descripcions del servei, la que volgueu però utilitzau
+                    sempre la mateixa.</p>
+            </li>
+            <li><p>El <i>value</i> del <i>checkbox</i> és l'identificador del servei.</p></li>
+            <li><p>L'<i>id</i> del <i>checkbox</i> és una <i>s</i> concatenada amb l'identtificador del servei. </p>
+            </li>
+            <li><p>L'atribut <i>for</i> del <i>label</i> té el mateix valor que l'identificador del <i>checkbox</i>.
+            </p></li>
+        </ul>
+        <p><a href="altaEspai.html">Ves-hi</a></p>
+        <h3>Exercici 2.2 (2 punts)</h3>
+        <p>Recuperau les dades que torna la funció del servidor <i>getTipus</i><i>()</i>. Per a cada una d'elles heu de
+            generar un <i>radio</i> amb el corresponent <i>label</i> dins el <i>div</i> anomenat <i>modalitats</i>. </p>
+        <p>L'estructura que heu de generar és la següent:</p>
+        <p>&lt;label for="t4"&gt;Centre Cultural&lt;/label&gt;</p>
+        <p>&lt;input type="radio" id="t4" name="tipus" value="4"&gt;</p>
+        <p>Fixau-vos que:</p>
+        <ul>
+            <li><p>El contingut del <i>label</i> és una de les descripcions del tipus de centre, la que volgueu però
+                utilitzau sempre la mateixa.</p></li>
+            <li><p>El <i>value</i> del <i>radio</i> és l'identificador del tipus de centre.</p></li>
+            <li><p>L'<i>id</i> del <i>radio</i> és una <i>t</i> concatenada amb l'identtificador del tipus de centre.
+            </p></li>
+            <li><p>L'atribut <i>for</i> del <i>label</i> té el mateix valor que l'identificador del <i>radio</i>. </p>
+            </li>
+        </ul>
+        <p><a href="altaEspai.html">Ves-hi</a></p>
+        <h3>Exercici 2.3 (1 punt)</h3>
+        <p>Recuperau les dades que torna la funció del servidor <i>getModalitats()</i>. Per a cada una d'elles heu de
+            generar un <i>checkbox</i> amb el corresponent <i>label</i> dins el <i>div</i> anomenat <i>modalitats</i>.
+        </p>
+        <p>L'estructura que heu de generar és la següent:</p>
+        <p> &lt;label for="m2"&gt;Escultura&lt;/label&gt;</p>
+        <p>&lt;input type="checkbox" id="m2" name="modalitat" value="2"&gt;</p>
+        <p>Fixau-vos que:</p>
+        <ul>
+            <li><p>El contingut del <i>label</i> és una de les descripcions de la modalitat, la que volgueu però
+                utilitzau sempre la mateixa.</p></li>
+            <li><p>El <i>value</i> del <i>checkbox</i> és l'identificador de la modalitat.</p></li>
+            <li><p>L'<i>id</i> del <i>checkbox</i> és una <i>m</i> concatenada amb l'identificador de la modalitat. </p>
+            </li>
+            <li><p>L'atribut <i>for</i> del <i>label</i> té el mateix valor que l'identificador del <i>checkbox</i>.
+            </p></li>
+        </ul>
+        <p><a href="altaEspai.html">Ves-hi</a></p>
+        <h1> Lliurament</h1>
+        <p>Heu de <b>lliurar el contingut de la carpeta</b><b> </b><i><b>exercicis</b></i><i><b> </b></i><b>en un arxiu
+            comprimit</b>. La carpeta <i>exercicis</i> d’aquest arxiu<i> </i>es descomprimirà al meu projecte i serà el
+            que es corregirà. </p>
+        <p>Per
+            tant, qualsevol canvi que es faci a altres arxius es perdrà.</p>
+        <h1><br></h1>
+        <h1></a>Avaluació</h1>
+        <p>Aquesta tasca representa el 6.5% de la nota de l’apartat d’activitats de l’assignatura.</p>
+        <p>A cada exercici trobareu la seva puntuació sobre 10. </p>
+        <p>El 60% de la nota de l’exercici s’obtindrà si la solució resol el cas general del problema.</p>
+        <p>El 40% restant de la nota s’obtindrà depenent de l’optimització del codi. Com més eficient sigui i més ben
+            estructurat estigui, més nota tendrà en aquest apartat.</p>
+        <p>Es penalitzarà amb un 10% de la nota de l’exercici si el codi no està indentat, si els noms de les variables,
+            funcions, ... no són descriptius o si l’HTML que s’utilitzi per fer l’exercici i mostrar els resultats no és
+            correcte.</p>
+        <p>No es tendrà en compte per a la correcció el codi comentat, el que no s’utilitzi en cap lloc de la pràctica,
+            o les múltiples versions del codi.</p>
+        <p>Si els exercicis necessiten codi vostre que estigui a arxius diferents dels de la carpeta <i>exercicis</i>
+            aquest codi no és corregirà i la nota de l'exercici serà zero.</p>
+    </div>
+</div>
+</body>
+</html>

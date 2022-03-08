@@ -118,7 +118,8 @@ DAW-Workspace.code-workspace
 /DWEC/DWEC03/Docs/*
 /DWEC/DWEC04/Docs/*
 /DWEC/DWEC05/Docs/*
-*/Docs/
+/DWEC/*/Docs/*
+
 # =========================== DWES =====================================
 /DWES/*/Docs/*
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta d'espais</title>
+    <link href="css/practica.css" rel="stylesheet">
+    <link href="imatges/logo-cifp.ico" rel="icon" type="image/x-icon">
+    <script src="servidor/servidor.js"></script>
+    <script src="exercicis/altaEspai.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="capsal"><p>BaleArt</p></div>
+    <h1>Alta d'espais</h1>
+    <form id="formulari" action="repGet.html" method="get">
+        <p><label>Nom</label><input type="text" id="nom" name="nom"></p>
+        <p><label>Descripció català</label><textarea id="descCatala" name="descCatala"></textarea></p>
+        <p><label>Descripció castellà</label><textarea id="descCastella" name="descCastella"></textarea></p>
+        <p><label>Descripció anglès</label><textarea id="descAngles" name="descAngles"></textarea></p>
+        <p><label>Gestor</label><input type="text" id="gestor" name="gestor"></p>
+        <p><label>Correu electrònic</label><input type="email" id="email" name="email"></p>
+        <p><label>Web</label><input type="url" id="web" name="web"></p>
+        <p><label>Telèfon</label><input type="tel" id="telefon" name="telefon"></p>
+        <fieldset>
+            <legend>Serveis</legend>
+            <div id="serveis" class="inputs"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Modalitats</legend>
+            <div id="modalitats" class="inputs"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Tipus</legend>
+            <div id="tipus" class="inputs"></div>
+        </fieldset>
+        <p>
+            <button type="submit">Enviar</button>
+            <button type="reset">Reset</button>
+        </p>
+    </form>
+    <p><a href="index.html#exercici2">Tornar a l'index.</a></p>
+</div>
+</body>
+</html>
