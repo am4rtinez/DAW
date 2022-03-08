@@ -96,10 +96,11 @@ showEspaisTipus = (id) =>{
             // Definicion de varios atribuos.
             div.className = 'espaiDiv'
             p.className = 'espaiNom'
-            pdesc.style.display = 'none'
-            psite.style.display = 'none'
-            pemail.style.display = 'none'
-            ptel.style.display = 'none'
+            //pdesc.style.display = 'none'
+            pdesc.hidden = true
+            psite.hidden = true
+            pemail.hidden = true
+            ptel.hidden = true
 
             p.textContent = element['nom'] + " - " + element['registre']    //Aprovecho para poner el registro en el nombre
             pdesc.textContent = element['descripcions']['cat']
@@ -113,11 +114,11 @@ showEspaisTipus = (id) =>{
             btn.textContent = 'Més'
             // Cuando se clica el boton muestra los elementos ocultos y oculta el boton.
             btn.addEventListener('click', () => {
-                btn.style.display = 'none'
-                pdesc.style.display = ''
-                psite.style.display = ''
-                pemail.style.display = ''
-                ptel.style.display = ''
+                btn.hidden = true
+                pdesc.hidden = false
+                psite.hidden = false
+                pemail.hidden = false
+                ptel.hidden = false
             })
 
             //Hacemos los appendChild necesarios.
