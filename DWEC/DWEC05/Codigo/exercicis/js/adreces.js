@@ -10,6 +10,15 @@
     Per evitar sobrecàrregues, en pitjar una tecla dins qualsevol camp de l'adreça de facturació s'haurien d'anular tots els listeners que intervenen a l'exercici.
 */
 
+/**
+ * Correccion aplicada.
+ * 
+ * Ex 2.1: Podries eliminar les variables i assignar l'esdeveniment directament al getElementById
+ * Si programes l'onchange no s'executaria tantes vegades el codi.
+ * Podries fer els copyXXValue en una sola funció recuperant l'id des de l'esdeveniment.
+ * Ex 2.2: killListeners hauria d'eliminar l'esdeveniment als elements de facturació, no tornar-los a afegir.
+ */
+
 window.onload = () => {
     // Boton de cancelar
     let reset = document.getElementById('bSuprimir')
@@ -23,47 +32,27 @@ window.onload = () => {
 // Funcion encargada de inicializar los listeners.
 function initListeners(){
     // Inicializacion de los elementos direccion.
-    let adreca = document.getElementById('adreca')
-    let codiPostal = document.getElementById('codiPostal')
-    let localitat = document.getElementById('localitat')
+    document.getElementById('adreca').addEventListener("change", copyXXValue)
+    document.getElementById('codiPostal').addEventListener("change", copyXXValue )
+    document.getElementById('localitat').addEventListener("change", copyXXValue)
 
     // Inicializacion de los elementos de facturacion.
-    let adrecaFac = document.getElementById('adrecaFac')
-    let codiPostalFac = document.getElementById('codiPostalFac')
-    let localitatFac = document.getElementById('localitatFac')
-
-    // Listeners para copiar los valores de los campos de direccion en facturación.
-    adreca.addEventListener("keyup", copyAdrecaValue)
-    codiPostal.addEventListener("keyup", copyCPValue )
-    localitat.addEventListener("keyup", copyLocalitatValue)
-
-    // Se generan listeners para que si se escribe en alguno de los campos de facturación dejen de copiarse los valores de los campos de direccion.
-    adrecaFac.addEventListener("keyup", killListeners)
-    codiPostalFac.addEventListener("keyup", killListeners)
-    localitatFac.addEventListener("keyup", killListeners)
+    document.getElementById('adrecaFac').addEventListener("change", killListeners)
+    document.getElementById('codiPostalFac').addEventListener("change", killListeners)
+    document.getElementById('localitatFac').addEventListener("change", killListeners)
 }
 
-// Funcion que copia los datos del campo adreca en adrecaFac.
-function copyAdrecaValue(e) {
-    document.getElementById('adrecaFac').value = document.getElementById('adreca').value
-}
-
-// Funcion que copia los datos del campo codiPostal en codiPostalFac.
-function copyCPValue(e) {
-    document.getElementById('codiPostalFac').value = document.getElementById('codiPostal').value
-}
-
-// Funcion que copia los datos del campo localitat en localitatFac.
-function copyLocalitatValue(e) {
-    document.getElementById('localitatFac').value = document.getElementById('localitat').value
+// Funcion que copia los datos del campo adreca en facturacion.
+function copyXXValue(e){
+    document.getElementById(e.srcElement.id + 'Fac').value = document.getElementById(e.srcElement.id).value
 }
 
 // Funcion que se encarga de eliminar todos los listeners activos.
 function killListeners(e) {
-    document.getElementById('adreca').removeEventListener("keyup", copyAdrecaValue)
-    document.getElementById('codiPostal').removeEventListener("keyup", copyCPValue)
-    document.getElementById('localitat').removeEventListener("keyup", copyLocalitatValue)
-    document.getElementById('adrecaFac').addEventListener("keyup", killListeners)
-    document.getElementById('codiPostalFac').addEventListener("keyup", killListeners)
-    document.getElementById('localitatFac').addEventListener("keyup", killListeners)
+    document.getElementById('adreca').removeEventListener("change", copyXXValue)
+    document.getElementById('codiPostal').removeEventListener("change", copyXXValue)
+    document.getElementById('localitat').removeEventListener("change", copyXXValue)
+    document.getElementById('adrecaFac').removeEventListener("change", killListeners)
+    document.getElementById('codiPostalFac').removeEventListener("change", killListeners)
+    document.getElementById('localitatFac').removeEventListener("change", killListeners)
 }

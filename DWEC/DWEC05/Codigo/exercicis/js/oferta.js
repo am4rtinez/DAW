@@ -36,24 +36,34 @@
         }
 */
 
+/**
+ * Ex 3.1: El proxim formulari tendrà 100 camps.
+ * Bubbling: programes el keydown del formulari i s'executa sigui quin sigui l'element que ha disparat l'esdeveniment. 
+ * Amb el paràmetre event pots saber quin element l'ha disparat si et fa falta.
+ * 
+ * Ex 3.2: Ok
+ * 
+ * Ex 4: Pitjar el botó només és una de les maneres d'enviar un formulari. A l'exercici 1 ho heu fet per codi. 
+ * En aquest cas la validació del formulari no es faria. Els formularis es validen a l'onsubmit.
+ * Per impedir que els listeners assignats al mateix esdeveniment del mateix element no s'executen necessites stopImmediatePropagation.
+ * El return no fa falta.
+ * 
+ * Ex 5: Ok, també podries haver creat un objecte Javascript i utilitzar JSON.stringify()
+ */
+
 // En ningun momento se usa las expresiones regulares ya que no lo indica el ejercicio.
 window.onload = () => {
-    // Array de componentes para que genere los listeners de control de la letra A con una funcion generica.
-    let formEventComponents = ['idOferta', 'titol', 'tContracte', 'localitat', 'horari', 'textOferta']
     // Inicialización de los listeners.
-    initListeners(formEventComponents)
+    initListeners()
 }
 
-function initListeners(components){
+function initListeners(){
     // Definicion de elementos necesarios.
-    let form = document.getElementById('formOferta')
-    let bEditar = document.getElementById('bEditar')
-    // Inicializa los listeners de los componentes a revisar si escriben a/A
-    for (let component in components) {
-        document.getElementById(components[component]).addEventListener("keydown", lletraAEvent, false)
-    }
+    let form = document.getElementById('formOferta') 
+    // Inicializa listener a revisar si escribe a/A en los elementos del formulario.
+    form.addEventListener("keydown", lletraAEvent, false)
     // Listener del evento de click en el boton de submit. Aunque el evento submit se controla en el siguiente listener.
-    bEditar.addEventListener("click", formValidation, false);
+    document.getElementById('bEditar').addEventListener("click", formValidation, false);
     // Listener del evento submit. Para que esto suceda el formulario previamente ha sido validado por formValidation.
     form.addEventListener("submit", alertJSON, false);
 
@@ -108,8 +118,9 @@ const lletraAEvent = function (e) {
 
 // Validación del formulario. Si hay errores muestra una alerta, detiene la propagación del evento y evita el envio del formulario.
 const formValidation = function (e) {
-    // let form = e.target;
- 
+    let form = e.target;
+    console.log(this)
+
     // Comprobación de los campos obligatorios.
     let titol = document.getElementById('titol')
     let dPublicacio = document.getElementById('dPublicacio')
@@ -122,7 +133,7 @@ const formValidation = function (e) {
     if (titol.value == '') {
         showAlertRequiredData()
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();
         return false
     }
 
@@ -130,7 +141,7 @@ const formValidation = function (e) {
     if (dPublicacio.value == '') {
         showAlertRequiredData()
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();
         return false
     } else {
         // La data de publicació ha de ser anterior a la de finalització. 
@@ -138,7 +149,7 @@ const formValidation = function (e) {
         if (!compareDates(new Date(dFinal.value), new Date(dPublicacio.value))) {
             showAlertWrongDate()
             e.preventDefault();
-            e.stopPropagation();
+            e.stopImmediatePropagation();
             return false
         }
     }
@@ -147,7 +158,7 @@ const formValidation = function (e) {
     if (dFinal.value == '') {
         showAlertRequiredData()
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();
         return false
     } else {
         // La data de finalització ha de ser posterior a la data actual.
@@ -155,7 +166,7 @@ const formValidation = function (e) {
         if (!compareDates(new Date(dFinal.value), today)) {
             showAlertWrongDate()
             e.preventDefault();
-            e.stopPropagation();
+            e.stopImmediatePropagation();
             return false
         }
     }
@@ -164,11 +175,10 @@ const formValidation = function (e) {
     if (textOferta.value == '') {
         showAlertRequiredData()
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();
         return false
     }
     alert('Formulario validado.')
-    return
 }
 
 // Funcion que muestra en formato JSON los datos a traves de un alert.

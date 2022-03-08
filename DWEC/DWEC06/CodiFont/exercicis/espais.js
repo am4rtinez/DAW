@@ -50,10 +50,10 @@ function showEspaisTipus(id){
             let p = document.createElement('p')
             let pdesc = document.createElement('p')
             let psite = document.createElement('p')
-            let asite = document.createElement('a')
             let pemail = document.createElement('p')
-            let aemail = document.createElement('a')
             let ptel = document.createElement('p')
+            let asite = document.createElement('a')
+            let aemail = document.createElement('a')
             let atel = document.createElement('a')
             let btn = document.createElement('button')
 
