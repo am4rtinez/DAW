@@ -64,36 +64,6 @@ obtenerTipos = () => {
     });
 }
 
-/**
- * Inicializa los listeners para los divs itemTipus para mostrar el elemento seleccionado y filtrar a partir de el.
- */
-// initListeners = () => {
-//     let itemTipus = document.getElementsByClassName('itemTipus')
-//     for (let element of itemTipus){
-//         element.addEventListener("click", (e) => {
-//             console.log(e)
-//             let current = document.getElementsByClassName("itemTipusSeleccionat");
-//             if (current.length > 0) { 
-//                 current[0].className = current[0].className.replace(" itemTipusSeleccionat", "");
-//             }
-//             this.className += " itemTipusSeleccionat";
-//             let object = getTipusIdByDesc(e.target.textContent)
-//             showEspaisTipus(object.id)
-//         });
-//     }
-// }
-
-/**
- * Funcion que obtiene los datos de los tipos a partir de la descripcion.
- * En este caso se busca sobre la descripcion del tipo en catalan.
- * @param {*} desc 
- */
-// getTipusIdByDesc = (desc) => {
-//     const tipus = JSON.parse(getTipus())
-//     return tipus.find(element => element.cat == desc)
-//     // return tipus.find(element => element.esp == desc)
-//     // return tipus.find(element => element.eng == desc)
-// }
 
 /**
  * Funcion encargada de mostrar los distintos espacios filtrados por el id del tipo.
@@ -120,14 +90,10 @@ showEspaisTipus = (id) =>{
             // Definicion de varios atributos.
             div.className = 'espaiDiv'
             p.className = 'espaiNom'
-            // pdesc.style.display = 'none'
-            // psite.style.display = 'none'
-            // pemail.style.display = 'none'
-            // ptel.style.display = 'none'
-            pdesc.hidden = true
-            psite.hidden = true
-            pemail.hidden = true
-            ptel.hidden = true
+            pdesc.style.display = 'none'
+            psite.style.display = 'none'
+            pemail.style.display = 'none'
+            ptel.style.display = 'none'
 
             p.textContent = element.nom + " - " + element.registre    //Aprovecho para poner el registro en el nombre
             pdesc.textContent = element.descripcions.cat
@@ -140,17 +106,17 @@ showEspaisTipus = (id) =>{
             atel.textContent = element.telefon
 
             btn.textContent = 'Més'
-            // Evento para que cuando se clica el boton desoculta los elementos ocultos y oculta el boton.
+            /**
+             * Evento para que cuando se clica el boton desoculta los elementos ocultos y oculta el boton.
+             * Previamente hacia el uso del hidden. Pero siguiendo lo indicado en MDN Web Docs lo indicado es no hacer uso de esto para ocultar info
+             * que sera relevante para el usuario.
+             */ 
             btn.addEventListener('click', () => {
-                btn.hidden = true
-                // pdesc.style.display = 'none'
-                // psite.style.display = ''
-                // pemail.style.display = ''
-                // ptel.style.display = ''
-                pdesc.hidden = false
-                psite.hidden = false
-                pemail.hidden = false
-                ptel.hidden = false
+                btn.hidden = true           // El boton si se esconde con hidden ya que no sera relevante en un futuro.
+                pdesc.style.display = ''
+                psite.style.display = ''
+                pemail.style.display = ''
+                ptel.style.display = ''
             })
 
             //Hacemos los appendChild necesarios.
@@ -166,4 +132,35 @@ showEspaisTipus = (id) =>{
             parent.appendChild(div)
         });
     }
+    
+    /**
+     * Inicializa los listeners para los divs itemTipus para mostrar el elemento seleccionado y filtrar a partir de el.
+     */
+    // initListeners = () => {
+    //     let itemTipus = document.getElementsByClassName('itemTipus')
+    //     for (let element of itemTipus){
+    //         element.addEventListener("click", (e) => {
+    //             console.log(e)
+    //             let current = document.getElementsByClassName("itemTipusSeleccionat");
+    //             if (current.length > 0) { 
+    //                 current[0].className = current[0].className.replace(" itemTipusSeleccionat", "");
+    //             }
+    //             this.className += " itemTipusSeleccionat";
+    //             let object = getTipusIdByDesc(e.target.textContent)
+    //             showEspaisTipus(object.id)
+    //         });
+    //     }
+    // }
+    
+    /**
+     * Funcion que obtiene los datos de los tipos a partir de la descripcion.
+     * En este caso se busca sobre la descripcion del tipo en catalan.
+     * @param {*} desc 
+     */
+    // getTipusIdByDesc = (desc) => {
+    //     const tipus = JSON.parse(getTipus())
+    //     return tipus.find(element => element.cat == desc)
+    //     // return tipus.find(element => element.esp == desc)
+    //     // return tipus.find(element => element.eng == desc)
+    // }
 }
