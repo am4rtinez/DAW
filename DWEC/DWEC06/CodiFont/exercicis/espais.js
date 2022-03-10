@@ -33,10 +33,11 @@
  *  <p><a href="tel:971835939">971835939</a></p>
  * </div> 
  */
+const lang = 'cat'
 
 window.onload = () => {
     obtenerTipos()
-    initListeners()
+    // initListeners()
 }
 
 /**
@@ -45,12 +46,20 @@ window.onload = () => {
  */
 obtenerTipos = () => {
     const tipus = JSON.parse(getTipus())
-    let parent = document.getElementById("llistaTipus")         //Elemento parent donde se imprimiran los datos.array
+    let parent = document.getElementById("llistaTipus")         //Elemento parent donde se imprimiran los datos dil array
     tipus.forEach(element => {
         let div = document.createElement("div")                 //Crea el elemento div.
         div.setAttribute("class", "itemTipus")                  //Pone la clase itemTipus dentro del atributo class.
-        // div.setAttribute("id", element.id)                   //Set del id por el que se filtrara despues.
-        div.appendChild(document.createTextNode(element.cat))   //Muestra el elemento por la key cat.
+        div.appendChild(document.createTextNode(element[lang]))   //Muestra el elemento por la key cat.
+        // Inicializa el event listener del div.
+        div.addEventListener("click", () => {
+            let current = document.getElementsByClassName("itemTipusSeleccionat");
+            if (current.length > 0) { 
+                current[0].className = current[0].className.replace(" itemTipusSeleccionat", "");
+            }
+            this.className += " itemTipusSeleccionat";
+            showEspaisTipus(element.id)
+        });
         parent.appendChild(div)
     });
 }
@@ -58,32 +67,33 @@ obtenerTipos = () => {
 /**
  * Inicializa los listeners para los divs itemTipus para mostrar el elemento seleccionado y filtrar a partir de el.
  */
-initListeners = () => {
-    let itemTipus = document.getElementsByClassName('itemTipus')
-    for (let element of itemTipus){
-        element.addEventListener("click", (e) => {
-            let current = document.getElementsByClassName("itemTipusSeleccionat");
-            if (current.length > 0) { 
-                current[0].className = current[0].className.replace(" itemTipusSeleccionat", "");
-            }
-            this.className += " itemTipusSeleccionat";
-            let object = getTipusIdByDesc(e.target.textContent)
-            showEspaisTipus(object.id)
-        });
-    }
-}
+// initListeners = () => {
+//     let itemTipus = document.getElementsByClassName('itemTipus')
+//     for (let element of itemTipus){
+//         element.addEventListener("click", (e) => {
+//             console.log(e)
+//             let current = document.getElementsByClassName("itemTipusSeleccionat");
+//             if (current.length > 0) { 
+//                 current[0].className = current[0].className.replace(" itemTipusSeleccionat", "");
+//             }
+//             this.className += " itemTipusSeleccionat";
+//             let object = getTipusIdByDesc(e.target.textContent)
+//             showEspaisTipus(object.id)
+//         });
+//     }
+// }
 
 /**
  * Funcion que obtiene los datos de los tipos a partir de la descripcion.
  * En este caso se busca sobre la descripcion del tipo en catalan.
  * @param {*} desc 
  */
-getTipusIdByDesc = (desc) => {
-    const tipus = JSON.parse(getTipus())
-    return tipus.find(element => element.cat == desc)
-    // return tipus.find(element => element.esp == desc)
-    // return tipus.find(element => element.eng == desc)
-}
+// getTipusIdByDesc = (desc) => {
+//     const tipus = JSON.parse(getTipus())
+//     return tipus.find(element => element.cat == desc)
+//     // return tipus.find(element => element.esp == desc)
+//     // return tipus.find(element => element.eng == desc)
+// }
 
 /**
  * Funcion encargada de mostrar los distintos espacios filtrados por el id del tipo.
