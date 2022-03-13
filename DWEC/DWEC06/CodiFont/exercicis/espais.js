@@ -33,6 +33,13 @@
  *  <p><a href="tel:971835939">971835939</a></p>
  * </div> 
  */
+
+/**
+ * Variable que determina el idioma del contenido.
+ * cat - catalán.
+ * esp - español
+ * eng - english
+ */
 const lang = 'cat'
 
 window.onload = () => {
