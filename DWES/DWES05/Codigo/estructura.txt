@@ -1,41 +1,21 @@
 Division funcional
 -------
 
-+ DWES05
++ DWES06
     |_ Codigo
+        |_ app
+            |_ __init__.py
+            |_ api/
+                |_ __init__.py
+                |_ routes.py
         |_ misc
         |_ sql
             |_ gimnas.sql
-        |_ app
-            |_ __init__.py
-            |_ models.py
-            |_ dbmodel.py
-            |_ auth/
-                |_ __init__.py
-                |_ forms.py
-                |_ routes.py
-                |_ templates/
-                    |_ auth/
-                        |_ auth_template_base.html
-                        |_ login_form.html
-                        |_ signup_form.html
-                        |_ scripts.html
-            |_ site/
-                |_ __init__.py
-                |_ routes.py
-                |_ templates/
-                    |_ home.html
-                    |_ registre.html
-                    |_ reserves.html
-            |_ static/
-                |_ base.css
-            |_ templates/
-                |_ template_base.html
-                |_ nav.html
-                |_ footer.html
-                |_ scripts.html
-            |_ .env
-            |_ .flaskenv
-            |_ .gitignore
-            |_ requirements.txt
+        |_ .env
+        |_ .flaskenv
+        |_ config.py
+        |_ dbmodel.py
+        |_ requirements.txt
+        |_ rest.http
         |_ README.md
+        |_ run.py

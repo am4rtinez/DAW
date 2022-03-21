@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "d9c182f0-f9a3-4f61-bf78-24472a1313b6",
+		"name": "tasca UT6 Flask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "usuaris general",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/gimnas/usuari",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuaris ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/gimnas/usuari/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "nou Usuari",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"pepito1\",\r\n    \"password\":\"123456\",\r\n    \"nom\":\"pepe\",\r\n    \"llinatges\":\"Mas Menos\",\r\n    \"telefon\":\"999777555\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/gimnas/usuari",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
