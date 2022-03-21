@@ -57,6 +57,10 @@ class usuaris(Resource):
     TODO: GET: Retorna totes les reserves de la setmana indicada a "data" (en format YYYY-mm-dd ).
          Ha de retornar el nom de la pista i el username de l'usuari.
 '''
+class reservas_setmana(Resource):
+    def get(self):
+        
+        pass
 
 '''
 /gimnas/reserves
@@ -90,4 +94,4 @@ api.add_resource(testing, '/test')
 api.add_resource(usuaris_all, '/usuari')  #GET (llista de tots) i POST (afegir client)
 api.add_resource(usuaris, '/usuari/<int:id_user>')  #GET (un concret), PUT (modificar), DELETE (eliminar)
 api.add_resource(reserves, '/reserves')
-api.add_resource(reserves_usuari, '/reserves/usuari//<int:id_user>')
+api.add_resource(reserves_usuari, '/reserves/usuari/<int:id_user>')

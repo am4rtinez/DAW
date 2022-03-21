@@ -64,7 +64,6 @@ class gimnas(object):
             "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
             str(swd) + "' AND '" + str(ewd) + "';"
-        print(sql)
         self.cursor.execute(sql)
         ResQuery=self.cursor.fetchall()
         return ResQuery
@@ -74,7 +73,6 @@ class gimnas(object):
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
             "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE c.idclient = " + str(id_user) + ";"
-        print(sql)
         self.cursor.execute(sql)
         ResQuery=self.cursor.fetchall()
         return ResQuery

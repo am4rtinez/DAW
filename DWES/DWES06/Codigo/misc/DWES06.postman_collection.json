@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "14d5f7eb-9554-4c6b-b371-d74178d0aca5",
+		"name": "DWES06",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getUsuarisAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsuariId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReservesAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/reserves",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"reserves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReservesUsuariId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/reserves/usuari/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"reserves",
+						"usuari",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
