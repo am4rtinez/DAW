@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "14d5f7eb-9554-4c6b-b371-d74178d0aca5",
+		"_postman_id": "17675873-4a1c-48fd-9535-963a4c4cebf9",
 		"name": "DWES06",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -47,6 +47,27 @@
 			"response": []
 		},
 		{
+			"name": "deleteUsuariId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getReservesAll",
 			"request": {
 				"method": "GET",
@@ -83,6 +104,87 @@
 						"reserves",
 						"usuari",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReservesSetmanaData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/reserves/setmana/2022-03-21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"reserves",
+						"setmana",
+						"2022-03-21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postUsuaris",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"test\",\r\n    \"nom\" : \"test\",\r\n    \"llinatges\" : \"testing user\",\r\n    \"email\" : \"test@test.com\",\r\n    \"telefon\" : \"666777888\",\r\n    \"password\" : \"pass\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putUsuaris",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"test1\",\r\n    \"nom\" : \"test_1\",\r\n    \"password\" : \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari",
+						"5"
 					]
 				}
 			},

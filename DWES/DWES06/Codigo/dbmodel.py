@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash
 import pymysql.cursors
 import config
 
@@ -19,49 +20,61 @@ class gimnas(object):
     # TRATAMIENTO DE USUARIOS
     # ====================================
     def load_all_users(self):
-        sql="SELECT idclient, username, nom, llinatges, email, telefon, DATE_FORMAT(fecha_alta, '%Y-%m-%d %H:%m') as fecha_alta " + \
-            "from clients;"
+        # sql="SELECT idclient, username, nom, llinatges, email, telefon, DATE_FORMAT(fecha_alta, '%Y-%m-%d %H:%m') as fecha_alta " + \
+        #     "from clients;"
+        sql="SELECT idclient, username, nom, llinatges, email, telefon from clients;"
         self.cursor.execute(sql)
         ResQuery=self.cursor.fetchall()
         return ResQuery
 
-    def load_user(self,id_user):
-        sql="SELECT idclient, username, nom, llinatges, email, telefon, DATE_FORMAT(fecha_alta, '%Y-%m-%d %H:%m') as fecha_alta " + \
-            "from clients WHERE idclient = " + str(id_user) + ";"
+    def load_user(self, id_user):
+        # sql="SELECT idclient, username, nom, llinatges, email, telefon, DATE_FORMAT(fecha_alta, '%Y-%m-%d %H:%m') as fecha_alta " + \
+        #     "from clients WHERE idclient = " + str(id_user) + ";"
+        sql="SELECT idclient, username, nom, llinatges, email, telefon from clients WHERE idclient = " + str(id_user) + ";"
         self.cursor.execute(sql)
         ResQuery=self.cursor.fetchone()
         return ResQuery
     
-    def add_user(self,camps):
-        sql="SELECT MAX(ID_EDIT)+1 newid from editors";
+    def add_user(self, fields):
+        sql="SELECT MAX(idclient)+1 newid from clients";
         self.cursor.execute(sql)
         newid=self.cursor.fetchone()
-        sql="insert into editors (ID_EDIT"
-        for a in camps:
-            sql=sql+","+a
-        sql=sql+") VALUES ("+str(newid['newid'])
-        for a in camps:
-            sql=sql+",'"+camps[a]+"'"
-        sql=sql+")"
+        sql="insert into clients (idclient"
+        for field in fields:
+            sql = sql + ", " + field
+        sql = sql + ") VALUES ("+str(newid['newid'])
+        for field in fields:
+            if field == "password" or field == "PASSWORD":
+                sql = sql + ", '" + generate_password_hash(fields[field]) + "'"
+            else:
+                sql = sql + ", '" + fields[field] + "'"
+        sql = sql + ")"
         self.cursor.execute(sql)
         return newid['newid']
     
-    def modify_user(self,id_edit,camps):
-        for canvi in camps:
-            sql="UPDATE editors SET "+canvi+"='"+camps[canvi]+"' WHERE ID_EDIT="+str(id_edit)
+    def modify_user(self, id_user, fields):
+        sql="UPDATE clients SET "
+        for field in fields:
+            if field == "password" or field == "PASSWORD":
+                sql="UPDATE clients SET " + field + " = '" + generate_password_hash(fields[field]) + "' WHERE idclient = " + str(id_user) + ";"
+            else: 
+                sql="UPDATE clients SET " + field + " = '" + fields[field] + "' WHERE idclient = " + str(id_user) + ";"
             self.cursor.execute(sql)
 
-    def delete_user(self,id_edit):
-        sql="DELETE from editors WHERE ID_EDIT="+str(id_edit);
-        self.cursor.execute(sql)
+    def delete_user(self, id_user):
+        sql="DELETE from clients WHERE idclient = %s ;"
+        self.cursor.execute(sql, id_user)
 
     # GESTION DE RESERVAS
     # ============================
 
-    def get_reserves(self,swd, ewd):
+    # Funcion get_reserves encargado de listar las reservas de una semana.
+    # @swd - Día inicio semana.
+    # @ewd - Día fin semana.
+    def get_reserves(self, swd, ewd):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
-            "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
+            "c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
             str(swd) + "' AND '" + str(ewd) + "';"
         self.cursor.execute(sql)
@@ -71,12 +84,16 @@ class gimnas(object):
     def get_reserves_usuari(self,id_user):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
-            "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
+            "c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE c.idclient = " + str(id_user) + ";"
         self.cursor.execute(sql)
         ResQuery=self.cursor.fetchall()
         return ResQuery
     
+    def delete_reserva(self):
+        pass
+
+
     # Obtiene el listado de usuarios.
     # def getUsersAll(self):
     #     sql = "SELECT * from clients"
