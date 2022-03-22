@@ -1,3 +1,4 @@
+from dataclasses import field
 from werkzeug.security import generate_password_hash
 import pymysql.cursors
 import config
@@ -35,7 +36,7 @@ class gimnas(object):
         ResQuery=self.cursor.fetchone()
         return ResQuery
     
-    def add_user(self, fields):
+    def insert_user(self, fields):
         sql="SELECT MAX(idclient)+1 newid from clients";
         self.cursor.execute(sql)
         newid=self.cursor.fetchone()
@@ -52,7 +53,7 @@ class gimnas(object):
         self.cursor.execute(sql)
         return newid['newid']
     
-    def modify_user(self, id_user, fields):
+    def update_user(self, id_user, fields):
         sql="UPDATE clients SET "
         for field in fields:
             if field == "password" or field == "PASSWORD":
@@ -74,7 +75,7 @@ class gimnas(object):
     def get_reserves(self, swd, ewd):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
-            "c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
+            "c.username, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
             str(swd) + "' AND '" + str(ewd) + "';"
         self.cursor.execute(sql)
@@ -84,14 +85,23 @@ class gimnas(object):
     def get_reserves_usuari(self,id_user):
         sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
             "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
-            "c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
+            "c.username, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
             "ON r.idclient = c.idclient WHERE c.idclient = " + str(id_user) + ";"
         self.cursor.execute(sql)
         ResQuery=self.cursor.fetchall()
         return ResQuery
     
-    def delete_reserva(self):
-        pass
+    def insert_reserva(self, id_user, fields):
+        sql = "INSERT INTO reserves (data, idpista, idclient) VALUES ('" + str(fields['data']) + "', '" + str(fields['idpista']) + "', '" + str(id_user) + "');"
+        self.cursor.execute(sql)
+
+    def delete_reserva(self, id_user, fields):
+        sql = "DELETE FROM reserves WHERE data = '" + str(fields['data']) + "' AND idpista = '" + str(fields['idpista']) + "' AND idclient = '" + str(id_user) + "';"
+        self.cursor.execute(sql)
+
+
+
+
 
 
     # Obtiene el listado de usuarios.
@@ -101,49 +111,8 @@ class gimnas(object):
     #     ResQuery = self.cursor.fetchall()
     #     return ResQuery
 
-    # Obtiene el id del siguiente usuario que se va a añadir.
-    # def getNextId():
-    #     sql = "SELECT MAX(idclient)+1 nouId from clients"
-    #     try:
-    #         db = getConnection()
-    #         cursor = db.cursor()
-    #         cursor.execute(sql)
-    #         Id = cursor.fetchone()
-    #         return Id['nouId']
-    #     finally:
-    #         db.close()
-
     # GESTION DE RESERVAS
     # ============================
-
-    # def get_reservas(swd, ewd):
-    #     sql = "SELECT p.tipo as pista, DATE_FORMAT(r.data, '%Y-%m-%d') as data, " + \
-    #         "DATE_FORMAT(r.data, '%H:%i') as hora, DATE_FORMAT(r.data, '%W', 'ca_ES') as dia, " + \
-    #         "c.idclient, c.nom, c.llinatges, p.preu FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
-    #         "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
-    #         str(swd) + "' AND '" + str(ewd) + "';"
-    #     try:
-    #         db = getConnection()
-    #         cursor = db.cursor()
-    #         cursor.execute(sql)
-    #         ResQuery = cursor.fetchall()
-    #         return ResQuery
-    #     finally:
-    #         db.close()
-
-    # def get_lista_reservas(swd, ewd):
-    #     sql = "SELECT p.tipo as pista, r.data as data, " + \
-    #         "c.idclient, c.nom, c.llinatges, p.preu, p.tipo as tipo FROM reserves r LEFT JOIN pistes p ON r.idpista = p.idpista LEFT JOIN clients c " + \
-    #         "ON r.idclient = c.idclient WHERE data BETWEEN '" + \
-    #         str(swd) + "' AND '" + str(ewd) + "';"
-    #     try:
-    #         db = getConnection()
-    #         cursor = db.cursor()
-    #         cursor.execute(sql)
-    #         ResQuery = cursor.fetchall()
-    #         return ResQuery
-    #     finally:
-    #         db.close()
 
     # def check_reservas_usuario(user_id):
     #     sql = "SELECT count(*) from reserves WHERE idclient = %s"

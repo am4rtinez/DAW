@@ -1,11 +1,13 @@
 from flask import request
 from flask_restful import Resource, Api
 from datetime import datetime, timedelta, date
+
+from pymysql import IntegrityError
 from . import api_bp
 import dbmodel
 
 api = Api(api_bp)
-mt=dbmodel.gimnas()
+mt = dbmodel.gimnas()
 
 # Devuelve el dia de la semana (entero) de una fecha pasada por parametro.
 # El formato de la decha es yyyy-mm-dd.
@@ -31,15 +33,19 @@ class testing(Resource):
 class usuaris_all(Resource):
     def get(self):
         mt.conecta()
-        result=mt.load_all_users()
+        result = mt.load_all_users()
         mt.desconecta()        
         return result
 
     def post(self):
-        mt.conecta()
-        result=mt.add_user(request.json)
-        mt.desconecta()  
-        return result
+        try:
+            mt.conecta()
+            result = mt.insert_user(request.json)
+            mt.desconecta()  
+            return result, 201
+        except Exception as e:
+            if e.args[0] == 1062:
+                return { "error" : "ER_DUP_ENTRY", "error_code" : e.args[0], "message" : e.args[1]}, 500
 
 '''
 /gimnas/usuari/id
@@ -50,19 +56,21 @@ class usuaris_all(Resource):
 class usuaris(Resource):
     def get(self, id_user):
         mt.conecta()
-        result=mt.load_user(id_user)
+        result = mt.load_user(id_user)
         mt.desconecta()
         return result
     
     def put(self, id_user):
         mt.conecta()
-        result=mt.modify_user(id_user, request.json)
+        result = mt.update_user(id_user, request.json)
         mt.desconecta()
+        return 'OK', 200
 
     def delete(self, id_user,):
         mt.conecta()
-        result=mt.delete_user(id_user)
+        result = mt.delete_user(id_user)
         mt.desconecta()
+        return '', 204
 
 '''
 /gimnas/reserves/setmana/data
@@ -90,28 +98,39 @@ class reserves(Resource):
         week = get_week(date.today())  # Obtiene los dias de inicio y fin de la semana a partir de la fecha de hoy.
         # week[0] - Dia de inicio de la semana.
         # week[1] - Dia final de la semana.
-        result=mt.get_reserves(week[0], week[1])
+        result = mt.get_reserves(week[0], week[1])
         mt.desconecta()        
         return result
 
 '''
 /gimnas/reserves/usuari/id_usuari
     GET: Retorna totes les reserves del l'usuari amb id=id_usuari, indicant el nom de la pista
-    TODO: POST: Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON
-    TODO: DELETE: Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON
+    POST: Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON
+    DELETE: Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON
 '''
 class reserves_usuari(Resource):
     def get(self,id_user):
         mt.conecta()
-        result=mt.get_reserves_usuari(id_user)
+        result = mt.get_reserves_usuari(id_user)
         mt.desconecta()        
-        return result\
+        return result
     
     def post(self, id_user):
-        pass
+        try:
+            mt.conecta()
+            result = mt.insert_reserva(id_user, request.json)
+            mt.desconecta()
+            # return "Done"
+            return "Reserva insertada", 201, {'content-type': 'json'}
+        except Exception as e:
+            if e.args[0] == 1062:
+                return { "error" : "ER_DUP_ENTRY", "error_code" : e.args[0], "message" : e.args[1]}, 500
 
     def delete(self, id_user):
-        pass
+        mt.conecta()
+        result = mt.delete_reserva(id_user, request.json)
+        mt.desconecta()
+        return '', 204
 
 api.add_resource(testing, '/test')
 api.add_resource(usuaris_all, '/usuari')                                # GET (lista de todos) i POST (añadir usuari)

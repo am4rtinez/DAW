@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="'css/style.css'">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>API-REST Gimnas</title>
 </head>
@@ -30,9 +30,128 @@
         </div>
     </header>
     <main>
-        <section class="container h-90">
-            Hola mundo
-        </section>
+        <div class="container h-90 pt-3">
+            <section class="container">
+                <header><h2>API Reference</h2></header>
+                <div>API REST per gestionar el Gimnas DWES.</div>
+                <br>
+                <div class="card text-white" style="width: 20rem;">
+                    <div class="card-header bg-black">
+                        BASE URL 
+                    </div>
+                    <div class="card-body bg-dark">
+                        http://localhost:5000
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <header><h2>Operacions sobre usuaris</h2></header>
+                <article>
+                    <div class="card text-white">
+                        <div class="card-header bg-black">Endpoints:</div>
+                        <div class="card-body bg-dark">
+                            <div><span class="text-success">GET</span> /gimnas/usuari</div>
+                            <div><span class="text-warning">POST</span> /gimnas/usuari</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pt-3">
+                            <h3>GET</h3>
+                            <p>Retorna una llista amb tots els camps de la llista usuaris excepte el password.</p>
+                        </div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_get_usuaris"></code></pre>
+                        </div>
+                        <div class="pt-3">
+                            <h3>POST</h3>
+                            <p>Afegeix un usuari (fent la conversió a hash del password).</p>
+                            <p>El JSON ha de tenir el siguent format:</p>
+                        </div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_post_usuaris"></code></pre>
+                        </div>
+                        <div class="pt-3">
+                            <ul>
+                                <li>username - Username de l'usuari.</li>
+                                <li>nom - Nom de l'usuari.</li>
+                                <li>llinatges llinatges de l'usuari.</li>
+                                <li>email - Email de contacte.</li>
+                                <li>telefon - Telefon de contacte.</li>
+                                <li>password - El sistema s'encarregara d'encriptar-la abans d'enmagatzemar-la.</li>
+                            </ul>
+                            <p>Quan es faci el instert retorna l'id del usuari (autogenerat amb l'insert).</p>
+                        </div>
+                    </div>
+                </article>
+                <hr>
+                <article>
+                    <div class="card text-white">
+                        <div class="card-header bg-black">Endpoints:</div>
+                        <div class="card-body bg-dark">
+                            <div><span class="text-success">GET</span> /gimnas/usuari/id</div>
+                            <div><span class="text-primary">PUT</span> /gimnas/usuari/id</div>
+                            <div><span class="text-danger">DELETE</span> /gimnas/usuari/id</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>GET: retorna els detalls de l'usuari excepte el password</div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_get_usuari_id"></code></pre>
+                        </div>
+                        <div>PUT: Modifica els camps d'un usuari. Si és el password s'ha de fer el hash</div>
+                        <div>DELETE: Elimina un usuari</div>
+                    </div>
+                </article>
+            </section>
+            <section class="container">
+                <header><h2>Operacions sobre reserves</h2></header>
+                <article>
+                    <div class="card text-white">
+                        <div class="card-header bg-black">Endpoint:</div>
+                        <div class="card-body bg-dark">
+                            <div><span class="text-success">GET</span> /gimnas/reserves</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>GET: Retorna totes les reserves de la setmana actual (a partir de datetime.now o today de python). Ha de retornar el nom de la pista i el username de l'usuari.</div>
+                    </div>
+                    <div class="card bg-dark text-white">
+                        <pre><code id="json_get_reserves"></code></pre>
+                    </div>
+                </article>
+                <hr>
+                <article>
+                    <div class="card text-white">
+                        <div class="card-header bg-black">Endpoint:</div>
+                        <div class="card-body bg-dark">
+                            <div><span class="text-success">GET</span> /gimnas/reserves/setmana/data</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>GET: Retorna totes les reserves de la setmana indicada a "data" (en format YYYY-mm-dd ). Ha de retornar el nom de la pista i el username de l'usuari</div>
+                    </div>
+                    <div class="card bg-dark text-white">
+                        <pre><code id="json_get_reserves_setmana"></code></pre>
+                    </div>
+                </article>
+                <hr>
+                <article>
+                    <div class="card text-white">
+                        <div class="card-header bg-black">Endpoints:</div>
+                        <div class="card-body bg-dark">
+                            <div><span class="text-success">GET</span> /gimnas/reserves/usuari/id_usuari</div>
+                            <div><span class="text-warning">POST</span> /gimnas/reserves/usuari/id_usuari</div>
+                            <div><span class="text-danger">DELETE</span> /gimnas/reserves/usuari/id_usuari</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>GET: Retorna totes les reserves del l'usuari amb id=id_usuari, indicant el nom de la pista</div>
+                        <div>POST: Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON</div>
+                        <div>DELETE: Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON</div>
+                    </div>
+                </article>
+            </section>
+        </div>
     </main>
     <footer class="px-3 py-2 bg-dark text-white text-center align-items-center justify-content-center">
         <p class="my-2">Angel Martinez Rodriguez</p>
@@ -47,5 +166,40 @@
     crossorigin="anonymous"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+        if (!library)
+            var library = {};
+
+            library.json = {
+                replacer: function(match, pIndent, pKey, pVal, pEnd) {
+                    var key = '<span class=json-key>';
+                    var val = '<span class=json-value>';
+                    var str = '<span class=json-string>';
+                    var r = pIndent || '';
+                    if (pKey)
+                        r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+                    if (pVal)
+                        r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
+                    return r + (pEnd || '');
+                    },
+                prettyPrint: function(obj) {
+                    var jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+                    return JSON.stringify(obj, null, 3)
+                        .replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+                        .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                        .replace(jsonLine, library.json.replacer);
+                    }
+            };
+            var json_get_usuaris = [ { "idclient": 1, "username": "amartinez", "nom": "Angel", "llinatges": "Martinez", "email": "amartinez@example.com", "telefon": "+34666777888" }, { "idclient": 2, "username": "sikari", "nom": "Shinji", "llinatges": "Ikari", "email": "sikari@example.com", "telefon": "+(34)666222888" }, { "idclient": 3, "username": "alangley", "nom": "Asuka", "llinatges": "Langley", "email": "alangley@example.com", "telefon": "666333888" }, { "idclient": 4, "username": "hkensjin", "nom": "Himura", "llinatges": "Kenshin", "email": "hkensjin@example.com", "telefon": "123666444888" }]
+            var json_post_usuaris = { "username" : "test4", "nom" : "test4", "llinatges" : "testing user 4", "email" : "test2@test.com", "telefon" : "666777888", "password" : "pa2ss" }
+            var json_get_usuari_id = {"idclient": 1, "username": "amartinez", "nom": "Angel", "llinatges": "Martinez", "email": "amartinez@example.com", "telefon": "+34666777888"}
+            var json_get_reserves = [ { "pista": "Exterior", "data": "2022-03-21", "hora": "16:00", "dia": "dilluns", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-21", "hora": "18:00", "dia": "dilluns", "username": "amartinez", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-22", "hora": "15:00", "dia": "dimarts", "username": "amartinez", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-22", "hora": "18:00", "dia": "dimarts", "username": "alangley", "preu": 12 }, { "pista": "Exterior", "data": "2022-03-23", "hora": "16:00", "dia": "dimecres", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-23", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Exterior", "data": "2022-03-24", "hora": "15:00", "dia": "dijous", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-25", "hora": "18:00", "dia": "divendres", "username": "amartinez", "preu": 12 }, { "pista": "Exterior", "data": "2022-03-25", "hora": "18:00", "dia": "divendres", "username": "sikari", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-25", "hora": "19:00", "dia": "divendres", "username": "alangley", "preu": 12 } ]
+            var json_get_reserves_setmana = [{ "pista": "Exterior", "data": "2022-02-21", "hora": "16:00", "dia": "dilluns", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-02-23", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Exterior", "data": "2022-02-24", "hora": "15:00", "dia": "dijous", "username": "amartinez", "preu": 8 }, { "pista": "Exterior", "data": "2022-02-25", "hora": "18:00", "dia": "divendres", "username": "sikari", "preu": 8 }, { "pista": "Coberta", "data": "2022-02-25", "hora": "19:00", "dia": "divendres", "username": "alangley", "preu": 12 } ]
+            $('#json_get_usuaris').html(library.json.prettyPrint(json_get_usuaris));
+            $('#json_post_usuaris').html(library.json.prettyPrint(json_post_usuaris));
+            $('#json_get_usuari_id').html(library.json.prettyPrint(json_get_usuari_id));
+            $('#json_get_reserves').html(library.json.prettyPrint(json_get_reserves));
+            $('#json_get_reserves_setmana').html(library.json.prettyPrint(json_get_reserves_setmana));
+    </script>
 </body>
 </html>
