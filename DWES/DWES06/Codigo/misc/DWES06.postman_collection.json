@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "17675873-4a1c-48fd-9535-963a4c4cebf9",
+		"_postman_id": "0a3068b2-88f3-4376-a6e9-2d23c722b88d",
 		"name": "DWES06",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -115,7 +115,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5000/gimnas/reserves/setmana/2022-03-21",
+					"raw": "http://localhost:5000/gimnas/reserves/setmana/2022-02-21",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -125,7 +125,7 @@
 						"gimnas",
 						"reserves",
 						"setmana",
-						"2022-03-21"
+						"2022-02-21"
 					]
 				}
 			},
@@ -138,7 +138,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"test\",\r\n    \"nom\" : \"test\",\r\n    \"llinatges\" : \"testing user\",\r\n    \"email\" : \"test@test.com\",\r\n    \"telefon\" : \"666777888\",\r\n    \"password\" : \"pass\"\r\n}",
+					"raw": "{\r\n    \"username\" : \"test4\",\r\n    \"nom\" : \"test4\",\r\n    \"llinatges\" : \"testing user 4\",\r\n    \"email\" : \"test2@test.com\",\r\n    \"telefon\" : \"666777888\",\r\n    \"password\" : \"pa2ss\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -185,6 +185,68 @@
 						"gimnas",
 						"usuari",
 						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postReservesUsuariId",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\" : \"2022-03-25 18:00:00\",\n    \"idpista\" : \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/gimnas/reserves/usuari/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"reserves",
+						"usuari",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteReservesUsuariId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\" : \"2022-03-28 18:00:00\",\n    \"idpista\" : \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/gimnas/reserves/usuari/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"reserves",
+						"usuari",
+						"1"
 					]
 				}
 			},
