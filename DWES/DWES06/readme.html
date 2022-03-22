@@ -30,205 +30,259 @@
         </div>
     </header>
     <main>
-        <div class="container h-90 pt-3">
-            <section class="container">
-                <header><h2>API Reference</h2></header>
-                <div>API REST per gestionar el Gimnas DWES.</div>
-                <br>
-                <div class="card text-white" style="width: 20rem;">
-                    <div class="card-header bg-black">
-                        BASE URL 
-                    </div>
+        <!-- API Reference -->
+        <section role="contentinfo" aria-label="API Reference" class="container pt-3" id="section1">
+            <header><h2>API Reference</h2></header>
+            <div>API REST per gestionar el Gimnas DWES.</div>
+            <br>
+            <div class="card text-white" style="width: 20rem;">
+                <div class="card-header bg-black">
+                    BASE URL 
+                </div>
+                <div class="card-body bg-dark">
+                    http://localhost:5000
+                </div>
+            </div>
+            <div class="pt-4">
+                <p>Llistat d'operacions disponibles dins l'API:</p>
+                <ul>
+                    <li>
+                        <a href="#section2">Operacions sobre usuaris</a>
+                        <ul>
+                            <li><a href="#endpointsusuaris">Endpoints usuaris</a></li>
+                            <li><a href="#llistausuaris">Llista usuaris</a></li>
+                            <li><a href="#afegirusuaris">Afegir usuari</a></li>
+                            <li><a href="#llistainfousuari">Llista info usuari</a></li>
+                            <li><a href="#modificainfousuari">Modifica info usuari</a></li>
+                            <li><a href="#eliminausuari">Elimina usuari</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section3">Operacions sobre reserves</a>
+                        <ul>
+                            <li><a href="#endpointsreserves">Endpoints reserves</a></li>
+                            <li><a href="#llistareserves">Llista reserves</a></li>
+                            <li><a href="#llistareservesdata">Llista reserves data</a></li>
+                            <li><a href="#llistareservesusuari">Llista reserves usuari</a></li>
+                            <li><a href="#afegirreservesdata">Afegir reserves usuari</a></li>
+                            <li><a href="#eliminareservesdata">Elimina reserves usuari</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="card text-white">
+                <div class="card-header bg-black">Endpoints</div>
+                <div class="card-body bg-dark">
+                    <div><span class="text-success">GET</span> /gimnas/usuari</div>
+                    <div><span class="text-warning">POST</span> /gimnas/usuari</div>
+                    <div><span class="text-success">GET</span> /gimnas/usuari/{id_user}</div>
+                    <div><span class="text-primary">PUT</span> /gimnas/usuari/{id_user}</div>
+                    <div><span class="text-danger">DELETE</span> /gimnas/usuari/{id_user}</div>
+                    <div><span class="text-success">GET</span> /gimnas/reserves</div>
+                    <div><span class="text-success">GET</span> /gimnas/reserves/setmana/{data}</div>
+                    <div><span class="text-success">GET</span> /gimnas/reserves/usuari/{id_user}</div>
+                    <div><span class="text-warning">POST</span> /gimnas/reserves/usuari/{id_user}</div>
+                    <div><span class="text-danger">DELETE</span> /gimnas/reserves/usuari/{id_user}</div>
+                </div>
+            </div>
+        </section>
+        <hr>
+        <!-- Operacions Usuaris -->
+        <section role="contentinfo" aria-label="Operacions Usuaris" class="container" id="section2">
+            <header><h2>Operacions sobre usuaris</h2></header>
+            <p>En aquest apartat es defineixen les diferents operacions que es poden realitzar sobre usuaris</p>
+            <!-- Endpoints usuaris -->
+            <article role="contentinfo" aria-label="Endpoints usuaris" id="endpointusuaris">
+                <div class="card text-white">
+                    <div class="card-header bg-black">Endpoints usuaris</div>
                     <div class="card-body bg-dark">
-                        http://localhost:5000
+                        <div><span class="text-success">GET</span> /gimnas/usuari</div>
+                        <div><span class="text-warning">POST</span> /gimnas/usuari</div>
+                        <div><span class="text-success">GET</span> /gimnas/usuari/{id_user}</div>
+                        <div><span class="text-primary">PUT</span> /gimnas/usuari/{id_user}</div>
+                        <div><span class="text-danger">DELETE</span> /gimnas/usuari/{id_user}</div>
                     </div>
                 </div>
-            </section>
-            <section class="container">
-                <header><h2>Operacions sobre usuaris</h2></header>
-                <article>
-                    <div class="card text-white">
-                        <div class="card-header bg-black">Endpoints:</div>
-                        <div class="card-body bg-dark">
-                            <div><span class="text-success">GET</span> /gimnas/usuari</div>
-                            <div><span class="text-warning">POST</span> /gimnas/usuari</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pt-3">
-                            <h3>GET</h3>
-                            <p>Retorna una llista amb tots els camps de la llista usuaris excepte el password.</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_get_usuaris"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <h3>POST</h3>
-                            <p>Afegeix un usuari (fent la conversió a hash del password).</p>
-                            <p>El JSON ha de tenir el seguent format:</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_post_usuaris"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <ul>
-                                <li>username - Username de l'usuari.</li>
-                                <li>nom - Nom de l'usuari.</li>
-                                <li>llinatges llinatges de l'usuari.</li>
-                                <li>email - Email de contacte.</li>
-                                <li>telefon - Telefon de contacte.</li>
-                                <li>password - El sistema s'encarregara d'encriptar-la abans d'enmagatzemar-la.</li>
-                            </ul>
-                            <p>Quan es faci el instert retorna l'id del usuari (autogenerat amb l'insert).</p>
-                        </div>
-                    </div>
-                </article>
-                <hr>
-                <article>
-                    <div class="card text-white">
-                        <div class="card-header bg-black">Endpoints:</div>
-                        <div class="card-body bg-dark">
-                            <div><span class="text-success">GET</span> /gimnas/usuari/id</div>
-                            <div><span class="text-primary">PUT</span> /gimnas/usuari/id</div>
-                            <div><span class="text-danger">DELETE</span> /gimnas/usuari/id</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pt-3">
-                            <h3>GET</h3>
-                            <p>Retorna els detalls de l'usuari, excepte el password, amb l'id de la url.</p>
-                            <p>Exemple: http://localhost:5000/gimnas/usuari/1</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_get_usuari_id"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <h3>PUT</h3>
-                            <p>Modifica els camps d'un usuari. Si es modifica el password el sistema fa el hash.</p>
-                            <p>El JSON ha de tenir el seguent format:</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_put_usuari_id"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <ul>
-                                <li>username - Username de l'usuari.</li>
-                                <li>nom - Nom de l'usuari.</li>
-                                <li>llinatges llinatges de l'usuari.</li>
-                                <li>email - Email de contacte.</li>
-                                <li>telefon - Telefon de contacte.</li>
-                                <li>password - El sistema s'encarregara d'encriptar-la abans d'enmagatzemar-la.</li>
-                            </ul>
-                            <p>No es necessari que contengui tots els camps. Nomes el camps que es vulguin modificar. </p>
-                        </div>
-                        <div class="pt-3">
-                            <h3>DELETE</h3>
-                            <p>Elimina un usuari a partir de la id en el parametre de la url.</p>
-                            <p>Previament a la eliminacio de l'usuari eliminara les reserves d'aquest.</p>
-                            <p>Si no hi ha usuari amb aquest id no fa res.</p>
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section class="container">
-                <header><h2>Operacions sobre reserves</h2></header>
-                <article>
-                    <div class="card text-white">
-                        <div class="card-header bg-black">Endpoint:</div>
-                        <div class="card-body bg-dark">
-                            <div><span class="text-success">GET</span> /gimnas/reserves</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pt-3">
-                            <h3>GET</h3>
-                            <p>Retorna totes les reserves de la setmana actual (a partir de datetime.now o today de python). Ha de retornar el nom de la pista i el username de l'usuari.</p>
-                            <p>Exemple: http://localhost:5000/reserves</p>
-                        </div>
-                    </div>
+            </article>
+            <!-- Llista usuaris -->
+            <article role="contentinfo" aria-label="Llista usuaris" id="llistausuaris">
+                <div class="pt-3">
+                    <h4>Llista usuaris</h4>
+                    <p>Retorna una llista amb tots els camps de la llista usuaris excepte el password.</p>
                     <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-success">GET</span> /gimnas/usuari</div>
+                        <pre><code id="json_get_usuaris"></code></pre>
+                    </div>
+                </div>
+            </article>
+            <!-- Afegeix usuaris -->
+            <article role="contentinfo" aria-label="Afegir usuari" id="afegirusuaris">
+                <div class="pt-3">
+                    <h4>Afegir usuari</h4>
+                    <p>Afegeix un usuari (fent la conversió a hash del password).</p>
+                    <p>En aquesta versio de l'API es pot repetir l'username ja que no es un camp unic. (Futura modificacio a la BD).</p>
+                    <p>El JSON ha de tenir el seguent format:</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-warning">POST</span> /gimnas/usuari</div>
+                        <pre><code id="json_post_usuaris"></code></pre>
+                    </div>
+                    <div class="pt-3">
+                        <ul>
+                            <li>username - Username de l'usuari.</li>
+                            <li>nom - Nom de l'usuari.</li>
+                            <li>llinatges llinatges de l'usuari.</li>
+                            <li>email - Email de contacte.</li>
+                            <li>telefon - Telefon de contacte.</li>
+                            <li>password - El sistema s'encarregara d'encriptar-la abans d'enmagatzemar-la.</li>
+                        </ul>
+                        <p>Quan es faci el instert retorna l'id del usuari (autogenerat amb l'insert).</p>
+                    </div>
+                </div>
+            </article>
+            <!-- Llista info usuari -->
+            <article role="contentinfo" aria-label="Llista info usuari" id="llistainfousuari">
+                <div class="pt-3">
+                    <h4>Llista info usuari</h4>
+                    <p>Retorna els detalls de l'usuari, excepte el password, amb l'id de la url.</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-success">GET</span> /gimnas/usuari/{id_user}</div>
+                        <pre><code id="json_get_usuari_id"></code></pre>
+                    </div>
+                </div>
+            </article>
+            <!-- Modifica info usuari -->
+            <article role="contentinfo" aria-label="Modifica info usuari" id="modificainfousuari">
+                <div class="pt-3">
+                    <h4>Modifica info usuari</h4>
+                    <p>Modifica els camps d'un usuari. Si es modifica el password el sistema fa el hash.</p>
+                    <p>El JSON ha de tenir el seguent format:</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-primary">PUT</span> /gimnas/usuari/{id_user}</div>
+                        <pre><code id="json_put_usuari_id"></code></pre>
+                    </div>
+                    <div class="pt-3">
+                        <ul>
+                            <li>username - Username de l'usuari.</li>
+                            <li>nom - Nom de l'usuari.</li>
+                            <li>llinatges llinatges de l'usuari.</li>
+                            <li>email - Email de contacte.</li>
+                            <li>telefon - Telefon de contacte.</li>
+                            <li>password - El sistema s'encarregara d'encriptar-la abans d'enmagatzemar-la.</li>
+                        </ul>
+                        <p>No es necessari que contengui tots els camps. Nomes el camps que es vulguin modificar. </p>
+                    </div>
+                </div>
+            </article>
+            <!-- Elimina usuari -->
+            <article role="contentinfo" aria-label="Elimina usuari" id="eliminausuari">
+                <div class="pt-3">
+                    <h4>Elimina usuari</h4>
+                    <p>Elimina un usuari a partir de la id en el parametre de la url.</p>
+                    <p>Previament a la eliminacio de l'usuari eliminara les reserves d'aquest.</p>
+                    <p>Si no hi ha usuari amb aquest id no fa res.</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint-del"><span class="text-danger">DELETE</span> /gimnas/usuari/{id_user}</div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <hr>
+        <!-- Operacions Reserves -->
+        <section role="contentinfo" aria-label="Operacions Reserves" class="container" id="section3">
+            <header><h2>Operacions sobre reserves</h2></header>
+            <p>En aquest apartat es defineixen les diferents operacions que es poden realitzar sobre reserves</p>
+            <!-- Endpoints usuaris -->
+            <article role="contentinfo" aria-label="Endpoints reserves" id="endpointsreserves">
+                <div class="card text-white">
+                    <div class="card-header bg-black">Endpoints reserves</div>
+                    <div class="card-body bg-dark">
+                        <div><span class="text-success">GET</span> /gimnas/reserves</div>
+                        <div><span class="text-success">GET</span> /gimnas/reserves/setmana/{data}</div>
+                        <div><span class="text-success">GET</span> /gimnas/reserves/usuari/{id_user}</div>
+                        <div><span class="text-warning">POST</span> /gimnas/reserves/usuari/{id_user}</div>
+                        <div><span class="text-danger">DELETE</span> /gimnas/reserves/usuari/{id_user}</div>
+                    </div>
+                </div>
+            </article>
+            <!-- Llista reserves -->
+            <article role="contentinfo" aria-label="Llista reserves" id="llistareserves">
+                <div class="pt-3">
+                    <h4>Llista reserves</h4>
+                    <p>Retorna totes les reserves de la setmana actual (a partir de datetime.now o today de python). 
+                        Ha de retornar el nom de la pista i el username de l'usuari.</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-success">GET</span> /gimnas/reserves</div>
                         <pre><code id="json_get_reserves"></code></pre>
                     </div>
-                </article>
-                <hr>
-                <article>
-                    <div class="card text-white">
-                        <div class="card-header bg-black">Endpoint:</div>
-                        <div class="card-body bg-dark">
-                            <div><span class="text-success">GET</span> /gimnas/reserves/setmana/data</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pt-3">
-                            <h3>GET</h3>
-                            <p>Retorna totes les reserves de la setmana indicada a "data" (en format YYYY-mm-dd ). Ha de retornar el nom de la pista i el username de l'usuari.</p>
-                            <p>Exemple: http://localhost:5000/gimnas/reserves/setmana/2022-02-22</p>
-                        </div>
-                    </div>
+                </div>
+            </article>
+            <!-- Llista reserves data -->
+            <article role="contentinfo" aria-label="Llista reserves data" id="llistareservesdata">
+                <div class="pt-3">
+                    <h4>Llista reserves data</h4>
+                    <p>Retorna totes les reserves de la setmana indicada a "data" (en format YYYY-mm-dd ). Ha de retornar el nom de la pista i el username de l'usuari.</p>
                     <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-success">GET</span> /gimnas/reserves/setmana/{data}</div>
                         <pre><code id="json_get_reserves_setmana"></code></pre>
                     </div>
-                </article>
-                <hr>
-                <article>
-                    <div class="card text-white">
-                        <div class="card-header bg-black">Endpoints:</div>
-                        <div class="card-body bg-dark">
-                            <div><span class="text-success">GET</span> /gimnas/reserves/usuari/id</div>
-                            <div><span class="text-warning">POST</span> /gimnas/reserves/usuari/id</div>
-                            <div><span class="text-danger">DELETE</span> /gimnas/reserves/usuari/id</div>
-                        </div>
+                </div>
+            </article>
+            <!-- Llista reserves usuari -->
+            <article role="contentinfo" aria-label="Llista reserves usuari" id="llistareservesusuari">
+                <div class="pt-3">
+                    <h4>Llista reserves usuari</h4>
+                    <p>Retorna totes les reserves del l'usuari amb id=id_user, indicant el nom de la pista.</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-success">GET</span> /gimnas/reserves/{id_user}</div>
+                        <pre><code id="json_get_reserves_usuari"></code></pre>
                     </div>
-                    <div>
-                        <div class="pt-3">
-                            <h3>GET</h3>
-                            <p>Retorna totes les reserves del l'usuari amb id=id_usuari, indicant el nom de la pista.</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_get_reserves_usuari"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <h3>POST</h3>
-                            <p>Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON.</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_post_reserves_usuari"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <ul>
-                                <li>data - Data de la reserva amb format "YYYY-mm-dd HH:MM:ss".</li>
-                                <li>idpista - Identificador de la pista (1 - Coberta / 2 - Exterior).</li>
-                            </ul>
-                        </div>
-                        <div class="pt-3">
-                            <h3>DELETE</h3>
-                            <p>Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON.</p>
-                        </div>
-                        <div class="card bg-dark text-white">
-                            <pre><code id="json_delete_reserves_usuari"></code></pre>
-                        </div>
-                        <div class="pt-3">
-                            <ul>
-                                <li>data - Data de la reserva amb format "YYYY-mm-dd HH:MM:ss".</li>
-                                <li>idpista - Identificador de la pista (1 - Coberta / 2 - Exterior).</li>
-                            </ul>
-                        </div>
+                </div>
+            </article>
+            <!-- Afegir reserves usuari -->
+            <article role="contentinfo" aria-label="Afegir reserves usuari" id="afegirreservesdata">
+                <div class="pt-3">
+                    <h4>Afegir reserves usuari</h4>
+                    <p>Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON.</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-warning">POST</span> /gimnas/reserves/{id_user}</div>
+                        <pre><code id="json_post_reserves_usuari"></code></pre>
                     </div>
-                </article>
-            </section>
-        </div>
+                    <div class="pt-3">
+                        <ul>
+                            <li>data - Data de la reserva amb format "YYYY-mm-dd HH:MM:ss".</li>
+                            <li>idpista - Identificador de la pista (1 - Coberta / 2 - Exterior).</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+            <!-- Elimina reserves usuari -->
+            <article role="contentinfo" aria-label="Elimina reserves usuari" id="eliminareservesdata">
+                <div class="pt-3">
+                    <h4>Elimina reserves usuari</h4>
+                    <p>Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON.</p>
+                    <div class="card bg-dark text-white">
+                        <div class="endpoint"><span class="text-danger">DELETE</span> /gimnas/reserves/{id_user}</div>
+                        <pre><code id="json_delete_reserves_usuari"></code></pre>
+                    </div>
+                    <div class="pt-3">
+                        <ul>
+                            <li>data - Data de la reserva amb format "YYYY-mm-dd HH:MM:ss".</li>
+                            <li>idpista - Identificador de la pista (1 - Coberta / 2 - Exterior).</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </section>
     </main>
     <footer class="px-3 py-2 bg-dark text-white text-center align-items-center justify-content-center">
         <p class="my-2">Angel Martinez Rodriguez</p>
     </footer>
     <!-- Optional JavaScript -->
     <!-- With Bootstrap 5.1.3 no jQuery first. Then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" 
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" 
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/index.js"></script>
     <script>

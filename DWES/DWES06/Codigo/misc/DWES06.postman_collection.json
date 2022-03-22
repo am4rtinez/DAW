@@ -1,15 +1,45 @@
 {
 	"info": {
-		"_postman_id": "0a3068b2-88f3-4376-a6e9-2d23c722b88d",
+		"_postman_id": "5eef14c0-c32b-457f-9b9a-03fe7bc747f4",
 		"name": "DWES06",
+		"description": "# DWES06 Collection\n-----\nColección de métodos de la API REST.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "getUsuarisAll",
+			"name": "getUsuaris",
 			"request": {
 				"method": "GET",
 				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postUsuaris",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"test4\",\r\n    \"nom\" : \"test4\",\r\n    \"llinatges\" : \"testing user 4\",\r\n    \"email\" : \"test2@test.com\",\r\n    \"telefon\" : \"666777888\",\r\n    \"password\" : \"pa2ss\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:5000/gimnas/usuari",
 					"protocol": "http",
@@ -47,6 +77,36 @@
 			"response": []
 		},
 		{
+			"name": "putUsuarisId",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"test1\",\r\n    \"nom\" : \"test_1\",\r\n    \"password\" : \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/gimnas/usuari/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"gimnas",
+						"usuari",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "deleteUsuariId",
 			"request": {
 				"method": "DELETE",
@@ -68,7 +128,7 @@
 			"response": []
 		},
 		{
-			"name": "getReservesAll",
+			"name": "getReserves",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -82,28 +142,6 @@
 					"path": [
 						"gimnas",
 						"reserves"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getReservesUsuariId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:5000/gimnas/reserves/usuari/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"gimnas",
-						"reserves",
-						"usuari",
-						"1"
 					]
 				}
 			},
@@ -132,21 +170,12 @@
 			"response": []
 		},
 		{
-			"name": "postUsuaris",
+			"name": "getReservesUsuariId",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"test4\",\r\n    \"nom\" : \"test4\",\r\n    \"llinatges\" : \"testing user 4\",\r\n    \"email\" : \"test2@test.com\",\r\n    \"telefon\" : \"666777888\",\r\n    \"password\" : \"pa2ss\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:5000/gimnas/usuari",
+					"raw": "http://localhost:5000/gimnas/reserves/usuari/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -154,37 +183,9 @@
 					"port": "5000",
 					"path": [
 						"gimnas",
-						"usuari"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "putUsuaris",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"test1\",\r\n    \"nom\" : \"test_1\",\r\n    \"password\" : \"1234\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:5000/gimnas/usuari/5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"gimnas",
+						"reserves",
 						"usuari",
-						"5"
+						"1"
 					]
 				}
 			},

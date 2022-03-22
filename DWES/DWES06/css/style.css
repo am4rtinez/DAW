@@ -77,17 +77,33 @@ td.user_reservation {
 }
 
 pre {
-    /* background-color: ghostwhite;
-    border: 1px solid silver; */
     padding: 10px 20px;
     margin: 20px; 
-    }
- .json-key {
-    color: #f33775;
-    }
- .json-value {
-    color: #ae81fa;
-    }
- .json-string {
-    color: #adde39;
-    }
+}
+
+.json-key {
+color: #f33775;
+}
+
+.json-value {
+color: #ae81fa;
+}
+
+.json-string {
+color: #adde39;
+}
+
+.endpoint {
+    padding: 10px 10px;
+    margin: 20px 20px 0 20px; 
+}
+
+.endpoint-del {
+    padding: 10px 10px;
+    margin: 20px; 
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
