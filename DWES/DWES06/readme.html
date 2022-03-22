@@ -65,7 +65,7 @@
                         <div class="pt-3">
                             <h3>POST</h3>
                             <p>Afegeix un usuari (fent la conversió a hash del password).</p>
-                            <p>El JSON ha de tenir el siguent format:</p>
+                            <p>El JSON ha de tenir el seguent format:</p>
                         </div>
                         <div class="card bg-dark text-white">
                             <pre><code id="json_post_usuaris"></code></pre>
@@ -94,12 +94,39 @@
                         </div>
                     </div>
                     <div>
-                        <div>GET: retorna els detalls de l'usuari excepte el password</div>
+                        <div class="pt-3">
+                            <h3>GET</h3>
+                            <p>Retorna els detalls de l'usuari, excepte el password, amb l'id de la url.</p>
+                            <p>Exemple: http://localhost:5000/gimnas/usuari/1</p>
+                        </div>
                         <div class="card bg-dark text-white">
                             <pre><code id="json_get_usuari_id"></code></pre>
                         </div>
-                        <div>PUT: Modifica els camps d'un usuari. Si és el password s'ha de fer el hash</div>
-                        <div>DELETE: Elimina un usuari</div>
+                        <div class="pt-3">
+                            <h3>PUT</h3>
+                            <p>Modifica els camps d'un usuari. Si es modifica el password el sistema fa el hash.</p>
+                            <p>El JSON ha de tenir el seguent format:</p>
+                        </div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_put_usuari_id"></code></pre>
+                        </div>
+                        <div class="pt-3">
+                            <ul>
+                                <li>username - Username de l'usuari.</li>
+                                <li>nom - Nom de l'usuari.</li>
+                                <li>llinatges llinatges de l'usuari.</li>
+                                <li>email - Email de contacte.</li>
+                                <li>telefon - Telefon de contacte.</li>
+                                <li>password - El sistema s'encarregara d'encriptar-la abans d'enmagatzemar-la.</li>
+                            </ul>
+                            <p>No es necessari que contengui tots els camps. Nomes el camps que es vulguin modificar. </p>
+                        </div>
+                        <div class="pt-3">
+                            <h3>DELETE</h3>
+                            <p>Elimina un usuari a partir de la id en el parametre de la url.</p>
+                            <p>Previament a la eliminacio de l'usuari eliminara les reserves d'aquest.</p>
+                            <p>Si no hi ha usuari amb aquest id no fa res.</p>
+                        </div>
                     </div>
                 </article>
             </section>
@@ -113,7 +140,11 @@
                         </div>
                     </div>
                     <div>
-                        <div>GET: Retorna totes les reserves de la setmana actual (a partir de datetime.now o today de python). Ha de retornar el nom de la pista i el username de l'usuari.</div>
+                        <div class="pt-3">
+                            <h3>GET</h3>
+                            <p>Retorna totes les reserves de la setmana actual (a partir de datetime.now o today de python). Ha de retornar el nom de la pista i el username de l'usuari.</p>
+                            <p>Exemple: http://localhost:5000/reserves</p>
+                        </div>
                     </div>
                     <div class="card bg-dark text-white">
                         <pre><code id="json_get_reserves"></code></pre>
@@ -128,7 +159,11 @@
                         </div>
                     </div>
                     <div>
-                        <div>GET: Retorna totes les reserves de la setmana indicada a "data" (en format YYYY-mm-dd ). Ha de retornar el nom de la pista i el username de l'usuari</div>
+                        <div class="pt-3">
+                            <h3>GET</h3>
+                            <p>Retorna totes les reserves de la setmana indicada a "data" (en format YYYY-mm-dd ). Ha de retornar el nom de la pista i el username de l'usuari.</p>
+                            <p>Exemple: http://localhost:5000/gimnas/reserves/setmana/2022-02-22</p>
+                        </div>
                     </div>
                     <div class="card bg-dark text-white">
                         <pre><code id="json_get_reserves_setmana"></code></pre>
@@ -139,15 +174,45 @@
                     <div class="card text-white">
                         <div class="card-header bg-black">Endpoints:</div>
                         <div class="card-body bg-dark">
-                            <div><span class="text-success">GET</span> /gimnas/reserves/usuari/id_usuari</div>
-                            <div><span class="text-warning">POST</span> /gimnas/reserves/usuari/id_usuari</div>
-                            <div><span class="text-danger">DELETE</span> /gimnas/reserves/usuari/id_usuari</div>
+                            <div><span class="text-success">GET</span> /gimnas/reserves/usuari/id</div>
+                            <div><span class="text-warning">POST</span> /gimnas/reserves/usuari/id</div>
+                            <div><span class="text-danger">DELETE</span> /gimnas/reserves/usuari/id</div>
                         </div>
                     </div>
                     <div>
-                        <div>GET: Retorna totes les reserves del l'usuari amb id=id_usuari, indicant el nom de la pista</div>
-                        <div>POST: Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON</div>
-                        <div>DELETE: Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON</div>
+                        <div class="pt-3">
+                            <h3>GET</h3>
+                            <p>Retorna totes les reserves del l'usuari amb id=id_usuari, indicant el nom de la pista.</p>
+                        </div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_get_reserves_usuari"></code></pre>
+                        </div>
+                        <div class="pt-3">
+                            <h3>POST</h3>
+                            <p>Afegeix una reserva de l'usuari "id_usuari", els detalls venen a un JSON.</p>
+                        </div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_post_reserves_usuari"></code></pre>
+                        </div>
+                        <div class="pt-3">
+                            <ul>
+                                <li>data - Data de la reserva amb format "YYYY-mm-dd HH:MM:ss".</li>
+                                <li>idpista - Identificador de la pista (1 - Coberta / 2 - Exterior).</li>
+                            </ul>
+                        </div>
+                        <div class="pt-3">
+                            <h3>DELETE</h3>
+                            <p>Elimina una reserva de l'usuari "id_usuari", els detalls venen a un JSON.</p>
+                        </div>
+                        <div class="card bg-dark text-white">
+                            <pre><code id="json_delete_reserves_usuari"></code></pre>
+                        </div>
+                        <div class="pt-3">
+                            <ul>
+                                <li>data - Data de la reserva amb format "YYYY-mm-dd HH:MM:ss".</li>
+                                <li>idpista - Identificador de la pista (1 - Coberta / 2 - Exterior).</li>
+                            </ul>
+                        </div>
                     </div>
                 </article>
             </section>
@@ -193,13 +258,21 @@
             var json_get_usuaris = [ { "idclient": 1, "username": "amartinez", "nom": "Angel", "llinatges": "Martinez", "email": "amartinez@example.com", "telefon": "+34666777888" }, { "idclient": 2, "username": "sikari", "nom": "Shinji", "llinatges": "Ikari", "email": "sikari@example.com", "telefon": "+(34)666222888" }, { "idclient": 3, "username": "alangley", "nom": "Asuka", "llinatges": "Langley", "email": "alangley@example.com", "telefon": "666333888" }, { "idclient": 4, "username": "hkensjin", "nom": "Himura", "llinatges": "Kenshin", "email": "hkensjin@example.com", "telefon": "123666444888" }]
             var json_post_usuaris = { "username" : "test4", "nom" : "test4", "llinatges" : "testing user 4", "email" : "test2@test.com", "telefon" : "666777888", "password" : "pa2ss" }
             var json_get_usuari_id = {"idclient": 1, "username": "amartinez", "nom": "Angel", "llinatges": "Martinez", "email": "amartinez@example.com", "telefon": "+34666777888"}
+            var json_put_usuari_id = { "username" : "test1", "nom" : "test_1", "password" : "1234" }
             var json_get_reserves = [ { "pista": "Exterior", "data": "2022-03-21", "hora": "16:00", "dia": "dilluns", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-21", "hora": "18:00", "dia": "dilluns", "username": "amartinez", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-22", "hora": "15:00", "dia": "dimarts", "username": "amartinez", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-22", "hora": "18:00", "dia": "dimarts", "username": "alangley", "preu": 12 }, { "pista": "Exterior", "data": "2022-03-23", "hora": "16:00", "dia": "dimecres", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-23", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Exterior", "data": "2022-03-24", "hora": "15:00", "dia": "dijous", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-25", "hora": "18:00", "dia": "divendres", "username": "amartinez", "preu": 12 }, { "pista": "Exterior", "data": "2022-03-25", "hora": "18:00", "dia": "divendres", "username": "sikari", "preu": 8 }, { "pista": "Coberta", "data": "2022-03-25", "hora": "19:00", "dia": "divendres", "username": "alangley", "preu": 12 } ]
             var json_get_reserves_setmana = [{ "pista": "Exterior", "data": "2022-02-21", "hora": "16:00", "dia": "dilluns", "username": "amartinez", "preu": 8 }, { "pista": "Coberta", "data": "2022-02-23", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Exterior", "data": "2022-02-24", "hora": "15:00", "dia": "dijous", "username": "amartinez", "preu": 8 }, { "pista": "Exterior", "data": "2022-02-25", "hora": "18:00", "dia": "divendres", "username": "sikari", "preu": 8 }, { "pista": "Coberta", "data": "2022-02-25", "hora": "19:00", "dia": "divendres", "username": "alangley", "preu": 12 } ]
+            var json_get_reserves_usuari = [ { "pista": "Coberta", "data": "2022-02-02", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Coberta", "data": "2022-02-23", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Coberta", "data": "2022-02-25", "hora": "19:00", "dia": "divendres", "username": "alangley", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-22", "hora": "18:00", "dia": "dimarts", "username": "alangley", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-23", "hora": "18:00", "dia": "dimecres", "username": "alangley", "preu": 12 }, { "pista": "Coberta", "data": "2022-03-25", "hora": "19:00", "dia": "divendres", "username": "alangley", "preu": 12 } ]
+            var json_post_reserves_usuari = { "data" : "2022-03-25 20:00:00", "idpista" : "1" }
+            var json_delete_reserves_usuari = { "data" : "2022-03-28 18:00:00", "idpista" : "1" }
             $('#json_get_usuaris').html(library.json.prettyPrint(json_get_usuaris));
             $('#json_post_usuaris').html(library.json.prettyPrint(json_post_usuaris));
             $('#json_get_usuari_id').html(library.json.prettyPrint(json_get_usuari_id));
+            $('#json_put_usuari_id').html(library.json.prettyPrint(json_put_usuari_id));
             $('#json_get_reserves').html(library.json.prettyPrint(json_get_reserves));
             $('#json_get_reserves_setmana').html(library.json.prettyPrint(json_get_reserves_setmana));
+            $('#json_get_reserves_usuari').html(library.json.prettyPrint(json_get_reserves_usuari));
+            $('#json_post_reserves_usuari').html(library.json.prettyPrint(json_post_reserves_usuari));
+            $('#json_delete_reserves_usuari').html(library.json.prettyPrint(json_delete_reserves_usuari));
     </script>
 </body>
 </html>

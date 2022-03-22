@@ -63,6 +63,10 @@ class gimnas(object):
             self.cursor.execute(sql)
 
     def delete_user(self, id_user):
+        # Elimina las reservas del usuario.
+        sql="DELETE from reserves WHERE idclient = %s ;"
+        self.cursor.execute(sql, id_user)
+        # Elimina el usuario.
         sql="DELETE from clients WHERE idclient = %s ;"
         self.cursor.execute(sql, id_user)
 

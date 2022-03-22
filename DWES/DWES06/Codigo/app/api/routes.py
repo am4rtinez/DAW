@@ -64,7 +64,7 @@ class usuaris(Resource):
         mt.conecta()
         result = mt.update_user(id_user, request.json)
         mt.desconecta()
-        return 'OK', 200
+        return 'OK', 201
 
     def delete(self, id_user,):
         mt.conecta()
