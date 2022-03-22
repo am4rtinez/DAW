@@ -1,7 +1,0 @@
-# GET http://127.0.0.1:5000/api/todos
-
-GET http://127.0.0.1:5000/gimnas/usuari/1
-
-# GET http://127.0.0.1:5000/gimnas/reserves
-
-# GET http://127.0.0.1:5000/gimnas/reserves/usuari/1
