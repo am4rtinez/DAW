@@ -15,8 +15,9 @@
  * Eliminar l'editor: DELETE a a http://52.178.39.51:8080/editors/745
  */
 
+const server = "52.178.39.51:8080"
+
 $(() => {
-    const server = "52.178.39.51:8080"
 
     $('#cercador').change(function (e) {
         e.preventDefault();
@@ -26,11 +27,7 @@ $(() => {
             "json", function (resultat) {
                     $(resultat).each(function () {
                     if (this.nomEdit.includes($('#cercador').val().toUpperCase())) {
-                        $("#llista").append("<li>" + 
-                        this.nomEdit + 
-                        '<button type="button" id="' + this.idEdit + '">Modifica</button>' +
-                        '<button type="button" id="bAnterior">Anterior</button>' +
-                        "</li>")
+                        creaItemsList($("#llista"), this.nomEdit, this.idEdit)
                     }
                 });
             });
@@ -38,6 +35,17 @@ $(() => {
     });
 })
 
-creaButtons = (parent, element, id) => {
-
+creaItemsList = (parent, element, id) => {
+    $(parent).append("<li>" + element + 
+        '<button type="button" class="modifEditor">Modifica</button>' +
+        '<button type="button" class="delEditor">Elimina</button>' +
+        "</li>")
+    $('.modifEditor').click(function (e) { 
+        e.preventDefault();
+        console.log("Editor id: " + id)
+    });
+    $('.delEditor').click(function (e) { 
+        e.preventDefault();
+        console.log("Editor id: " + id)
+    });
 }
