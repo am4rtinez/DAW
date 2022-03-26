@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans&family=Noto+Sans+Display&family=Noto+Sans+JP&family=Quicksand&family=Roboto&family=Ubuntu&family=Ubuntu+Mono&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+header {
+    text-transform: uppercase;
+}
+
+section{
+    padding: 1rem 4rem;
+}
+
+section h2{
+    padding: 1rem 0;
+    text-transform: uppercase;
+}
+
+ol{
+    margin-top: 2rem;
+}
+
+li {
+    margin: 1rem;
+}
+
+.btn{
+    margin-left: 10px;
+}
+
+p {
+    clear: both;
+    margin-bottom: 1em;
+    margin-top: 0
+}

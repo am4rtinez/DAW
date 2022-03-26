@@ -18,34 +18,59 @@
 const server = "52.178.39.51:8080"
 
 $(() => {
+    //Inicializa el buscador.
+    console.log(window.location.pathname)
+    search()
 
-    $('#cercador').change(function (e) {
+})
+
+createItemsList = (parent, element, id) => {
+    modifButton = createModifButton("Modifica", id)
+    delButton = createDelButton("Elimina", id)
+    itemLi = $('<li></li>')
+    text = element + " (" + id + ") " 
+    itemLi.append(text)
+    itemLi.append(modifButton)
+    itemLi.append(delButton)
+    parent.append(itemLi)
+}
+
+createModifButton = (text, id) => {
+    button = $(`<button class="btn btn-warning">${text}</button>`)
+    button.click(function (e) { 
         e.preventDefault();
-        $("#llista").empty();
-        if ($('#cercador').val() != '') { 
-            $.get(`http://${server}/editors/partNom/TE/`, 
-            "json", function (resultat) {
-                    $(resultat).each(function () {
-                    if (this.nomEdit.includes($('#cercador').val().toUpperCase())) {
-                        creaItemsList($("#llista"), this.nomEdit, this.idEdit)
+        console.log("Editor id: " + id)
+        // Navigate to the Location.reload article
+        window.location.assign('formulari.html?idEdit=' + id);
+    });
+    return button
+}
+
+createDelButton = (text, id) => {
+    button = $(`<button class="btn btn-danger">${text}</button>`)
+    button.click(function (e) { 
+        e.preventDefault();
+        console.log("Editor id: " + id)
+        // Navigate to the Location.reload article
+    });
+    return button
+}
+
+search = () => {
+    const llista = $("#llista")
+    const input = $('#cercador')
+
+    input.keyup(function () { 
+        // e.preventDefault();
+        llista.empty()
+        if (input.val() != '') { 
+            $.get(`http://${server}/editors/partNom/TE/`, "json", function (resultat) {
+                $(resultat).each(function () {
+                    if (this.nomEdit.includes(input.val().toUpperCase())) {
+                        createItemsList(llista, this.nomEdit, this.idEdit)
                     }
                 });
             });
         }
-    });
-})
-
-creaItemsList = (parent, element, id) => {
-    $(parent).append("<li>" + element + 
-        '<button type="button" class="modifEditor">Modifica</button>' +
-        '<button type="button" class="delEditor">Elimina</button>' +
-        "</li>")
-    $('.modifEditor').click(function (e) { 
-        e.preventDefault();
-        console.log("Editor id: " + id)
-    });
-    $('.delEditor').click(function (e) { 
-        e.preventDefault();
-        console.log("Editor id: " + id)
     });
 }
