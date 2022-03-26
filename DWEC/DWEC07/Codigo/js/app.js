@@ -3,7 +3,7 @@
  * URL's de l'api
  * 
  * Exercici 1: 
- * http://52.178.39.51:8080/editors/partNom/TE
+ * http://52.178.39.51:8080/editors/partNom/
  * 
  * Exercici 2:
  * Cercar editor per id: http://52.178.39.51:8080/editors/perId/745
@@ -19,14 +19,14 @@ const server = "52.178.39.51:8080"
 
 $(() => {
     //Inicializa el buscador.
-    console.log(window.location.pathname)
     search()
-
 })
 
+https://htmlpreview.github.io/?https://github.com/am4rtinez/DAW/blob/main/DWEC/DWEC06/readme.html
+
 createItemsList = (parent, element, id) => {
-    modifButton = createModifButton("Modifica", id)
-    delButton = createDelButton("Elimina", id)
+    modifButton = createButton("btn-warning", "Modifica", "formulari.html", id)
+    delButton = createButton("btn-danger", "Elimina", "elimina.html", id)
     itemLi = $('<li></li>')
     text = element + " (" + id + ") " 
     itemLi.append(text)
@@ -35,26 +35,37 @@ createItemsList = (parent, element, id) => {
     parent.append(itemLi)
 }
 
-createModifButton = (text, id) => {
-    button = $(`<button class="btn btn-warning">${text}</button>`)
+createButton = (clase, text, url, id) => {
+    button = $(`<button class="btn ${clase}">${text}</button>`)
     button.click(function (e) { 
         e.preventDefault();
         console.log("Editor id: " + id)
         // Navigate to the Location.reload article
-        window.location.assign('formulari.html?idEdit=' + id);
+        window.location.assign(`${url}?idEdit=${id}`);
     });
     return button
 }
 
-createDelButton = (text, id) => {
-    button = $(`<button class="btn btn-danger">${text}</button>`)
-    button.click(function (e) { 
-        e.preventDefault();
-        console.log("Editor id: " + id)
-        // Navigate to the Location.reload article
-    });
-    return button
-}
+// createModifButton = (text, id) => {
+//     button = $(`<button class="btn btn-warning">${text}</button>`)
+//     button.click(function (e) { 
+//         e.preventDefault();
+//         console.log("Editor id: " + id)
+//         // Navigate to the Location.reload article
+//         window.location.assign('formulari.html?idEdit=' + id);
+//     });
+//     return button
+// }
+
+// createDelButton = (text, id) => {
+//     button = $(`<button class="btn btn-danger">${text}</button>`)
+//     button.click(function (e) { 
+//         e.preventDefault();
+//         console.log("Editor id: " + id)
+//         // Navigate to the Location.reload article
+//     });
+//     return button
+// }
 
 search = () => {
     const llista = $("#llista")
@@ -64,11 +75,9 @@ search = () => {
         // e.preventDefault();
         llista.empty()
         if (input.val() != '') { 
-            $.get(`http://${server}/editors/partNom/TE/`, "json", function (resultat) {
+            $.get(`http://${server}/editors/partNom/${input.val()}`, "json", function (resultat) {
                 $(resultat).each(function () {
-                    if (this.nomEdit.includes(input.val().toUpperCase())) {
-                        createItemsList(llista, this.nomEdit, this.idEdit)
-                    }
+                    createItemsList(llista, this.nomEdit, this.idEdit)
                 });
             });
         }

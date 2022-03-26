@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DWEC07 - Formulari</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,13 +19,26 @@
     </header>
     <main>
         <section>
-            <h2>Elimina editor</h2>
-            <div id="data">
-                <p>Codigo:</p>
-                <p>Nombre:</p>
-                <p>Dirección:</p>
-            </div>
-            <button class="btn btn-danger">Elimina</button>
+            <h2>Modifica editor</h2>
+            <form id="formElimina" method="GET" action="index.html">
+                <div class="mb-3 row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="codi" class="form-label">Codigo:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text" name="codi" id="codi" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nombre:</label>
+                    <input type="text" name="nom" id="nom" class="form-control" disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección:</label>
+                    <input type="text" name="direccion" id="direccion" class="form-control" disabled>
+                </div>
+                <input type="submit" class="btn btn-danger" value="Eliminar">
+            </form>
             <p style="padding-top: 1rem;"><a href="index.html">Vuelve a inicio.</a></p>
         </section>
     </main>
@@ -35,6 +48,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/formulari.js"></script>
 </body>
 </html>

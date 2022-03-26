@@ -9,16 +9,18 @@ const server = "52.178.39.51:8080"
 
 $(function () {
     let urlparams = false
-    let id;
 
-    if (window.location.search != "") {
+    //Comprueba si la url contiene parametros ?
+    if (checkUrlParams()) {
         urlparams = true
-        let params = new URLSearchParams(window.location.search);
-        id = parseInt(params.get("idEdit"));
+        // let params = new URLSearchParams(window.location.search);
+        // id = parseInt(params.get("idEdit"));
 
-        loadEditor(id)
+        // Obtiene e imprime los datos del editor.
+        getEditor(getParam("idEdit"))
     }
 
+    // Captura del evento submit.
     $("#formEditor").submit((e) => {
         e.preventDefault();
         let editor = {};
@@ -35,30 +37,53 @@ $(function () {
             postEditor(editor)
         }
     });
+
+    $("#formElimina").submit((e) => {
+        e.preventDefault();
+        let editor = {};
+    
+        if (urlparams) {
+            editor.idEdit = $('#codi').val();
+            editor.nomEdit = $('#nom').val();
+            editor.adrEdit = $('#direccion').val();
+            deleteEditor(editor)
+        }
+    });
 })
 
-loadEditor = (id) => {
+checkUrlParams = () => {
+    if (window.location.search != "") { return true } else { return false }
+}
+
+getParam = (item) => {
+    let params = new URLSearchParams(window.location.search);
+    return parseInt(params.get(item))
+}
+
+getEditor = (id) => {
     let url = `http://${server}/editors/perId/` + id
     const req = new XMLHttpRequest();
     req.addEventListener("readystatechange", function () {
         if (req.readyState == 4) {
             if (req.status == 200) {
-                const resultat = JSON.parse(req.responseText);
-                // document.getElementById('codi').value = resultat.idEdit
-                // document.getElementById('nom').value = resultat.nomEdit
-                // document.getElementById('direccion').value = resultat.adrEdit
-                $('#codi').val(resultat.idEdit)
-                $('#nom').val(resultat.nomEdit)
-                $('#direccion').val(resultat.adrEdit)
+                const res = JSON.parse(req.responseText);
+                loadEditor(res)
             } else {
                 const missatge = JSON.parse(req.responseText);
                 alert(document.createTextNode(missatge.error));
+                return null
             }
         }
     });
     req.open("GET", url);
     req.setRequestHeader('Accept', "application/json");
     req.send();
+}
+
+loadEditor = (editor) => {
+    $('#codi').val(editor.idEdit)
+    $('#nom').val(editor.nomEdit)
+    $('#direccion').val(editor.adrEdit)
 }
 
 postEditor = (editor) => {
@@ -68,7 +93,13 @@ postEditor = (editor) => {
     req.addEventListener("readystatechange", function () {
         if (req.readyState == 4) {
             if (req.status == 200) {
-                alert("Editor insertat correctament");
+                const res = JSON.parse(req.responseText);
+                console.log(res.idEdit)
+                textAlert =  `Editor insertado correctamente con los siguientes datos: 
+                    \n * ID: ${res.idEdit} 
+                    \n * Nombre: ${res.nomEdit}
+                    \n * Dirección: ${res.adrEdit}`
+                alert(textAlert);
                 document.location = "index.html";
             } else {
                 const missatge = JSON.parse(req.responseText);
@@ -98,6 +129,26 @@ putEditor = (editor) => {
         }
     });
     req.open("PUT", url);
+    req.setRequestHeader('Content-Type', "application/json");
+    req.setRequestHeader('Accept', "application/json");
+    req.send(JSON.stringify(editor));
+}
+
+deleteEditor = (editor) => {
+    let url = `http://${server}/editors/${editor.idEdit}`
+    const req = new XMLHttpRequest();
+    req.addEventListener("readystatechange", function () {
+        if (req.readyState == 4) {
+            if (req.status == 200) {
+                alert("Editor modificat correctament");
+                document.location = "index.html";
+            } else {
+                const missatge = JSON.parse(req.responseText);
+                alert(missatge.error);
+            }
+        }
+    });
+    req.open("DELETE", url);
     req.setRequestHeader('Content-Type', "application/json");
     req.setRequestHeader('Accept', "application/json");
     req.send(JSON.stringify(editor));
