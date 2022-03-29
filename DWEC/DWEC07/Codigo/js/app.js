@@ -3,32 +3,31 @@
  * URL's de l'api
  * 
  * Exercici 1: 
- * http://52.178.39.51:8080/editors/partNom/
+ * http://52.178.39.51:8080/editors/partNom/{text}
  * 
  * Exercici 2:
- * Cercar editor per id: http://52.178.39.51:8080/editors/perId/745
+ * Cercar editor per id: http://52.178.39.51:8080/editors/perId/{id}
  * Insertar un editor nou: POST a http://52.178.39.51:8080/editors
- * Modificar un editor: PUT a http://52.178.39.51:8080/editors/745 
+ * Modificar un editor: PUT a http://52.178.39.51:8080/editors/{id} 
  * 
  * Exercici 3:
- * Cercar editor per id: http://52.178.39.51:8080/editors/perId/745
- * Eliminar l'editor: DELETE a a http://52.178.39.51:8080/editors/745
+ * Cercar editor per id: http://52.178.39.51:8080/editors/perId/{id}
+ * Eliminar l'editor: DELETE a a http://52.178.39.51:8080/editors/{id}
  */
 
 const server = "52.178.39.51:8080"
 
 $(function () {
-    let urlparams = false
     const page = getPage()
+    let urlparams = checkUrlParams()
     switch (page) {
         case 'index.html':
-            search()
+            const list = $("#llista")
+            const input = $('#cercador')
+            search(list, input)
             break
         case 'formulari.html':
-            if (checkUrlParams()) {
-                urlparams = true
-                getEditor(getParam("idEdit"))
-            }
+            findEditorParams(urlparams, "idEdit")
             // Captura del evento submit.
             $("#formEditor").submit((e) => {
                 e.preventDefault();
@@ -42,15 +41,11 @@ $(function () {
             });
             break
         case 'elimina.html':
-            //Comprueba si la url contiene parametros ?
-            if (checkUrlParams()) {
-                urlparams = true
-                getEditor(getParam("idEdit"))
-            }
+            findEditorParams(urlparams, "idEdit")
+            // Captura del evento submit.
             $("#formElimina").submit((e) => {
                 e.preventDefault();
                 // Si la url contiene parametros se procede a la eliminación.
-                // En caso contrario no es necesario realizar ninguna operación.
                 if (urlparams) {
                     deleteEditor(setEditor($('#codi').val(), $('#nom').val(), $('#direccion').val()))
                 }
@@ -66,6 +61,22 @@ getPage = () => {
     const path = location.pathname
     const lastItem = path.substring(path.lastIndexOf('/') + 1)
     return lastItem
+}
+
+/**
+ * Funcion que comprueba si la URL contiene parámetros.
+ */
+checkUrlParams = () => {
+    if (window.location.search != "") { return true }
+}
+
+/**
+ * Funcion que obtiene el parametro "item" de la url.
+ * @param {*} item 
+ */
+getParam = (item) => {
+    let params = new URLSearchParams(window.location.search);
+    return parseInt(params.get(item))
 }
 
 /**
@@ -104,31 +115,36 @@ createButton = (clase, text, url, id) => {
 /**
  * Funcion que realiza la busqueda de los editores cuando se modifica el input de texto.
  */
-search = () => {
-    const llista = $("#llista")
-    const input = $('#cercador')
+function search(listElement, inputElement) {
     // Asigna el listener
-    input.keyup(function (e) { 
+    inputElement.keyup(function (e) { 
         e.preventDefault();
-        llista.empty()
-        getEditorsPartNom(llista, input)
+        listElement.empty()
+        getEditorsPartNom(listElement, inputElement)
     });
 }
 
 /**
- * Funcion que comprueba si la URL contiene parámetros.
+ * Funcion que obtiene el editor si existe el parámetro en la url de idEdit.
+ * @param {*} urlparams 
  */
-checkUrlParams = () => {
-    if (window.location.search != "") { return true } else { return false }
+function findEditorParams(urlparams, param) {
+    if (urlparams) {
+        getEditor(getParam(param))
+    }
 }
 
 /**
- * Funcion que obtiene el parametro "item" de la url.
- * @param {*} item 
+ * Ejercicio 1. jQuery.
  */
-getParam = (item) => {
-    let params = new URLSearchParams(window.location.search);
-    return parseInt(params.get(item))
+getEditorsPartNom = (listElement, inputElement) => {
+    if (inputElement.val() != '') {
+        $.get(`http://${server}/editors/partNom/${inputElement.val()}`, "json", function (res) {
+            $(res).each(function () {
+                createItemsList(listElement, this.nomEdit, this.idEdit)
+            });
+        });
+    }
 }
 
 /**
@@ -154,19 +170,6 @@ getEditor = (id) => {
     req.open("GET", url);
     req.setRequestHeader('Accept', "application/json");
     req.send();
-}
-
-/**
- * Ejercicio 1. jQuery.
- */
-getEditorsPartNom = (listElement, inputElement) => {
-    if (inputElement.val() != '') {
-        $.get(`http://${server}/editors/partNom/${inputElement.val()}`, "json", function (res) {
-            $(res).each(function () {
-                createItemsList(listElement, this.nomEdit, this.idEdit)
-            });
-        });
-    }
 }
 
 /**
