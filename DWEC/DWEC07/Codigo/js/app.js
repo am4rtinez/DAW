@@ -111,13 +111,7 @@ search = () => {
     input.keyup(function (e) { 
         e.preventDefault();
         llista.empty()
-        if (input.val() != '') { 
-            $.get(`http://${server}/editors/partNom/${input.val()}`, "json", function (res) {
-                $(res).each(function () {
-                    createItemsList(llista, this.nomEdit, this.idEdit)
-                });
-            });
-        }
+        getEditorsPartNom(llista, input)
     });
 }
 
@@ -152,7 +146,7 @@ getEditor = (id) => {
                 loadEditor(res)
             } else {
                 const missatge = JSON.parse(req.responseText);
-                alert(document.createTextNode(missatge.error));
+                alert(missatge.error);
                 return null
             }
         }
@@ -160,6 +154,19 @@ getEditor = (id) => {
     req.open("GET", url);
     req.setRequestHeader('Accept', "application/json");
     req.send();
+}
+
+/**
+ * Ejercicio 1. jQuery.
+ */
+getEditorsPartNom = (listElement, inputElement) => {
+    if (inputElement.val() != '') {
+        $.get(`http://${server}/editors/partNom/${inputElement.val()}`, "json", function (res) {
+            $(res).each(function () {
+                createItemsList(listElement, this.nomEdit, this.idEdit)
+            });
+        });
+    }
 }
 
 /**
@@ -199,8 +206,7 @@ postEditor = (editor) => {
         if (req.readyState == 4) {
             if (req.status == 200) {
                 const res = JSON.parse(req.responseText);
-                console.log(res.idEdit)
-                textAlert =  `Editor insertado correctamente con los siguientes datos: 
+                let textAlert =  `Editor insertado correctamente con los siguientes datos: 
                     \n * ID: ${res.idEdit} 
                     \n * Nombre: ${res.nomEdit}
                     \n * Dirección: ${res.adrEdit}`
