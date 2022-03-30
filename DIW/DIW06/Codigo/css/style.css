@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans&family=Noto+Sans+Display&family=Noto+Sans+JP&family=Quicksand&family=Roboto&family=Ubuntu&family=Ubuntu+Mono&display=swap');
+
+:root {
+    --clr-white: #fff;
+    --bg-dark: #212529 ;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.bg-dark {
+    background-color: var(--bg-dark);
+}
+
+.text-white {
+    color: var(--clr-white);
+}

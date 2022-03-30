@@ -109,6 +109,7 @@ DAW-Workspace.code-workspace
 
 # =========================== DIW =====================================
 /DIW/Docs/*
+/DIW/CursoCompleto/*
 /DIW/*/Docs/*
 /DIW/*/audios/*
 /DIW/*/pymusicplayer_sample.py
