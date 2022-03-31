@@ -8,4 +8,14 @@ $(function () {
         navIcon.toggleClass("fa-times");
         primaryNav.slideToggle();
     });
+
+    $(".img-fadeout").click(function (e) { 
+        e.preventDefault();
+        $(this).fadeOut();
+    });
+
+    $('#restore').click(function (e) { 
+        e.preventDefault();
+        $(".img-fadeout").fadeIn();
+    });
 })
