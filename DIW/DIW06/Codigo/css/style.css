@@ -2,7 +2,27 @@
 
 :root {
     --clr-white: #fff;
-    --bg-dark: #212529 ;
+    --bg-dark: #212529;
+
+
+    --clr-primario: #ae1a1a;
+    /* --clr-primario: #e1dad4; */
+    --clr-primario-light: #fff;
+    --clr-primario-2: #EBE8E8;
+    --clr-primario-dark: #555150;
+
+    --clr-primary-200: #f3ed99;
+    --clr-primary-300: #FED0D1;
+    --clr-primary-700: #F34A4E;
+    --clr-primary-800: #FF0040;
+    --clr-primary-900: #B40431;
+
+    --clr-neutral-000: #fff;
+    --clr-neutral-200: #EAEDED;
+    --clr-neutral-300: #E5E8E8;
+    --clr-neutral-500: #B2BABB;
+    --clr-neutral-800: #2E2E2E;
+    --clr-neutral-900: #1C1C1C;
 }
 
 *,
@@ -23,6 +43,21 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+header {
+    /* width: 100%; */
+    height: 100px;
+    margin: 0;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin-left: 2rem;
+}
+
+.align-center {
+    padding: 30px 0;
+}
+
 .bg-dark {
     background-color: var(--bg-dark);
 }
@@ -30,3 +65,122 @@ body {
 .text-white {
     color: var(--clr-white);
 }
+
+.nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    background: transparent;
+    border: transparent;
+    top: 2.3rem;
+    right: 2rem;
+}
+
+.nav-toggle .fa {
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+nav {
+    display: none;
+}
+
+/*sr-only es una funcionalidad calco de bootstrap para ocultar información 
+destinada a lectores de pantalla*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.primary-navigation a .nav-link-container {
+    padding-block: 2.8rem;
+    padding-inline: 1rem;
+}
+
+.primary-navigation {
+    --gap: 1em;
+    position: fixed;
+    z-index: 1000;
+    width: 30%;
+    right: 0;
+    height: 100%;
+    flex-direction: column;
+}
+
+.primary-navigation{
+    text-align: center;
+}
+
+.primary-navigation ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.primary-navigation li {
+    font-size: 1.5em;
+}
+
+.primary-navigation li {
+    font-size: 1.5em;
+}
+
+.primary-navigation a {
+    text-decoration: none;
+    color: white;
+}
+
+.primary-navigation a>*:hover {
+    background-color: var(--clr-primary-200);
+    color: var(--clr-neutral-900);
+}
+
+.primary-navigation li.active a .nav-link-container {
+    background-color: var(--clr-neutral-200);
+    color: var(--clr-primario);
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltipText {
+    display: none;
+    width: 130px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    /* bottom: 125%; */
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltipText::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -15px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  .tooltip:hover .tooltipText {
+    display: block;
+    opacity: 1;
+  }
