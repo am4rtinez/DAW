@@ -29,7 +29,7 @@
  * DONE: hide(), 
  * DONE: show(),  (0,4p).
  * DONE: Utilització de seqüències de funcions (Callback). (0,5p)
- * Encadenament() (0,2p)
+ * DONE: Encadenament() (0,2p)
  * 
  * DONE: jQuery HTML (Els heu de fer tots): (1,3p)
  * DONE: append(), 
