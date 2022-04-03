@@ -7,8 +7,8 @@
  * dblclick(), 
  * mouseenter(), 
  * mouseleave() (0,2p)
- * Keypress(), 
- * keydown(), 
+ * DONE: Keypress(), 
+ * DONE: keydown(), 
  * DONE: keyup(). (0,6p)
  * focus(), 
  * focusin(), 
@@ -47,6 +47,8 @@ $(function () {
     const navIcon = $('#nav-icon')
     const list = $("#llista")
     const input = $('#cercador')
+    let contador = 0
+    let vcontador = 0
     search(list, input)
 
     navToggle.click(function (e) { 
@@ -90,6 +92,16 @@ $(function () {
     $('#show').click(function (e) { 
         e.preventDefault();
         $(".img-fadeout").show();
+    });
+
+    $('#cercador').keypress(function (e) { 
+        $(".contador").text(contador += 1);
+    });
+
+    $('#cercador').keydown(function (e) { 
+        if ( (e.code == "KeyA") || (e.code == "KeyE") || (e.code == "KeyI") || (e.code == "KeyO") || (e.code == "KeyU")) {
+            $(".vcontador").text(vcontador += 1);
+        }
     });
 })
 
