@@ -42,9 +42,6 @@
  const server = "52.178.39.51:8080"
 
 $(function () {
-    const primaryNav = $(".primary-navigation");
-    const navToggle = $(".nav-toggle");
-    const navIcon = $('#nav-icon')
     const list = $("#llista")
     const input = $('#cercador')
     let contador = 0
@@ -55,10 +52,10 @@ $(function () {
 
     search(list, input)
 
-    navToggle.click(function (e) { 
+    $(".nav-toggle").click(function (e) { 
         e.preventDefault();
-        navIcon.toggleClass("fa-times");
-        primaryNav.slideToggle();
+        $('#nav-icon').toggleClass("fa-times");
+        $(".primary-navigation").slideToggle();
     });
 
     $(".img-fadeout").click(function (e) { 
@@ -172,6 +169,11 @@ $(function () {
         })
 })
 
+$( window ).resize(function() {
+    $(".window-size").empty()
+    $(".window-size").prepend( "<div class='window-size'> <p> Width: " + $( window ).width() + "</p></div>" );
+});
+
 /**
  * Funcion que realiza la busqueda de los editores cuando se modifica el input de texto.
  */
@@ -193,7 +195,7 @@ function opacityLoop(){
 /**
  * Ejercicio 1. jQuery.
  */
- getEditorsPartNom = (listElement, inputElement) => {
+function getEditorsPartNom (listElement, inputElement) {
     if (inputElement.val() != '') {
         $.get(`http://${server}/editors/partNom/${inputElement.val()}`, "json", function (res) {
             $(res).each(function () {
@@ -209,14 +211,16 @@ function opacityLoop(){
  * @param {*} element - Elemento texto que aparecera en el li.
  * @param {*} id - Identificador del editor.
  */
- createItemsList = (parent, element, id) => {
-    const modifButton = createButton("btn-warning", "Modifica", "formulari.html", id)
-    const delButton = createButton("btn-danger", "Elimina", "elimina.html", id)
+function createItemsList (parent, element, id) {
+    const modifButton = createButton("btn-warning", "Modifica", "#", id)
+    const delButton = createButton("btn-danger", "Elimina", "#", id)
     let itemLi = $('<li></li>')
-    let text = element + " (" + id + ") " 
-    itemLi.append(text)
-    itemLi.append(modifButton)
-    itemLi.append(delButton)
+    let itemDiv = $('<div class="row"></div>')
+    let text = "<div class='col'><p class='editor'>" + element + " (" + id + ")</p></div>" 
+    itemDiv.append(text)
+    itemDiv.append(modifButton)
+    itemDiv.append(delButton)
+    itemLi.append(itemDiv)
     parent.append(itemLi)
 }
 
@@ -227,8 +231,8 @@ function opacityLoop(){
  * @param {*} url 
  * @param {*} id 
  */
-createButton = (clase, text, url, id) => {
-    let button = $(`<button class="btn ${clase}">${text}</button>`)
+function createButton (clase, text, url, id) {
+    let button = $(`<div class='col'><button class="btn ${clase}">${text}</button></div>`)
     button.click(function (e) { 
         e.preventDefault();
         window.location.assign(`${url}?idEdit=${id}`); // Navega a la URL asignando el parametro idEdit.

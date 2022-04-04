@@ -36,10 +36,10 @@
                 </a>
             </li>
             <li>
-                <a class="navbar-link" href="#">
+                <a class="navbar-link" href="spider.html">
                     <div class="nav-link-container">
-                        <i class="fa fa-horse-head" aria-hidden="true"></i>
-                        <span>Info</span>
+                        <i class="fa-solid fa-spider" aria-hidden="true"></i>
+                        <span>Spider Panel</span>
                     </div>
                 </a>
             </li>
@@ -52,56 +52,16 @@
                 </a>
             </li>
             <li>
-                <a class="navbar-link" href="#">
+                <a class="navbar-link" href="editors.html">
                     <div class="nav-link-container">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <span>Contacto</span>
+                        <span>Editors</span>
                     </div>
                 </a>
             </li>
         </ul>
     </nav>
     <main>
-        <section class="container bg-section">
-            <header>
-                <h1 class="text-center">KeyEvents</h1>
-            </header>
-            <br>
-            <article>
-                <header>
-                    <h3 class="text-center">Buscar editores</h3>
-                </header>
-                <div class="row">
-                    <div class="col">
-                        <div class="tooltip">
-                            <label for="cercador" class="">Nombre editor:</label>
-                            <input type="text" name="cercador" id="cercador" class="">
-                            <div class="tooltipText">
-                                <p>Contiene los eventos tipo:</p>
-                                <ul>
-                                    <li>keypress - Suma al contador las teclas presionadas (la tecla retroceso no cuenta).</li>
-                                    <li>keydown - Suma al contador de vocales si la tecla presionada es vocal.</li>
-                                    <li>focusin - Cambia de color el fondo del input cuando se hace foco en el.</li>
-                                    <li>focusout - Cambia de color el fondo del input cuando se sale del foco.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <p class="text-center">Teclas pulsadas: <span class="contador">0</span></p>
-                    </div>
-                    <div class="col">
-                        <p class="text-center">Vocales pulsadas: <span class="vcontador">0</span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <ol id="llista">
-                    </ol>
-                </div>
-            </article>
-        </section>
         <section class="container bg-section">
             <header class="row">
                 <div class="col">
@@ -117,18 +77,26 @@
                 </div>
             </header>
             <div class="row">
-                    <div class="col">
-                        <img src="img/alien.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    </div>
-                    <div class="col">
-                        <img src="img/alien-monster.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    </div>
-                    <div class="col">
-                        <img src="img/bomb.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    </div>
-                    <div class="col">
-                        <img src="img/collision.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    </div>
+                <div class="col">
+                    <img src="img/alien.png" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
+                <div class="col">
+                    <img src="img/alien-monster.png" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
+                <div class="col">
+                    <img src="img/ogre.png" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <img src="img/bomb.png" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
+                <div class="col">
+                    <img src="img/collision.png" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
+                <div class="col">
+                    <img src="img/emoji.png" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -164,8 +132,6 @@
                         </div>
                     </div>
                 </div>
-            <!-- </div>
-            <div class="row"> -->
                 <div class="col">
                     <div class="tooltip">
                         <button id="hide" class="btn btn-success">Ocultar</button>
@@ -214,31 +180,6 @@
         </section>
         <section class="container bg-section">
             <header>
-                <h2 class="text-center">Panel mágico</h2>
-            </header>
-            <div class="row">
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="flip" class="btn btn-success">Abracadabra</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>slidown - Muestra un panel.</li>
-                                <li>slideup / dblclick - Con doble click oculta el panel.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div id="panel">
-                    <p>Panel mágico! </p>
-                    <p>Con doble click en "Abracadabra" desaparezco!</p>
-                </div>
-            </div>
-        </section>
-        <section class="container bg-section">
-            <header>
                 <h2 class="text-center">Animation</h2>
             </header>
             <br>
@@ -273,12 +214,15 @@
             </div>
         </section>
     </main>
+    <div class="window-size">
+
+    </div>
     <footer class="bg-dark">
         <p>Ángel Martínez - 2022</p>
         <div class="social-media-links">
             <a href="#" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
             <a href="#" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
-            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>   
             <a href="#" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
             <a href="https://github.com/am4rtinez/" alt="github"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
         </div>
