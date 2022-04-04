@@ -5,8 +5,8 @@
  * DONE: one() (0,6p)◦
  * DONE: click(), 
  * DONE: dblclick(), 
- * mouseenter(), 
- * mouseleave() (0,2p)
+ * DONE: mouseenter(), 
+ * DONE: mouseleave() (0,2p)
  * DONE: Keypress(), 
  * DONE: keydown(), 
  * DONE: keyup(). (0,6p)
@@ -21,7 +21,7 @@
  * DONE: slideDown(), 
  * DONE: slideUp(), 
  * DONE: slideToggle(). (0,6p). (0,2 resp)
- * animate():(0,6p)
+ * DONE: animate():(0,6p)
  *  amb valors relatius. (0,2p)
  *  amb valors predefinits. (0,2p)
  *  amb funcionalitat de cua. (0,2p)
@@ -36,7 +36,7 @@
  * prepend(), 
  * after(), 
  * before(). (0,8p)
- * Manipulació CSS. (0,5p)
+ * DONE: Manipulació CSS. (0,5p)
  */
 
  const server = "52.178.39.51:8080"
@@ -49,6 +49,10 @@ $(function () {
     const input = $('#cercador')
     let contador = 0
     let vcontador = 0
+    
+    // Loop para animar el logo
+    opacityLoop()
+
     search(list, input)
 
     navToggle.click(function (e) { 
@@ -103,7 +107,7 @@ $(function () {
         })
         .focusout(function(){
             $(this).css("background", "#fff")
-            $(this).css("border", "solid 1px black")
+            $(this).css("border", "solid 1px grey")
         })
         .keydown(function (e) { 
             if ( (e.code == "KeyA") || (e.code == "KeyE") || (e.code == "KeyI") || (e.code == "KeyO") || (e.code == "KeyU")) {
@@ -137,7 +141,7 @@ $(function () {
             {
                 duration: 3500,
                 easing: "linear",
-                step: function(now,fx) {
+                step: function(now) {
                     $(this).css({
                         transform : 'rotate('+now+'deg)'
                     });
@@ -151,13 +155,21 @@ $(function () {
         $('.sun').stop();
     });
 
-    $("#flip").click(function(){
-        $("#panel").slideDown(2000)
-    });
-    
-    $("#flip").dblclick(function(){
+    $("#flip")
+        .click(function(){
+            $("#panel").slideDown(2000)
+        })
+        .dblclick(function(){
         $("#panel").slideUp(2000)
     });
+
+    $('.social-media-links > a > i')
+        .mouseenter(function () { 
+            $(this).css('color', '#23ff00');
+        })
+        .mouseout(function() {
+            $(this).css('color', 'white');
+        })
 })
 
 /**
@@ -170,6 +182,12 @@ $(function () {
         listElement.empty()
         getEditorsPartNom(listElement, inputElement)
     });
+}
+
+function opacityLoop(){
+    $('#logo')
+      .animate({opacity:0.9},1000)
+      .animate({opacity:0.2},1000, opacityLoop);
 }
 
 /**
@@ -216,22 +234,4 @@ createButton = (clase, text, url, id) => {
         window.location.assign(`${url}?idEdit=${id}`); // Navega a la URL asignando el parametro idEdit.
     });
     return button
-}
-
-function AnimateRotate(angle) { 
-    // caching the object for performance reasons 
-    var $elem = $('.sun'); 
-    // we use a pseudo object for the animation 
-    // (starts from `0` to `angle`), you can name it as you want 
-    $({deg: 0}).animate({deg: angle}, { 
-        duration: 2000, 
-        step: function(now) { 
-            // in the step-callback (that is fired each step of the animation), 
-            // you can use the `now` paramter which contains the current 
-            // animation-position (`0` up to `angle`) 
-            $elem.css({ 
-                transform: 'rotate(' + now + 'deg)' 
-            })
-        }
-    })
 }

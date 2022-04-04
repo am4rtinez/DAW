@@ -11,7 +11,10 @@
 </head>
 <body>
     <header class="primary-header bg-dark text-white">
-        <h1>Hola Mundo!</h1>
+        <div class="brand">
+            <img id="logo" src="img/spidernet.png" alt="">
+            <h1>DIW06 - jQuery</h1>
+        </div>
         <button class="nav-toggle" tittle="Boton menu que contiene el evento slideToggle()">
             <!-- <div class="tooltip"> -->
                 <i id="nav-icon" class="menu-toggle-btn fa fa-bars" aria-hidden="true"></i>
@@ -28,20 +31,20 @@
                 <a class="navbar-link" href="index.html">
                     <div class="nav-link-container">
                         <i class="fa fa-home" aria-hidden="true"></i>
-                        <span>Inicio</span>
+                        <span>Home</span>
                     </div>
                 </a>
             </li>
             <li>
-                <a class="navbar-link" href="info.html">
+                <a class="navbar-link" href="#">
                     <div class="nav-link-container">
                         <i class="fa fa-horse-head" aria-hidden="true"></i>
-                        <span>Fiestas</span>
+                        <span>Info</span>
                     </div>
                 </a>
             </li>
             <li>
-                <a class="navbar-link" href="ubicacion.html">
+                <a class="navbar-link" href="#">
                     <div class="nav-link-container">
                         <i class="fa fa-map-location-dot" aria-hidden="true"></i>
                         <span>Ubicacion</span>
@@ -49,7 +52,7 @@
                 </a>
             </li>
             <li>
-                <a class="navbar-link" href="contacto.html">
+                <a class="navbar-link" href="#">
                     <div class="nav-link-container">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <span>Contacto</span>
@@ -70,8 +73,19 @@
                 </header>
                 <div class="row">
                     <div class="col">
-                        <label for="cercador" class="">Nombre editor:</label>
-                        <input type="text" name="cercador" id="cercador" class="">
+                        <div class="tooltip">
+                            <label for="cercador" class="">Nombre editor:</label>
+                            <input type="text" name="cercador" id="cercador" class="">
+                            <div class="tooltipText">
+                                <p>Contiene los eventos tipo:</p>
+                                <ul>
+                                    <li>keypress - Suma al contador las teclas presionadas (la tecla retroceso no cuenta).</li>
+                                    <li>keydown - Suma al contador de vocales si la tecla presionada es vocal.</li>
+                                    <li>focusin - Cambia de color el fondo del input cuando se hace foco en el.</li>
+                                    <li>focusout - Cambia de color el fondo del input cuando se sale del foco.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -89,47 +103,113 @@
             </article>
         </section>
         <section class="container bg-section">
-            <header>
-                <h2 class="text-center">Eventos fade, hide y show</h2>
+            <header class="row">
+                <div class="col">
+                    <div class="tooltip">
+                        <h2 class="">Eventos fade, hide y show</h2>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>fadeOut - Clicar sobre la imagen hará que desaparezca.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </header>
             <div class="row">
-                <div class="col">
-                    <img src="img/alien.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    <img src="img/alien-monster.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    <img src="img/bomb.png" alt="" srcset="" class="img-fadeout" faded="false">
-                    <img src="img/collision.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
+                    <div class="col">
+                        <img src="img/alien.png" alt="" srcset="" class="img-fadeout" faded="false">
+                    </div>
+                    <div class="col">
+                        <img src="img/alien-monster.png" alt="" srcset="" class="img-fadeout" faded="false">
+                    </div>
+                    <div class="col">
+                        <img src="img/bomb.png" alt="" srcset="" class="img-fadeout" faded="false">
+                    </div>
+                    <div class="col">
+                        <img src="img/collision.png" alt="" srcset="" class="img-fadeout" faded="false">
+                    </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <button id="restore" class="btn btn-success">Restaura imagenes</button>
+                    <div class="tooltip">
+                        <button id="restore" class="btn btn-success">Restaura imagenes</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>fadeIn - muestra las imagenes ocultas una animación de 3000ms.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <button id="fadetoggle" class="btn btn-success">Muestra / Oculta</button>
+                    <div class="tooltip">
+                        <button id="fadetoggle" class="btn btn-success">Muestra / Oculta</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>fadeToggle - muestra/oculta las imagenes con una animación de 3000ms.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <button id="fadeto" class="btn btn-success">Transparencia</button>
+                    <div class="tooltip">
+                        <button id="fadeto" class="btn btn-success">Transparencia</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>fadeTo - Hace que las imagenes tengan opacidad o no (animación de 3000ms).</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
+            <!-- </div>
+            <div class="row"> -->
                 <div class="col">
-                    <button id="hide" class="btn btn-success">Ocultar</button>
+                    <div class="tooltip">
+                        <button id="hide" class="btn btn-success">Ocultar</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>hide - Oculta las imagenes.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <button id="show" class="btn btn-success">Mostrar</button>
+                    <div class="tooltip">
+                        <button id="show" class="btn btn-success">Mostrar</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>show - Muestra las imagenes.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <button id="off-img-click" class="btn btn-success">Off click img</button>
+                    <div class="tooltip">
+                        <button id="off-img-click" class="btn btn-success">Off click</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>off - Detiene el evento de click sobre las imagenes.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <button id="info" class="btn btn-success">Info</button>
+                    <div class="tooltip">
+                        <button id="info" class="btn btn-success">Info</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>one - Muestra un alert y despues deja de funcionar.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row text-center">
-                <p>Clicar sobre uno de los emojis hara que desaparezca. FadeOut().</p>
-                <p>Clicar sobre el boton Restaura, restaurara las imagenes. FadeIn().</p>
-                <p>Clicar sobre el boton fadeToggle() hará que aparezcan/desaparezcan los emojis.</p>
-                <p>Clicar sobre el boton fadeTo() hará que los emojis pierdan o ganen opacidad.</p>
             </div>
         </section>
         <section class="container bg-section">
@@ -138,7 +218,16 @@
             </header>
             <div class="row">
                 <div class="col">
-                    <button id="flip" class="btn btn-success">Abracadabra</button>
+                    <div class="tooltip">
+                        <button id="flip" class="btn btn-success">Abracadabra</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>slidown - Muestra un panel.</li>
+                                <li>slideup / dblclick - Con doble click oculta el panel.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -152,6 +241,7 @@
             <header>
                 <h2 class="text-center">Animation</h2>
             </header>
+            <br>
             <div class="row">
                 <div class="col">
                     <img src="img/sun.png" alt="" srcset="" class="sun">
@@ -159,10 +249,26 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button id="rotate" class="btn btn-success">Animate</button>
+                    <div class="tooltip">
+                        <button id="rotate" class="btn btn-success">Animate</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>animate - Inicia una animacion que rota la imagen.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col">
-                    <button id="stop" class="btn btn-danger">Stop</button>
+                    <div class="tooltip">
+                        <button id="stop" class="btn btn-danger">Stop</button>
+                        <div class="tooltipText">
+                            <p>Contiene el evento tipo:</p>
+                            <ul>
+                                <li>stop - Para la animación si no ha finalizado.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
