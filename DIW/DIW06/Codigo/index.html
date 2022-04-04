@@ -75,11 +75,17 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col">
+                        <p class="text-center">Teclas pulsadas: <span class="contador">0</span></p>
+                    </div>
+                    <div class="col">
+                        <p class="text-center">Vocales pulsadas: <span class="vcontador">0</span></p>
+                    </div>
+                </div>
+                <div class="row">
                     <ol id="llista">
                     </ol>
                 </div>
-                <p class="text-center">Teclas pulsadas: <span class="contador">0</span></p>
-                <p class="text-center">Vocales pulsadas: <span class="vcontador">0</span></p>
             </article>
         </section>
         <section class="container bg-section">
@@ -96,19 +102,27 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button id="restore" class="btn btn-success">Restaura - fadeIn()</button>
+                    <button id="restore" class="btn btn-success">Restaura imagenes</button>
                 </div>
                 <div class="col">
-                    <button id="fadetoggle" class="btn btn-success">fadeToggle()</button>
+                    <button id="fadetoggle" class="btn btn-success">Muestra / Oculta</button>
                 </div>
                 <div class="col">
-                    <button id="fadeto" class="btn btn-success">fadeTo()</button>
+                    <button id="fadeto" class="btn btn-success">Transparencia</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="hide" class="btn btn-success">Ocultar</button>
                 </div>
                 <div class="col">
-                    <button id="hide" class="btn btn-success">hide()</button>
+                    <button id="show" class="btn btn-success">Mostrar</button>
                 </div>
                 <div class="col">
-                    <button id="show" class="btn btn-success">show()</button>
+                    <button id="off-img-click" class="btn btn-success">Off click img</button>
+                </div>
+                <div class="col">
+                    <button id="info" class="btn btn-success">Info</button>
                 </div>
             </div>
             <div class="row text-center">
@@ -120,8 +134,37 @@
         </section>
         <section class="container bg-section">
             <header>
-                <h2 class="text-center">slideDown(), slideUp()</h2>
+                <h2 class="text-center">Panel mágico</h2>
             </header>
+            <div class="row">
+                <div class="col">
+                    <button id="flip" class="btn btn-success">Abracadabra</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="panel">
+                    <p>Panel mágico! </p>
+                    <p>Con doble click en "Abracadabra" desaparezco!</p>
+                </div>
+            </div>
+        </section>
+        <section class="container bg-section">
+            <header>
+                <h2 class="text-center">Animation</h2>
+            </header>
+            <div class="row">
+                <div class="col">
+                    <img src="img/sun.png" alt="" srcset="" class="sun">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button id="rotate" class="btn btn-success">Animate</button>
+                </div>
+                <div class="col">
+                    <button id="stop" class="btn btn-danger">Stop</button>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="bg-dark">
