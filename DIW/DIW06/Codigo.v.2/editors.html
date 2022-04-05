@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Guillem de Moncada</title>
+    <script src="https://kit.fontawesome.com/4a3681c942.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="primary-header sticky flex">
+        <div class="brand">
+            <a href="index.html">
+                <img id="logo" src="img/logo-colla.png" alt="logo" class="logo">
+            </a>
+        </div>
+        <!-- <button class="navbar-toggle nav-toggle" aria-controls="primary-navigation" aria-expanded="false"> -->
+        <button class="navbar-toggle nav-toggle">
+            <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li>
+                    <a class="navbar-link" href="index.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="info.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-horse-head" aria-hidden="true"></i>
+                            <span>Fiestas</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="ubicacion.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-map-location-dot" aria-hidden="true"></i>
+                            <span>Ubicacion</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="contacto.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Contacto</span>
+                        </div>
+                    </a>
+                </li>
+                <li  class="active">
+                    <a class="navbar-link" href="editors.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Editors</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <section class="content-section">
+            <div class="section-header text-center">
+                <h2>Búsqueda de editores</h2>
+            </div>
+            <div class="section-body">
+                <form class="box-shadow">
+                    <div class="row">
+                        <label class="col-20" for="cercador" class="">Nombre editor:</label>
+                        <input class="col field" type="text" name="cercador" id="cercador" class="">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="pcontador text-center">Teclas pulsadas: <span class="contador">0</span></p>
+                        </div>
+                        <div class="col">
+                            <p class="pvcontador text-center">Vocales pulsadas: <span class="vcontador">0</span></p>
+                        </div>
+                    </div>
+                </form>
+                <div class="lista">
+                    <h3 class="text-center">Listado editores</h3>
+                    <ul id="llista">
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Guillem de Moncada - 2021</p>
+        <div class="social-media-links">
+            <a href="#" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="#" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://github.com/am4rtinez/" alt="github"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
