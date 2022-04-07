@@ -1,8 +1,8 @@
 /**
  * DONE: Mètodes d'advents de jQuery (Els heu de fer tots): (2,4p) ◦
- * DONE: on(), 
- * DONE: off(), 
- * DONE: one() (0,6p)◦
+ * on(), 
+ * off(), 
+ * one() (0,6p)◦
  * DONE: click(), 
  * DONE: dblclick(), 
  * DONE: mouseenter(), 
@@ -17,17 +17,20 @@
  * scroll() (0,4p)
  * 
  * DONE: Efectes (Els heu de fer tots) (3,3p)
- * DONE: fadein(), fadeout(), fadetoggle(), fadeTo().  (0,8p). (0,2 respectivament)
- * DONE: slideDown(), 
- * DONE: slideUp(), 
- * DONE: slideToggle(). (0,6p). (0,2 resp)
+ * DONE: fadein(),
+ * DONE: fadeout(), 
+ * DONE: fadetoggle(), 
+ * fadeTo().  (0,8p). (0,2 respectivament)
+ * slideDown(), 
+ * slideUp(), 
+ * slideToggle(). (0,6p). (0,2 resp)
  * DONE: animate():(0,6p)
  *  amb valors relatius. (0,2p)
  *  amb valors predefinits. (0,2p)
  *  amb funcionalitat de cua. (0,2p)
- * DONE: stop(). (0,2p)◦
- * DONE: hide(), 
- * DONE: show(),  (0,4p).
+ * stop(). (0,2p)◦
+ * hide(), 
+ * show(),  (0,4p).
  * DONE: Utilització de seqüències de funcions (Callback). (0,5p)
  * DONE: Encadenament() (0,2p)
  * 
@@ -64,115 +67,141 @@ $(function () {
             primaryNav.attr('data-visible', false);
         }
     });
+    
+    $('.fa-ship').click(function (e) { 
+        e.preventDefault();
+        $(this).toggleClass('red')
+        $("#panel").slideToggle(2000)
+    });
 
-    $(".img-fadeout").click(function (e) { 
+    $('.fa-shield-halved').click(function (e) { 
+        e.preventDefault();
+        $(this).toggleClass('blue')
+        $("#panel2").slideToggle(2000)
+    });
+
+    $('.fa-cross').click(function (e) { 
+        e.preventDefault();
+        $(this).toggleClass('gold')
+        $("#panel3").slideToggle(2000)
+    });
+
+    // $('#restore').click(function (e) { 
+    //     e.preventDefault();
+    //     $(".img-fadeout").fadeToggle(500);
+    // });
+    
+    /**
+     * Cuando se hace click sobre la imagen con la clase .content-img esta desaparece.
+     */
+    $(".content-img").on('click', function (e) { 
         e.preventDefault();
         $(this).fadeOut(500);
     });
-
-    $('#restore').click(function (e) { 
+    
+    /**
+     * Cuando se hace doble clic sobre la section (.content-section) aparece la imagen de la sección.
+     */
+    $('.content-section').dblclick(function (e) { 
         e.preventDefault();
-        $(".img-fadeout").fadeIn(500);
+        $(this).find('.content-img').fadeIn(500)
     });
+    
 
-    $('body').dblclick(function (e) { 
-        e.preventDefault();
-        $(".banner-area").fadeToggle(500);
-    });
+    // $("#fadeto").click(function(){
+    //     let img =  $(".img-fadeout")
+    //     console.log(img.attr('faded'))
+    //     if (img.attr('faded') == "false"){
+    //         img.fadeTo(1000, 0.4);
+    //         img.attr('faded', true)
+    //     } else {
+    //         img.fadeTo(1000, 1);
+    //         img.attr('faded', false)
+    //     }
+    // });
 
-    $("#fadeto").click(function(){
-        let img =  $(".img-fadeout")
-        console.log(img.attr('faded'))
-        if (img.attr('faded') == "false"){
-            img.fadeTo(1000, 0.4);
-            img.attr('faded', true)
-        } else {
-            img.fadeTo(1000, 1);
-            img.attr('faded', false)
-        }
-    });
+    // $('none').click(function (e) { 
+    //     e.preventDefault();
+    //     $(this).hide(1000);
+    // });
 
-    $('#hide').click(function (e) { 
-        e.preventDefault();
-        $(".img-fadeout").hide(1000);
-    });
-
-    $('#show').click(function (e) { 
-        e.preventDefault();
-        $(".img-fadeout").show(1000);
-    });
+    // $('#show').click(function (e) { 
+    //     e.preventDefault();
+    //     $(".img-fadeout").show(1000);
+    // });
 
     $('#cercador')
+        .focusin(function (){
+            $(this).css('background-color', '#f3f35d')
+        })
+        .focusout(function (){
+            $(this).css('background-color', '#fff')
+        })
         .keypress(function (e) { 
             $(".contador").text(contador += 1);
         })
-        .focusin(function(){
-            $(this).css("background", "#D8E0E7")
-        })
-        .focusout(function(){
-            $(this).css("background", "#fff")
-            $(this).css("border", "solid 1px grey")
-        })
         .keydown(function (e) { 
-            if ( (e.code == "KeyA") || (e.code == "KeyE") || (e.code == "KeyI") || (e.code == "KeyO") || (e.code == "KeyU")) {
+            if ((e.code == "KeyA") || (e.code == "KeyE") || (e.code == "KeyI") || (e.code == "KeyO") || (e.code == "KeyU")) {
                 $(".vcontador").text(vcontador += 1);
             }
         });
 
-    $('#off-img-click').click(function (e) { 
-        e.preventDefault();
-        $(".img-fadeout").off()
-    });
+    // $('#off-img-click').click(function (e) { 
+    //     e.preventDefault();
+    //     $(".img-fadeout").off()
+    // });
 
-    $('#info').one("click",function (e) { 
-        e.preventDefault();
-        alert("Clicar sobre uno de los emojis hara que desaparezca. FadeOut(). \n" + 
-                "Clicar sobre el boton Restaura imagenes, restaurara las imagenes. FadeIn(). \n" + 
-                "Clicar sobre el boton Muesta/Oculta hará que aparezcan/desaparezcan los emojis.\n" +
-                "Clicar sobre el boton Transparencia hará que los emojis pierdan o ganen opacidad.\n" +
-                "Clicar sobre el boton Ocultar hará que los emojis desaparezcan.\n" + 
-                "Clicar sobre el boton Mostrar hará que los emojis reaparezcan.\n" +
-                "Clicar sobre el boton Off hará que el click sobre los emojis no funcione.\n" +
-                "Clicar sobre el boton Info mostrará este alert una sola vez."
-            )
-    });
+    // $('#info').one("click",function (e) { 
+    //     e.preventDefault();
+    //     alert("Clicar sobre uno de los emojis hara que desaparezca. FadeOut(). \n" + 
+    //             "Clicar sobre el boton Restaura imagenes, restaurara las imagenes. FadeIn(). \n" + 
+    //             "Clicar sobre el boton Muesta/Oculta hará que aparezcan/desaparezcan los emojis.\n" +
+    //             "Clicar sobre el boton Transparencia hará que los emojis pierdan o ganen opacidad.\n" +
+    //             "Clicar sobre el boton Ocultar hará que los emojis desaparezcan.\n" + 
+    //             "Clicar sobre el boton Mostrar hará que los emojis reaparezcan.\n" +
+    //             "Clicar sobre el boton Off hará que el click sobre los emojis no funcione.\n" +
+    //             "Clicar sobre el boton Info mostrará este alert una sola vez."
+    //         )
+    // });
 
-    $('#rotate').click(function (e) { 
-        e.preventDefault();
-        $('.sun').animate(
-            // {  transform: degree },
-            {degrees: 359},
-            {
-                duration: 3500,
-                easing: "linear",
-                step: function(now) {
-                    $(this).css({
-                        transform : 'rotate('+now+'deg)'
-                    });
-                }
-            }
-        );
-    });
+    // $('#rotate').click(function (e) { 
+    //     e.preventDefault();
+    //     $('.sun').animate(
+    //         // {  transform: degree },
+    //         {degrees: 359},
+    //         {
+    //             duration: 3500,
+    //             easing: "linear",
+    //             step: function(now) {
+    //                 $(this).css({
+    //                     transform : 'rotate('+now+'deg)'
+    //                 });
+    //             }
+    //         }
+    //     );
+    // });
 
-    $('#stop').click(function (e) { 
-        e.preventDefault();
-        $('.sun').stop();
-    });
+    // $('#stop').click(function (e) { 
+    //     e.preventDefault();
+    //     $('.sun').stop();
+    // });
 
-    $("#flip")
-        .click(function(){
-            $("#panel").slideDown(2000)
-        })
-        .dblclick(function(){
-        $("#panel").slideUp(2000)
-    });
+    // $("#flip")
+    //     .click(function(){
+    //         $("#panel").slideDown(2000)
+    //     })
+    //     .dblclick(function(){
+    //     $("#panel").slideUp(2000)
+    // });
 
     $('.social-media-links > a > i')
         .mouseenter(function () { 
-            $(this).css('color', '#23ff00');
+            $(this).css('color', '#ffff2c');
+            $(this).css('text-shadow', ' 0 0 8px #ffff0c')
         })
         .mouseout(function() {
             $(this).css('color', 'white');
+            $(this).css('text-shadow', ' 0 0 0 ')
         })
 })
 
