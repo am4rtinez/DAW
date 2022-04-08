@@ -1,6 +1,6 @@
 /**
  * DONE: Mètodes d'advents de jQuery (Els heu de fer tots): (2,4p) ◦
- * on(), 
+ * DONE: on(), 
  * off(), 
  * one() (0,6p)◦
  * DONE: click(), 
@@ -23,7 +23,7 @@
  * fadeTo().  (0,8p). (0,2 respectivament)
  * slideDown(), 
  * slideUp(), 
- * slideToggle(). (0,6p). (0,2 resp)
+ * DONE: slideToggle(). (0,6p). (0,2 resp)
  * DONE: animate():(0,6p)
  *  amb valors relatius. (0,2p)
  *  amb valors predefinits. (0,2p)
@@ -42,7 +42,8 @@
  * DONE: Manipulació CSS. (0,5p)
  */
 
- const server = "52.178.39.51:8080"
+const server = "52.178.39.51:8080"
+let interval
 
 $(function () {
     const primaryNav = $(".primary-navigation")
@@ -54,7 +55,15 @@ $(function () {
     
     // Loop para animar el logo
     opacityLoop()
-
+    //Hace el set de los titles para que aparezca la info cuando se pasa el raton encima.
+    setTitle('#logo', 'Animate: Modifica la opacidad del logo.')
+    setTitle('.fa-ship', 'toogleClass: Cambia la clase para que tenga color al mostrar el panel.\nslideToggle: Muestra/oculta panel con una imagen.')
+    setTitle('.fa-shield-halved', 'toogleClass: Cambia la clase para que tenga color al mostrar el panel.\nslideToggle: Muestra/oculta panel con una imagen.')
+    setTitle('.fa-cross', 'toogleClass: Cambia la clase para que tenga color al mostrar el panel.\nslideToggle: Muestra/oculta panel con una imagen.')
+    setTitle('#cercador', 'FocusIn: Cambia el color del fondo del input.\nFocusOut: Restablece el color de fondo.\nKeyPress: Cuenta teclas presionadas.\nKeyUp: Busca editores\nKeyDown: Cuenta las vocales presionadas.')
+    setTitle('#off-img-click', 'Off: Detiene el click en las imagenes.')
+    setTitleImg('.content-img', '.content-section', 'Click en la imagen hace que desaparezca (fadeOut).', 'Doble click en la seccion y reaparece la imagen (fadeIn).')
+    // Hace la busqueda de editores segun lo insertado en el input.
     search(list, input)
 
     navToogle.click(function (e) { 
@@ -98,15 +107,14 @@ $(function () {
         e.preventDefault();
         $(this).fadeOut(500);
     });
-    
+
     /**
      * Cuando se hace doble clic sobre la section (.content-section) aparece la imagen de la sección.
      */
     $('.content-section').dblclick(function (e) { 
         e.preventDefault();
         $(this).find('.content-img').fadeIn(500)
-    });
-    
+    });  
 
     // $("#fadeto").click(function(){
     //     let img =  $(".img-fadeout")
@@ -146,10 +154,10 @@ $(function () {
             }
         });
 
-    // $('#off-img-click').click(function (e) { 
-    //     e.preventDefault();
-    //     $(".img-fadeout").off()
-    // });
+    $('#off-img-click').click(function (e) { 
+        e.preventDefault();
+        $(".content-img").off()
+    });
 
     // $('#info').one("click",function (e) { 
     //     e.preventDefault();
@@ -202,8 +210,19 @@ $(function () {
         .mouseout(function() {
             $(this).css('color', 'white');
             $(this).css('text-shadow', ' 0 0 0 ')
-        })
+        });
 })
+
+function setTitle(element, titleElement) {
+    $(element).attr('title', titleElement);
+}
+
+function setTitleImg(element, parent, titleElement, titleParent) {
+    $(element).each(function(){
+        setTitle('title', titleElement);
+        $(this).closest(parent).attr('title', titleParent)
+    })
+}
 
 /**
  * Funcion que realiza la busqueda de los editores cuando se modifica el input de texto.
@@ -221,6 +240,12 @@ function opacityLoop(){
     $('#logo')
       .animate({opacity:0.9},1000)
       .animate({opacity:0.2},1000, opacityLoop);
+}
+
+function pauseOpacityLoop() {
+    $('#logo').click(function (e) {
+        $('#logo').stop()
+    })
 }
 
 /**
