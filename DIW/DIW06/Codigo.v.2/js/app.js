@@ -43,7 +43,9 @@
  */
 
 const server = "52.178.39.51:8080"
+const imagenes = ['frej2011', 'frej2015', 'frej2016', 'frej2017', 'frej2018', 'frej2019']
 let interval
+let loop = 0
 
 $(function () {
     const primaryNav = $(".primary-navigation")
@@ -95,11 +97,22 @@ $(function () {
         $("#panel3").slideToggle(2000)
     });
 
-    // $('#restore').click(function (e) { 
-    //     e.preventDefault();
-    //     $(".img-fadeout").fadeToggle(500);
-    // });
+    $('#play').click(function (e) {
+        do_slide()
+    })
+
+    $('#previous').click(function (e) {
+        previous()
+    })
+
+    $('#next').click(function (e) {
+        next()
+    })
     
+    $('#stop').click(function (e) {
+        stop_slide()
+    })
+
     /**
      * Cuando se hace click sobre la imagen con la clase .content-img esta desaparece.
      */
@@ -175,7 +188,6 @@ $(function () {
     // $('#rotate').click(function (e) { 
     //     e.preventDefault();
     //     $('.sun').animate(
-    //         // {  transform: degree },
     //         {degrees: 359},
     //         {
     //             duration: 3500,
@@ -222,6 +234,54 @@ function setTitleImg(element, parent, titleElement, titleParent) {
         setTitle('title', titleElement);
         $(this).closest(parent).attr('title', titleParent)
     })
+}
+
+function slideImage() {
+    if (loop > (imagenes.length -1)) {
+        loop = 0
+        $('#image-no').val(loop)
+        $('.gallery-img').attr('src', "img/gallery/" + imagenes[loop] + ".jpg")
+    } else {
+        $('#image-no').val(loop)
+        $('.gallery-img').attr('src', "img/gallery/" + imagenes[loop] + ".jpg")
+        loop++
+    }
+}
+
+function previous() {
+    let pos = $('#image-no').val()
+    if (pos <= 0) {
+        pos = imagenes.length -1
+        $('#image-no').val(pos)
+        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
+    } else {
+        pos = pos - 1
+        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
+        $('#image-no').val(pos)
+    }
+}
+
+function next() {
+    let pos = $('#image-no').val()
+    if (pos >= imagenes.length -1) {
+        pos = 0
+        $('#image-no').val(pos)
+        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
+    } else {
+        pos++
+        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
+        $('#image-no').val(pos)
+    }
+}
+
+function do_slide(){
+    interval = setInterval(function(){
+      slideImage();
+    }, 3000);
+}
+
+function stop_slide(){
+    clearInterval(interval)
 }
 
 /**

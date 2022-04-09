@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Guillem de Moncada</title>
+    <script src="https://kit.fontawesome.com/4a3681c942.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="primary-header sticky flex">
+        <div class="brand">
+            <a href="index.html">
+                <img id="logo" src="img/logo-colla.png" alt="logo" class="logo">
+            </a>
+        </div>
+        <!-- <button class="navbar-toggle nav-toggle" aria-controls="primary-navigation" aria-expanded="false"> -->
+        <button class="navbar-toggle nav-toggle">
+            <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
+            <span class="sr-only">Menu</span>
+        </button>
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li class="active">
+                    <a class="navbar-link" href="index.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="info.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-horse-head" aria-hidden="true"></i>
+                            <span>Fiestas</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="ubicacion.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-map-location-dot" aria-hidden="true"></i>
+                            <span>Ubicacion</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="contacto.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Contacto</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="editors.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Editors</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a id="off-img-click" class="navbar-link" href="#">
+                        <div class="nav-link-container">
+                            <i class="fa-solid fa-circle-stop" aria-hidden="true"></i>
+                            <span>Off Click</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <!-- Seccion Galeria -->
+        <section class="content-section">
+            <div id="gallery-panel">
+                <img class="gallery-img" src="img/gallery/frej2011.jpg" alt="Portada Programa FREJ">
+                <input type="hidden" id="image-no" name="img-no" value="0">
+            </div>
+            <div class="align-center">
+                <button id="previous"><i class="fa-solid fa-backward-step"></i></button>
+                <button id="play"><i class="fa-solid fa-play"></i></button>
+                <button id="pause"><i class="fa-solid fa-pause"></i></button>
+                <button id="stop"><i class="fa-solid fa-stop"></i></button>
+                <button id="next"><i class="fa-solid fa-forward-step"></i></button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Guillem de Moncada - 2021</p>
+        <div class="social-media-links">
+            <a href="#" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="#" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://github.com/am4rtinez/" alt="github"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

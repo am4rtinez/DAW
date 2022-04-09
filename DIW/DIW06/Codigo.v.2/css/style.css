@@ -692,6 +692,19 @@ destinada a lectores de pantalla*/
     color: gold;
 }
 
+#gallery-panel {
+    background-color: #1C1C1C;
+    border: 1px solid #555150;
+    border-radius: 5px;
+}
+
+/* TODO: Calcular para los distintos tipos de pantallas. */
+#gallery-panel .gallery-img {
+    /* width: calc(100% - 55%); */
+    width: 500px;
+    height: auto;
+}
+
 /*------------ END UTILITIES --------------*/
 
 /*------------ MEDIA QUERIES ------------*/
