@@ -674,7 +674,6 @@ destinada a lectores de pantalla*/
     border-radius: 5px;
 }
 
-/* TODO: Calcular para los distintos tipos de pantallas. */
 #gallery-panel .gallery-img {
     display: block;
     width: 50%;
@@ -892,21 +891,6 @@ destinada a lectores de pantalla*/
 /* Large devices (desktops, 992px and up)
  Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 992px){
-    /* .primary-navigation{
-        padding-inline: 1rem;
-    }
-
-    .primary-navigation li.active a .nav-link-container{
-        background-color:  var(--clr-neutral-000);
-        color: var(--clr-neutral-900);
-    }
-
-    .primary-navigation li:hover {
-        background-color: var(--clr-primario-2);
-    }
-
-    .primary-navigation li:hover > *{
-        color: var(--clr-primario);
-    } */
+    /* .*/
 }
 /*------------ END MEDIA QUERIES ------------*/
