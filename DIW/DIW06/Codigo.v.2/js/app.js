@@ -1,16 +1,12 @@
 /**
- * TODO: focus(), 
  * TODO: resize(), 
  * TODO: scroll() (0,4p)
- * TODO: prepend(), 
- * TODO: after(), 
- * TODO: before(). (0,8p)
  */
 
 const server = "52.178.39.51:8080"
 const imagenes = ['frej2011', 'frej2015', 'frej2016', 'frej2017', 'frej2018', 'frej2019']
 let interval
-let loop = 0
+let pos = 0
 let $rotator
 
 $(function () {
@@ -21,10 +17,8 @@ $(function () {
     let contador = 0
     let vcontador = 0
     
-    // Loop para animar el logo
-    opacityLoop()
     //Hace el set de los titles para que aparezca la info cuando se pasa el raton encima.
-    setTitle('#logo', 'Animate: Modifica la opacidad del logo.')
+    setTitle('#logo', 'Animate: Modifica la opacidad del logo.\nCon un click para la animación.\nCon doble click vuelve a realizar la animación.')
     setTitle('.fa-ship', 'toogleClass: Cambia la clase para que tenga color al mostrar el panel.\nslideToggle: Muestra/oculta panel con una imagen.')
     setTitle('.fa-shield-halved', 'toogleClass: Cambia la clase para que tenga color al mostrar el panel.\nslideToggle: Muestra/oculta panel con una imagen.')
     setTitle('.fa-cross', 'toogleClass: Cambia la clase para que tenga color al mostrar el panel.\nslideToggle: Muestra/oculta panel con una imagen.')
@@ -36,9 +30,30 @@ $(function () {
     setTitle('#pause', 'Pausa el slider de las imagenes.')
     setTitle('#stop', 'Para el slider de las imagenes. Reinicia.')
     setTitle('#next', 'Avanza una imagen.')
+    setTitle('#flip', 'Muestra/oculta un panel mágico. slideDown() y slideUp().')
+    setTitle('#info', 'Muestra un alert con información una única vez (one()).')
+    setTitle('#show', 'Muestra el boton info nuevamente (show()).')
+    setTitle('#rotate', 'Activa la animación del sol.')
+    setTitle('#stop-animation', 'Para la animación del sol.')
+
     // Hace la busqueda de editores segun lo insertado en el input.
     search(list, input)
 
+    // Loop para animar el logo
+    opacityLoop($('#logo'))
+
+    //Controla los eventos de click y doble click del logo para animarlo o no.
+    $('#logo')
+        .click(function (e) { 
+            e.preventDefault();
+            pauseOpacityLoop($(this))
+        })
+        .dblclick(function (e) {
+            e.preventDefault();
+            opacityLoop($(this))
+        })
+    
+    // Oculta el boton show inicialmente.
     $('#show').hide()
 
     navToogle.click(function (e) { 
@@ -71,7 +86,7 @@ $(function () {
     });
 
     $('#play').click(function (e) {
-        do_slide()
+        do_slide($('#image-no'), $('.gallery-img'))
         setFaded($(this), true)
         setFaded($('#stop'), false)
         setFaded($('#pause'), false)
@@ -85,18 +100,18 @@ $(function () {
     })
 
     $('#stop').click(function (e) {
-        stop_slide()
+        stop_slide($('#image-no'))
         setFaded($(this), true)
         setFaded($('#play'), false)
         setFaded($('#pause'), true)
     })
 
     $('#previous').click(function (e) {
-        previous()
+        previousImage()
     })
 
     $('#next').click(function (e) {
-        next()
+        nextImage($('#image-no'), $('.gallery-img'))
     })
     
     /**
@@ -115,11 +130,6 @@ $(function () {
         $(this).find('.content-img').fadeIn(500)
     });
 
-    $('#show').click(function (e) { 
-        e.preventDefault();
-        $("#info").show();
-    });
-
     $('#cercador')
         .focusin(function (){
             $(this).css('background-color', '#f3f35d')
@@ -136,11 +146,13 @@ $(function () {
             }
         });
 
+    // Si se clica sobre este elemento pausa el evento de las imagenes.
     $('#off-img-click').click(function (e) { 
         e.preventDefault();
         $(".content-img").off()
     });
 
+    // Habilita un solo click para el boton info. Despues desaparece. Y habilita el boton show.
     $('#info').one("click",function (e) { 
         e.preventDefault();
         alert("Clicar sobre el botón ABRACADABRA hara aparecer un panel oculto. \n" + 
@@ -150,14 +162,31 @@ $(function () {
         $(this).hide()
     });
 
-    $('#rotate').click(function (e) { 
+    //Cuando se clica sobre el boton show aparece el boton info oculto pero sin funcionalidad alguna (one()).
+    $('#show').click(function (e) { 
         e.preventDefault();
-        $rotator = rotateForEver($('.sun'))
+        $("#info").show();
     });
 
+    $('.animation-section').prepend("<div class='section-header'><h2 class='text-center'>Anima este sol.</h2></div>");
+    //Inicia la animación de rotacion.
+    $('#rotate')
+        .click(function (e) { 
+            e.preventDefault();
+            $rotator = rotateForEver($('.sun'))
+        })
+        .focus(function (e) { 
+            e.preventDefault();
+            $('.animation-p').remove()
+            $(this).after("<div class='animation-p text-center'><p>Rotacion iniciada</p></div>")
+        });
+
+    //Para la animación de rotación.
     $('#stop-animation').click(function (e) { 
         e.preventDefault();
         $rotator.stop();
+        $('.animation-p').remove()
+        $(this).before("<div class='animation-p text-center'><p>Rotacion parada</p></div>")
     });
 
     $("#flip")
@@ -179,6 +208,12 @@ $(function () {
         });
 })
 
+/**
+ * Función para habilitar la animación infinita de rotación.
+ * @param {*} $elem 
+ * @param {*} rotator 
+ * @returns 
+ */
 function rotateForEver($elem, rotator) {
     if (rotator === void(0)) {
         rotator = $({deg: 0});
@@ -201,10 +236,22 @@ function rotateForEver($elem, rotator) {
     );
 }
 
+/**
+ * Función que se encarga de poner el atributo title en los elementos por parametro para que luego se visualice un tooltip.
+ * @param {*} element 
+ * @param {*} titleElement 
+ */
 function setTitle(element, titleElement) {
     $(element).attr('title', titleElement);
 }
 
+/**
+ * Función similar a SetTitle pero en este caso para imagenes y el parent de estas.
+ * @param {} element 
+ * @param {*} parent 
+ * @param {*} titleElement 
+ * @param {*} titleParent 
+ */
 function setTitleImg(element, parent, titleElement, titleParent) {
     $(element).each(function(){
         setTitle('title', titleElement);
@@ -212,6 +259,11 @@ function setTitleImg(element, parent, titleElement, titleParent) {
     })
 }
 
+/**
+ * Funcion que establece el estatus faded de un elemento.
+ * @param {*} element 
+ * @param {*} status 
+ */
 function setFaded(element, status) {
     if (status){
         $(element).fadeTo(1000, 0.4);
@@ -222,56 +274,71 @@ function setFaded(element, status) {
     }
 }
 
-function slideImage() {
-    if (loop > (imagenes.length -1)) {
-        loop = 0
-        $('#image-no').val(loop)
-        $('.gallery-img').attr('src', "img/gallery/" + imagenes[loop] + ".jpg")
-    } else {
-        $('#image-no').val(loop)
-        $('.gallery-img').attr('src', "img/gallery/" + imagenes[loop] + ".jpg")
-        loop++
-    }
+/**
+ * Funcion que se encarga de poner la imagen en elelmento correspondiente y el valor de la posicion del array.
+ * @param {*} image_no 
+ * @param {*} element_img 
+ */
+function setImage (image_no, element_img) {
+    $(image_no).val(pos)
+    $(element_img).attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
 }
 
-function previous() {
-    let pos = $('#image-no').val()
+/**
+ * Establece la imagen anterior.
+ * @param {*} image_no 
+ * @param {*} element_img 
+ */
+function previousImage(image_no, element_img) {
+    pos = $(image_no).val()
     if (pos <= 0) {
         pos = imagenes.length -1
-        $('#image-no').val(pos)
-        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
+        setImage(image_no, element_img)
     } else {
         pos = pos - 1
-        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
-        $('#image-no').val(pos)
+        setImage(image_no, element_img)
     }
 }
 
-function next() {
-    let pos = $('#image-no').val()
-    if (pos >= imagenes.length -1) {
+/**
+ * Función que muestra la imagen siguiente.
+ * @param {*} image_no 
+ * @param {*} element_img 
+ */
+function nextImage(image_no, element_img) {
+    pos = $(image_no).val()
+    if (pos >= (imagenes.length -1)) {
         pos = 0
-        $('#image-no').val(pos)
-        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
+        setImage(image_no, element_img)
     } else {
         pos++
-        $('.gallery-img').attr('src', "img/gallery/" + imagenes[pos] + ".jpg")
-        $('#image-no').val(pos)
+        setImage(image_no, element_img)
     }
 }
 
-function do_slide(){
+/**
+ * Función que inicia el slide de las imagenes
+ * @param {*} image_no 
+ * @param {*} element_img 
+ */
+function do_slide(image_no, element_img){
     interval = setInterval(function(){
-      slideImage();
+      nextImage(image_no, element_img);
     }, 3000);
 }
 
-function stop_slide(){
+/**
+ * Función que para el slide de las imagenes. Y lo reinicia para cuando se vuelve a reproducir.
+ */
+function stop_slide(image_no){
     clearInterval(interval)
-    loop = 0
-    $('#image-no').val(loop)
+    pos = 0
+    $(image_no).val(pos)
 }
 
+/**
+ * Función que pausa el slide de imagenes.
+ */
 function pause_slide(){
     clearInterval(interval)
 }
@@ -288,20 +355,29 @@ function pause_slide(){
     });
 }
 
-function opacityLoop(){
-    $('#logo')
+function opacityLoop(element){
+    $(element)
       .animate({opacity:0.9},1000)
-      .animate({opacity:0.2},1000, opacityLoop);
+      .animate({opacity:0.2},1000, function(){
+          opacityLoop(element)
+      });
 }
 
-function pauseOpacityLoop() {
-    $('#logo').click(function (e) {
-        $('#logo').stop()
+/**
+ * Pausa la animación de opacidad del logo.
+ */
+function pauseOpacityLoop(element) {
+    $(element).click(function (e) {
+        $(element).stop()
     })
 }
 
 /**
- * Ejercicio 1. jQuery.
+ * Ejercicio 1. jQuery DWEC07
+ * Obtiene una lista de editores (parte del nombre) a partir de un texto.
+ * Devuelve 10 editores máximo.
+ * @param {*} listElement 
+ * @param {*} inputElement 
  */
 function getEditorsPartNom (listElement, inputElement) {
     if (inputElement.val() != '') {
