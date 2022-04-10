@@ -1,51 +1,17 @@
 /**
- * DONE: Mètodes d'advents de jQuery (Els heu de fer tots): (2,4p) ◦
- * DONE: on(), 
- * off(), 
- * one() (0,6p)◦
- * DONE: click(), 
- * DONE: dblclick(), 
- * DONE: mouseenter(), 
- * DONE: mouseleave() (0,2p)
- * DONE: Keypress(), 
- * DONE: keydown(), 
- * DONE: keyup(). (0,6p)
- * focus(), 
- * DONE: focusin(), 
- * DONE: focusout(). (0,6p)
- * resize(), 
- * scroll() (0,4p)
- * 
- * DONE: Efectes (Els heu de fer tots) (3,3p)
- * DONE: fadein(),
- * DONE: fadeout(), 
- * DONE: fadetoggle(), 
- * fadeTo().  (0,8p). (0,2 respectivament)
- * slideDown(), 
- * slideUp(), 
- * DONE: slideToggle(). (0,6p). (0,2 resp)
- * DONE: animate():(0,6p)
- *  amb valors relatius. (0,2p)
- *  amb valors predefinits. (0,2p)
- *  amb funcionalitat de cua. (0,2p)
- * stop(). (0,2p)◦
- * hide(), 
- * show(),  (0,4p).
- * DONE: Utilització de seqüències de funcions (Callback). (0,5p)
- * DONE: Encadenament() (0,2p)
- * 
- * DONE: jQuery HTML (Els heu de fer tots): (1,3p)
- * DONE: append(), 
- * prepend(), 
- * after(), 
- * before(). (0,8p)
- * DONE: Manipulació CSS. (0,5p)
+ * TODO: focus(), 
+ * TODO: resize(), 
+ * TODO: scroll() (0,4p)
+ * TODO: prepend(), 
+ * TODO: after(), 
+ * TODO: before(). (0,8p)
  */
 
 const server = "52.178.39.51:8080"
 const imagenes = ['frej2011', 'frej2015', 'frej2016', 'frej2017', 'frej2018', 'frej2019']
 let interval
 let loop = 0
+let $rotator
 
 $(function () {
     const primaryNav = $(".primary-navigation")
@@ -65,8 +31,15 @@ $(function () {
     setTitle('#cercador', 'FocusIn: Cambia el color del fondo del input.\nFocusOut: Restablece el color de fondo.\nKeyPress: Cuenta teclas presionadas.\nKeyUp: Busca editores\nKeyDown: Cuenta las vocales presionadas.')
     setTitle('#off-img-click', 'Off: Detiene el click en las imagenes.')
     setTitleImg('.content-img', '.content-section', 'Click en la imagen hace que desaparezca (fadeOut).', 'Doble click en la seccion y reaparece la imagen (fadeIn).')
+    setTitle('#previous', 'Retrocede una imagen.')
+    setTitle('#play', 'Activa el slider de las imagenes.')
+    setTitle('#pause', 'Pausa el slider de las imagenes.')
+    setTitle('#stop', 'Para el slider de las imagenes. Reinicia.')
+    setTitle('#next', 'Avanza una imagen.')
     // Hace la busqueda de editores segun lo insertado en el input.
     search(list, input)
+
+    $('#show').hide()
 
     navToogle.click(function (e) { 
         e.preventDefault();
@@ -99,6 +72,23 @@ $(function () {
 
     $('#play').click(function (e) {
         do_slide()
+        setFaded($(this), true)
+        setFaded($('#stop'), false)
+        setFaded($('#pause'), false)
+    })
+
+    $('#pause').click(function (e) {
+        pause_slide()
+        setFaded($(this), true)
+        setFaded($('#play'), false)
+        setFaded($('#stop'), true)
+    })
+
+    $('#stop').click(function (e) {
+        stop_slide()
+        setFaded($(this), true)
+        setFaded($('#play'), false)
+        setFaded($('#pause'), true)
     })
 
     $('#previous').click(function (e) {
@@ -109,10 +99,6 @@ $(function () {
         next()
     })
     
-    $('#stop').click(function (e) {
-        stop_slide()
-    })
-
     /**
      * Cuando se hace click sobre la imagen con la clase .content-img esta desaparece.
      */
@@ -127,29 +113,12 @@ $(function () {
     $('.content-section').dblclick(function (e) { 
         e.preventDefault();
         $(this).find('.content-img').fadeIn(500)
-    });  
+    });
 
-    // $("#fadeto").click(function(){
-    //     let img =  $(".img-fadeout")
-    //     console.log(img.attr('faded'))
-    //     if (img.attr('faded') == "false"){
-    //         img.fadeTo(1000, 0.4);
-    //         img.attr('faded', true)
-    //     } else {
-    //         img.fadeTo(1000, 1);
-    //         img.attr('faded', false)
-    //     }
-    // });
-
-    // $('none').click(function (e) { 
-    //     e.preventDefault();
-    //     $(this).hide(1000);
-    // });
-
-    // $('#show').click(function (e) { 
-    //     e.preventDefault();
-    //     $(".img-fadeout").show(1000);
-    // });
+    $('#show').click(function (e) { 
+        e.preventDefault();
+        $("#info").show();
+    });
 
     $('#cercador')
         .focusin(function (){
@@ -172,47 +141,32 @@ $(function () {
         $(".content-img").off()
     });
 
-    // $('#info').one("click",function (e) { 
-    //     e.preventDefault();
-    //     alert("Clicar sobre uno de los emojis hara que desaparezca. FadeOut(). \n" + 
-    //             "Clicar sobre el boton Restaura imagenes, restaurara las imagenes. FadeIn(). \n" + 
-    //             "Clicar sobre el boton Muesta/Oculta hará que aparezcan/desaparezcan los emojis.\n" +
-    //             "Clicar sobre el boton Transparencia hará que los emojis pierdan o ganen opacidad.\n" +
-    //             "Clicar sobre el boton Ocultar hará que los emojis desaparezcan.\n" + 
-    //             "Clicar sobre el boton Mostrar hará que los emojis reaparezcan.\n" +
-    //             "Clicar sobre el boton Off hará que el click sobre los emojis no funcione.\n" +
-    //             "Clicar sobre el boton Info mostrará este alert una sola vez."
-    //         )
-    // });
+    $('#info').one("click",function (e) { 
+        e.preventDefault();
+        alert("Clicar sobre el botón ABRACADABRA hara aparecer un panel oculto. \n" + 
+                "Clicar sobre el botón ABRACADABRA dos veces, hara desaparecer el panel."
+            )
+        $("#show").show(1000);
+        $(this).hide()
+    });
 
-    // $('#rotate').click(function (e) { 
-    //     e.preventDefault();
-    //     $('.sun').animate(
-    //         {degrees: 359},
-    //         {
-    //             duration: 3500,
-    //             easing: "linear",
-    //             step: function(now) {
-    //                 $(this).css({
-    //                     transform : 'rotate('+now+'deg)'
-    //                 });
-    //             }
-    //         }
-    //     );
-    // });
+    $('#rotate').click(function (e) { 
+        e.preventDefault();
+        $rotator = rotateForEver($('.sun'))
+    });
 
-    // $('#stop').click(function (e) { 
-    //     e.preventDefault();
-    //     $('.sun').stop();
-    // });
+    $('#stop-animation').click(function (e) { 
+        e.preventDefault();
+        $rotator.stop();
+    });
 
-    // $("#flip")
-    //     .click(function(){
-    //         $("#panel").slideDown(2000)
-    //     })
-    //     .dblclick(function(){
-    //     $("#panel").slideUp(2000)
-    // });
+    $("#flip")
+        .click(function(){
+            $("#magic-panel").slideDown(2000)
+        })
+        .dblclick(function(){
+        $("#magic-panel").slideUp(2000)
+    });
 
     $('.social-media-links > a > i')
         .mouseenter(function () { 
@@ -225,6 +179,28 @@ $(function () {
         });
 })
 
+function rotateForEver($elem, rotator) {
+    if (rotator === void(0)) {
+        rotator = $({deg: 0});
+    } else {
+        rotator.get(0).deg = 0;
+    }
+
+    return rotator.animate(
+        {deg: 360},
+        {
+            duration: 5000,
+            easing: 'linear',
+            step: function(now){
+                $elem.css({transform: 'rotate(' + now + 'deg)'});
+            },
+            complete: function(){
+                rotateForEver($elem, rotator);
+            },
+        }
+    );
+}
+
 function setTitle(element, titleElement) {
     $(element).attr('title', titleElement);
 }
@@ -234,6 +210,16 @@ function setTitleImg(element, parent, titleElement, titleParent) {
         setTitle('title', titleElement);
         $(this).closest(parent).attr('title', titleParent)
     })
+}
+
+function setFaded(element, status) {
+    if (status){
+        $(element).fadeTo(1000, 0.4);
+        $(element).attr('faded', true)
+    } else {
+        $(element).fadeTo(1000, 1);
+        $(element).attr('faded', false)
+    }
 }
 
 function slideImage() {
@@ -281,6 +267,12 @@ function do_slide(){
 }
 
 function stop_slide(){
+    clearInterval(interval)
+    loop = 0
+    $('#image-no').val(loop)
+}
+
+function pause_slide(){
     clearInterval(interval)
 }
 

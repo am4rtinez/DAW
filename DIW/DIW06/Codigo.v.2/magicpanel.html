@@ -56,7 +56,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a class="navbar-link" href="galeria.html">
                         <div class="nav-link-container">
                             <i class="fa-solid fa-images" aria-hidden="true"></i>
@@ -72,7 +72,7 @@
                         </div>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a class="navbar-link" href="magicpanel.html">
                         <div class="nav-link-container">
                             <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -92,22 +92,25 @@
         </nav>
     </header>
     <main class="main-content">
-        <!-- Seccion Galeria -->
-        <section class="content-section gallery">
-            <div class="section-header">
-                <h2 class="text-center">Galeria imagenes portadas programa FREJ.</h2>
+        <!-- Seccion 1-->
+        <section class="content-section">
+            <button id="info" class="btn btn-secondary center">Info</button>
+            <button id="flip" class="btn btn-warning center">Abracadabra</button>
+            <button id="show" class="btn btn-secondary center">Show</button>
+            <div id="magic-panel">
+                <p class="text-center">Con doble click en "Abracadabra" desaparezco!</p>
+                <br>
+                <div class="">
+                    <img src="img/fiestas-rey-jaume-calvia-2-.jpg" alt="" srcset="" class="img-fadeout" faded="false">
+                </div>
             </div>
-            <div id="gallery-panel">
-                <img class="gallery-img center" src="img/gallery/frej2011.jpg" alt="Portada Programa FREJ">
-                <input type="hidden" id="image-no" name="img-no" value="0">
+        </section>
+        <section class="content-section">
+            <div>
+                <img src="img/sun.png" alt="" srcset="" class="sun">
             </div>
-            <div class="row">
-                <button id="previous" class="btn"><i class="fa-solid fa-backward-step" title="Retrocede una imagen."></i></button>
-                <button id="play" class="btn" faded="false"><i class="fa-solid fa-play"></i></button>
-                <button id="pause" class="btn"><i class="fa-solid fa-pause" faded="false"></i></button>
-                <button id="stop" class="btn"><i class="fa-solid fa-stop" faded="false"></i></button>
-                <button id="next" class="btn"><i class="fa-solid fa-forward-step"></i></button>
-            </div>
+            <button id="rotate" class="btn btn-success center">Animate</button>
+            <button id="stop-animation" class="btn btn-danger center">Stop</button>
         </section>
     </main>
     <footer>

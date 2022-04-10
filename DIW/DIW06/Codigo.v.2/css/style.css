@@ -356,6 +356,36 @@ form .btn {
     transition: all .275s;
 }
 
+.gallery .btn {
+    margin: 1em;
+    padding: 0.375rem 0.75rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 0.25rem;
+    border: 1px solid #555150;
+    background-color: #555150;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    display: inline-block;
+    width: 250px;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    font-size: 1rem;
+}
+
+.gallery .btn:hover {
+    color: #fff;
+    background-color: #2E2E2E;
+    border-color: #2E2E2E;
+}
+
 .btn {
     margin: 1em;
     padding: 0.375rem 0.75rem;
@@ -414,6 +444,18 @@ form .btn {
     color: #fff;
     background-color: #bb2d3b;
     border-color: #b02a37;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #120061;
+    border-color: #120061;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #0a0036;
+    border-color: #0a0036;
 }
 
 form .btn:hover {
@@ -593,84 +635,10 @@ destinada a lectores de pantalla*/
     right: 50%;
 }
 
-/* .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 90%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  } */
-
-
-
-/* .tooltip{
-    float: right;
-    margin-left: 1em;
-    margin-top: 2px;
-    color: #1a1a1a;
-}
-
-.tooltip .tooltipText {
-    display: none;
-    width: auto;
-    background-color: #ebdb4a;
-    color: #000;
-    text-align: center;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-  
-.tooltip:hover .tooltipText {
-    display: block;
-    opacity: 1;
-    width: 300px;
-    padding: 0 1em 0 .6em;
-    position: absolute;
-    border: 2px solid #555;
-    margin-left: -10px;
-}
-
-.tooltipText > ul {
-    text-align: left;
-} */
-
 #panel,
 #panel2,
-#panel3 {
+#panel3,
+#magic-panel {
     display: none;
 }
 
@@ -692,7 +660,15 @@ destinada a lectores de pantalla*/
     color: gold;
 }
 
+.sun {
+    width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #gallery-panel {
+    color: #fff;
     background-color: #1C1C1C;
     border: 1px solid #555150;
     border-radius: 5px;
@@ -700,9 +676,34 @@ destinada a lectores de pantalla*/
 
 /* TODO: Calcular para los distintos tipos de pantallas. */
 #gallery-panel .gallery-img {
-    /* width: calc(100% - 55%); */
-    width: 500px;
-    height: auto;
+    display: block;
+    width: 50%;
+}
+
+.gallery .row {
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#magic-panel {
+    color: #fff;
+    background-color: #1C1C1C;
+    border: 1px solid #555150;
+    border-radius: 10px;
+}
+
+#magic-panel img{
+    border-radius: 10px;
 }
 
 /*------------ END UTILITIES --------------*/
@@ -804,6 +805,10 @@ destinada a lectores de pantalla*/
         margin-top: 1em;
     }
 
+    #gallery-panel .gallery-img {
+        width: 100%;
+    }
+
     .content-section img {
         width: 95%;
     }
@@ -854,6 +859,10 @@ destinada a lectores de pantalla*/
     .content-section img {
         width: 95%;
     }
+
+    #gallery-panel .gallery-img {
+        width: 100%;
+    }
 }
 
 /* Medium devices (tablets, 768px and up)
@@ -872,6 +881,10 @@ destinada a lectores de pantalla*/
     .section-2 img,
     .section-3 img {
         width: 50%;
+    }
+
+    #gallery-panel .gallery-img {
+        width: 60%;
     }
 
 }
