@@ -1,223 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <title>DIW06</title>
+    <title>Guillem de Moncada</title>
     <script src="https://kit.fontawesome.com/4a3681c942.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="primary-header bg-dark text-white">
+    <header class="primary-header sticky flex">
         <div class="brand">
-            <img id="logo" src="img/spidernet.png" alt="">
-            <h1>DIW06 - jQuery</h1>
+            <img id="logo" src="img/logo-colla.png" alt="logo" class="logo">
+            <!-- <a href="index.html">
+            </a> -->
         </div>
-        <button class="nav-toggle" tittle="Boton menu que contiene el evento slideToggle()">
-            <i id="nav-icon" class="menu-toggle-btn fa fa-bars" aria-hidden="true"></i>
+        <!-- <button class="navbar-toggle nav-toggle" aria-controls="primary-navigation" aria-expanded="false"> -->
+        <button class="navbar-toggle nav-toggle">
+            <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
             <span class="sr-only">Menu</span>
         </button>
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li class="active">
+                    <a class="navbar-link" href="index.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="info.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-horse-head" aria-hidden="true"></i>
+                            <span>Fiestas</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="ubicacion.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-map-location-dot" aria-hidden="true"></i>
+                            <span>Ubicacion</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="contacto.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Contacto</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="galeria.html">
+                        <div class="nav-link-container">
+                            <i class="fa-solid fa-images" aria-hidden="true"></i>
+                            <span>Galería</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="editors.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Editors</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="magicpanel.html">
+                        <div class="nav-link-container">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Magic Panel</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a id="off-img-click" class="navbar-link" href="#">
+                        <div class="nav-link-container">
+                            <i class="fa-solid fa-circle-stop" aria-hidden="true"></i>
+                            <span>Off Click</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
-    <nav id="primary-navigation" class="bg-dark primary-navigation">
-        <ul>
-            <li class="active">
-                <a class="navbar-link" href="index.html">
-                    <div class="nav-link-container">
-                        <i class="fa fa-home" aria-hidden="true"></i>
-                        <span>Home</span>
+    <main class="main-content">
+        <div class="banner-area text-center text-uppercase">
+            <h1>Guillem de Moncada</h1>
+        </div>
+        <!-- Breve descripcion -->
+        <section class="content-section description">
+            <p class="text-center">Colla Cristiana creada en 1995 para la celebración de las Fiestas del Rei en Jaume (FREJ) del municipio de Calvia, en la población de Santa Ponsa.</p>
+            <p class="text-center">Inicialmente con unos 48 miembros.</p>
+        </section>
+        <!-- Seccion 1-->
+        <section class="content-section section-1">
+            <div class="flex-container">
+                <article class="col">
+                    <div class="article-header text-center">
+                        <i class="fa fa-ship" aria-hidden="true"></i>
                     </div>
-                </a>
-            </li>
-            <li>
-                <a class="navbar-link" href="spider.html">
-                    <div class="nav-link-container">
-                        <i class="fa-solid fa-spider" aria-hidden="true"></i>
-                        <span>Spider Panel</span>
+                    <div class="article-content text-center">
+                        <p>El desfile se inicia con el desembarco de los cristianos en la cruz de Santa Ponsa.</p>
                     </div>
-                </a>
-            </li>
-            <li>
-                <a class="navbar-link" href="#">
-                    <div class="nav-link-container">
-                        <i class="fa fa-map-location-dot" aria-hidden="true"></i>
-                        <span>Ubicacion</span>
+                    <div id="panel">
+                        <img src="img/desembarco.jpg" alt="desembarco">
                     </div>
-                </a>
-            </li>
-            <li>
-                <a class="navbar-link" href="editors.html">
-                    <div class="nav-link-container">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <span>Editors</span>
+                </article>
+                <article class="col">
+                    <div class="article-header text-center">
+                        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
                     </div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <main>
-        <section class="container bg-section">
-            <header class="row">
-                <div class="col">
-                    <div class="tooltip">
-                        <h2 class="">Eventos fade, hide y show</h2>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>fadeOut - Clicar sobre la imagen hará que desaparezca.</li>
-                            </ul>
-                        </div>
+                    <div class="article-content">
+                        <p class="text-center">En el recorrido se representan 3 batallas.</p>
+                        <ol>
+                            <li>Cruz de Santa Ponsa. Despues del desembarco Cristiano.</li>
+                            <li>Playa pequeña (Calo d'en Pallicer).</li>
+                            <li>Playa de Santa Ponsa. Frente la pinada.</li>
+                        </ol>
                     </div>
-                </div>
-            </header>
-            <div class="row">
-                <div class="col">
-                    <img src="img/alien.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
-                <div class="col">
-                    <img src="img/alien-monster.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
-                <div class="col">
-                    <img src="img/ogre.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
+                    <div id="panel2">
+                        <img src="img/rei-en-jaume.webp" alt="imagen-section-2">
+                    </div>
+                </article>
+                <article class="col">
+                    <div class="article-header text-center">
+                        <i class="fa fa-cross" aria-hidden="true"></i>
+                    </div>
+                    <div class="article-content text-center">
+                        <p>Finalmente se cierra la representación con la batalla entre el Rei Jaume I y Abu-Yahya, donde el rey cristiano sale victorioso.</p>
+                    </div>
+                    <div id="panel3">
+                        <img src="img/fiestas-rey-jaume-calvia-9-i.jpg" alt="imagen-section-2">
+                    </div>
+                </article>
             </div>
-            <div class="row">
-                <div class="col">
-                    <img src="img/bomb.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
-                <div class="col">
-                    <img src="img/collision.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
-                <div class="col">
-                    <img src="img/emoji.png" alt="" srcset="" class="img-fadeout" faded="false">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="restore" class="btn btn-success">Restaura imagenes</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>fadeIn - muestra las imagenes ocultas una animación de 3000ms.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="fadetoggle" class="btn btn-success">Muestra / Oculta</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>fadeToggle - muestra/oculta las imagenes con una animación de 3000ms.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="fadeto" class="btn btn-success">Transparencia</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>fadeTo - Hace que las imagenes tengan opacidad o no (animación de 3000ms).</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="hide" class="btn btn-success">Ocultar</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>hide - Oculta las imagenes.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="show" class="btn btn-success">Mostrar</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>show - Muestra las imagenes.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="off-img-click" class="btn btn-success">Off click</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>off - Detiene el evento de click sobre las imagenes.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="info" class="btn btn-success">Info</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>one - Muestra un alert y despues deja de funcionar.</li>
-                            </ul>
-                        </div>
-                    </div>
+        </section>
+        <section class="content-section">
+            <div class="section-body flex-container align-center text-justify">
+                <img class="content-img" src="img/section2.jpg" alt="imagen-section-2">
+                <div class="row">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam architecto ea iste saepe est.</p>
+                    <p>Earum modi beatae totam? Facere ipsa iste totam eveniet error quidem laborum perferendis culpa a nemo facilis officiis deserunt, doloribus optio placeat ipsum animi vitae, quod distinctio?</p>
+                    <p>At voluptatibus ullam, odio sunt eius autem eum consequatur, dolor voluptas asperiores quod ducimus corporis tempore fugiat amet voluptates hic omnis mollitia.</p>
+                    <p>Quod animi, quas fuga vitae perspiciatis beatae culpa tenetur numquam possimus debitis ullam, id optio nisi ut neque ipsum veritatis error voluptatibus!</p>
+                    <p>Amet ut quisquam tempore commodi!</p>
                 </div>
             </div>
         </section>
-        <section class="container bg-section">
-            <header>
-                <h2 class="text-center">Animation</h2>
-            </header>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <img src="img/sun.png" alt="" srcset="" class="sun">
+        <section class="content-section">
+            <div class="section-body flex-container align-center text-justify">
+                <div class="row">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam architecto ea iste saepe est.</p>
+                    <p>Earum modi beatae totam? Facere ipsa iste totam eveniet error quidem laborum perferendis culpa a nemo facilis officiis deserunt, doloribus optio placeat ipsum animi vitae, quod distinctio?</p>
+                    <p>At voluptatibus ullam, odio sunt eius autem eum consequatur, dolor voluptas asperiores quod ducimus corporis tempore fugiat amet voluptates hic omnis mollitia.</p>
+                    <p>Quod animi, quas fuga vitae perspiciatis beatae culpa tenetur numquam possimus debitis ullam, id optio nisi ut neque ipsum veritatis error voluptatibus!</p>
+                    <p>Amet ut quisquam tempore commodi!</p>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="rotate" class="btn btn-success">Animate</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>animate - Inicia una animacion que rota la imagen.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tooltip">
-                        <button id="stop" class="btn btn-danger">Stop</button>
-                        <div class="tooltipText">
-                            <p>Contiene el evento tipo:</p>
-                            <ul>
-                                <li>stop - Para la animación si no ha finalizado.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <img class="content-img" src="img/section3.jpg" alt="imagen-section-2">
             </div>
         </section>
     </main>
-    <div class="window-size">
-
-    </div>
-    <footer class="bg-dark">
-        <p>Ángel Martínez - 2022</p>
+    <footer>
+        <p>Guillem de Moncada - 2021</p>
         <div class="social-media-links">
             <a href="#" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
             <a href="#" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
-            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>   
+            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
             <a href="#" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
             <a href="https://github.com/am4rtinez/" alt="github"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
         </div>
