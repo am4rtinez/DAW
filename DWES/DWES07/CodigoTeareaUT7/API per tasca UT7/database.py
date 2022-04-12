@@ -1,9 +1,5 @@
 import pymysql.cursors
-import sqlalchemy as db
-import configparser
-from werkzeug.security import generate_password_hash,check_password_hash
 import datetime
-
 
 class gimnas(object):
     def conecta(self):

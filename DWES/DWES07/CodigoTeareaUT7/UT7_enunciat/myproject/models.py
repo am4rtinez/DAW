@@ -1,5 +1,5 @@
 from myproject import login_manager
-from werkzeug.security import generate_password_hash,check_password_hash
+from werkzeug.security import check_password_hash
 from flask_login import UserMixin
 import pymysql.cursors
 import datetime
@@ -93,7 +93,8 @@ class User(UserMixin):
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
         cursor=db.cursor()
-        sql="SELECT id,username,nom,llinatges from usuaris WHERE id="+str(Userid)
+        # sql="SELECT id,username,nom,llinatges from usuaris WHERE id="+str(Userid)
+        sql="SELECT id, username, nom, llinatges FROM clients WHERE id="+str(Userid)
         cursor.execute(sql)
         ResQuery=cursor.fetchone()
         if ResQuery:
@@ -111,11 +112,13 @@ class User(UserMixin):
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
         cursor=db.cursor()
-        sql="SELECT count(*) from usuaris WHERE username='"+self.username+"'"
+        # sql="SELECT count(*) from usuaris WHERE username='"+self.username+"'"
+        sql="SELECT count(*) from clients WHERE username='"+self.username+"'"
         cursor.execute(sql)
         ResQuery=cursor.fetchone()
         if ResQuery['count(*)']==1:
-            sql="SELECT password from usuaris  WHERE username='"+self.username+"'"
+            # sql="SELECT password from usuaris  WHERE username='"+self.username+"'"
+            sql="SELECT password from clients  WHERE username='"+self.username+"'"
             cursor.execute(sql)
             ResQuery=cursor.fetchone()
             resposta=check_password_hash(ResQuery['password'],pwd)
@@ -134,7 +137,8 @@ class User(UserMixin):
                              autocommit=True,
                              cursorclass=pymysql.cursors.DictCursor)
         cursor=db.cursor()
-        sql="SELECT id,username,nom,llinatges from usuaris WHERE username='"+self.username+"'"
+        # sql="SELECT id,username,nom,llinatges from usuaris WHERE username='"+self.username+"'"
+        sql="SELECT id, username, nom, llinatges FROM clients WHERE username='"+self.username+"'"
         cursor.execute(sql)
         ResQuery=cursor.fetchone()
         if ResQuery:
@@ -148,6 +152,3 @@ class User(UserMixin):
 
     def getUsername(self):
         return self.username
-
-
-       
