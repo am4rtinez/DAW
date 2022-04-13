@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 import database
-import configparser
 import datetime
 from flask_cors import CORS
 from werkzeug.datastructures import MultiDict
