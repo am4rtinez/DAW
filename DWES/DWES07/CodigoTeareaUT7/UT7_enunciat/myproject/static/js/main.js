@@ -2,29 +2,45 @@
 // INICIALITZACIO
 // .......................................................
 
-serverAPI = "http://127.0.0.1:5001";
-pistaActual = "Coberta";
+const serverAPI = "http://127.0.0.1:5001";
+let pistaActual = "Coberta";
 // .......................................................
 // FUNCIO QUE CARREGA LES DADES DESDE LA API
 // .......................................................
 
+// api.add_resource(usuari,'/gimnas/usuari') #GET i POST
+// api.add_resource(usuarisID,'/gimnas/usuari/<int:id>') #GET PUT DELETE
+// api.add_resource(reserves,'/gimnas/reserves')  #GET 
+// api.add_resource(reservesSet,'/gimnas/reserves/setmana/<string:dia>')  #GET 
+// api.add_resource(reservesID,'/gimnas/reserves/<int:id>')  #GET (un concret), POST (afegir), DELETE (eliminar)
+
 $(function () {
 	cargaBasic()
 
-	$("#alertReserva > .btn-close").click(function () {
+	$(".btn-close").click(function () {
 		console.log('Close alert')
         $('#alertaReserva').hide();
     });
+
+	$('#pistaCoberta').click(function (e) { 
+		e.preventDefault();
+		CanviPistaCoberta()
+	});
+
+	$('#pistaExterior').click(function (e) { 
+		e.preventDefault();
+		CanviPistaExterior()
+	});
 
 });
 
 function cargaBasic(){
 	//carrega les reserves de l'usuari per mostrar a la pantalla inicial
-	id = $("#idusuari").html();
-  	arxiu = serverAPI + "/gimnas/reserves/" + id;
-  	$.getJSON(arxiu, function(json) {
-		jsonTags = json;
-    	console.log(json);  // this will show the info it in firebug console
+	let id = $("#idusuari").html();
+  	let url = serverAPI + "/gimnas/reserves/" + id;
+  	$.getJSON(url, function(json) {
+		jsonTags = json.filter(res => res.tipo == pistaActual).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
+    	// console.log(json);  // this will show the info it in firebug console
     	pistesUsuari = JSON.parse(JSON.stringify(jsonTags));
     	taulaUsuari(pistesUsuari);
   	});
@@ -36,10 +52,18 @@ function cargaBasic(){
 function cargaSetmana(){
 	//carrega les dades de la setmana
 	// Agafam el dia de l'element id=dilluns del HTML
-	dia = $("#dilluns").html();
-	arxiu = serverAPI + "/gimnas/reserves/setmana/" + dia;
+	let dia = $("#dilluns").html();
+	let url = serverAPI + "/gimnas/reserves/setmana/" + dia;
 
 	// Aqui hauras d'afegir el teu codi
+	$.getJSON(url, function(json) {
+		console.log(json)
+		// Filtrado por el tipo de pista y ordenado por fecha y hora.
+		jsonTags = json.filter(res => res.tipo == pistaActual).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
+    	console.log(jsonTags);  // this will show the info it in firebug console
+    	data = JSON.parse(JSON.stringify(jsonTags));
+		taulaPista(data)
+	})
 }
 
 /**
@@ -53,13 +77,13 @@ function comprovaReserva(dia,hora,pista){
 }
 
 function ReservarPista(dia,hora,pista){
-	id=$("#idusuari").html();
-	arxiu = serverAPI+"/gimnas/reserves/"+id;
+	let id=$("#idusuari").html();
+	url = serverAPI+"/gimnas/reserves/"+id;
 	data = dia + " " + hora + ":00:00";
 	cadenaJSON ='{ "fecha" :"' + data + '", "pista": "' + pista + '" }';
 	console.log(cadenaJSON);
 	dades = JSON.parse(cadenaJSON);
-	$.post(arxiu,{fecha:data,pista:"Coberta"});
+	$.post(url,{fecha:data,pista:"Coberta"});
 }
 
 // .......................................................
@@ -108,7 +132,7 @@ function CanviPistaCoberta() {
 	$('#pistaCoberta').addClass('active');
 	$('#pistaExterior').removeClass('active');
 	pistaActual="Coberta";
-	cargaSetmana();
+	cargaSetmana(pistaActual);
 }
 
 function CanviPistaExterior() {
@@ -132,8 +156,7 @@ function EnviaForm() {
 	comprova = comprovaReserva(dia,hora,pista);
 	if (comprova){
 		$('#alertaReserva').html("La pista ja està ocupada");
-	}
-	else{
+	} else {
 		ReservarPista(dia,hora,pista);
 		$('#alertaReserva').html("<div class='text-center'>S'ha gestionat la reserva</div> <button type='button' class='btn-close close' data-dismiss='alert'></button>");
 	}		
@@ -162,7 +185,40 @@ function taulaUsuari(pistesUsuari){
  * TODO: Implementar funcion.
  * @param {*} dades 
  */
-function taulaPista(dades){
+function taulaPista(data){
 	//li passam un JSON amb les reserves de la pista
+	let username = $('#username').html()		//Obtenemos el username para comparar con las reservas.
+	let tbody
+	let table = []
 
+	//Genera mapeo de la tabla.
+	for (let fila = 0; fila < 6; fila++) {
+		let filaTemp = []
+		for (let columna = 0; columna < 6; columna++) {
+			let tempVal = ""
+			for (i = 0; i < data.length; i++) {
+				let d = new Date(data[i].data);
+				let weekday = d.getDay()
+				if ((weekday - 1 == fila) && (data[i].hora == columna + 15)) {
+					if (data[i].username == username) {
+						tempVal = tempVal + "RESERVADA"
+					} else {
+						tempVal = tempVal + "NO DISPONIBLE"
+					}
+				}
+			}
+			filaTemp.push(tempVal)
+		}
+		table.push(filaTemp)
+	}
+
+	// Genera el body de la tabla
+	for (let fil = 0; fil < 6; fil++) {
+		tbody = tbody + "<tr><th>" + (fil + 15) + "</th>"
+		for (let col = 0; col < 5; col++) {
+			tbody = tbody + "<td>" + table[col][fil] + "</td>"
+		}
+		tbody = tbody + "</tr>"
+	}
+	$('#reservesPista > tbody').html(tbody);
 }
