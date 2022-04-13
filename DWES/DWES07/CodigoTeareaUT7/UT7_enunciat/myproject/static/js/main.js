@@ -39,7 +39,7 @@ function cargaBasic(){
 	let id = $("#idusuari").html();
   	let url = serverAPI + "/gimnas/reserves/" + id;
   	$.getJSON(url, function(json) {
-		jsonTags = json.filter(res => res.tipo == pistaActual).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
+		jsonTags = json.sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
     	// console.log(json);  // this will show the info it in firebug console
     	pistesUsuari = JSON.parse(JSON.stringify(jsonTags));
     	taulaUsuari(pistesUsuari);
