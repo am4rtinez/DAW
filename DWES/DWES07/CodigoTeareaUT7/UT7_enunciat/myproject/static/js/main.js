@@ -39,13 +39,11 @@ $(function () {
 
 	$('#semanaMenos').click(function (e) { 
 		e.preventDefault();
-		console.log('SemanaMenos click')
 		SemanaMenos()
 	});
 
 	$('#semanaMas').click(function (e) { 
 		e.preventDefault();
-		console.log('SemanaMas click')
 		SemanaMas()
 	});
 });
@@ -91,6 +89,10 @@ function formatDate(date) {
 	return date.getFullYear()+ '-' + padTo2Digits(date.getMonth() + 1) + '-' + padTo2Digits(date.getDate())
 }
 
+function formatDateDDMMYYYY(date) {
+	return padTo2Digits(date.getDate()) + '/' + padTo2Digits(date.getMonth() + 1) + '/' + date.getFullYear()
+}
+
 /**
  * TODO: Implementar funcion.
  * @param {*} dia 
@@ -131,17 +133,24 @@ function PantallaUsuari() {
 	//marcam els botons de light i primary
 	$('#butPU').removeClass('btn-outline-secondary').addClass('btn-primary');
 	$('#butVR').removeClass('btn-primary').addClass('btn-outline-secondary');
-		//canviam els <div> hidden per mostrar el que toca
+	//canviam els <div> hidden per mostrar el que toca
 	$('#pantallaReserva').show();
 	$('#alertaReserva').hide();
 	$('#pantallaMostra').hide();
 }
 
 /**
- * TODO: Implementar funcion.
+ * Funcion que se encarga
  */
-function SemanaMas() {
-
+ function SemanaMas() {
+	let dia = new Date($("#dilluns").html());
+	let monday = new Date()
+	let friday = new Date()
+	monday.setTime(dia.getTime()+(7*24*3600000))
+	friday.setTime(monday.getTime()+(5*24*3600000))
+	$("#dilluns").html(formatDate(monday))
+	cargaSetmana()
+	$("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
 }
 
 /**
@@ -149,17 +158,14 @@ function SemanaMas() {
  */
 function SemanaMenos() {
 	//agafam el dia actual
-	let today = new Date(), weekDate = new Date(); 
-	weekDate.setTime(today.getTime()-(7*24*3600000));
-	let todayformat = formatDate(today)
-	let weekDateformat = formatDate(weekDate)
-	
-
-Fuente: https://www.iteramos.com/pregunta/13967/como-restar-dias-a-una-fecha-simple
-	// let semantformat = formatDate(semant)
-
-	console.log("Hoy formated: " + todayformat)
-	console.log("Semana ant: " + weekDateformat)
+	let dia = new Date($("#dilluns").html());
+	let monday = new Date()
+	let friday = new Date()
+	monday.setTime(dia.getTime()-(7*24*3600000))
+	friday.setTime(monday.getTime()+(5*24*3600000))
+	$("#dilluns").html(formatDate(monday))
+	cargaSetmana()
+	$("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
 }
 
 function CanviPistaCoberta() {
@@ -167,7 +173,7 @@ function CanviPistaCoberta() {
 	$('#pistaCoberta').addClass('active');
 	$('#pistaExterior').removeClass('active');
 	pistaActual="Coberta";
-	cargaSetmana(pistaActual);
+	cargaSetmana();
 }
 
 function CanviPistaExterior() {
@@ -262,7 +268,7 @@ function taulaPista(data){
 		for (let col = 0; col < 5; col++) {
 			// console.log(fil + " - " + col + ": " + table[fil][col])
 			if (table[fil][col] == "") {
-				tbody = tbody + '<td><button class="btn libre">Libre</button></td>'
+				tbody = tbody + '<td><button class="btn libre" hora="' + (fil + 15) + '" weekday="' + (col) + '">Libre</button></td>'
 			} else {
 				tbody = tbody + "<td>" + table[fil][col] + "</td>"
 			}
@@ -275,5 +281,11 @@ function taulaPista(data){
 	$('.libre').click(function (e) { 
 		e.preventDefault();
 		PantallaUsuari()
+		let hora = $(this).attr("hora")
+		let dia = new Date($("#dilluns").html())
+		dia.setTime(dia.getTime() + ($(this).attr("weekday")*24*3600000))
+		$('#hora').val(hora);
+		$('#tipopista').val(pistaActual)
+		$('#dia').val(formatDate(dia))
 	});
 }
