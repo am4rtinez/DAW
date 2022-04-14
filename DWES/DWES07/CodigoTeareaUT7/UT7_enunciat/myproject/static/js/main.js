@@ -17,6 +17,11 @@ let pistaActual = "Coberta";
 $(function () {
 	cargaBasic()
 
+	$('#butPU').click(function (e) { 
+		e.preventDefault();
+		PantallaUsuari()
+	});
+
 	$(".btn-close").click(function () {
 		console.log('Close alert')
         $('#alertaReserva').hide();
@@ -32,6 +37,17 @@ $(function () {
 		CanviPistaExterior()
 	});
 
+	$('#semanaMenos').click(function (e) { 
+		e.preventDefault();
+		console.log('SemanaMenos click')
+		SemanaMenos()
+	});
+
+	$('#semanaMas').click(function (e) { 
+		e.preventDefault();
+		console.log('SemanaMas click')
+		SemanaMas()
+	});
 });
 
 function cargaBasic(){
@@ -55,15 +71,24 @@ function cargaSetmana(){
 	let dia = $("#dilluns").html();
 	let url = serverAPI + "/gimnas/reserves/setmana/" + dia;
 
+	// console.log(dia)
+
 	// Aqui hauras d'afegir el teu codi
 	$.getJSON(url, function(json) {
-		console.log(json)
 		// Filtrado por el tipo de pista y ordenado por fecha y hora.
 		jsonTags = json.filter(res => res.tipo == pistaActual).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
-    	console.log(jsonTags);  // this will show the info it in firebug console
+    	// console.log(jsonTags);  // this will show the info it in firebug console
     	data = JSON.parse(JSON.stringify(jsonTags));
 		taulaPista(data)
 	})
+}
+
+function padTo2Digits(num) {
+	return num.toString().padStart(2, '0');
+}
+
+function formatDate(date) {
+	return date.getFullYear()+ '-' + padTo2Digits(date.getMonth() + 1) + '-' + padTo2Digits(date.getDate())
 }
 
 /**
@@ -124,7 +149,17 @@ function SemanaMas() {
  */
 function SemanaMenos() {
 	//agafam el dia actual
+	let today = new Date(), weekDate = new Date(); 
+	weekDate.setTime(today.getTime()-(7*24*3600000));
+	let todayformat = formatDate(today)
+	let weekDateformat = formatDate(weekDate)
+	
 
+Fuente: https://www.iteramos.com/pregunta/13967/como-restar-dias-a-una-fecha-simple
+	// let semantformat = formatDate(semant)
+
+	console.log("Hoy formated: " + todayformat)
+	console.log("Semana ant: " + weekDateformat)
 }
 
 function CanviPistaCoberta() {
@@ -142,6 +177,7 @@ function CanviPistaExterior() {
 	pistaActual="Exterior";
 	cargaSetmana();
 }
+
 
 // .......................................................
 // VERIFICACIÓ DEL FORMULARI
@@ -171,7 +207,6 @@ function EnviaForm() {
 // A PARTIR DELS JSON DE DADES QUE ARRIBA DEL SERVIDOR
 // .......................................................
 
-
 function taulaUsuari(pistesUsuari){
 	html = "";
 	for(a = 0; a < pistesUsuari.length; a++){
@@ -191,15 +226,24 @@ function taulaPista(data){
 	let tbody
 	let table = []
 
-	//Genera mapeo de la tabla.
+	// Genera mapeo de la tabla.
+	// Sunday = 0
+	// Monday = 1
+	// Tuesday = 2
+	// Wednesday = 3
+	// Thursday = 4
+	// Friday = 5 
+	// Saturday = 6
+
 	for (let fila = 0; fila < 6; fila++) {
 		let filaTemp = []
-		for (let columna = 0; columna < 6; columna++) {
+		for (let columna = 0; columna < 5; columna++) {
 			let tempVal = ""
+			// Recorremos los datos de reservas.
 			for (i = 0; i < data.length; i++) {
 				let d = new Date(data[i].data);
 				let weekday = d.getDay()
-				if ((weekday - 1 == fila) && (data[i].hora == columna + 15)) {
+				if (((weekday - 1) == columna) && (data[i].hora == fila + 15)) {
 					if (data[i].username == username) {
 						tempVal = tempVal + "RESERVADA"
 					} else {
@@ -211,14 +255,25 @@ function taulaPista(data){
 		}
 		table.push(filaTemp)
 	}
-
+	// console.log(table)
 	// Genera el body de la tabla
 	for (let fil = 0; fil < 6; fil++) {
 		tbody = tbody + "<tr><th>" + (fil + 15) + "</th>"
 		for (let col = 0; col < 5; col++) {
-			tbody = tbody + "<td>" + table[col][fil] + "</td>"
+			// console.log(fil + " - " + col + ": " + table[fil][col])
+			if (table[fil][col] == "") {
+				tbody = tbody + '<td><button class="btn libre">Libre</button></td>'
+			} else {
+				tbody = tbody + "<td>" + table[fil][col] + "</td>"
+			}
 		}
 		tbody = tbody + "</tr>"
 	}
 	$('#reservesPista > tbody').html(tbody);
+
+	// Genera el evento de click para la clase libre.
+	$('.libre').click(function (e) { 
+		e.preventDefault();
+		PantallaUsuari()
+	});
 }

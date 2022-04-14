@@ -107,14 +107,20 @@
       <div class="col">
         <div class="alert alert-primary" role="alert">
           <div class="row">
-            <div class="col-sm-2">
-              <img src="../static/img/left.png" onclick="SemanaMenos()">
+            <div class="col-2">
+              <button id="semanaMenos" class="btn float-start">
+                <!-- <img src="../static/img/left.png" onclick="SemanaMenos()"> -->
+                <img src="../static/img/left.png">
+              </button>
             </div>
-            <div class="col-sm-8">
+            <div class="col-8 text-center">
               <h2 id="titolReserves"> Reserves setmana {{session['lunes']}}  a {{session['viernes']}}</h2>
             </div>
-            <div class="col-sm-2">
-              <img src="../static/img/right.png" onclick="SemanaMas()">
+            <div class="col-2 text-right">
+              <button id="semanaMas" class="btn float-end">
+                <!-- <img src="../static/img/right.png" onclick="SemanaMas()"> -->
+                <img src="../static/img/right.png">
+              </button>
             </div>   
           </div>
         </div>
@@ -133,7 +139,7 @@
             <thead class="thead-light">
               <th></th><th>Dilluns</th><th>Dimarts</th><th>Dimecres</th><th>Dijous</th><th>Divendres</th></thead>
             <tbody>
-    
+              <button id="libre"></button>
             </tbody>
           </table>
         </div>
