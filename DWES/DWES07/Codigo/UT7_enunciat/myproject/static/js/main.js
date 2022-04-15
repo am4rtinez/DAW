@@ -4,6 +4,7 @@
 
 const serverAPI = "http://127.0.0.1:5001";
 let pistaActual = "Coberta";
+
 // .......................................................
 // FUNCIO QUE CARREGA LES DADES DESDE LA API
 // .......................................................
@@ -69,8 +70,6 @@ function cargaSetmana(){
 	let dia = $("#dilluns").html();
 	let url = serverAPI + "/gimnas/reserves/setmana/" + dia;
 
-	// console.log(dia)
-
 	// Aqui hauras d'afegir el teu codi
 	$.getJSON(url, function(json) {
 		// Filtrado por el tipo de pista y ordenado por fecha y hora.
@@ -81,14 +80,29 @@ function cargaSetmana(){
 	})
 }
 
+/**
+ * Funcion que añade un 0 a los numeros con un solo digito.
+ * @param {*} num 
+ * @returns 
+ */
 function padTo2Digits(num) {
 	return num.toString().padStart(2, '0');
 }
 
+/**
+ * Funcion que formatea una fecha al formato yyyy-mm-dd.
+ * @param {*} date 
+ * @returns 
+ */
 function formatDate(date) {
 	return date.getFullYear()+ '-' + padTo2Digits(date.getMonth() + 1) + '-' + padTo2Digits(date.getDate())
 }
 
+/**
+ * Funcion que formatea una fecha al formato dd/mm/yyyy.
+ * @param {*} date 
+ * @returns 
+ */
 function formatDateDDMMYYYY(date) {
 	return padTo2Digits(date.getDate()) + '/' + padTo2Digits(date.getMonth() + 1) + '/' + date.getFullYear()
 }
@@ -117,6 +131,7 @@ function ReservarPista(dia,hora,pista){
 // EN AQUESTA SECCIO DEL CODI MIRAM ELS CANVIS DE PANTALLA
 // .......................................................
 
+// TODO: Hacer que el VeureReserves siempre muestre la semana actual cuando se clica sobre este elemento y asi prevenir si se han cargado funciones SemanaMenos y SemanaMas.
 function VeureReserves() {
 	//marcam els botons de light i primary
 	//btn-light
@@ -126,7 +141,17 @@ function VeureReserves() {
 	$('#pantallaReserva').hide();
 	$('#alertaReserva').hide();
 	$('#pantallaMostra').show();
+
+	// let today = new Date()
+	// let monday = new Date()
+	// let friday = new Date()
+	// monday.setTime(today.getTime()-((today.getDay() - 1)*24*3600000))
+	// friday.setTime(monday.getTime()+(5*24*3600000))
+	// $("#dilluns").html(formatDate(monday))
+
+	// console.log(formatDate(monday))
 	cargaSetmana();
+	// $("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
 }
 
 function PantallaUsuari() {
@@ -149,8 +174,8 @@ function PantallaUsuari() {
 	monday.setTime(dia.getTime()+(7*24*3600000))
 	friday.setTime(monday.getTime()+(5*24*3600000))
 	$("#dilluns").html(formatDate(monday))
-	cargaSetmana()
 	$("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
+	cargaSetmana()
 }
 
 /**
@@ -164,8 +189,8 @@ function SemanaMenos() {
 	monday.setTime(dia.getTime()-(7*24*3600000))
 	friday.setTime(monday.getTime()+(5*24*3600000))
 	$("#dilluns").html(formatDate(monday))
-	cargaSetmana()
 	$("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
+	cargaSetmana()
 }
 
 function CanviPistaCoberta() {
@@ -223,10 +248,10 @@ function taulaUsuari(pistesUsuari){
 }
 
 /**
- * TODO: Implementar funcion.
+ * Funcion que genera la tabla de reservas de las pistas.
  * @param {*} dades 
  */
-function taulaPista(data){
+function taulaPista(dades){
 	//li passam un JSON amb les reserves de la pista
 	let username = $('#username').html()		//Obtenemos el username para comparar con las reservas.
 	let tbody
@@ -246,11 +271,11 @@ function taulaPista(data){
 		for (let columna = 0; columna < 5; columna++) {
 			let tempVal = ""
 			// Recorremos los datos de reservas.
-			for (i = 0; i < data.length; i++) {
-				let d = new Date(data[i].data);
+			for (i = 0; i < dades.length; i++) {
+				let d = new Date(dades[i].data);
 				let weekday = d.getDay()
-				if (((weekday - 1) == columna) && (data[i].hora == fila + 15)) {
-					if (data[i].username == username) {
+				if (((weekday - 1) == columna) && (dades[i].hora == fila + 15)) {
+					if (dades[i].username == username) {
 						tempVal = tempVal + "RESERVADA"
 					} else {
 						tempVal = tempVal + "NO DISPONIBLE"
@@ -261,7 +286,6 @@ function taulaPista(data){
 		}
 		table.push(filaTemp)
 	}
-	// console.log(table)
 	// Genera el body de la tabla
 	for (let fil = 0; fil < 6; fil++) {
 		tbody = tbody + "<tr><th>" + (fil + 15) + "</th>"
@@ -280,12 +304,20 @@ function taulaPista(data){
 	// Genera el evento de click para la clase libre.
 	$('.libre').click(function (e) { 
 		e.preventDefault();
-		PantallaUsuari()
-		let hora = $(this).attr("hora")
+		// Si el dia de la reserva es anterior a hoy el boton lanza un alert
+		let today = new Date()
 		let dia = new Date($("#dilluns").html())
 		dia.setTime(dia.getTime() + ($(this).attr("weekday")*24*3600000))
-		$('#hora').val(hora);
-		$('#tipopista').val(pistaActual)
-		$('#dia').val(formatDate(dia))
+		
+		// Comprueba si la fecha para reservar es anterior a hoy. En caso de serlo no se pasa al formulario de reserva.
+		if(dia.setHours(0, 0, 0, 0) >= today.setHours(0, 0, 0, 0)) {
+			let hora = $(this).attr("hora")
+			$('#hora').val(hora);
+			$('#tipopista').val(pistaActual)
+			$('#dia').val(formatDate(dia))
+			PantallaUsuari()
+		} else {
+			alert("No es posible realizar reservas en fechas pasadas.")
+		}
 	});
 }
