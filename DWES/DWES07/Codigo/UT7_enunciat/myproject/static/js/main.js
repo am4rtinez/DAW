@@ -17,14 +17,17 @@ let pistaActual = "Coberta";
 
 $(function () {
 	$('#alertaReserva').hide();
+	$('#alertas').hide();
 
 	cargaBasic()
 
+	// TODO: Limpiar el formulario si se viene de VeureReserves.
 	$('#butPU').click(function (e) { 
 		e.preventDefault();
 		PantallaUsuari()
 	});
 
+	// TODO: Set de la fecha actual para mostrar la semana actual si se viene de PantallaUsuari().
 	$('#butVR').click(function (e) { 
 		e.preventDefault();
 		VeureReserves()
@@ -151,7 +154,8 @@ function ReservarPista(dia,hora,pista){
 // EN AQUESTA SECCIO DEL CODI MIRAM ELS CANVIS DE PANTALLA
 // .......................................................
 
-// TODO: Hacer que el VeureReserves siempre muestre la semana actual cuando se clica sobre este elemento y asi prevenir si se han cargado funciones SemanaMenos y SemanaMas.
+// TODO: Hacer que el VeureReserves siempre muestre la semana actual cuando se clica sobre este elemento 
+// TODO: y asi prevenir si se han cargado funciones SemanaMenos y SemanaMas.
 function VeureReserves() {
 	//marcam els botons de light i primary
 	//btn-light
@@ -162,16 +166,12 @@ function VeureReserves() {
 	$('#alertaReserva').hide();
 	$('#pantallaMostra').show();
 
-	// let today = new Date()
-	// let monday = new Date()
-	// let friday = new Date()
-	// monday.setTime(today.getTime()-((today.getDay() - 1)*24*3600000))
-	// friday.setTime(monday.getTime()+(5*24*3600000))
-	// $("#dilluns").html(formatDate(monday))
+	let monday = getActualMonday()
+	let friday = getFriday(monday)
+	$("#dilluns").html(formatDate(monday))
+	setTitleWeekReservation("#titolReserves", monday, friday)
 
-	// console.log(formatDate(monday))
 	cargaSetmana();
-	// $("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
 }
 
 function PantallaUsuari() {
@@ -189,12 +189,10 @@ function PantallaUsuari() {
  */
  function SemanaMas() {
 	let dia = new Date($("#dilluns").html());
-	let monday = new Date()
-	let friday = new Date()
-	monday.setTime(dia.getTime()+(7*24*3600000))
-	friday.setTime(monday.getTime()+(5*24*3600000))
-	$("#dilluns").html(formatDate(monday))
-	$("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
+	let monday = getNextMonday(dia)
+	let friday = getFriday(monday)
+	setMonday("#dilluns", monday)
+	setTitleWeekReservation ("#titolReserves", monday, friday)
 	cargaSetmana()
 }
 
@@ -204,13 +202,49 @@ function PantallaUsuari() {
 function SemanaMenos() {
 	//agafam el dia actual
 	let dia = new Date($("#dilluns").html());
-	let monday = new Date()
-	let friday = new Date()
-	monday.setTime(dia.getTime()-(7*24*3600000))
-	friday.setTime(monday.getTime()+(5*24*3600000))
-	$("#dilluns").html(formatDate(monday))
-	$("#titolReserves").html(`Reserves setmana ${formatDateDDMMYYYY(monday)}  a ${formatDateDDMMYYYY(friday)}`);
+	let monday = getPreviousMonday(dia)
+	let friday = getFriday(monday)
+	setMonday("#dilluns", monday)
+	setTitleWeekReservation ("#titolReserves", monday, friday)
 	cargaSetmana()
+}
+
+function setMonday(element, date) {
+	$(element).html(formatDate(date))
+}
+
+function setTitleWeekReservation (element, mon, fri) {
+	$(element).html(`Reserves setmana ${formatDateDDMMYYYY(mon)}  a ${formatDateDDMMYYYY(fri)}`);
+}
+
+function getActualMonday() {
+	let day = new Date()
+	day.setTime(day.getTime()-((day.getDay()-1)*24*3600000))
+	return day
+}
+
+function getPreviousMonday(date) {
+	let day = new Date()
+	day.setTime(date.getTime()-(7*24*3600000))
+	return day
+}
+
+function getNextMonday(date) {
+	let day = new Date()
+	day.setTime(date.getTime()+(7*24*3600000))
+	return day
+}
+
+function getNextWeekDay(date) {
+	let day = new Date(date)
+	day.setTime(day.getTime()+(7*24*3600000))
+	return formatDate(day)
+}
+
+function getFriday(date) {
+	let day = new Date()
+	day.setTime(date.getTime()+(4*24*3600000))
+	return day
 }
 
 function CanviPistaCoberta() {
@@ -238,30 +272,48 @@ function EnviaForm() {
 	let hora = $('#hora').val();
 	let pista = $('#tipopista').val();
 	let multiple = $('#multiple').val();
+	let i = 0
 	// Set the global configs to synchronous 
 	$.ajaxSetup({async: false});
+	if (multiple != 1) {
+		do {
+			i = i + 1;
+			do_reservation(dia, hora, pista)
+			dia = getNextWeekDay(dia)
+		} while (i < multiple);
+	} else {
+		do_reservation(dia, hora, pista)
+	}
+	// let comprova = comprovaReserva(dia,hora,pista);
+	// Set the global configs back to asynchronous 
+	$.ajaxSetup({async: true});
+
+}
+
+function do_reservation (dia, hora, pista){
 	let comprova = comprovaReserva(dia,hora,pista);
 	console.log(comprova)
 	if (comprova){
-		showAlert("#alertaReserva", ".msg","alert-success", "alert-danger", "#exclamation-triangle-fill", "La pista ja està ocupada")
+		showAlert("#alertaReserva", "alert-danger", "#exclamation-triangle-fill", `La pista ${pista} ja està ocupada per dia ${dia} a les ${hora}h.`)
 	} else {
-		showAlert("#alertaReserva", ".msg", "alert-danger", "alert-success", "#check-circle-fill", "S'ha gestionat la reserva")
+		showAlert("#alertaReserva", "alert-success", "#check-circle-fill", `S'ha gestionat la reserva per dia ${dia} a les ${hora}h en pista ${pista}.`)
 		ReservarPista(dia,hora,pista);
-		// $('#alertaReserva').show();
-	}		
-	// Set the global configs back to asynchronous 
-	$.ajaxSetup({async: true});
-	setTimeout(function() {
-		$('#alertaReserva').fadeOut('slow');}, 5000
-	);
+	}
+	$("#alertaReserva").show();
 }
 
-function showAlert(parent, element, remClass, typeClass, icon, msg) { 
-	$(parent).removeClass(remClass);
-	$(parent).addClass(typeClass);
-	let string = `<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="${icon}"/></svg>`
-	$(element).html(string + msg);
-	$(parent).show();
+function showAlert(parent, typeClass, icon, msg) { 
+	let newalertdiv = $(`<div id="alerta" class="alert ${typeClass} alter-dismissable fade show row" role="alert"></div>`)
+	let string = `<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="${icon}"/></svg>${msg}`
+	let textdiv = $(`<div class="text-center msg">${string}</div>`)
+	$(newalertdiv).append(textdiv);
+	$(parent).append(newalertdiv);
+
+	setTimeout(function() {
+		// $(newalertdiv).hide('slow');
+		$(parent).hide('slow');
+		$(parent).html('');
+	}, 8000);
 }
 
 // .......................................................
