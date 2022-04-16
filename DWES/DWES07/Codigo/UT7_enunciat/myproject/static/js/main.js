@@ -174,6 +174,7 @@ function VeureReserves() {
 	cargaSetmana();
 }
 
+// Carga la pantalla de usuario (formulario y listado de reservas del usuario).
 function PantallaUsuari() {
 	//marcam els botons de light i primary
 	$('#butPU').removeClass('btn-outline-secondary').addClass('btn-primary');
@@ -185,7 +186,7 @@ function PantallaUsuari() {
 }
 
 /**
- * Funcion que se encarga
+ * Funcion que se encarga de cargar una semana mas en la pantalla de ver reservas.
  */
  function SemanaMas() {
 	let dia = new Date($("#dilluns").html());
@@ -197,7 +198,7 @@ function PantallaUsuari() {
 }
 
 /**
- * TODO: Implementar funcion.
+ * Funcion que se encarga de cargar una semana menos en la pantalla de ver reservas.
  */
 function SemanaMenos() {
 	//agafam el dia actual
@@ -209,38 +210,73 @@ function SemanaMenos() {
 	cargaSetmana()
 }
 
+/**
+ * Funcion que carga la fecha del lunes en el elemento del documento con formato yyyy-mm-dd.
+ * @param {*} element 
+ * @param {*} date 
+ */
 function setMonday(element, date) {
 	$(element).html(formatDate(date))
 }
 
+/**
+ * Funcion que pinta el titulo con las fechas de la semana del apartado de veure reserves.
+ * @param {*} element 
+ * @param {*} mon 
+ * @param {*} fri 
+ */
 function setTitleWeekReservation (element, mon, fri) {
 	$(element).html(`Reserves setmana ${formatDateDDMMYYYY(mon)}  a ${formatDateDDMMYYYY(fri)}`);
 }
 
+/**
+ * Funcion que obtiene la fecha del lunes de la semana actual y lo devuelve.
+ * @returns 
+ */
 function getActualMonday() {
 	let day = new Date()
 	day.setTime(day.getTime()-((day.getDay()-1)*24*3600000))
 	return day
 }
 
+/**
+ * Funcion que obtiene la fecha del lunes de la semana anterior.
+ * @param {*} date 
+ * @returns 
+ */
 function getPreviousMonday(date) {
 	let day = new Date()
 	day.setTime(date.getTime()-(7*24*3600000))
 	return day
 }
 
+/**
+ * Funcion que obtiene la fecha del lunes de la semana posterior.
+ * @param {*} date 
+ * @returns 
+ */
 function getNextMonday(date) {
 	let day = new Date()
 	day.setTime(date.getTime()+(7*24*3600000))
 	return day
 }
 
+/**
+ * Funcion que devuelve la fecha de la semana siguente al dia pasado por parámetro.
+ * @param {*} date 
+ * @returns 
+ */
 function getNextWeekDay(date) {
 	let day = new Date(date)
 	day.setTime(day.getTime()+(7*24*3600000))
 	return formatDate(day)
 }
 
+/**
+ * Funcion que devuelve la fecha del viernes.
+ * @param {*} date 
+ * @returns 
+ */
 function getFriday(date) {
 	let day = new Date()
 	day.setTime(date.getTime()+(4*24*3600000))
@@ -290,6 +326,12 @@ function EnviaForm() {
 
 }
 
+/**
+ * Funcion que se encarga de realizar los pasos de la reserva como comprobarla y después gestionarla.
+ * @param {*} dia 
+ * @param {*} hora 
+ * @param {*} pista 
+ */
 function do_reservation (dia, hora, pista){
 	let comprova = comprovaReserva(dia,hora,pista);
 	console.log(comprova)
@@ -302,6 +344,13 @@ function do_reservation (dia, hora, pista){
 	$("#alertaReserva").show();
 }
 
+/**
+ * Funcion que muestra los alerts en función de la reserva.
+ * @param {*} parent 
+ * @param {*} typeClass 
+ * @param {*} icon 
+ * @param {*} msg 
+ */
 function showAlert(parent, typeClass, icon, msg) { 
 	let newalertdiv = $(`<div id="alerta" class="alert ${typeClass} alter-dismissable fade show row" role="alert"></div>`)
 	let string = `<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="${icon}"/></svg>${msg}`
@@ -394,7 +443,7 @@ function taulaPista(dades){
 		let dia = new Date($("#dilluns").html())
 		dia.setTime(dia.getTime() + ($(this).attr("weekday")*24*3600000))
 		
-		// Comprueba si la fecha para reservar es anterior a hoy. En caso de serlo no se pasa al formulario de reserva.
+		// Comprueba si la fecha para reservar es anterior a hoy. En caso de serlo no se pasa al formulario de reserva y muestra un alert en pantalla.
 		if(dia.setHours(0, 0, 0, 0) >= today.setHours(0, 0, 0, 0)) {
 			let hora = $(this).attr("hora")
 			$('#hora').val(hora);
