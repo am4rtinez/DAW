@@ -11,4 +11,4 @@ if __name__ == '__main__':
     # Using a development configuration
     app.config.from_object(config.DevConfig)
 
-    app.run()
+    app.run(port=5123)

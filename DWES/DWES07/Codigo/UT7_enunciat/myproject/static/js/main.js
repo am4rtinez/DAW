@@ -9,13 +9,15 @@ let pistaActual = "Coberta";
 // FUNCIO QUE CARREGA LES DADES DESDE LA API
 // .......................................................
 
-// api.add_resource(usuari,'/gimnas/usuari') #GET i POST
-// api.add_resource(usuarisID,'/gimnas/usuari/<int:id>') #GET PUT DELETE
-// api.add_resource(reserves,'/gimnas/reserves')  #GET 
-// api.add_resource(reservesSet,'/gimnas/reserves/setmana/<string:dia>')  #GET 
-// api.add_resource(reservesID,'/gimnas/reserves/<int:id>')  #GET (un concret), POST (afegir), DELETE (eliminar)
+// /gimnas/usuari #GET i POST
+// /gimnas/usuari/<int:id>' #GET PUT DELETE
+// /gimnas/reserves #GET 
+// /gimnas/reserves/setmana/<string:dia> #GET 
+// /gimnas/reserves/<int:id>  #GET (un concret), POST (afegir), DELETE (eliminar)
 
 $(function () {
+	$('#alertaReserva').hide();
+
 	cargaBasic()
 
 	$('#butPU').click(function (e) { 
@@ -23,10 +25,15 @@ $(function () {
 		PantallaUsuari()
 	});
 
-	$(".btn-close").click(function () {
-		console.log('Close alert')
-        $('#alertaReserva').hide();
-    });
+	$('#butVR').click(function (e) { 
+		e.preventDefault();
+		VeureReserves()
+	});
+
+	$('#butForm').click(function (e) { 
+		e.preventDefault();
+		EnviaForm()
+	});
 
 	$('#pistaCoberta').click(function (e) { 
 		e.preventDefault();
@@ -114,14 +121,27 @@ function formatDateDDMMYYYY(date) {
  * @param {*} pista 
  */
 function comprovaReserva(dia,hora,pista){
-
+	let reserva = false
+	// Utilizamos /gimnas/reserves/setmana/<string:dia> para asi no tener que comprobar todo el listado de reservas.
+	let url = `${serverAPI}/gimnas/reserves/setmana/${dia}`
+	$.getJSON(url, function(json) {
+		// Filtrado por el tipo de pista y ordenado por fecha y hora.
+		// jsonTags = json.filter(res => res.tipo == pista && res.hora == hora).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
+		jsonTags = json.filter(res => res.data == dia && res.tipo == pista && res.hora == hora);
+    	console.log(jsonTags);  // this will show the info it in firebug console
+		console.log(jsonTags.length)
+		if (jsonTags.length !=0) {
+			reserva = true
+		}
+	})
+	return reserva
 }
 
 function ReservarPista(dia,hora,pista){
 	let id=$("#idusuari").html();
-	url = serverAPI+"/gimnas/reserves/"+id;
-	data = dia + " " + hora + ":00:00";
-	cadenaJSON ='{ "fecha" :"' + data + '", "pista": "' + pista + '" }';
+	let url = serverAPI+"/gimnas/reserves/"+id;
+	let data = dia + " " + hora + ":00:00";
+	let cadenaJSON ='{ "fecha" :"' + data + '", "pista": "' + pista + '" }';
 	console.log(cadenaJSON);
 	dades = JSON.parse(cadenaJSON);
 	$.post(url,{fecha:data,pista:"Coberta"});
@@ -214,24 +234,35 @@ function CanviPistaExterior() {
 // VERIFICACIÓ DEL FORMULARI
 // .......................................................
 function EnviaForm() {
-	dia = $('#dia').val();
-	hora = $('#hora').val();
-	pista = $('#tipopista').val();
-	multiple = $('#multiple').val();
+	let dia = $('#dia').val();
+	let hora = $('#hora').val();
+	let pista = $('#tipopista').val();
+	let multiple = $('#multiple').val();
 	// Set the global configs to synchronous 
 	$.ajaxSetup({async: false});
-	comprova = comprovaReserva(dia,hora,pista);
+	let comprova = comprovaReserva(dia,hora,pista);
+	console.log(comprova)
 	if (comprova){
-		$('#alertaReserva').html("La pista ja està ocupada");
+		showAlert("#alertaReserva", ".msg","alert-success", "alert-danger", "#exclamation-triangle-fill", "La pista ja està ocupada")
 	} else {
+		showAlert("#alertaReserva", ".msg", "alert-danger", "alert-success", "#check-circle-fill", "S'ha gestionat la reserva")
 		ReservarPista(dia,hora,pista);
-		$('#alertaReserva').html("<div class='text-center'>S'ha gestionat la reserva</div> <button type='button' class='btn-close close' data-dismiss='alert'></button>");
+		// $('#alertaReserva').show();
 	}		
-	$('#alertaReserva').show();
 	// Set the global configs back to asynchronous 
 	$.ajaxSetup({async: true});
+	setTimeout(function() {
+		$('#alertaReserva').fadeOut('slow');}, 5000
+	);
 }
 
+function showAlert(parent, element, remClass, typeClass, icon, msg) { 
+	$(parent).removeClass(remClass);
+	$(parent).addClass(typeClass);
+	let string = `<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="${icon}"/></svg>`
+	$(element).html(string + msg);
+	$(parent).show();
+}
 
 // .......................................................
 // EN AQUESTA SECCIO DEL CODI TENIM LES FUNCIONS QUE ACTUALITZEN ELS CAMPS DE DADES
@@ -291,10 +322,12 @@ function taulaPista(dades){
 		tbody = tbody + "<tr><th>" + (fil + 15) + "</th>"
 		for (let col = 0; col < 5; col++) {
 			// console.log(fil + " - " + col + ": " + table[fil][col])
-			if (table[fil][col] == "") {
-				tbody = tbody + '<td><button class="btn libre" hora="' + (fil + 15) + '" weekday="' + (col) + '">Libre</button></td>'
+			if (table[fil][col] == "RESERVADA") {
+				tbody = tbody + "<td class='reservauser'>" + table[fil][col] + "</td>"
+			} else if (table[fil][col] == "NO DISPONIBLE"){
+				tbody = tbody + "<td class='nodispo'>" + table[fil][col] + "</td>"
 			} else {
-				tbody = tbody + "<td>" + table[fil][col] + "</td>"
+				tbody = tbody + '<td><button class="btn libre" hora="' + (fil + 15) + '" weekday="' + (col) + '">Libre</button></td>'
 			}
 		}
 		tbody = tbody + "</tr>"

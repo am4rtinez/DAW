@@ -1,5 +1,3 @@
-from msilib.schema import Error
-from tkinter import INSERT
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app.dbmodel import getConnection

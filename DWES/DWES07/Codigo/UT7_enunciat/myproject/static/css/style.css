@@ -1,0 +1,25 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: auto;
+}
+
+main {
+    margin: auto;
+}
+
+td.reservauser {
+    background-color: limegreen;
+}
+
+button > img {
+    width: 75%;
+}
+
+td.nodispo {
+    background-color: crimson;
+    color: aliceblue !important;
+}
