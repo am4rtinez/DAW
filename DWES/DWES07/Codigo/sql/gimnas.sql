@@ -59,7 +59,7 @@ CREATE TABLE reserves (
     CONSTRAINT reserves_ibfk_1 FOREIGN KEY (idclient) REFERENCES clients (id),
     CONSTRAINT reserves_ibfk_2 FOREIGN KEY (idpista) REFERENCES pistes (idpista)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-INSERT INTO reserves (data, idpista, iduser)
+INSERT INTO reserves (data, idpista, idclient)
 VALUES
   ('2022-02-03 16:00:00', 2, 1),
   ('2022-02-02 15:00:00', 1, 1),
