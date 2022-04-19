@@ -19,8 +19,8 @@ VALUES
   (4, 'hkensjin', 'Himura', 'Kenshin', 'hkensjin@example.com', '666444888', 'pbkdf2 :sha256 :260000$FmeGDLSwcd69n5QI$6df8f7701a2daa6a0bad1119a3832b585f0ec9d658bb429552e3694a63d3dc25'),
   (5, 'SaulGman', 'pepe', 'Goodman', '', '999777555', 'pbkdf2:sha256:260000$92p0bfnAB1JzNLzc$070f91a33e5c30b6f2c2870b6f3ceba2065603577fdb46152994a9a3061ba226');
 
-DROP TABLE IF EXISTS usuaris;
-CREATE TABLE usuaris (
+DROP TABLE IF EXISTS clients;
+CREATE TABLE clients (
   id int(11) AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(15) NOT NULL,
   nom VARCHAR(30) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE usuaris (
   telefon varchar(12) NOT NULL,
   password char(120) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-INSERT INTO usuaris
+INSERT INTO clients
 VALUES
   (1, 'amartinez', 'Angel', 'Martinez', 'amartinez@example.com', '666777888', 'pbkdf2:sha256:260000$FmeGDLSwcd69n5QI$6df8f7701a2daa6a0bad1119a3832b585f0ec9d658bb429552e3694a63d3dc25'),
   (2, 'sikari', 'Shinji', 'Ikari', 'sikari@example.com', '666222888', 'pbkdf2:sha256:260000$10eZ4touJOL9A0Tl$001ca267fd695e4edaaf4412db0dfe70f4a05b323694045d2c30335614d992c7'),
@@ -52,11 +52,11 @@ DROP TABLE IF EXISTS reserves;
 CREATE TABLE reserves (
     data datetime NOT NULL,
     idpista int(11) NOT NULL,
-    iduser int(11) NOT NULL,
+    idclient int(11) NOT NULL,
     PRIMARY KEY (data, idpista),
-    KEY r_iduser (iduser),
+    KEY r_idclient (idclient),
     KEY r_idpista (idpista),
-    CONSTRAINT reserves_ibfk_1 FOREIGN KEY (iduser) REFERENCES usuaris (id),
+    CONSTRAINT reserves_ibfk_1 FOREIGN KEY (idclient) REFERENCES clients (id),
     CONSTRAINT reserves_ibfk_2 FOREIGN KEY (idpista) REFERENCES pistes (idpista)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 INSERT INTO reserves (data, idpista, iduser)
