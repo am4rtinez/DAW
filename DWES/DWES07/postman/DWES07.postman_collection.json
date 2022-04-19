@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "d1bbc804-cc7c-4245-b054-fd00a89a57c8",
+		"name": "DWES07",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "novaReserva",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"fecha\": \"2022-04-19 19:00:00\",\n        \"pista\": \"Coberta\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/gimnas/reserves/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"gimnas",
+						"reserves",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Reservas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5001/gimnas/reserves",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5001",
+					"path": [
+						"gimnas",
+						"reserves"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Reservas [localhost]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/gimnas/reserves",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"gimnas",
+						"reserves"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
