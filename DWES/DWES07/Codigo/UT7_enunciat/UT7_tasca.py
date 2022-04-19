@@ -1,10 +1,9 @@
 from myproject import app
 from flask import render_template, request, session, make_response
 from flask_login import login_user, login_required, logout_user
-from myproject.models import User,gimnas
+from myproject.models import User
+import config
 import datetime
-
-
 
 @app.route('/')
 @app.route('/home')
@@ -20,7 +19,7 @@ def index():
 	session['lunes']=lunes.strftime("%d/%m/%Y")
 	session['viernes']=viernes.strftime("%d/%m/%Y")
 	session['dia']=lunes.strftime("%Y-%m-%d")
-	llistaRes=gimnas.cargaReservas(session['lunes'])
+	# llistaRes=gimnas.cargaReservas(session['lunes'])
 	return render_template('UT7_tasca_main.html')
 
 
@@ -53,3 +52,4 @@ def logout():
 
 if __name__ == '__main__':
 	app.run(debug=True)
+	app.config.from_object(config.DevConfig)

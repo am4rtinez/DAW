@@ -2,6 +2,7 @@ from myproject import login_manager
 from werkzeug.security import check_password_hash
 from flask_login import UserMixin
 import pymysql.cursors
+import config
 import datetime
 
 # By inheriting the UserMixin we get access to a lot of built-in attributes
@@ -21,57 +22,57 @@ def load_user(user_id):
         user.fromID(user_id)
         return user
 
-class gimnas(object):
-    def cargaReservas(dia):
-        #Conexion a la BBDD del servidor mySQL
-        db = pymysql.connect(host='localhost',
-                             user='root',
-                             db='gimnas',
-                             charset='utf8mb4',
-                             autocommit=True,
-                             cursorclass=pymysql.cursors.DictCursor)
-        cursor=db.cursor()
-        inici=datetime.datetime.strptime(dia,'%d-%m-%Y')
-        final=inici+datetime.timedelta(days=4)
-        sql="SELECT u.id,r.data,p.tipo,u.nom,u.llinatges from reserves r,pistes p,usuaris u WHERE "
-        sql=sql+"u.id=r.idclient AND r.idpista=p.idpista AND "
-        sql=sql+"data>='"+inici.strftime("%Y-%m-%d")+"' AND data<='"+final.strftime("%Y-%m-%d")+"';"
-        cursor.execute(sql)
-        ResQuery=cursor.fetchall()
-        db.close()
-        return ResQuery
+# class gimnas(object):
+    # def cargaReservas(dia):
+    #     #Conexion a la BBDD del servidor mySQL
+    #     db = pymysql.connect(host='localhost',
+    #                          user='root',
+    #                          db='gimnas',
+    #                          charset='utf8mb4',
+    #                          autocommit=True,
+    #                          cursorclass=pymysql.cursors.DictCursor)
+    #     cursor=db.cursor()
+    #     inici=datetime.datetime.strptime(dia,'%d-%m-%Y')
+    #     final=inici+datetime.timedelta(days=4)
+    #     sql="SELECT u.id,r.data,p.tipo,u.nom,u.llinatges from reserves r,pistes p,usuaris u WHERE "
+    #     sql=sql+"u.id=r.idclient AND r.idpista=p.idpista AND "
+    #     sql=sql+"data>='"+inici.strftime("%Y-%m-%d")+"' AND data<='"+final.strftime("%Y-%m-%d")+"';"
+    #     cursor.execute(sql)
+    #     ResQuery=cursor.fetchall()
+    #     db.close()
+    #     return ResQuery
 
-    def reservaPista(data,idusuari,idpista):
-        #Conexion a la BBDD del servidor mySQL
-        db = pymysql.connect(host='localhost',
-                             user='root',
-                             db='gimnas',
-                             charset='utf8mb4',
-                             autocommit=True,
-                             cursorclass=pymysql.cursors.DictCursor)
-        cursor=db.cursor()
-        sql="INSERT INTO reserves VALUES('"+data+"',"+str(idpista)+","+str(idusuari)+");"
-        cursor.execute(sql)
-        ResQuery=cursor.fetchall()
-        db.close()
+    # def reservaPista(data,idusuari,idpista):
+    #     #Conexion a la BBDD del servidor mySQL
+    #     db = pymysql.connect(host='localhost',
+    #                          user='root',
+    #                          db='gimnas',
+    #                          charset='utf8mb4',
+    #                          autocommit=True,
+    #                          cursorclass=pymysql.cursors.DictCursor)
+    #     cursor=db.cursor()
+    #     sql="INSERT INTO reserves VALUES('"+data+"',"+str(idpista)+","+str(idusuari)+");"
+    #     cursor.execute(sql)
+    #     ResQuery=cursor.fetchall()
+    #     db.close()
 
-    def comprovaPista(dia,hora,idpista):
-        #Conexion a la BBDD del servidor mySQL
-        db = pymysql.connect(host='localhost',
-                             user='root',
-                             db='gimnas',
-                             charset='utf8mb4',
-                             autocommit=True,
-                             cursorclass=pymysql.cursors.DictCursor)
-        cursor=db.cursor()
-        fecha=dia+" "+str(hora)+":00:00"
-        sql="SELECT count(*) p from reserves WHERE data='"+fecha+"' and idpista="+idpista+";"
-        cursor.execute(sql)
-        ResQuery=cursor.fetchone()
-        reservado=ResQuery['p']
-        print(reservado)
-        db.close()
-        return reservado
+    # def comprovaPista(dia,hora,idpista):
+    #     #Conexion a la BBDD del servidor mySQL
+    #     db = pymysql.connect(host='localhost',
+    #                          user='root',
+    #                          db='gimnas',
+    #                          charset='utf8mb4',
+    #                          autocommit=True,
+    #                          cursorclass=pymysql.cursors.DictCursor)
+    #     cursor=db.cursor()
+    #     fecha=dia+" "+str(hora)+":00:00"
+    #     sql="SELECT count(*) p from reserves WHERE data='"+fecha+"' and idpista="+idpista+";"
+    #     cursor.execute(sql)
+    #     ResQuery=cursor.fetchone()
+    #     reservado=ResQuery['p']
+    #     print(reservado)
+    #     db.close()
+    #     return reservado
 
 
 class User(UserMixin):
@@ -86,12 +87,13 @@ class User(UserMixin):
 
     def fromID(self,Userid):
         #Conexion a la BBDD del servidor mySQL
-        db = pymysql.connect(host='localhost',
-                             user='root',
-                             db='gimnas',
-                             charset='utf8mb4',
-                             autocommit=True,
-                             cursorclass=pymysql.cursors.DictCursor)
+        db = pymysql.connect(host=config.Config.DB_HOST,
+                                    user=config.Config.DB_USERNAME,
+                                    password=config.Config.DB_PASSWORD,
+                                    db=config.Config.DB_NAME,
+                                    charset=config.Config.DB_CHARSET,
+                                    autocommit=True,
+                                    cursorclass=pymysql.cursors.DictCursor)
         cursor=db.cursor()
         # sql="SELECT id,username,nom,llinatges from usuaris WHERE id="+str(Userid)
         sql="SELECT id, username, nom, llinatges FROM clients WHERE id="+str(Userid)
@@ -105,12 +107,13 @@ class User(UserMixin):
 
     def comprovaUsuari(self,pwd):
         #Conexion a la BBDD del servidor mySQL
-        db = pymysql.connect(host='localhost',
-                             user='root',
-                             db='gimnas',
-                             charset='utf8mb4',
-                             autocommit=True,
-                             cursorclass=pymysql.cursors.DictCursor)
+        db = pymysql.connect(host=config.Config.DB_HOST,
+                                    user=config.Config.DB_USERNAME,
+                                    password=config.Config.DB_PASSWORD,
+                                    db=config.Config.DB_NAME,
+                                    charset=config.Config.DB_CHARSET,
+                                    autocommit=True,
+                                    cursorclass=pymysql.cursors.DictCursor)
         cursor=db.cursor()
         # sql="SELECT count(*) from usuaris WHERE username='"+self.username+"'"
         sql="SELECT count(*) from clients WHERE username='"+self.username+"'"
@@ -130,12 +133,13 @@ class User(UserMixin):
 
     def getId(self):
         #Conexion a la BBDD del servidor mySQL
-        db = pymysql.connect(host='localhost',
-                             user='root',
-                             db='gimnas',
-                             charset='utf8mb4',
-                             autocommit=True,
-                             cursorclass=pymysql.cursors.DictCursor)
+        db = pymysql.connect(host=config.Config.DB_HOST,
+                                    user=config.Config.DB_USERNAME,
+                                    password=config.Config.DB_PASSWORD,
+                                    db=config.Config.DB_NAME,
+                                    charset=config.Config.DB_CHARSET,
+                                    autocommit=True,
+                                    cursorclass=pymysql.cursors.DictCursor)
         cursor=db.cursor()
         # sql="SELECT id,username,nom,llinatges from usuaris WHERE username='"+self.username+"'"
         sql="SELECT id, username, nom, llinatges FROM clients WHERE username='"+self.username+"'"

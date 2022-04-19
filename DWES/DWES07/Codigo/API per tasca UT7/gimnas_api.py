@@ -4,6 +4,7 @@ import database
 import datetime
 from flask_cors import CORS
 from werkzeug.datastructures import MultiDict
+import config
 
 server = Flask(__name__)
 CORS(server)
@@ -85,3 +86,4 @@ api.add_resource(reservesID,'/gimnas/reserves/<int:id>')  #GET (un concret), POS
 
 if __name__ == '__main__':
     server.run(debug=True,port="5001")
+    server.config.from_object(config.DevConfig)
