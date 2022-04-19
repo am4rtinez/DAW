@@ -118,21 +118,21 @@ function formatDateDDMMYYYY(date) {
 }
 
 /**
- * TODO: Implementar funcion.
+ * Función que comprueba la reserva. Si existe una reserva retorna true. 
  * @param {*} dia 
  * @param {*} hora 
  * @param {*} pista 
+ * @returns 
  */
 function comprovaReserva(dia,hora,pista){
 	let reserva = false
 	// Utilizamos /gimnas/reserves/setmana/<string:dia> para asi no tener que comprobar todo el listado de reservas.
 	let url = `${serverAPI}/gimnas/reserves/setmana/${dia}`
 	$.getJSON(url, function(json) {
-		// Filtrado por el tipo de pista y ordenado por fecha y hora.
-		// jsonTags = json.filter(res => res.tipo == pista && res.hora == hora).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
+		// Filtrado por la fecha, el tipo de pista y la hora.
 		jsonTags = json.filter(res => res.data == dia && res.tipo == pista && res.hora == hora);
     	console.log(jsonTags);  // this will show the info it in firebug console
-		console.log(jsonTags.length)
+		// console.log(jsonTags.length) // muestra el length.
 		if (jsonTags.length !=0) {
 			reserva = true
 		}
@@ -140,6 +140,12 @@ function comprovaReserva(dia,hora,pista){
 	return reserva
 }
 
+/**
+ * Función que realiza la reserva.
+ * @param {*} dia 
+ * @param {*} hora 
+ * @param {*} pista 
+ */
 function ReservarPista(dia,hora,pista){
 	let id=$("#idusuari").html();
 	let url = serverAPI+"/gimnas/reserves/"+id;
@@ -166,9 +172,11 @@ function VeureReserves() {
 	$('#alertaReserva').hide();
 	$('#pantallaMostra').show();
 
+	// Funcionalidad para que siempre muestre la semana actual cuando se clica sobre este elemento (#butVR)
 	let monday = getActualMonday()
 	let friday = getFriday(monday)
-	$("#dilluns").html(formatDate(monday))
+	setMonday("#dilluns", monday)
+	// $("#dilluns").html(formatDate(monday))
 	setTitleWeekReservation("#titolReserves", monday, friday)
 
 	cargaSetmana();
@@ -215,8 +223,8 @@ function SemanaMenos() {
  * @param {*} element 
  * @param {*} date 
  */
-function setMonday(element, date) {
-	$(element).html(formatDate(date))
+function setMonday(element, mon) {
+	$(element).html(formatDate(mon))
 }
 
 /**
