@@ -148,12 +148,14 @@ function comprovaReserva(dia,hora,pista){
  */
 function ReservarPista(dia,hora,pista){
 	let id=$("#idusuari").html();
-	let url = serverAPI+"/gimnas/reserves/"+id;
+	let url = `${serverAPI}/gimnas/reserves/${id}`
+	// let url = serverAPI + "/gimnas/reserves/" + id;
 	let data = dia + " " + hora + ":00:00";
 	let cadenaJSON ='{ "fecha" :"' + data + '", "pista": "' + pista + '" }';
+	console.log(url)
 	console.log(cadenaJSON);
 	dades = JSON.parse(cadenaJSON);
-	$.post(url,{fecha:data,pista:"Coberta"});
+	$.post(url, dades);
 }
 
 // .......................................................
