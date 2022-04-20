@@ -43,7 +43,7 @@ def login():
 	else:
 		return render_template('UT7_tasca_login.html',loginmsg="Login Incorrecte")
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 @login_required
 def logout():
 	logout_user()

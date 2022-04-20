@@ -79,11 +79,11 @@ function cargaSetmana(){
 	// Agafam el dia de l'element id=dilluns del HTML
 	let dia = $("#dilluns").html();
 	let url = serverAPI + "/gimnas/reserves/setmana/" + dia;
-	console.log(url)
+	// console.log(url)
 	// Aqui hauras d'afegir el teu codi
 	$.getJSON(url, function(json) {
 		// Filtrado por el tipo de pista y ordenado por fecha y hora.
-		console.log(json);  // this will show the info it in firebug console
+		// console.log(json);  // this will show the info it in firebug console
 		jsonTags = json.filter(res => res.tipo == pistaActual).sort((a, b) => a.data.localeCompare(b.data) || a.hora.localeCompare(b.hora));
     	console.log(jsonTags);  // this will show the info it in firebug console
     	data = JSON.parse(JSON.stringify(jsonTags));
@@ -153,7 +153,7 @@ function ReservarPista(dia,hora,pista){
 	// let url = serverAPI + "/gimnas/reserves/" + id;
 	let data = dia + " " + hora + ":00:00";
 	let cadenaJSON ='{ "fecha" :"' + data + '", "pista": "' + pista + '" }';
-	console.log(url)
+	// console.log(url)
 	console.log(cadenaJSON);
 	dades = JSON.parse(cadenaJSON);
 	$.post(url, dades);

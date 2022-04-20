@@ -4,14 +4,6 @@ import config
 
 class gimnas(object):
     def conecta(self):
-        #Conexion a la BBDD del servidor mySQL
-        # self.db = pymysql.connect(host='172.30.7.178',
-        #                              user='root',
-        #                              db='gimnas',
-        #                              charset='utf8mb4',
-        #                              autocommit=True,
-        #                              cursorclass=pymysql.cursors.DictCursor)
-        # self.cursor=self.db.cursor()
 
         self.db = pymysql.connect(host=config.Config.DB_HOST,
                                     user=config.Config.DB_USERNAME,
@@ -38,7 +30,7 @@ class gimnas(object):
         sql="insert into clients values ("+str(newid['newid'])+",'"+camps['username']
         print(sql)
         #self.cursor.execute(sql)
-        return newid['newid']             
+        return newid['newid']
 
     def cargaUsuariId(self,id_usuari):
         sql="SELECT * from usuaris WHERE id="+str(id_usuari)
@@ -58,9 +50,7 @@ class gimnas(object):
     def cargaReserves(self,dia):
         diaP=datetime.datetime.strptime(dia,"%Y-%m-%d")
         lunes=diaP-datetime.timedelta(days=diaP.weekday())
-        print(lunes)
         viernes=lunes+datetime.timedelta(days=5)
-        print(viernes)
         l=lunes.strftime("%Y-%m-%d")
         v=viernes.strftime("%Y-%m-%d")
         sql="SELECT r.data,p.tipo,c.username from reserves r,pistes p,clients c where c.id=r.idclient "
