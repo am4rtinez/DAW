@@ -8,7 +8,7 @@ import datetime
 @app.route('/')
 @app.route('/home')
 def home():
-	return render_template('UT7_tasca_login.html')
+	return render_template('login.html')
 
 @app.route('/index')
 @login_required
@@ -20,7 +20,7 @@ def index():
 	session['viernes']=viernes.strftime("%d/%m/%Y")
 	session['dia']=lunes.strftime("%Y-%m-%d")
 	# llistaRes=gimnas.cargaReservas(session['lunes'])
-	return render_template('UT7_tasca_main.html')
+	return render_template('main.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -38,7 +38,7 @@ def login():
 		session['lunes']=lunes.strftime("%d/%m/%Y")
 		session['viernes']=viernes.strftime("%d/%m/%Y")
 		session['dia']=lunes.strftime("%Y-%m-%d")
-		resp = make_response(render_template('UT7_tasca_main.html'))
+		resp = make_response(render_template('main.html'))
 		return resp		
 	else:
 		return render_template('UT7_tasca_login.html',loginmsg="Login Incorrecte")
@@ -47,7 +47,7 @@ def login():
 @login_required
 def logout():
 	logout_user()
-	resp = make_response(render_template('UT7_tasca_login.html'))
+	resp = make_response(render_template('login.html'))
 	return resp	
 
 if __name__ == '__main__':
