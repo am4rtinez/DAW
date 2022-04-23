@@ -147,7 +147,21 @@ dist/
 build/
 *.egg-info/
 
-# =========================== FILES =====================================
-Martinez_Rodriguez_Angel_ASIGXX_Tarea.dotx
-Martinez_Rodriguez_Angel_DAWXX_Tarea.dotx
-DWES/MartinezRodriguezAngel_DWES07.rar
+# =========================== VUE =====================================
+node_modules/
+/dist
+/public
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================== OTHER FILES =====================================
+.DS_Store
+
+# Editor settings
+.vscode
+
+
+*.dotx
+*.rar
