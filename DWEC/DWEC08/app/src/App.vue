@@ -1,16 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!--  <AplicacioMostra v-bind:aplicacio="whatsapp"/>-->
+  <LlistaAplicacions/>
+  <FormApp/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import AplicacioMostra from './components/AplicacioMostra.vue';
+import LlistaAplicacions from "@/components/LlistaAplicacions";
+import FormApp from "@/components/FormApp";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    FormApp,
+    LlistaAplicacions,
+    // AplicacioMostra
+  },
+
 }
 </script>
 
