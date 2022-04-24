@@ -1,22 +1,28 @@
 <template>
-<!--  <AplicacioMostra v-bind:aplicacio="whatsapp"/>-->
-  <LlistaAplicacions/>
-  <FormApp/>
+  <div id="app">
+    <h1>Exercicis de Vue - route  de {{ nomComplet }}</h1>
+    <p>
+      <router-link to="/">Inici</router-link> -
+      <router-link to="alta">Alta</router-link> -
+      <router-link to="llista">Llista</router-link>
+    </p>
+    <router-view :key="$route.path"></router-view>
+  </div>
 </template>
 
 <script>
-// import AplicacioMostra from './components/AplicacioMostra.vue';
-import LlistaAplicacions from "@/components/LlistaAplicacions";
-import FormApp from "@/components/FormApp";
+
 
 export default {
   name: 'App',
   components: {
-    FormApp,
-    LlistaAplicacions,
-    // AplicacioMostra
   },
-
+  data: function () {
+    return {
+      nomComplet: 'Jo Mateix',
+      nova: {nom: "Signal", descripcio: "Una altra de missatgeria", instalada: true}
+    }
+  },
 }
 </script>
 
