@@ -1,15 +1,74 @@
 <template>
-  <div>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis, neque ac egestas semper, leo sapien blandit massa, vel dictum est eros non justo. Etiam ac risus ultrices, luctus arcu a, mollis ante. Duis nec arcu purus. Integer cursus neque id felis tempus sollicitudin. Phasellus sed mi quis mi semper rhoncus. Phasellus at rutrum massa. Maecenas aliquam enim a scelerisque dapibus. Curabitur sodales euismod libero hendrerit eleifend. Phasellus ultrices justo eu consectetur semper. Nulla nisl lorem, feugiat vitae dolor a, viverra rhoncus ipsum. Nulla et posuere nunc. Mauris pellentesque est id felis pellentesque posuere. Ut a faucibus massa. Integer nec tortor sem.</p>
-  <p>Nullam tincidunt porttitor blandit. Vivamus sit amet orci eu quam rhoncus tincidunt eu nec tellus. Donec ut faucibus enim, eu porttitor eros. Cras semper gravida elit eget egestas. Proin vestibulum est neque. In est enim, luctus eu tellus ut, tincidunt vehicula nisl. Sed pulvinar, enim sed molestie fermentum, nibh odio feugiat ex, in euismod nibh dui in sem.</p>
-  <p>Aliquam in elit pulvinar, ultrices tortor vel, elementum orci. Sed et tincidunt urna. Suspendisse volutpat elementum erat, ut porta dui accumsan ut. Nunc tempus lobortis libero ut bibendum. Curabitur augue leo, euismod ac turpis nec, pretium volutpat ipsum. Nullam a elementum felis. Suspendisse ullamcorper, est vel semper sollicitudin, nibh nisl egestas tellus, in auctor ligula massa id erat. Sed a est dolor. Phasellus venenatis efficitur hendrerit. Sed id posuere eros, quis hendrerit elit. Proin lobortis suscipit massa, vel ornare nibh mollis quis. Proin eget porttitor mauris. Nunc tempor vehicula metus. Quisque sed sodales erat. Donec augue arcu, vulputate vel justo sed, fringilla finibus odio. Integer tempor, orci ac tincidunt accumsan, neque magna dignissim purus, id rutrum enim diam ut nunc.</p>
+  <div class="view">
+    <section>
+      <h2>Instruccions</h2>
+      <ul>
+        <li>
+          Parteix del codi dels exercicis d'autoaprenentatge per fer la pràctica. Pots utilitzar el codi del exercicis resolts.
+        </li>
+        <li>
+          No es corregirà cap exercici que presenti més d’una versió.
+        </li>
+        <li>
+          El codi comentat o que no s’utilitzi en l’execució dels exercicis no es tendrà en compte per a la correcció.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Exercicis</h2>
+      <p>Modificarem l'aplicació de manera que els usuaris puguin puntuar les aplicacions. Ho farem de la següent manera:</p>
+      <h3>Modificació de l'estat (3 punts)</h3>
+      <p>Als objectes de l'aplicació afegirem un atribut per comptar les puntuacions favorables i un altre per comptar les puntuacions desfavorables.</p>
+      <p>Afegirem dues mutacions. Totes dues rebran com a paràmetre l'aplicació, però una incrementarà en una unitat les puntuacions favorables i un altra les desfavorables.</p>
+      <p>Modifica la mutació d'alta de manera que inicialitzi les puntuacions a zero.</p>
+      <article>
+        <h3>Component puntuacions (2,5 punts)</h3>
+        <p>Crea un component per puntuar les aplicacions amb les següents característiques:</p>
+        <ul>
+          <li>
+            Rebrà l'aplicació com una propietat del component.
+          </li>
+          <li>
+            L'element arrel serà span o similar per poder incloure el component en línia.
+          </li>
+          <li>
+            Tendrà un botó ( o una imatge o un boto amb una imatge o ...) per a incrementar cada tipus de puntuació.
+          </li>
+          <li>
+            Els botons ( o les imatges ...) executaran les mutacions de l'exercici anterior.
+          </li>
+        </ul>
+      </article>
+      <article>
+        <h3>Component Llista de puntuacions (1,5 punts)</h3>
+        <p>Crea un component nou. Ha de mostrar una llista ol on cada li conté el nom d'una de les aplicacions i el component puntuacions.</p>
+        <h3>Ruta (2 punts)</h3>
+        <p>Afegeix una opció al menú per mostrar la llista de puntuacions i tot el necessari perquè l'opció funcioni.</p>
+        <h3>Component Llista d'aplicacions (1 punt)</h3>
+        <p>Modifica'l de manera que inclogui el component de puntuacions.</p>
+      </article>
+    </section>
+    <section>
+      <h2>Lliurament</h2>
+      <p>Heu de lliurar el contingut del projecte complet.</p>
+    </section>
+    <section>
+      <h2>Avaluació</h2>
+      <p>Aquesta tasca representa el 6.5% de la nota de l’apartat d’activitats de l’assignatura.</p>
+      <p>A cada exercici trobareu la seva puntuació sobre 10.</p>
+      <p>El 60% de la nota de l’exercici s’obtindrà si la solució resol el cas general del problema.</p>
+      <p>El 40% restant de la nota s’obtindrà depenent de l’optimització del codi. Com més eficient sigui i més ben estructurat estigui, més nota tendrà en aquest apartat.</p>
+      <p>Es penalitzarà amb un 10% de la nota de l’exercici si el codi no està indentat, si els noms de les variables, funcions, ... no són descriptius o si l’HTML que s’utilitzi per fer l’exercici i mostrar els resultats no és correcte.</p>
+      <p>No es tendrà en compte per a la correcció el codi comentat, el que no s’utilitzi en cap lloc de la pràctica, o les múltiples versions del cod</p>
+    </section>
   </div>
 </template>
 
 <script>
-export default {
-  name: "HomeApp"
-}
+  /* eslint-disable */
+  export default {
+    name: "Home"
+  }
 </script>
 
 <style scoped>

@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/components/Home";
 import LlistaAplicacions from "@/components/LlistaAplicacions";
 import FormApp from "@/components/FormApp";
+import LlistaPuntuacions from "@/components/LlistaPuntuacions";
 
 const routes = [
 	{
@@ -16,6 +17,10 @@ const routes = [
 	{
 		path: "/alta", 
 		component: FormApp
+	},
+	{
+		path: "/llistapuntuacions", 
+		component: LlistaPuntuacions
 	},
 	{
 		path: "/modificar", 

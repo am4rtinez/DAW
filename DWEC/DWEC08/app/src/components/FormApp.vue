@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="view">
     <h2>Afegir una aplicació</h2>
     <form v-on:submit.prevent="afegir">
       <p><label for="nom">Nom: </label><input type="text" id="nom" v-model="nova.nom"></p>
@@ -11,20 +11,20 @@
 </template>
 
 <script>
-export default {
-  name: "FormApp",
-  data:function(){
-    return {
-      nova:{nom:null, descripcio:null, instalada:false}
-    }
-  },
-  methods:{
-    afegir(){
-      this.$store.commit("afegir",this.nova);
-      this.nova={nom:null, descripcio:null, instalada:false}
+  export default {
+    name: "FormApp",
+    data:function(){
+      return {
+        nova:{nom:null, descripcio:null, instalada:false}
+      }
+    },
+    methods:{
+      afegir(){
+        this.$store.commit("afegir",this.nova);
+        this.nova={nom:null, descripcio:null, instalada:false}
+      }
     }
   }
-}
 </script>
 
 <style scoped>
