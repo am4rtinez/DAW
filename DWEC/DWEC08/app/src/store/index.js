@@ -22,24 +22,22 @@ const mutations = {
     // Cercam l'APP votada i li afegim un vot
     const index = state.aplicacions.indexOf(aplicacio);
     state.aplicacions[index].positive++;
-		console.log(state.aplicacions[index].positive)
   },
   incrementDislikes: function (state, aplicacio) {
     // Cercam l'APP votada i li afegim un vot
     const index = state.aplicacions.indexOf(aplicacio);
     state.aplicacions[index].negative++;
-		console.log(state.aplicacions[index].negative)
   }
 };
 
 const getters = {
   getLikes: (state) => (aplicacio) => {
     const index = state.aplicacions.indexOf(aplicacio);
-    return state.aplicacions[index].puntsFavorables;
+    return state.aplicacions[index].positive;
   },
   getDislikes: (state) => (aplicacio) => {
     const index = state.aplicacions.indexOf(aplicacio);
-    return state.aplicacions[index].puntsDesfavorables;
+    return state.aplicacions[index].negative;
   }
 };
 

@@ -1,5 +1,4 @@
 <template>
-  <strong>{{ aplicacio.nom }}</strong>
   <span>
     <button type="button" @click="incrementLikes">
       Like - {{ $store.getters.getLikes(aplicacio) }}

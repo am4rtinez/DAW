@@ -1,7 +1,8 @@
 <template>
   <div class="view">
     <div class="aplicacions">
-      <Aplicacio v-for="(item, index) in this.$store.state.aplicacions" v-bind:key="index" v-bind:aplicacio="item"></Aplicacio>
+      <Aplicacio v-for="(item, index) in this.$store.state.aplicacions" v-bind:key="index" v-bind:aplicacio="item">
+      </Aplicacio>
     </div>
   </div>
 </template>
@@ -11,7 +12,7 @@
 
   export default {
     name: "LlistaAplicacions",
-    components: {Aplicacio}
+    components: { Aplicacio }
   }
 </script>
 
