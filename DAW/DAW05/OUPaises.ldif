@@ -1,0 +1,296 @@
+# Creación de las organizaciones de cada pais.
+dn: ou=espana,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: espana
+
+dn: ou=portugal,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: portugal
+
+dn: ou=usa,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: usa
+
+# ========= Creación de las sedes por pais ========
+# España:
+dn: ou=madrid,ou=espana,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: madrid
+
+dn: ou=barcelona,ou=espana,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: barcelona
+
+#Portugal
+dn: ou=lisboa,ou=portugal,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: lisboa
+
+#USA
+dn: ou=new_york,ou=usa,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: new_york
+
+dn: ou=boston,ou=usa,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: boston
+
+dn: ou=san_francisco,ou=usa,dc=setecastronomy,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: san_francisco
+
+# ========== Creación de los departamentos ===========
+
+# Sede Madrid
+dn: cn=sales,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: sales
+gidnumber: 500
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=marketing,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: marketing
+gidnumber: 501
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=management,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: management
+gidnumber: 502
+objectclass: posixGroup
+objectclass: top
+
+# Sede Barcelona
+dn: cn=sales,ou=barcelona,ou=espana,dc=setecastronomy,dc=com
+cn: sales
+gidnumber: 503
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=marketing,ou=barcelona,ou=espana,dc=setecastronomy,dc=com
+cn: marketing
+gidnumber: 504
+objectclass: posixGroup
+objectclass: top
+
+# Sede Lisboa
+dn: cn=sales,ou=lisboa,ou=portugal,dc=setecastronomy,dc=com
+cn: sales
+gidnumber: 505
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=marketing,ou=lisboa,ou=portugal,dc=setecastronomy,dc=com
+cn: marketing
+gidnumber: 506
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=management,ou=lisboa,ou=portugal,dc=setecastronomy,dc=com
+cn: management
+gidnumber: 507
+objectclass: posixGroup
+objectclass: top
+
+# Sede New York
+dn: cn=sales,ou=new_york,ou=usa,dc=setecastronomy,dc=com
+cn: sales
+gidnumber: 508
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=marketing,ou=new_york,ou=usa,dc=setecastronomy,dc=com
+cn: marketing
+gidnumber: 509
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=management,ou=new_york,ou=usa,dc=setecastronomy,dc=com
+cn: management
+gidnumber: 510
+objectclass: posixGroup
+objectclass: top
+
+# Sede Boston
+dn: cn=sales,ou=boston,ou=usa,dc=setecastronomy,dc=com
+cn: sales
+gidnumber: 511
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=marketing,ou=boston,ou=usa,dc=setecastronomy,dc=com
+cn: marketing
+gidnumber: 512
+objectclass: posixGroup
+objectclass: top
+
+# Sede San Francisco
+dn: cn=management,ou=san_francisco,ou=usa,dc=setecastronomy,dc=com
+cn: management
+gidnumber: 513
+objectclass: posixGroup
+objectclass: top
+
+# ====== Grupos genericos por Sedes =======
+dn: cn=mad_grp,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad_grp
+gidnumber: 514
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=bcn_grp,ou=barcelona,ou=espana,dc=setecastronomy,dc=com
+cn: bcn_grp
+gidnumber: 515
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=lis_grp,ou=lisboa,ou=portugal,dc=setecastronomy,dc=com
+cn: lis_grp
+gidnumber: 516
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=ny_grp,ou=new_york,ou=usa,dc=setecastronomy,dc=com
+cn: ny_grp
+gidnumber: 517
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=bos_grp,ou=boston,ou=usa,dc=setecastronomy,dc=com
+cn: bos_grp
+gidnumber: 518
+objectclass: posixGroup
+objectclass: top
+
+dn: cn=sf_grp,ou=san_francisco,ou=usa,dc=setecastronomy,dc=com
+cn: sf_grp
+gidnumber: 519
+objectclass: posixGroup
+objectclass: top
+
+# ========== Creacion de usuarios ==========
+
+# Sede grupo generico Madrid
+dn: cn=mad01,cn=mad_grp,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad01
+sn: mad01
+uid: mad01
+givenname: mad01
+homedirectory: /home/users/mad01
+gidnumber: 514
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1000
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+dn: cn=mad02,cn=mad_grp,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad02
+sn: mad02
+uid: mad02
+givenname: mad02
+homedirectory: /home/users/mad02
+gidnumber: 514
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1001
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+# Sede grupo sales Madrid
+dn: cn=mad03,cn=sales,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad03
+sn: mad03
+uid: mad03
+givenname: mad03
+homedirectory: /home/users/mad03
+gidnumber: 500
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1002
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+dn: cn=mad04,cn=sales,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad04
+sn: mad04
+uid: mad04
+givenname: mad04
+homedirectory: /home/users/mad04
+gidnumber: 500
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1003
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+# Sede grupo marketing Madrid
+dn: cn=mad05,cn=marketing,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad05
+sn: mad05
+uid: mad05
+givenname: mad05
+homedirectory: /home/users/mad05
+gidnumber: 501
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1004
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+dn: cn=mad06,cn=marketing,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad06
+sn: mad06
+uid: mad06
+givenname: mad06
+homedirectory: /home/users/mad06
+gidnumber: 501
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1005
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+# Sede grupo management Madrid
+dn: cn=mad07,cn=management,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad07
+sn: mad07
+uid: mad07
+givenname: mad07
+homedirectory: /home/users/mad07
+gidnumber: 502
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1006
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+
+dn: cn=mad08,cn=management,ou=madrid,ou=espana,dc=setecastronomy,dc=com
+cn: mad08
+sn: mad08
+uid: mad08
+givenname: mad08
+homedirectory: /home/users/mad08
+gidnumber: 502
+loginshell: /bin/sh
+objectclass: inetOrgPerson
+objectclass: posixAccount
+objectclass: top
+uidnumber: 1007
+userpassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==

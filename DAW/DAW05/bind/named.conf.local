@@ -1,0 +1,14 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "domainprimary.com" {
+	type master;
+	file "/etc/bind/db.domainprimary.com";
+        allow-transfer { 192.168.1.61; };
+        also-notify { 192.168.1.61; };
+};
