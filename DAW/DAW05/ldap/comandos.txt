@@ -1,0 +1,1 @@
+ldapadd -x -W -D "cn=admin,dc=setecastronomy,dc=com" -f /etc/ldap/slapd.d/OUPaises.ldif
