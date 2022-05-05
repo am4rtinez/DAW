@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="css/all.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Guillem de Moncada</title>
+    <script src="https://kit.fontawesome.com/4a3681c942.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="primary-header sticky flex">
+        <div>
+            <a href="index.html">
+                <img src="img/logo-colla.png" alt="Logo Colla Moncada" class="logo">
+            </a>
+        </div>
+        <button class="navbar-toggle" aria-controls="primary-navigation" aria-expanded="false">
+            <i id="nav-icon" class="fa fa-bars" aria-hidden="true"></i>
+            <span class="sr-only">Menu</span>
+        </button>       
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li>
+                    <a class="navbar-link" href="index.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="info.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-horse-head" aria-hidden="true"></i>
+                            <span>Fiestas</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="navbar-link" href="ubicacion.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-map-location-dot" aria-hidden="true"></i>
+                            <span>Ubicacion</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="active">
+                    <a class="navbar-link" href="contacto.html">
+                        <div class="nav-link-container">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Contacto</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        <!-- <section class="banner-area text-center text-uppercase">
+            <h1>Guillem de Moncada</h1>
+        </section> -->
+        <section class="content-section">
+            <div class="section-header text-center">
+                <h2>Formulario de contacto</h2>
+            </div>
+            <div class="section-body">
+                <form class="box-shadow" action="mailto:example@mail.com" method="post">
+                    <div class="row">
+                        <label class="col-20" for="name">Nombre <span class="red">*</span></label>
+                        <input class="col field" type="text" name="name" id="name" placeholder="Nombre" required>
+                    </div>
+                    <div class="row">
+                        <label class="col-20" for="lastname">Apellidos <span class="red">*</span></label>
+                        <input class="col field" type="text" name="lastname" id="lastname" placeholder="Apellidos" required>
+                    </div>
+                    <div class="row">
+                        <label class="col-20" for="phone">Telefono</label>
+                        <input class="col field" type="tel" name="phone" id="phone" placeholder="Teléfono" pattern="[7-9]{1}[0-9]{8}">
+                    </div>
+                    <div class="row">
+                        <label class="col-20" for="email">E-mail <span class="red">*</span></label>
+                        <input class="col field" type="email" name="email" id="email" placeholder="E-mail" required>
+                    </div>
+                    <div class="row">
+                        <label class="col" for="mensaje">Mensaje</label>
+                    </div>
+                    <div class="row">
+                        <textarea class="field" id="mensaje" name="mensaje" placeholder="Mensaje"></textarea>
+                    </div>
+                    <div class="row">
+                        <input type="checkbox" name="acepta" id="acepta" required>
+                        <label for="acepta">Aceptación de los<a href="#">términos y condiciones</a></label>
+                    </div>
+                    <div class="row">
+                        <input class="btn" type="submit" value="Enviar">
+                        <input class="btn" type="reset" value="Reset">
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Guillem de Moncada - 2021</p>
+        <div class="social-media-links">
+            <a href="#" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="#" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+            <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://github.com/am4rtinez/" alt="github"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+        </div>
+    </footer>
+    <script src="js/nav.js"></script>
+</body>
+</html>
