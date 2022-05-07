@@ -1,10 +1,10 @@
 <template>
   <span>
-    <button type="button" @click="incrementLikes">
-      Like - {{ $store.getters.getLikes(aplicacio) }}
+    <button class="btn btn-success" type="button" @click="incrementLikes">
+      <i class="fa-solid fa-thumbs-up"></i> - {{ $store.getters.getLikes(aplicacio) }}
     </button>
-    <button type="button" @click="incrementDislikes">
-      Dislike - {{ $store.getters.getDislikes(aplicacio) }}
+    <button class="btn btn-danger" type="button" @click="incrementDislikes">
+      <i class="fa-solid fa-thumbs-down"></i> - {{ $store.getters.getDislikes(aplicacio) }}
     </button>
   </span>
 </template>
@@ -37,13 +37,9 @@ export default {
   border: 1px solid #2e2d2d;
   border-radius: 5px;
 }
+
 .bold {
   font-weight: bold;
 }
-span {
-  margin-left: 1em;
-}
-span button {
-  margin-right: 1em;
-}
+
 </style>

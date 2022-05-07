@@ -12,7 +12,7 @@
 
   export default {
     name: "LlistaAplicacions",
-    components: { Aplicacio }
+    components: { Aplicacio } 
   }
 </script>
 
