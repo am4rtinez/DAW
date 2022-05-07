@@ -41,7 +41,7 @@
             </div>
           </a>
         </li>
-        <li class="active">
+        <li>
           <a class="navbar-link" href="ubicacion.html" tabindex="3" alt="Link ubicación">
             <div class="nav-link-container">
               <i class="fa fa-map-location-dot" aria-hidden="true"></i>
@@ -57,7 +57,7 @@
             </div>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a class="navbar-link" href="galeria.html" tabindex="5" alt="Link galeria portadas FREJ">
             <div class="nav-link-container">
               <i class="fa-solid fa-images" aria-hidden="true"></i>
@@ -66,18 +66,10 @@
           </a>
         </li>
         <li>
-          <a class="navbar-link" href="calendario.html" tabindex="6" alt="Link galeria programa FREJ 2019">
+          <a class="navbar-link" href="calendario.html" tabindex="5" alt="Link galeria programa FREJ 2019">
             <div class="nav-link-container">
               <i class="fa-solid fa-calendar" aria-hidden="true"></i>
               <span>Programa FREJ</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="navbar-link" href="accesibilidad.html" tabindex="7" alt="Link nivel Accesibilidad del sitio">
-            <div class="nav-link-container">
-              <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
-              <span>Accesibilidad</span>
             </div>
           </a>
         </li>
@@ -85,26 +77,32 @@
     </nav>
   </header>
   <main class="main-content">
-    <section class="content-section">
-      <div class="map">
-        <iframe height="550px" scrolling="no" marginheight="0" marginwidth="0"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=2.4714195728302006%2C39.51067946664299%2C2.488639354705811%2C39.51826111606623&amp;layer=mapnik&amp;marker=39.51447039478371%2C2.4800294637680054"></iframe>
+    <!-- Seccion Galeria -->
+    <section class="content-section gallery">
+      <div class="section-header">
+        <h2 class="text-center">Galeria con imagenes de portadas de los programas FREJ.</h2>
       </div>
-      <a class="text-center"
-        href="https://www.openstreetmap.org/?mlat=39.5145&amp;mlon=2.4800#map=16/39.5145/2.4800&amp;layers=N">Ver mapa
-        más grande</a>
-      <br>
-      <p>La ubicación de la mayoria de eventos de las fiestas se encuentra en la playa grande frente a la pinada
-        (marcador del mapa).</p>
+      <div id="gallery-panel">
+        <img class="gallery-img center" src="img/gallery/FREJ 2011.jpg" alt="Portada Programa FREJ 2011">
+        <input type="hidden" id="image-no" name="img-no" value="0">
+      </div>
+      <div class="row">
+        <button id="previous" class="btn"><i class="fa-solid fa-backward-step"
+            title="Retrocede una imagen."></i></button>
+        <button id="play" class="btn" faded="false"><i class="fa-solid fa-play"></i></button>
+        <button id="pause" class="btn"><i class="fa-solid fa-pause" faded="false"></i></button>
+        <button id="stop" class="btn"><i class="fa-solid fa-stop" faded="false"></i></button>
+        <button id="next" class="btn"><i class="fa-solid fa-forward-step"></i></button>
+      </div>
     </section>
   </main>
   <footer>
     <p>Guillem de Moncada - 2021</p>
     <div class="social-media-links">
-      <a href="#" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-      <a href="#" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
-      <a href="#" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-      <a href="#" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+      <a href="whatsapp.com" alt="whatsapp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+      <a href="telegram.com" alt="telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+      <a href="instagram.com" alt="instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+      <a href="facebook.com" alt="facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
       <a href="https://github.com/am4rtinez/" alt="github"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
     </div>
   </footer>
