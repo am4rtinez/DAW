@@ -1,3 +1,5 @@
+Nota: 7,25 / 10,00
+
 Ex 1: Ok
 
 Ex 2.1: Podries eliminar les variables i assignar l'esdeveniment directament al getElementById

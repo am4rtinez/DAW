@@ -124,7 +124,9 @@ DAW-Workspace.code-workspace
 
 # =========================== DWES =====================================
 /DWES/*/Docs/*
-/DWES/DWES06.v.2
+*credentials.json
+*token.json
+*quickstart.py
 
 # =========================== PYTHON =====================================
 *.flaskenv

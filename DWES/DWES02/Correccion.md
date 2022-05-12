@@ -1,0 +1,3 @@
+Nota: 100,00 / 100,00
+
+Molt be Ángel. No era necessari fer els templates amb un nou disseny, pero perfecte, m'agrada el teu disseny i els recursos com l'element per triar l'hora. Podries haver utilitzat session enlloc de la variable global "reservas", tingueu en compte per properes pràctiques. Fas algunes estructures de programació no massa optimizades, supos que quan agafis més soltura amb el python les aniras trobant per stackoverflow i diras "alaaa, que pringao he sido...", a mi encara me passa. Per exemple el for que fas per verificar si esta reservada, pots fer "for reserva in reservas:" i t'oblies del [i].

@@ -1,0 +1,3 @@
+Nota: 100,00 / 100,00
+
+Bona feina, la segona ja serà un poc més complicada, no dubtis en demanar tutories, etc...
