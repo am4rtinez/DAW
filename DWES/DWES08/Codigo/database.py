@@ -116,13 +116,24 @@ class gimnas(object):
     finally:
       db.close()
   
-  def get_data_user():
-    sql = "SELECT nom, llinatges from clients"
+  def get_data_user(idclient):
+    sql = "SELECT nom, llinatges from clients WHERE idclient = %s"
     try:
         db = getConnection()
         cursor = db.cursor()
-        cursor.execute(sql)
-        ResQuery = cursor.fetchall()
+        cursor.execute(sql, idclient)
+        ResQuery = cursor.fetchone()
+        return ResQuery
+    finally:
+        db.close()
+  
+  def get_tipo_pista(idpista):
+    sql = "SELECT tipo from pistes WHERE idpista = %s"
+    try:
+        db = getConnection()
+        cursor = db.cursor()
+        cursor.execute(sql, idpista)
+        ResQuery = cursor.fetchone()
         return ResQuery
     finally:
         db.close()

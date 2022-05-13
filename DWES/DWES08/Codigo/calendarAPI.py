@@ -9,6 +9,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
+from database import gimnas
+
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
@@ -37,8 +39,9 @@ if not creds or not creds.valid:
 class calendar(object):
 
   def read_week(day):
-      # Obtenemos los dias de la semana.
+    # Obtenemos los dias de la semana.
     monday = datetime.datetime.strptime(day, '%d-%m-%Y')
+    # print(monday)
     # Establecemos la hora tope como 23:59:59.9999999
     friday = (monday + datetime.timedelta(days=4)).replace(hour=23, minute=59, second=59, microsecond=999999) 
     
@@ -66,9 +69,9 @@ class calendar(object):
         if event['summary'] == 'Reserva pista':
           # print(event['description'])
           dt = datetime.datetime.fromisoformat(event['start']['dateTime'])
-          split = event['description'].split('-')
-          split2 = split[0].split()
-          item = {'data': dt, 'tipo': split[1], 'nom': split2[0], 'llinatges': split2[1]}
+          userpista = event['description'].split('-') #Separamos el usuario de la pista.
+          nomllin = userpista[0].split() # Obtenemos nombre y apellido
+          item = {'data': dt, 'tipo': userpista[1], 'nom': nomllin[0], 'llinatges': nomllin[1]}
           lista.append(item)
           # print(item)
       return lista
@@ -77,35 +80,34 @@ class calendar(object):
       print('An error occurred: %s' % error)
   
   def reservaPista(data, idusuari, idpista):
-    # day = datetime.datetime.strptime(data, '%d-%m-%Y %H:%M:%S')
-    # day = data.isoformat() + 'Z'
-    print(data)
+    # Establecemos fecha y hora de inicio y final para crear el evento.
+    dt_start = datetime.datetime.strptime(data, '%Y-%m-%d %H:%M:%S')
+    dt_end = dt_start + datetime.timedelta(hours=1)
+    dt_start = dt_start.isoformat()
+    dt_end = dt_end.isoformat()
 
+    userdata = gimnas.get_data_user(idusuari)
+    tipopista = gimnas.get_tipo_pista(idpista)
+
+    user_str = userdata['nom'] + " " + userdata['llinatges']
     event = {
       'summary': 'Reserva pista',
-      # 'location': '800 Howard St., San Francisco, CA 94103',
-      'description': idusuari + "-" + idpista,
+      'location': 'Gimnas DWES',
+      'description': user_str + "-" + tipopista["tipo"],
       'start': {
-        'dateTime': '2022-05-28T09:00:00-07:00',
+        'dateTime': dt_start,
         'timeZone': 'Europe/Madrid',
       },
       'end': {
-        'dateTime': '2022-05-28T17:00:00-07:00',
+        'dateTime': dt_end,
         'timeZone': 'Europe/Madrid',
       },
-      # 'recurrence': [
-      #   'RRULE:FREQ=DAILY;COUNT=2'
-      # ],
-      # 'attendees': [
-      #   {'email': 'lpage@example.com'},
-      #   {'email': 'sbrin@example.com'},
-      # ],
+      "colorId": 5,
       'reminders': {
         'useDefault': False,
-        # 'overrides': [
-        #   {'method': 'email', 'minutes': 24 * 60},
-        #   {'method': 'popup', 'minutes': 10},
-        # ],
+        'overrides': [
+          {'method': 'popup', 'minutes': 15},
+        ],
       },
     }
 

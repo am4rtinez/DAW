@@ -62,9 +62,11 @@ def reservar():
   if comp==0:
     data=dia+" "+str(hora)+":00:00"
     # gimnas.reservaPista(data,idusuari,tipopista)
+    # llistaRes=gimnas.cargaReservas(session['lunes'])
+    # taulaReserves=TaulaPistes(llistaRes)
     calendar.reservaPista(data,idusuari,tipopista)
-    llistaRes=gimnas.cargaReservas(session['lunes'])
-    taulaReserves=TaulaPistes(llistaRes)
+    llistaResCalendar=calendar.read_week(session['lunes'])
+    taulaReserves=TaulaPistes(llistaResCalendar)
     return render_template('UT3_tasca_reserves.html',taula=taulaReserves)
   else:
     return render_template('UT3_tasca_registre.html',alerta=comp)
