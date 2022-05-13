@@ -61,10 +61,10 @@ def reservar():
   comp=comprova(ReservaActual)
   if comp==0:
     data=dia+" "+str(hora)+":00:00"
-    # gimnas.reservaPista(data,idusuari,tipopista)
+    gimnas.reservaPista(data,idusuari,tipopista)  # Almacena la reserva en la BD.
     # llistaRes=gimnas.cargaReservas(session['lunes'])
     # taulaReserves=TaulaPistes(llistaRes)
-    calendar.reservaPista(data,idusuari,tipopista)
+    calendar.reservaPista(data,idusuari,tipopista) # Inserta el evento en google calendar.
     llistaResCalendar=calendar.read_week(session['lunes'])
     taulaReserves=TaulaPistes(llistaResCalendar)
     return render_template('UT3_tasca_reserves.html',taula=taulaReserves)
@@ -90,9 +90,9 @@ def usuaris():
 
 @app.route('/borrausuari')
 def borrausuari():
-	idusuari= request.args.get('idusuari')
+	idusuari = request.args.get('idusuari')
 	gimnas.borraUsuari(idusuari)
-	usuaris=gimnas.cargaUsuaris()
+	usuaris = gimnas.cargaUsuaris()
 	for a in range(0,len(usuaris)):
 		usuaris[a]['actualiza']=0
 	return render_template('UT3_tasca_usuaris.html',usuaris=usuaris)

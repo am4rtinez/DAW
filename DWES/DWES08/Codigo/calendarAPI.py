@@ -42,6 +42,7 @@ class calendar(object):
     # Obtenemos los dias de la semana.
     monday = datetime.datetime.strptime(day, '%d-%m-%Y')
     # print(monday)
+    
     # Establecemos la hora tope como 23:59:59.9999999
     friday = (monday + datetime.timedelta(days=4)).replace(hour=23, minute=59, second=59, microsecond=999999) 
     
@@ -56,7 +57,7 @@ class calendar(object):
       service = build('calendar', 'v3', credentials=creds)
 
       # Call the Calendar API
-      #Obtiene los eventos de la semana
+      # Obtiene los eventos de la semana
       events = service.events().list(calendarId='primary', timeMin=monday, timeMax=friday, singleEvents=True, orderBy='startTime').execute()
 
       if not events:
