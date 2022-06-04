@@ -1,0 +1,88 @@
+CREATE DATABASE vols;
+
+USE vols;
+
+CREATE TABLE airports
+(	id_airport CHAR(3),
+	location VARCHAR(30),
+	country VARCHAR(30),
+	PRIMARY KEY (id_airport));
+
+CREATE TABLE crews
+(	id_crew INTEGER,
+	alias VARCHAR(20),
+	firstname VARCHAR(30),
+    surname VARCHAR(30),
+    email VARCHAR(80),
+    mobile_phone VARCHAR(11),
+	PRIMARY KEY (id_crew));
+
+CREATE TABLE flights
+(	id_flight INTEGER,
+	flight_number CHAR(5),
+	departure_airport CHAR(3),
+	arrival_airport CHAR(3),
+	departure_time DATETIME,
+	arrival_time DATETIME,
+	number_pax INTEGER,
+	id_pilot INTEGER,
+	id_copilot INTEGER,
+	PRIMARY KEY (id_flight),
+	FOREIGN KEY (departure_airport) REFERENCES airports (id_airport),
+	FOREIGN KEY (arrival_airport) REFERENCES airports (id_airport),
+	FOREIGN KEY (id_pilot) REFERENCES crews (id_crew),
+	FOREIGN KEY (id_copilot) REFERENCES crews (id_crew));
+
+INSERT INTO airports VALUES ('PMI','Palma de Mallorca','ESPAÑA');
+INSERT INTO airports VALUES ('BCN','Barcelona','ESPAÑA');
+INSERT INTO airports VALUES ('TFN','Tenerife Norte','ESPAÑA');
+INSERT INTO airports VALUES ('TFS','Tenerife Sur','ESPAÑA');
+INSERT INTO airports VALUES ('BIO','Bilbao','ESPAÑA');
+INSERT INTO airports VALUES ('MAD','Madrid','ESPAÑA');
+INSERT INTO airports VALUES ('VRN','Verona','ITALIA');
+INSERT INTO airports VALUES ('LIS','Lisboa','PORTUGAL');
+INSERT INTO airports VALUES ('ORY','París','FRANCIA');
+INSERT INTO airports VALUES ('AMS','Amsterdam','HOLANDA');
+
+INSERT INTO crews VALUES (1,'PEPE','José Maria','Torres Quetglas','pepe@airline.com','111222222');
+INSERT INTO crews VALUES (2,'JUAN','Juan','Maroto Quetglas','juan@airline.com','112123456');
+INSERT INTO crews VALUES (3,'PACO','Francisco','Mas Jaume','paco@airline.com','113654321');
+INSERT INTO crews VALUES (4,'TONI','Antonio','Gibert Ximenes','toni@airline.com','114456789');
+INSERT INTO crews VALUES (5,'PEPA','Francisca','Cerdá Alorda','pepa@airline.com','115888888');
+INSERT INTO crews VALUES (6,'XISCO','Francisco','Méndez Gómez','xisco@airline.com','116989898');
+INSERT INTO crews VALUES (7,'ALLY','Alícia','Foord','ally@airline.com','117777777');
+INSERT INTO crews VALUES (8,'JOHN','John Brown','Reus Mateu','john@airline.com','118987654');
+INSERT INTO crews VALUES (9,'JUANA','Juana Maria','Vives Barceló','juana@airline.com','119456789');
+
+INSERT INTO flights VALUES (81,'JK123','PMI','BCN','2022-05-01 12:00:00','2022-05-01 12:30:00',90,1,9);
+INSERT INTO flights VALUES (82,'JK321','BCN','MAD','2022-05-01 18:00:00','2022-05-01 18:45:00',92,1,3);
+INSERT INTO flights VALUES (83,'JK111','BIO','TFN','2022-02-02 10:00:00','2022-02-02 11:15:00',120,1,7);
+INSERT INTO flights VALUES (85,'JK222','BIO','LIS','2022-02-03 09:10:00','2022-02-03 10:15:00',87,6,9);
+INSERT INTO flights VALUES (87,'UX333','LIS','PMI','2022-05-03 19:20:00','2022-05-03 20:35:00',90,8,9);
+INSERT INTO flights VALUES (56,'JK444','ORY','AMS','2022-05-04 21:00:00','2022-05-04 21:45:00',110,2,9);
+INSERT INTO flights VALUES (57,'JK678','AMS','TFS','2022-05-04 23:05:00','2022-05-05 01:30:00',76,1,3);
+INSERT INTO flights VALUES (58,'JK987','ORY','PMI','2022-05-05 12:00:00','2022-05-05 13:15:00',98,1,4);
+INSERT INTO flights VALUES (59,'JK567','BCN','MAD','2022-03-05 08:40:00','2022-03-05 09:40:00',99,7,1);
+INSERT INTO flights VALUES (60,'UX765','VRN','BCN','2022-05-07 17:00:00','2022-05-07 19:00:00',91,7,2);
+INSERT INTO flights VALUES (61,'JK838','PMI','TFS','2022-05-08 12:00:00','2022-05-08 13:30:00',65,7,8);
+INSERT INTO flights VALUES (62,'JK435','TFN','BIO','2022-05-08 23:50:00','2022-05-09 01:45:00',80,9,8);
+INSERT INTO flights VALUES (63,'JK789','VRN','PMI','2022-05-09 12:00:00','2022-05-09 14:05:00',70,6,9);
+INSERT INTO flights VALUES (64,'AT899','BIO','MAD','2022-05-10 12:20:00','2022-05-10 13:30:00',73,5,2);
+INSERT INTO flights VALUES (65,'JK098','MAD','BIO','2022-05-11 11:00:00','2022-05-11 11:30:00',103,5,3);
+INSERT INTO flights VALUES (66,'PH299','PMI','ORY','2022-05-12 22:00:00','2022-05-12 23:45:00',91,6,7);
+INSERT INTO flights VALUES (41,'JK623','BCN','PMI','2022-05-01 15:00:00','2022-05-01 15:30:00',90,1,9);
+INSERT INTO flights VALUES (42,'JK621','MAD','BCN','2022-05-01 19:00:00','2022-05-01 19:45:00',92,1,3);
+INSERT INTO flights VALUES (43,'JK611','TFN','BIO','2022-02-02 12:00:00','2022-02-02 13:15:00',120,1,7);
+INSERT INTO flights VALUES (45,'JK622','LIS','BIO','2022-02-03 06:10:00','2022-02-03 08:15:00',87,6,9);
+INSERT INTO flights VALUES (47,'UX633','PMI','LIS','2022-05-03 13:20:00','2022-05-03 14:35:00',90,8,9);
+INSERT INTO flights VALUES (36,'JK644','AMS','ORY','2022-05-04 22:00:00','2022-05-04 23:45:00',110,2,9);
+INSERT INTO flights VALUES (37,'JK978','TFS','AMS','2022-05-04 23:45:00','2022-05-05 01:50:00',76,1,3);
+INSERT INTO flights VALUES (38,'JK187','PMI','ORY','2022-05-05 15:00:00','2022-05-05 16:15:00',98,1,4);
+INSERT INTO flights VALUES (39,'JK267','BCN','MAD','2022-03-05 09:40:00','2022-03-05 10:40:00',99,7,1);
+INSERT INTO flights VALUES (20,'UX265','VRN','BCN','2022-05-07 18:00:00','2022-05-07 20:00:00',91,7,2);
+INSERT INTO flights VALUES (21,'JK338','PMI','TFS','2022-05-08 15:00:00','2022-05-08 16:30:00',65,7,8);
+INSERT INTO flights VALUES (22,'JK135','TFN','BIO','2022-05-08 23:30:00','2022-05-09 01:25:00',80,9,8);
+INSERT INTO flights VALUES (23,'JK389','VRN','PMI','2022-05-09 12:50:00','2022-05-09 14:55:00',70,6,9);
+INSERT INTO flights VALUES (24,'AT299','BIO','MAD','2022-05-10 16:20:00','2022-05-10 17:30:00',73,5,2);
+INSERT INTO flights VALUES (25,'JK598','MAD','BIO','2022-05-11 10:00:00','2022-05-11 11:10:00',103,5,3);
+INSERT INTO flights VALUES (26,'PH993','PMI','ORY','2022-05-12 22:10:00','2022-05-12 23:55:00',91,6,7);

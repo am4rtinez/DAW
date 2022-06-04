@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body onload="cargaSelect()">
+  <h1 class="text-3xl font-bold">
+    Desenvolupament web en entorn servidor - Maig 2022
+  </h1>
+  <div class="flex font-sans">
+  <div class="flex-none w-48 relative">
+    <img src="../static/pauairlines.png" alt="" class="absolute inset-0 w-full h-full object-cover" />
+  </div>
+  <form class="flex-auto p-6" action={{url_for('change_date')}}>
+    <div class="flex flex-wrap">
+      <h1 class="flex-auto text-lg font-semibold text-slate-900">
+        <select id="selectorAeroport" class="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" onchange="canviAeroport()" value="BCN">
+          {% for aeroport in session['aeroports'] %}
+            <option value={{aeroport['id_airport']}}>{{aeroport['id_airport']}} - {{aeroport['country']}}, {{aeroport['location']}}</option>
+          {%endfor%}
+          <!-- <option value="PMI">PMI - Palma, ESPAÑA</option>
+          <option value="AMS">AMS - Amsterdam, HOLANDA</option>
+          <option value="BCN">BCN - Barcelona, ESPAÑA</option>
+          <option value="BIO">BIO - Bilbao, ESPAÑA</option> -->
+        </select>
+      </h1>
+    </div>
+    <div class="flex flex-wrap">
+        <input id="fecha" type="date" name="fecha" class="block appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" value={{session['fecha'].replace("_00:00","")}}>
+        <input type="submit" value="Envia">
+    </div>
+    
+    <div class="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200">
+      <div class="space-x-2 flex text-sm">
+        <label>
+          <input class="sr-only peer" name="size" type="radio" value="xs" 
+            {% if session.pantalla=='arribades' %} checked {% endif %}
+            onclick="goArribades()"/>
+          <div class="w-24 h-9 rounded-lg flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+            Arribades
+          </div>
+        </label>
+        <label>
+          <input class="sr-only peer" name="size" type="radio" value="s"  
+          {% if session.pantalla=='sortides' %} checked {% endif %}
+            onclick="goSortides()"/>
+          <div class="w-24 h-9 rounded-lg flex items-center justify-center text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+            Sortides
+          </div>
+        </label>
+      </div>
+    </div>
+    <div class="flex space-x-4 mb-18 text-sm font-medium">
+      <div class="flex-auto flex space-x-4">
+        <table class="table-auto">
+          <thead>
+            <tr>
+              <th class="px-6 py-3">Flight</th>
+              <th class="px-6 py-3">Departure</th>
+              <th class="px-6 py-3">Arrival </th>
+              <th class="px-6 py-3" >Departure Time</th>
+              <th class="px-6 py-3">Arrival Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for v in vols %}
+            <tr>
+              <td class="px-6 py-4">{{v.flight_number}}</td>
+              <td class="px-6 py-4">{{v.departure_airport}}</td>
+              <td class="px-6 py-4">{{v.arrival_airport}}</td>
+              <td class="px-6 py-4">{{v.departure_time}}</td>
+              <td class="px-6 py-4">{{v.arrival_time}}</td>     
+              <td class="px-6 py-4 text-right">
+                <a href={{url_for('retraso', id_vol=v.id_flight)}} class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Retraso 1h</a>
+            </td>         
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+        
+      </div>
+      
+    </div>
+
+  </form>
+</div>
+<span id="codiA" hidden>{{ session.aeroportCode }}</span>
+</body>
+
+<script>
+    function cargaSelect(){
+    let selector = document.getElementById("selectorAeroport");
+    let codi=document.getElementById("codiA").innerHTML;
+    console.log(codi)
+    selector.value=codi;
+  }
+  function canviAeroport(){
+    let selector = document.getElementById("selectorAeroport");
+    let aeroport = selector.value;
+    console.log("ha canviat l'Aeroport a "+aeroport);
+    window.location.href = 'http://127.0.0.1:5000/aeroport?codi='+aeroport;
+  }
+    function goSortides(){
+    window.location.href = 'http://127.0.0.1:5000/sortides';
+  }
+    function goArribades(){
+    window.location.href = 'http://127.0.0.1:5000/arribades';
+  }
+</script>
+</html>

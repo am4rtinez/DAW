@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova pràctica presencial maig</title>
+    <link href="css/practica.css" rel="stylesheet">
+    <link href="imatges/logo-cifp.ico" rel="icon" type="image/x-icon">
+    <style type="text/css">
+        .titol {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var cerca = location.search;
+            var capa = document.getElementById("mostrador");
+            if (cerca.length > 0) {
+                //elimina el ?
+                cerca = cerca.substring(1, cerca.length);
+                //dins params tenim un array on cada posició és de la forma parametre=valor
+                var params = cerca.split("&");
+                for ( var index = 0; index < params.length; index++) {
+                    //alert(params[index]);
+                    var parts = params[index].split("=");
+
+                    mostrador.innerHTML = mostrador.innerHTML
+                        + '<p><span class="titol">' + parts[0] + ":</span> "
+                        + parts[1] + "</p>";
+                }
+            }
+
+            document.getElementById("boto").onclick = function() {
+                history.back();
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="container" class="containerPrincipal">
+    <div>
+        <div class="esquerra"><img src="imatges/cropped-Logo_Pau.png"></div>
+        <div>
+            <h3>Desenvolupament web al costat del client</h3>
+            <h2>Prova pràctica presencial maig</h2>
+        </div>
+    </div>
+    <div>
+    <h1>Dades rebudes per <em>GET</em></h1>
+    <div id="mostrador"></div>
+    </div>
+    <p><button type="button" id="boto">Tornar</button> </p>
+</div>
+</body>
+</html>

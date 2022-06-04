@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova pràctica presencial maig</title>
+    <link href="css/practica.css" rel="stylesheet">
+    <link href="imatges/logo-cifp.ico" rel="icon" type="image/x-icon">
+    <script src="exercicis/altaLocalitat.js"></script>
+</head>
+<body>
+<div id="container" class="containerPrincipal">
+    <div>
+        <div class="esquerra"><img src="imatges/cropped-Logo_Pau.png"></div>
+        <div>
+            <h3>Desenvolupament web al costat del client</h3>
+            <h2>Prova pràctica presencial maig</h2>
+        </div>
+    </div>
+    <div>
+        <h1>Alta nova localitat</h1>
+        <form id="formulari" action="repGet.html" method="get">
+            <p><label for="illes">Illa: </label><select id="illes" name="idIilla"></select> </p>
+            <p><label for="idLocalitat">Identificador: </label><input type="text" id="idLocalitat" name="idLocalitat"> </p>
+            <p><label for="nomLocalitat">Nom: </label><input type="text" id="nomLocalitat" name="nomLocalitat"> </p>
+            <p><button type="submit" id="boto">Alta</button> </p>
+        </form>
+
+    </div>
+    <p><a href="index.html">Tornar a l'índex</a></p>
+</div>
+</body>
+</html>

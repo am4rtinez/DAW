@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova pràctica presencial maig</title>
+    <link href="css/practica.css" rel="stylesheet">
+    <link href="imatges/logo-cifp.ico" rel="icon" type="image/x-icon">
+    <script src="exercicis/Smartphone.js"></script>
+    <script src="exercicis/altaSmartphone.js"></script>
+</head>
+<body>
+<div id="container" class="containerPrincipal">
+    <div>
+        <div class="esquerra"><img src="imatges/cropped-Logo_Pau.png"></div>
+        <div>
+            <h3>Desenvolupament web al costat del client</h3>
+            <h2>Prova pràctica presencial maig</h2>
+        </div>
+    </div>
+    <div>
+    <h1>Alta model nou</h1>
+    <form action="repGet.html" method="repGet" id="formulari">
+        <p><label>Marca: </label><input type="text" id="marca" name="marca"></p>
+        <p><label>Model: </label><input type="text" id="model" name="model"></p>
+        <p><label>RAM (GB): </label><input type="number" min="1" max="128" id="gb" name="gb" value="1"></p>
+        <p><label>Sistema Operatiu: </label><label for="android">Android </label><input type="radio" id="android" name="so" > <label for="ios">IOS </label><input type="radio" id="ios" name="so" > </p>
+        <p><label>Versió: </label><input type="text" id="vesioSO" name="versioSO"></p>
+        <p><label>5G: </label><input type="checkbox" id="g5" name="g5"></p>
+        <p><button type="submit">Enviar</button></p>
+    </form>
+    </div>
+    <p><a href="index.html">Tornar a l'índex</a></p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prova pràctica presencial maig</title>
+    <link href="css/practica.css" rel="stylesheet">
+    <link href="imatges/logo-cifp.ico" rel="icon" type="image/x-icon">
+</head>
+<body>
+<div id="container" class="containerPrincipal">
+    <div>
+        <div class="esquerra"><img src="imatges/cropped-Logo_Pau.png"></div>
+        <div>
+            <h3>Desenvolupament web al costat del client</h3>
+            <h2>Prova pràctica presencial maig</h2>
+        </div>
+    </div>
+    <div>
+        <h1>
+            Instruccions</h1>
+        <ul>
+            <li><p>Crea un nou projecte.</p></li>
+            <li><p>Inclou el codi que trobaràs a l'aula virtual al teu projecte.</p></li>
+            <li><p>Pots modificar els arxius de la carpeta <i>exercicis</i>. La resta no. Per corregir les pràctiques
+                incorporaré el contingut de la vostra carpeta exercicis al codi font subministrat a l'aula virtual. Si
+                necessiten modificacions fetes als fitxers que no podeu tocar no s'avaluarà l'exercici.</p></li>
+            <li><p>Per generar contingut a l’HTML només podeu utilitzar DOM a no ser que s’especifiqui el contrari.</p>
+            </li>
+            <li><p>Si un exercici indica que es resolgui utilitzant una llibreria o tècnica concreta, o prohibeix la
+                utilització d'una tècnica o llibreria no es corregiran les solucions que no facin cas a l'enunciat. </p>
+            </li>
+            <li><p>Els exercicis han de resoldre el cas general, no han de funcionar només amb unes dades de mostra.</p>
+            </li>
+            <li><p>El servidor de l'API és a <a href="http://52.178.39.51:8082/">http://52.178.39.51:8082</a></p></li>
+        </ul>
+        <h1>Criteris de qualificació</h1>
+
+        <p> Cada exercici duu escrita la seva puntuació sobre deu.</p>
+
+        <p> Un 65% de la nota correspon a la correcció de la resposta i un 35% a l'eficiència. </p>
+        <p> Sort!</p>
+        <h1>Exercicis</h1>
+        <h2>Exercici 1 (1,5 punts)</h2>
+        <p>Al fitxer <i>Smartphone.js</i> crea una classe per mantenir les dades d’un telèfon intel·ligent: Ha de poder
+            mantenir el model la marca, la quantitat de RAM, El sistema operatiu, la versió del SO i si té o no 5G.</p>
+        <p>També ha de tenir un mètode que torni una cadena concatenant el SO i la versió, i un altre que torni el JSON
+            de l’objecte.</p>
+        <p>Al fitxer provaSmartphone.js crea un objecte d’aquesta classe i mostra el seu JSON dins de l’element amb id
+            <i>mostrador</i> de <i>provaSmartphone.html </i>(podeu utilitzar <i>innerHTML</i> per fer-ho)<i>.</i></p>
+        <p><a href="provaSmartphone.html">Ves-hi</a></p>
+        <h2>Exercici 2 (2,5 punts)</h2>
+        <p>Al fitxer <i>altaSmartphone.js</i> programa el necessari per que la pàgina <i>altaSmartphone.html</i> tengui
+            el següent comportament:</p>
+        <h3>Exercici 2.1 (1,25 punts)</h3>
+        <p>Crea una funció que validi els camps de tipus <i>text</i> i <i>number</i>. No s’accepten texts formats només
+            per espais en blanc. Si les dades no es validen no es pot enviar el formulari. Els camps que no es validin,
+            només aquests, han de tenir el label de color vermell. </p>
+        <p>Evidentment, si el formulari no es valida no s’ha d’enviar.</p>
+        <h3>Exercici 2.2 (1,25 punts)</h3>
+        <p>Crea una funció que validi el camp de tipus <i>radio</i>. Si no n’hi ha cap de seleccionat no s’ha de validar
+            el formulari. Si no valida el label amb el nom del camp ha de ser de color vermell.</p>
+        <p>Evidentment, si el formulari no es valida no s’ha d’enviar.</p>
+        <p><a href="altaSmartphone.html">Ves-hi</a></p>
+        <h2>Exercici 3 (3 punts)</h2>
+        <p>Al fitxer <i>altaLocalitat.js </i>programa el necessari perquè la pàgina <i>altaLocalitat.html</i>
+            tengui el següent comportament.</p>
+        <h3>Exercici 3.1 (1 punt)</h3>
+        <p>En carregar-se la pàgina la llista desplegable s’ha d’omplir amb les illes que torna el servidor.</p>
+        <p>La url és: http://52.178.39.51:8082/illes</p>
+        <p>Torna les dades:</p>
+        <ul>
+            <p>
+                [{"idIlla":"071","nomIlla":"Mallorca"},{"idIlla":"072","nomIlla":"Menorca"},{"idIlla":"073","nomIlla":"Eivissa"},{"idIlla":"074","nomIlla":"Formentera"}]</p>
+        </ul>
+        <p>No podeu utilitzar <i>jQuery</i>. Podeu utilitzar <i>XMLHttpRequest</i> o <i>fetch</i>.</p>
+        <h3>Exercici 3.2 (2 punts)</h3>
+        <p>En pitjar el botó alta s’ha de cridar a la url següent per fer la inserció. S’ha de mostrar un alert amb el
+            resultat. Si no hi ha hagut cap errada s’ha de buidar el formulari.</p>
+        <p>La url és: http://52.178.39.51:8082/localitats</p>
+        <p>Torna les dades: </p>
+        <p>{"missatge":"Contingut del missatge"}</p>
+        <p>No podeu utilitzar <i>jQuery</i>. Podeu utilitzar <i>XMLHttpRequest</i> o <i>fetch</i>.</p>
+        <p><a href="altaLocalitat.html">Ves-hi</a></p>
+        <h2>Exercici 4 (3 punts)</h2>
+        <p>Al fitxer <i>baixaLocalitat.js </i>programa el necessari perquè la pàgina
+            <i>baixaLocalitat.html</i> tengui el següent comportament.</p>
+        <h3>Exercici 4.1 (1,5 punts)</h3>
+        <p>En carregar-se la pàgina la taula s’ha d’omplir amb les localitats que torna el servidor</p>
+        <p>La url és: http://52.178.39.51:8082/localitats</p>
+        <p>Torna les dades:</p>
+        <p>
+            [{"idLocalitat":"070020001","idIlla":"072","nomLocalitat":"ALAIOR"},{"idLocalitat":"070010001","idIlla":"071","nomLocalitat":"ALARO"},
+            ...]</p>
+        <p>No podeu utilitzar <i>jQuery</i>. Podeu utilitzar <i>XMLHttpRequest</i> o <i>fetch</i>.</p>
+        <h3>Exercici 4.2(1,5 punts)</h3>
+        <p>Al costat del nom de cada localitat hi ha d’haver un botó que permeti esborrar aquella localitat. Una vegada
+            eliminada, s’ha de recarregar la pàgina.</p>
+        <p>La url és: http://52.178.39.51:8082/localitats/{idLocalitat}</p>
+        <p>No podeu utilitzar <i>jQuery</i>. Podeu utilitzar <i>XMLHttpRequest</i> o <i>fetch</i>.</p>
+        <p>Torna les dades: </p>
+        <p>{"missatge":"Contingut del missatge"}</p>
+        <p><a href="baixaLocalitat.html">Ves-hi</a></p>
+        <h1>Lliurament </h1>
+        <p>Has de lliurar a l'aula virtual la carpeta <i>exercicis</i> del projecte.</p>
+    </div>
+</div>
+</body>
+</html>

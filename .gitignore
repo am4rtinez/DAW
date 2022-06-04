@@ -121,6 +121,7 @@ DAW-Workspace.code-workspace
 /DWEC/DWEC04/Docs/*
 /DWEC/DWEC05/Docs/*
 /DWEC/*/Docs/*
+/DWEC/ExamenMayo2021/*
 
 # =========================== DWES =====================================
 /DWES/*/Docs/*
@@ -167,3 +168,4 @@ yarn-error.log*
 
 *.dotx
 *.rar
+*.zip
